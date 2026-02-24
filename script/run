@@ -1,0 +1,12 @@
+#!/bin/bash
+
+mode=${1:-"paint"}
+
+[[ $mode == "color" || $mode == "font" || $mode == "model" || $mode == "nes" || $mode == "paint" || $mode == "world" ]] || {
+	echo error: unrecognized mode "$mode"
+	exit 1
+}
+
+cd source/$mode
+echo http://localhost:8000
+python -m http.server
