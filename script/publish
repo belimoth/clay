@@ -1,0 +1,29 @@
+#!/bin/bash
+
+set -o errexit
+
+[[ $( command -v butler ) ]] || { echo error: butler required; exit 1; }
+
+clear
+
+#
+
+mode=${1:-"paint"}
+
+[[ $mode == "color" || $mode == "font" || $mode == "model" || $mode == "nes" || $mode == "paint" || $mode == "world" ]] || {
+	echo error: unrecognized mode "$mode"
+	exit 1
+}
+#
+
+rm --recursive --force /a/local/publish/$mode
+mkdir --parents        /a/local/publish/$mode
+
+cd /a/source/$mode
+
+[[ $mode == "color" ]] && butler push /a/source/color "belimoth/clay-color:html5"
+[[ $mode == "font"  ]] && butler push /a/source/font  "belimoth/clay-font:html5"
+[[ $mode == "model" ]] && butler push /a/source/model "belimoth/clay-model:html5"
+[[ $mode == "nes"   ]] && butler push /a/source/nes   "belimoth/clay-nes:html5"
+[[ $mode == "paint" ]] && butler push /a/source/paint "belimoth/clay-paint:html5"
+[[ $mode == "world" ]] && butler push /a/source/world "belimoth/clay-world:html5"

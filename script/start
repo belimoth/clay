@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -o errexit
+
+MSYS_NO_PATHCONV=1 subst /d a: | true && subst a: .
+
+history -c
+export HISTFILE=/a/local/.bash_history
+
+export PATH=/a/script:$PATH
+
+code /a --reuse-window
