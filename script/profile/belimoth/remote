@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -o errexit
+
+git remote show origin > /dev/null && git remote rm origin
+git remote add                  origin git@github.com:subhelion/clay.git
+git remote set-url --add --push origin git@github.com:subhelion/clay.git
+git remote set-url --add --push origin git@github.com:belimoth/clay.git
