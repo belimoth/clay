@@ -1,0 +1,211 @@
+<!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
+<title>CLAY Paint</title>
+<link rel=stylesheet href=static/vend/glyphicons/css/glyphicons.css>
+<link rel=stylesheet href=static/style/main.css>
+<body>
+
+<div class=app-menu></div>
+
+<div id=main class="main tools-focus layer-normal">
+	<div id=menu class="panel panel-menu">
+		<div class=panel-body>
+			<div class=panel-header>
+				<div>Tools & Palette</div>
+				<a id=a-tools-collapse><div class=a-inner><span class=icon-expand  ></span></div></a>
+				<a id=a-tools-expand  ><div class=a-inner><span class=icon-collapse></span></div></a>
+			</div>
+
+			<div class="panel panel-tools">
+				<ul class=tool-list>
+					<li class=active><a><span class=icon-pen></span><b>Outline</b></a>
+					<li             ><a><span class=icon-pencil></span>Draw</a>
+					<li             ><a><span class=icon-vector-path-square></span>Draw shape</a>
+					<li             ><a><span class=icon-pencil></span><span class=icon-eyedropper></span>Adjust</a>
+				</ul>
+
+				<ul class=tool-list>
+					<li><a disabled class=modifier><span class=icon-plus></span><span class=icon-eyedropper></span></a>
+					<li><a disabled class=modifier><span class=icon-plus></span><span class=icon-bucket></span></a>
+					<li><a disabled class=modifier><span class=icon-plus></span><span class=icon-anchor></span></a>
+				</ul>
+
+				<ul class=tool-list>
+					<li><a disabled><span class=icon-undo></span>Undo</a>
+					<li hidden><a><span class=icon-cut></span>Cut</a>
+					<li hidden><a><span class=icon-copy></span>Copy</a>
+					<li hidden><a><span class=icon-paste></span>Paste</a>
+					<li><a disabled><span class=icon-redo></span>Redo</a>
+					<li><a disabled><span class=icon-erase></span>Eraser</a>
+				</ul>
+			</div>
+
+			<div class="panel panel-palette">
+				<div class=palette></div>
+				<div class=hue><div class=hue-inner></div></div>
+				<div class=picker></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="panel panel-canvas">
+		<div class=panel-header>
+			<div>Canvas — Untitled</div>
+			<a disabled><div class=a-inner><span style=font-size:16px;transform:scaleX(-1) class=icon-play-button></span></div></a>
+			<a disabled><div class=a-inner><span style=font-size:16px; class=icon-play-button></span></div></a>
+			<div class=spacer></div>
+
+			<a hidden><div class=a-inner><span class=icon-fit-image-to-frame></span></div></a>
+			<a hidden><div class=a-inner><span class=icon-ruler-alt></div></a>
+			<a hidden><div class=a-inner><span class=icon-search></span></div></a>
+			<a hidden><div class=a-inner><span class=icon-camera></span></div></a>
+			<a hidden><div class=a-inner><span class=icon-tablet></span></div></a>
+			<a hidden><div class=a-inner><span class=icon-crop></div></a>
+			<a hidden><div class=a-inner><span class=icon-riflescope></div></a>
+
+			<!-- <a><div class=a-inner><span class=icon-expand></div></a> -->
+		</div>
+
+		<div class=panel-body>
+			<div id=canvas class=canvas>
+				<canvas id=canvasDisplay style="width:512px;height:512px;left:64px;top:64px;" width=1024 height=1024></canvas>
+				<div class=canvas-region><div></div></div>
+			</div>
+		</div>
+
+		<div class=panel-footer>
+			<div>x:0 y:0</div>
+		</div>
+	</div>
+
+	<div id=column-right class=column-right>
+		<div class=panel-body>
+			<div class=panel-header>
+				<div>Layers & History</div>
+				<a id=a-layer-expand  ><div class=a-inner><span class=icon-expand  ></span></div></a>
+				<a id=a-layer-collapse><div class=a-inner><span class=icon-collapse></span></div></a>
+			</div>
+
+			<div class="panel panel-layer active">
+				<div class=panel-body>
+					<ul id=layer class=layer-list>
+						<!-- <li class=b><a><span class=icon-new></span>New layer</a> -->
+
+						<li class=active>
+							<a><canvas width=32 height=32 class=thumb></canvas>3. Canvas</a>
+							<a><div class=a-inner><span class=icon-star-empty></span></div></a>
+						<li>
+							<a><canvas width=32 height=32 class=thumb></canvas>2. Canvas</a>
+							<a><div class=a-inner><span class=icon-star-empty></span></div></a>
+						<li class=fill>
+							<a><canvas width=32 height=32 class=thumb></canvas>1. Fill  </a>
+							<a><div class=a-inner><span class=icon-star-empty></span></div></a>
+					</ul>
+				</div>
+
+				<div class=panel-footer></div>
+			</div>
+
+			<div class="panel panel-history">
+				<div class=panel-body>
+					<ul id=history class=history-list></ul>
+
+					<div id=scrubber class=scrubber-outer>
+						<div class=scrubber-inner></div>
+					</div>
+				</div>
+
+				<div class=panel-footer>
+					<div class=spacer></div>
+					<div id=clock class=clock>0:00</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class=panel-full>
+		<div class=panel-header>
+			<a id=a-layer-close><span class=icon-remove></span></a>
+		</div>
+
+		<span class=icon-mouse-left-click  ></span>Draw
+		<span class=icon-mouse-right-click ></span>Draw
+		<span class=icon-mouse-middle-click></span>Draw
+		<span class=icon-mouse-scroll      ></span>Draw
+		<span class=icon-mouse-double-click></span>Draw
+	</div>
+</div>
+
+<div id=top-menu class=top>
+	<ul class=menu-list>
+		<li><a><div class=a-inner><span class=icon-menu-hamburger></span></div></a>
+
+		<li>
+			<a>File</a>
+
+			<ul>
+				<li><a disabled>New</a>
+				<li><a disabled>Open</a>
+				<li><a>Save</a>
+				<li><a disabled>Save As</a>
+				<li><a id=a-export>Export</a>
+			</ul>
+
+		<li>
+			<a>Edit</a>
+
+			<ul>
+				<li><a disabled>Undo</a>
+				<li><a disabled>Redo</a>
+				<li><a disabled>Cut</a>
+				<li><a disabled>Copy</a>
+				<li><a disabled>Paste</a>
+				<li><a disabled>Delete</a>
+			</ul>
+		<li><a>View</a>
+		<li><a disabled>Help</a>
+	</ul>
+
+	<div class=spacer></div>
+	<div class=traffic><a id=a-fullscreen><span class=icon-resize-full></span></a></div>
+</div>
+
+<div id=offscreen hidden>
+	<img id=picnic src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAAQAAQMAAABF07nAAAAABlBMVEX////Z2dl4b8nnAAAC+0lEQVR42uzQAQnAQBDEwPdveisjhRtiYMh7awMAAOgBuz4AAADgBwIAAIAdDwAAoAf0AgAAgB0PAACgB/QCAACAHQ8AAKAH9AIAAIAdDwAAoAf0AgAAgB0PAACgB/QCAACAHQ8AAKAH9AIAAIAdDwAAoAf0AgAAgB0PAACgB/QCAACAHQ8AAKAH9AIAAIAdDwAAoAf0AgAAgB0PAACgB/QCAACAHQ8AAKAH9AIAAIAdDwAAoAf0AgAAgB0PAACgB/QCAACAHQ8AAKAH9AIAAIAdDwAAoAf0AgAAgB0PAACgB/QCAACAHQ8AAKAH9AIAAIAdDwAAoAf0AgAAgB0PAACgB/QCAACAHQ8AAKAH9AIAAIAdDwAAoAf0AgAAgB0PAACgB/QCAACAHQ8AAKAH9AIAAIAdDwAAoAf0AgAAgB0PAACgB/QCAACAHQ8AAKAH9AIAAIAdDwAAoAf0AgAAgB3vY3eOiQAAYBgI+VfdyvghHAYQEBDoA/1AQEDgxgkICPSBfiAgIHDjBAQE+kA/EBAQuHECAgJ9oB8ICAjcOAEBgT7QDwQEBG6cgIBAH+gHAgICN05AQKAP9AMBAYEbJyAg0Af6gYCAwI0TEBDoA/1AQEDgxgkICPSBfiAgIHDjBAQE+kA/EBAQuHECAgJ9oB8ICAjcOAEBgT7QDwQEBG6cgIBAH+gHAgICN05AQKAP9AMBAYEbJyAg0Af6gYCAwI0TEBDoA/1AQEDgxgkICPSBfiAgIHDjBAQE+kA/EBAQuHECAgJ9oB8ICAjcOAEBgT7QDwQEBG6cgIBAH+gHAgICN05AQKAP9AMBAYEbJyAg0Af6gYCAwI0TEBDoA/1AQEDgxgkICPSBfiAgIHDjBAQE+kA/EBAQuHECAgJ9oB8ICAjcOAEBgT7QDwQEBG6cgIBAH+gHAt/uHBMBAMAwEPKvupXxQzgMICBw4wQEBPpAPxAQELhxAgICfaAfCAgI3DgBAYE+0A8EBARunICAQB/oBwICAjdOQEAgDzzH/w7ywjK5mQAAAABJRU5ErkJggg==">
+	<a id=download download=untitled.png></a>
+	<a id=video-download download=untitled.webm></a>
+	<canvas id=canvas-render></canvas>
+	<canvas id=canvas-stroke></canvas>
+	<canvas id=canvas-erase ></canvas>
+</div>
+
+<template id=template-history-item>
+	<li class=new><a><div class=rgb></div></a></li>
+</template>
+
+<script src=static/vend/bliss/bliss.min.js></script>
+<!-- <script src=static/vend/perlin/perlin.js></script> -->
+<script src=static/vend/impetus/impetus.min.js></script>
+<!-- <script src=static/vend/webm/webm-writer-0.2.0.js></script> -->
+
+<script type=module src=static/script/reset.js></script>
+<script type=module src=static/script/color.js></script>
+
+<script type=module src=static/script/main/ui.js></script>
+<script type=module src=static/script/main/tool.js></script>
+
+<script type=module src=static/script/main/ui/scrubber.js></script>
+<script type=module src=static/script/main/ui/tool.js   ></script>
+<script type=module src=static/script/main/ui/layout.js  ></script>
+<script type=module src=static/script/main/ui/palette.js ></script>
+<script type=module src=static/script/main/ui/layer.js  ></script>
+<script type=module src=static/script/main/ui/history.js ></script>
+
+<script type=module src=static/script/app.js ></script>
+<script type=module src=static/script/wip.js ></script>
+<script type=module src=static/script/session.js></script>
+
+<script type=module src=static/script/main.js></script>

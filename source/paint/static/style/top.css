@@ -1,0 +1,143 @@
+div.top {
+	background: #F2F2F2;
+}
+
+div.top {
+	padding: 0;
+	background: #FFF;
+}
+
+div.top {
+	position: relative;
+}
+
+body.window-full div.top {
+	display: none;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+ul.menu-list {
+	display: flex;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+ul.menu-list > li {
+	width: 48px;
+	position: relative;
+}
+
+ul.menu-list > li:first-child {
+	width: 48px;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+ul.menu-list > li > a {
+	padding: 0 12px;
+	/* padding: 0 16px; */
+}
+
+ul.menu-list > li > a {
+	display: block;
+	height: 36px;
+	line-height: 36px;
+}
+
+ul.menu-list > li:first-child > a {
+	display: block;
+}
+
+ul.menu-list > li:first-child > a  {
+	/* padding-top: 2px; */
+	padding: 0;
+	text-align: center;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+ul.menu-list > li > a:hover {
+	background: #F2F2F2;
+}
+
+ul.menu-list > li > a[disabled] {
+	color: #AAA;
+}
+
+ul.menu-list > li.active > a {
+	background: #000;
+	color: #FFF;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+div.traffic > a {
+	display: block;
+	text-align: center;
+	width: 47px;
+}
+
+div.traffic > a > span {
+	font-size: 16px;
+	height: 36px;
+	line-height: 36px;
+}
+
+div.traffic > a > span::before {
+	padding: 0;
+}
+
+div.traffic > a:hover {
+	background: #000;
+	color: #FFF;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+div.top > ul.menu-list > li:first-child > a > div.a-inner {
+	height: 36px;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+ul.menu-list > li > ul {
+	position: absolute;
+	left: -1px;
+
+	background: #FFF;
+	width: 150px;
+	line-height: 24px;
+	line-height: 36px;
+	padding: 1px;
+	/* border-top: 1px solid #666; */
+	border: 1px solid #000;
+}
+
+ul.menu-list > li:not( .active ) > ul {
+	opacity: 0.0;
+	pointer-events: none;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+ul.menu-list > li > ul > li > a {
+	padding: 0 11px;
+}
+
+ul.menu-list > li > ul > li > a:hover {
+	background: #FFE8FC;
+}
+
+ul.menu-list > li > ul > li > a[disabled] {
+	color: #AAA;
+}
+
+ul.menu-list > li > ul > li > a[disabled]:hover {
+	background: #F2F2F2;
+}
+
+ul.menu-list > li > ul > li > a:not( [disabled] ):active {
+	background: #FFD1FA;
+	color: #000;
+}

@@ -1,0 +1,69 @@
+div.panel-header {
+	height: 42px;
+	line-height: 40px;
+	border: 0 solid #666;
+	border-width: 1px 0;
+	border-color: transparent;
+	margin-top: -1px;
+	padding: 0 16px;
+}
+
+div.panel-header {
+	padding-right: 0;
+	padding: 0;
+}
+
+div.panel-header {
+	flex-shrink: 0;
+	height: 42px;
+	display: flex;
+}
+
+div.panel-header > div:first-child {
+	flex-grow: 1;
+	padding: 0 16px;
+}
+
+div.panel-header > a {
+	width: 47px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+}
+
+div.panel-header > a > div.a-inner {
+	pointer-events: none;
+	
+	padding-left: 2px;
+	padding-top: 2.5px;
+
+	height: 40px;
+
+	opacity: 0.9;
+}
+
+div.panel-header > a:not( [disabled] ).hover > div.a-inner,
+div.panel-header > a:not( [disabled] ):not( .mute ):hover  > div.a-inner,
+div.panel-header > a:not( [disabled] ):not( .mute ):active > div.a-inner {
+	background: #000;
+	color: #FFF;
+
+	opacity: 1.0;
+}
+
+div.panel-header > a[disabled]:hover > div.a-inner {
+	/* background: #F2F2F2; */
+}
+
+div.panel-header > a:not( [disabled] ):not( .mute ):active > div.a-inner {
+	transform: scale( 0.95 );
+}
+
+div.panel-header > a.mute:not(.hover) > div.a-inner {
+	background: #FFF;
+	color: #444;
+}
+
+div.panel-header > a > div.a-inner > span {
+	font-size: 20px;
+}

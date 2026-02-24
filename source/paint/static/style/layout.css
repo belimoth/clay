@@ -1,0 +1,270 @@
+div.top {
+	display: flex;
+	height: 36px;
+	line-height: 36px;
+	padding-right: 16px;
+}
+
+div.top > div.spacer {
+	flex-grow: 1;
+}
+
+div.top {
+	padding: 0 16px;
+}
+
+
+div.main {
+	position: relative;
+
+	width: 100vw;
+	height: calc( 100vh - 36px );
+
+	border-top: 1px solid #666;
+
+	overflow: hidden;
+}
+
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+div.main > * {
+	position: absolute;
+	height: 100%;
+	top: 0;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+div.panel-menu {
+	width: 48px;
+	left: 0;
+	border-right: 1px solid #666
+}
+
+div.panel-menu {
+	width: 203px;
+	border-right: 1px solid #666;
+}
+
+div.panel-menu {
+	width: 240px;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+div.panel-canvas {
+	left: 203px;
+	overflow: hidden;
+}
+
+div.main.layer-full   > div.panel-canvas,
+div.main.layer-normal > div.panel-canvas { width: calc( 100vw - 155px - 48px - 240px ); }
+div.main.layer-focus  > div.panel-canvas { width: calc( 100vw - 240px -  48px        ); }
+div.main.layer-hidden > div.panel-canvas { width: calc( 100vw - 155px - 48px -   0px ); }
+
+div.main.layer-full > div.panel-canvas {
+	opacity: 0.0;
+	transition: opacity 0.1s linear, width 0.2s step-end;
+	/* NOTE width doesn't change actually */
+	transition: opacity 0.1s linear;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+div.main.layer-full > div.column-right {
+	left: calc( 48px + 155px );
+	border-left: 0;
+	overflow-y: scroll;
+}
+
+
+
+div.column-right > div.panel-body > div.panel {
+	transform: translateX( 0 );
+	transition: transform 0.2s ease, width 0.2s ease;
+}
+
+
+div.main.layer-full > div.column-right > div.panel-body > div.panel {
+	margin-left: 24px;
+	transform: translateX( -24px );
+	transition: transform 0.2s ease-out 0.0s;
+
+	padding-left: 12px;
+	overflow: hidden;
+}
+
+div.column-right > ul.tab-list {
+	margin-left: 0;
+	display: flex;
+	opacity: 0.0;
+	transform: translateX( 24px );
+	pointer-events: none;
+}
+
+ul.tab-list > li:first-child {
+	width: 141px;
+	border-left-width: 0;
+	margin-left: 0;
+}
+
+ul.tab-list > li > a {
+	/* NOTE messes up bottom-right miter */
+	/* margin-right: -1px; */
+}
+
+div.main.layer-full > div.column-right > ul.tab-list {
+	opacity: 1.0;
+	transform: translateX( 0px );
+	transition: transform 0.2s ease-out 0.0s;
+	pointer-events: auto;
+}
+
+div.column-right > ul.tab-list > li.spacer ~ li {
+	transform: translateX( -24px );
+}
+
+div.main.layer-full > div.column-right > ul.tab-list > li.spacer ~ li {
+	transform: translateX( 0 );
+	transition: transform 0.2s ease-out 0.0s;
+}
+
+div.column-right {
+	/* background: #FFF; */
+	background: rgba( 255, 255, 255, 0.8 );
+}
+
+
+div.column-right > div.panel-body {
+	margin-top: -41px;
+}
+
+div.main.layer-full > div.column-right > div.panel-body {
+	margin-top: 0;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+div.main.layer-focus > div.column-right {
+	left: calc( 100vw - 48px );
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+div.column-right {
+	width: calc( 100vw );
+	width: calc( 100vw - 155px - 48px );
+	overflow: hidden;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+div.panel-body {
+	height: 100%;
+}
+
+div.main.layer-full > div.column-right > div.panel-body {
+	margin-right: -24px;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+div.column-right {
+	display: block;
+}
+
+div.panel-body {
+	display: flex;
+	flex-direction: column;
+}
+
+div.history {
+	width: 240px;
+	flex-grow: 1;
+	display: flex;
+}
+
+div.history > ul.layer-list {
+	flex-grow: 1;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+div.panel-body > div.panel {
+	border-top: 1px solid #666;
+	margin-top: -1px;
+	width: 240px;
+	height: 50%;
+	flex-grow: 1;
+
+}
+
+div.panel-history {
+	display: flex;
+}
+
+div.panel-body > div.panel {
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+
+div.main.layer-focus div.panel-history > ul {
+	display: none;
+}
+
+
+div.panel-history > ul {
+	border-right: 1px solid #666;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+div.panel-canvas {
+	left: 240px;
+}
+
+div.main.layer-full > div.panel-canvas,
+div.main.layer-normal > div.panel-canvas {
+	width: calc( 100vw - 240px - 240px );
+    left: 240px;
+
+}
+
+div.main.layer-full > div.column-right {
+    left: 240px;
+	width: calc( 100vw - 240px );
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+div.column-right {
+	left: calc( 100vw - 240px );
+	width: 240px;
+
+	border-left: 1px solid #666;
+}
+
+div.column-right {
+	display: flex;
+	flex-direction: column;
+}
+
+/* div.main.layer-full > div.column-right, */
+div.main.layer-full > div.column-right > div.panel-body,
+div.main.layer-full > div.column-right > div.panel-body > div.panel {
+	width: 100%;
+}
+
+div.panel > div.panel-body > div.panel {
+	width: 100%;
+}
+
+div.panel-menu > div.panel-body > div.panel {
+	overflow: hidden;
+}
+
+div.main.layer-focus > div.column-right > div.panel-body > div.panel-header > div:first-child {
+	display: none;
+}

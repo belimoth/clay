@@ -1,0 +1,143 @@
+
+castlevania circle of the moon
+- ccotm_title
+- ccotm_subtitle
+- ccotm_start
+- ccotm_copy_8_1_2
+- ccotm_copy_8_1_3
+- ccotm_copy_nintendo
+-
+-
+-
+-
+- ccotm_game_over
+
+2-in-1: sonic advance & chuchu rocket
+- sonic_advance_title
+- chuch_rocket_title
+- sonic_advance_start
+
+
+2-in-1: sonic advance & sonic battle
+- sonic_advance_title
+- sonic_battle_title
+- sonic_advance_start
+
+
+var font : {
+	size : {
+		x : 16
+		y : {
+			cap  :  3,
+			rise :  3,
+			mid  :  5,
+			beam :  7,
+			base : 12,
+			fall : 13
+		}
+	}
+};
+
+var face : {
+	font : [],
+	fill : [],
+	edge : [],
+};
+
+var fill : {
+
+};
+
+var edge : {
+	stroke : 0, // color
+	weight : 0, // 0.5, 1, 1.5
+	course : 0, // direction
+};
+
+
+.y_0   = 0
+.y_cap = 0
+.y_rise = 0
+.y_beam
+.y_mid  = 0
+.y_fall = 0
+.y_body = 0
+
+
+.axis
+
+
+
+roman
+
+antiqua = serif
+grotesk = sans-serif
+
+backslant, italic, slant, oblique
+
+fett, halbfett
+
+glyph, glyph alternate, alternate
+
+hanging figures, old style figures, hybrid figures, lining figures, tabular figures
+
+petite caps, small caps
+
+kerning
+
+ligature, gadzook
+
+
+PROPERTIES
+
+axis, axis slant
+
+weight
+
+FEATURES
+
+
+aperture ( n C S e a )
+apex ( A )
+arc ( o, etc )
+arm ( T )
+ascender ( b d f h k )
+bowl ( d b o D B )
+counter ( d o s )
+cross bar ( A H )
+cross stroke ( f t )
+crotch ( v w y )
+descender ( g j p q y etc )
+diactritic
+eye ( e )
+flag ( 5 )
+hairline
+hook ( f j J )
+leg ( K k R )
+link/neck ( g )
+lobe ( g )
+loop ( g cursive p b l )
+overshoot ( o )
+shoulder ( h m n )
+spine ( S s )
+stem, root, stroke, joint
+tail (Q)
+tittle (i j)
+vertex ( M v V w W )
+
+
+DECORATIONS
+
+
+ball terminal vs teardrop terminal
+
+beak
+bracket
+double-story (ag) vs single-story
+ear (g)
+finial (e etc)
+ink trap
+spur vs spurless
+swash
+taper
+terminal

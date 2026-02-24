@@ -1,0 +1,33 @@
+*, *::before, *::after {
+	box-sizing: border-box;
+	margin: 0;
+	border: 0;
+	outline: 0;
+	padding: 0;
+	color: inherit;
+	font: inherit;
+}
+
+html {
+	height: 100%;
+	width: 100%;
+
+	user-select: none;
+	cursor: default;
+}
+
+body {
+	height: 100%;
+}
+
+ul {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+ul > li > a {
+	display: block
+}

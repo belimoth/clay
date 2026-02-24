@@ -1,0 +1,113 @@
+html,
+::-webkit-scrollbar {
+	--color-content-border: #666;
+	--color-content-background: #FFF;
+}
+
+::-webkit-scrollbar:vertical {
+	width: 19px;
+	height: 19px;
+	border-left: 1px solid;
+}
+
+::-webkit-scrollbar:horizontal {
+	width: 19px;
+	height: 19px;
+	border-top: 1px solid;
+}
+
+::-webkit-scrollbar-thumb {
+	box-shadow: inset 0 0 0 1px var( --color-content-background );
+}
+
+::-webkit-scrollbar-thumb:vertical {
+	width: 16px;
+	border-left: 1px solid;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+	height: 16px;
+	border-top: 1px solid;
+}
+
+::-webkit-scrollbar-corner {
+	border: 0 solid;
+	border-width: 1px 0 0 1px;
+}
+
+::-webkit-scrollbar-thumb:active {
+	background: #BBB;
+}
+
+::-webkit-scrollbar-button:increment:start,
+::-webkit-scrollbar-button:decrement:end {
+	display: none;
+}
+
+::-webkit-scrollbar-button {
+	height: 18px;
+	width: 18px;
+	background: #FFF;
+}
+
+::-webkit-scrollbar-button:hover {
+	background: #F2F2F2;
+}
+
+::-webkit-scrollbar-button:active {
+	background: #DDD;
+}
+
+::-webkit-scrollbar-button:vertical {
+	border-left: 1px solid;
+	height: 19px;
+}
+
+::-webkit-scrollbar-button:vertical:decrement {
+	border-bottom: 1px solid currentColor;
+}
+
+::-webkit-scrollbar-button:vertical:increment {
+	border-top: 1px solid currentColor;
+}
+
+::-webkit-scrollbar-button:horizontal {
+	border-top: 1px solid;
+	width: 19px;
+}
+
+::-webkit-scrollbar-button:horizontal:decrement {
+	border-right: 1px solid currentColor;
+}
+
+::-webkit-scrollbar-button:horizontal:increment {
+	border-left: 1px solid currentColor;
+}
+
+/* ::-webkit-scrollbar,
+::-webkit-scrollbar-button {
+	background: var( --color-content-background );
+}
+
+::-webkit-scrollbar,
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-button {
+	border-color: var( --color-content-border );
+	color: var( --color-content-border );
+} */
+
+::-webkit-scrollbar-button:disabled {
+
+}
+
+::-webkit-scrollbar-thumb {
+	background: var( --color-content-border );
+}
+
+/* div.panel-canvas > div.panel-body::after {
+	content: "";
+	display: block;
+	width: 100vw;
+	height: 100vh;
+	flex-shrink: 0;
+} */

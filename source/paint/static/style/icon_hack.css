@@ -1,0 +1,38 @@
+span.icon-undo {
+	position: relative;
+}
+
+span.icon-undo::after {
+	content: "";
+	position: absolute;
+	left: 4px;
+	top: 4px;
+	width: 32px;
+	height: 32px;
+	border: 2px solid currentColor
+}
+
+span[class^="icon-"] {
+	font-size: 24px;
+	width: 40px;
+	height: 40px;
+}
+
+span.icon-menu-hamburger {
+	transform: scaleY( 0.5 );
+}
+
+span.icon-show-lines {
+	transform: scaleY( 0.8 );
+}
+
+span.icon-magic,
+span.icon-direction,
+span.icon-erase,
+span.icon-bucket {
+	transform: scaleX( -1 );
+}
+
+span.icon-expand {
+	transform: rotate( 90deg ) translateX(-3px) translateY(4px);
+}

@@ -1,0 +1,299 @@
+ul.layer-list {
+	line-height: 48px;
+	padding-left: 8px;
+}
+
+ul.layer-list > li {
+	border: 0 solid #999;
+	border-width: 1px 0;
+	margin-top: -1px;
+}
+
+ul.layer-list > li > a {
+	display: block;
+	margin: -1px 0 -1px -8px;
+	padding: 0 8px;
+}
+
+canvas.thumb {
+	margin-top: 8px;
+	margin-right: 8px;
+	float: left;
+}
+
+div.main.layer-full > div.column-right > div.panel-body > ul.layer-list {
+	position: absolute;
+	overflow-y: hidden;
+}
+
+div.main.layer-full > div.column-right > div.panel-body  > ul.layer-list.active {
+	width: calc( 100% - 12px );
+	height: 100%;
+}
+
+div.main.layer-full > div.column-right > div.panel-body  > ul.layer-list:not( .active ) {
+	opacity: 0;
+}
+
+ul.layer-list {
+	width: 100vw;
+}
+
+ul.layer-list {
+	/* border-top: 1px solid #666; */
+	/* margin-top: -1px; */
+	line-height: 40px;
+}
+
+
+canvas.thumb {
+	margin-top: 4px;
+}
+
+ul.layer-list > li {
+	border-color: #DDD;
+}
+
+ul.layer-list {
+	/* overflow: hidden; */
+}
+
+ul.layer-list {
+	width: 240px;
+	/* overflow-x: hidden;
+	overflow-y: scroll; */
+}
+
+ul.layer-list {
+	padding-bottom: 40px;
+}
+
+ul.layer-list > li > a:hover {
+	position: relative;
+	/* background: #F2F2F2; */
+	z-index: 1;
+}
+
+ul.layer-list > li > a > canvas.thumb {
+	background: #FFF;
+	outline: 1px solid currentColor;
+	outline-offset: -1px;
+}
+
+ul.layer-list > li > a:active {
+	position: relative;
+	/* background: #DDD; */
+	z-index: 1;
+}
+
+div.main.layer-focus > div.column-right > div.panel-body  > ul.layer-list:not( .active ) {
+	opacity: 0.0;
+}
+
+div.main.layer-full  > div.column-right > div.panel-body  > ul.layer-list > li.h,
+div.main.layer-focus > div.column-right > div.panel-body  > ul.layer-list > li.h {
+	opacity: 0.0;
+}
+
+ul.layer-list > li.h {
+	/* margin-bottom: 40px; */
+}
+
+ul.layer-list:not( .active ) {
+	flex-grow: 1;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+ul.layer-list > li {
+	position: relative;
+	display: flex;
+}
+
+ul.layer-list > li > a {
+	/* flex-shrink: 0; */
+}
+
+ul.layer-list > li > a:first-child {
+	/* width: 240px; */
+	flex-grow: 1;
+}
+
+ul.layer-list > li > a:first-child + a {
+	width: 47px;
+	width: 40px;
+	flex-shrink: 0;
+	z-index: 3;
+	padding: 0;
+	/* margin-left: -48px; */
+	margin-left: 0;
+}
+
+ul.layer-list {
+	width: 100%;
+}
+
+ul.layer-list > li > a:first-child + a > div.a-inner > span {
+	font-size: 20px;
+	padding: 3px;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+ul.layer-list > li > a:first-child:hover + a {
+	/* background: #F2F2F2; */
+}
+
+ul.layer-list > li > a:first-child:active + a {
+	/* background: #DDD; */
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+ul.layer-list > li.active {
+	color: #07D;
+	color: #F6E;
+}
+
+ul.layer-list > li::before {
+	width: 4px;
+	height: 38px;
+	content: "";
+	position: absolute;
+	left: calc( -16px + 2px );
+	left: -16px;
+	top: 0;
+	z-index: 2;
+}
+
+ul.layer-list > li.active::before {
+	background: #07D;
+	background: #F6E;
+}
+
+ul.layer-list > li.active > a:first-child {
+	/* background: #F2F2F2; */
+	z-index: 1;
+}
+
+ul.layer-list > li.active > a {
+	/* background: #F2F2F2; */
+}
+
+ul.layer-list > li > a {
+	margin-left: calc( -16px + 2px );
+	margin-left: -16px;
+}
+
+ul.layer-list > li.active > a:active {
+	/* background: #DDD; */
+}
+
+ul.layer-list {
+	padding-left: 16px;
+}
+
+ul.layer-list > li {
+	position: relative;
+}
+
+ul.layer-list > li > a:first-child {
+	padding-left: calc( 16px - 2px );
+	padding-left: 16px;
+}
+
+ul.layer-list > li > a:first-child:hover::before,
+ul.layer-list > li > a:first-child:hover + a::before {
+	position: absolute;
+	content: "";
+	display: block;
+	top: 0px;
+	left: -1px;
+	width: 241px;
+	height: 40px;
+	border: 0 solid #FFF;
+	border-width: 1px 0;
+	pointer-events: none;
+	z-index: 1;
+}
+
+ul.layer-list > li > a:first-child:hover + a::before {
+	top: -1px;
+}
+
+
+ul.layer-list > li > a:last-child:hover > div.a-inner,
+ul.layer-list > li > a:last-child:active > div.a-inner {
+	background: #000;
+	color: #FFF;
+}
+
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/* ul.layer-list > li > a > canvas.thumb, */
+ul.layer-list > li.fill > a > canvas.thumb {
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACAQMAAABIeJ9nAAAABlBMVEX////Z2dl4b8nnAAAADElEQVQI12NwYGgAAAFEAMHrWQMJAAAAAElFTkSuQmCC);
+	background-size: 8px;
+	background-position: 1px 1px;
+	image-rendering: pixelated;
+}
+
+div.main.layer-focus ul.layer-list > li > a:first-child {
+    margin-left: -24px;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+ul.layer-list > li > a > canvas.thumb {
+	/* background: transparent; */
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+div.column-right ul.layer-list {
+	/* padding: 2px; */
+	padding-top: 5px;
+
+	padding-right: 2px;
+	padding-left: 18px;
+
+	padding-top: 3px;
+}
+
+div.column-right div.box {
+	width: 219px;
+	box-shadow: none;
+}
+
+ul.layer-list > li.active::before {
+	z-index: 20;
+	top: -1px;
+	height: 40px;
+	width: 8px;
+}
+
+div.column-right ul.layer-list > li {
+	margin-top: 0;
+}
+
+
+ul.layer-list > li > a:hover:not( :active ),
+ul.layer-list > li > a:hover:not( :active ) + a {
+	background: #F2F2F2;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+ul.layer-list > li.active::before {
+	width: 4px;
+	left: -14px;
+}
+
+div.main.layer-focus ul.layer-list > div.box {
+	display: none;
+}
+
+div.main.layer-focus ul.layer-list > li.active::before {
+	left: -18px;
+}
