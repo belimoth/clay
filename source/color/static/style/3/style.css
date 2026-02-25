@@ -1,0 +1,247 @@
+*, *::before, *::after {
+	box-sizing: border-box;
+	margin: 0;
+	outline: none;
+	border: none;
+	padding: 0;
+	color: inherit;
+	font: inherit;
+}
+
+* {
+	pointer-events: none;
+}
+
+div {
+	pointer-events: all;
+}
+
+html {
+	-webkit-user-select: none; user-select: none;
+	-webkit-user-drag: none;
+	overflow:hidden;
+}
+
+body {
+	/* transform: scale( 0.5, 0.5 ); */
+}
+
+html {
+	color: #666;
+
+	font-family:
+		system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+		"Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+		"Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+div {
+	/* transition: opacity 0.2s linear 2s; */
+}
+
+canvas {
+	display: block;
+	background: #FFF;
+	background-size: 16px;
+	image-rendering: pixelated;
+}
+
+/* TODO generate this based on screen density and inject */
+
+canvas {
+	width: 128px;
+	height: 128px;
+}
+
+div {
+	position: absolute;
+	/* left: 50vw;
+	top: 50vh; */
+
+	outline: 1px solid #FFF;
+	border: 2px solid #666;
+	/* background: #FFF; */
+
+	padding: 1px;
+}
+
+div.active,
+div:active:hover{
+	border-color: #F6E;
+}
+
+div:not( .mute ):hover::after {
+	content: "";
+
+	position: absolute;
+	left: -8px;
+	top: -8px;
+
+	right: -8px;
+	bottom: -8px;
+
+	/* border: 8px solid #F6E; */
+	/* background: #F6E; */
+
+	background: #FFE8FC;
+
+	/* opacity: 0.15; */
+
+	z-index: -1;
+}
+
+g, h, r, c {
+	display: block;
+	pointer-events: all;
+}
+
+g, r {
+	display: flex;
+}
+
+r, c {
+	flex-grow: 1;
+}
+
+c.mute {
+	pointer-events: none;
+}
+
+g {
+	width: 100%;
+	height: 100%;
+	/* opacity: 0.15; */
+}
+
+r {
+	flex-direction: column;
+}
+
+h {
+	height: 50px;
+	height: 50px;
+	flex-shrink: 0;
+	line-height: 47px;
+	border-bottom: 1px solid #666;
+	box-shadow: 0 2px 0 0 #FFF;
+	/* box-shadow: 0 1px 0 0 #FFF, inset 0 1px 0 0 #FFF, inset 0 -1px 0 0 #FFF; */
+	z-index: 10;
+}
+
+g > c {
+	position: absolute;
+	left: 0;
+}
+
+h:hover,
+h:hover ~ c,
+y > c:nth-child(1):hover ~ g > r > c:nth-child(2),
+y > c:nth-child(2):hover ~ g > r > c:nth-child(3),
+y > c:nth-child(3):hover ~ g > r > c:nth-child(4),
+y > c:nth-child(4):hover ~ g > r > c:nth-child(5),
+y > c:nth-child(5):hover ~ g > r > c:nth-child(6),
+c:hover + y > g h,
+c:hover + y > g c,
+c:hover + y > c,
+c:hover {
+	/* background: #F6E; */
+	/* opacity: 0.15; */
+
+	background: #FFE8FC;
+}
+
+y {
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	padding-left: 50px;
+	text-align: center;
+	line-height: calc( 20vh - 50px / 5 );
+}
+
+y > c {
+	width: 50px;
+	border-right: 1px solid #666;
+	box-shadow: 2px 0 0 0 #FFF;
+	/* box-shadow: 1px 0 0 0 #FFF, inset 1px 0 0 0 #FFF, inset -1px 0 0 0 #FFF; */
+	position: absolute;
+	left: 0;
+	top: 50px;
+}
+
+y > c + c {
+	top: calc( ( 20vh - 50px / 5 ) * 1 + 50px );
+}
+
+y > c + c + c {
+	top: calc( ( 20vh - 50px / 5 ) * 2 + 50px );
+}
+
+y > c + c + c + c {
+	top: calc( ( 20vh - 50px / 5 ) * 3 + 50px );
+}
+
+y > c + c + c + c + c {
+	top: calc( ( 20vh - 50px / 5 ) * 4 + 50px );
+}
+
+body > c {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	width: 50px;
+	height: 50px;
+	border: 0 solid #666;
+	border-width: 0 1px 1px 0;
+}
+
+main {
+	position: absolute;
+	top: 50px;
+	left: 50px;
+	width: calc( 100vw - 50px );
+	height: calc( 100vh - 50px );
+
+	overflow: hidden;
+}
+
+body.zoom{
+	transform: translate( -50vw, -50vh ) scale( 0.5 );
+	width: 200vw;
+	height: 200vh;
+}
+
+div.drag {
+	pointer-events: none;
+}
+
+inlet, outlet {
+	width: 16px;
+	height: 134px;
+	position: absolute;
+	top: -2px;
+
+	border: 2px solid #666;
+
+	pointer-events: all;
+	background: #FFF;
+}
+
+inlet:hover, outlet:hover {
+	border-color: #F6E;
+
+}
+
+inlet {
+	left : -16px;
+}
+
+outlet {
+	right : -16px;
+}
+
+div.drag > inlet,
+div.drag > outlet {
+	display: none;
+}
