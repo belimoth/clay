@@ -100,4 +100,4 @@ window.addEventListener( "load", function() {
 			return rgb;
 		});
 	});
-};
+});
