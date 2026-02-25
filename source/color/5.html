@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang=en-us>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
+<title>pickles/color/mixing-2</title>
+<!-- <link rel=stylesheet href=glyphicons/css/glyphicons.css> -->
+<link rel=stylesheet href=static/style/5/reset.css>
+<link rel=stylesheet href=static/style/5/style.css>
+<div id=wui-css></div>
+<style id=loading>main{opacity:0.0;}</style>
+<style>main{transition:opacity 0.2s linear;}</style>
+
+<style>
+
+script {
+	/* display: block; */
+}
+
+code {
+	font-family: monospace;
+}
+
+div.code-view {
+	height: 100%;
+	overflow-y: scroll;
+}
+
+main {
+	background: transparent;
+}
+
+body {
+	background: #EEE;
+}
+
+div.canvas + div.canvas {
+	margin-top: -1px;
+}
+
+h2 {
+	line-height: 38px;
+	height: 38px;
+}
+
+div.canvas {
+	display: none;
+}
+
+html {
+	font-size: 13px;
+}
+
+div.swatch { height: 63px; padding: 16px 12px; }
+div.slider{ height: 32px; }
+h2 { line-height: 30px; height: 30px; }
+div.slider > div { top: 7px; }
+
+div.image-list > div > img {
+	display: block;
+	width: 63px;
+	height: 63px;
+	border: 1px solid #000;
+	padding: 1px;
+	background-size: cover;
+	background-position: center;
+}
+
+div.image-list > div + div {
+	margin-top: -1px;
+}
+
+form {
+	border: 1px dashed #000;
+	/* border: 2px dashed #CCC; */
+	padding: 0 24px;
+	height: 63px;
+	line-height:61px;
+}
+
+html {
+	color: #444;
+}
+
+div.column {
+	overflow-y: scroll;
+}
+
+div#view-work {
+	display: flex;
+	flex-direction: column;
+}
+
+div#view-work div.canvas {
+	display: block;
+}
+
+canvas#work-canvas {
+	width: 100%;
+	flex-grow: 1;
+}
+div.swatch + div.swatch {
+	margin-top: -1px;
+}
+
+</style>
+
+<body>
+
+<main id=main>
+	<div class=column>
+		<div id=swatch-0 class=swatch></div>
+
+		<h2>Discrete</h2>
+		<div id=primaries class=slider></div>
+
+		<h2>HSL (HhhLS)</h2>
+		<div id=view-hsl></div>
+
+		<h2>HSL<sub>uv</sub></h2>
+		<div id=view-hsluv></div>
+
+		<h2>RGB & CMY</h2>
+		<div id=view-rgb></div>
+	</div>
+
+	<div class=column style=width:293px;>
+		<ul id=palette>
+
+		</ul>
+	</div>
+
+	<div id=view-work class=column style=flex-grow:1;>
+		<form><input id=upload type=file accept=image/png></form>
+
+		<div class=canvas>
+			<canvas id=work-canvas></canvas>
+		</div>
+
+		<!-- <div id=view-canvas></div> -->
+	</div>
+
+	<div class=column style=flex-grow:1;display:none;>
+		<div class=code-view><code id=code></code></div>
+
+		<script>
+			document.addEventListener( "DOMContentLoaded", function() {
+				var code = document.getElementById( "code" )
+				// code.innerText = document.body.innerHTML;
+
+				Array.from( document.documentElement.children ).forEach( function( el, i ) {
+					code.innerText += el.cloneNode().outerHTML.split( "><" )[0] + ">\n";
+				});
+			});
+		</script>
+	</div>
+</main>
+
+<script src=static/vend/5/hsluv/hsluv-0.0.3.min.js></script>
+
+<script src=static/script/5/utility.js></script>
+<script>var app = {};</script>
+<script src=static/script/5/wui/wui.js></script>
+<script src=static/script/5/clay/clay.js></script>
+<script src=static/script/5/ui.js></script>
+<script src=static/script/5/main.js></script>
+
+<script>
+
+window.addEventListener( "load", function() {
+	document.getElementById( "loading" ).remove();
+});
+
+</script>

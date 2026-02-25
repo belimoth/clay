@@ -1,0 +1,272 @@
+*, *::before, *::after {
+	box-sizing: border-box;
+	margin: 0;
+	border: 0;
+	outline: 0;
+	padding: 0;
+	color: inherit;
+	font: inherit;
+}
+
+html {
+	height: 100%;
+	width: 100%;
+
+	-webkit-user-select: none; user-select: none;
+	cursor: default;
+}
+
+body {
+	height: 100%;
+}
+
+ul {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+ul > li > a {
+	display: block
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+body {
+	background: #DDD;
+}
+
+div.main {
+	height: 100%;
+	display: flex;
+}
+
+div.main > div {
+	width: 274px;
+	padding: 8px;
+	background: #FFF;
+	margin: 8px;
+	margin-right: 0;
+}
+
+div.main > div > div {
+	margin-bottom: 9px;
+}
+
+div.swatch,
+div.picker,
+div.hue::after,
+canvas.hue {
+	box-shadow:
+	    inset 0 0 0 1px rgba(   0,   0,   0, 0.5  ),
+		inset 0 0 0 2px rgba( 255, 255, 255, 0.5  ),
+		inset 0 0 0 3px rgba(   0,   0,   0, 0.15 );
+}
+
+div.thumb {
+	box-shadow:
+	    inset 0 0 0 1px rgba(   0,   0,   0, 0.5  ),
+		inset 0 0 0 2px rgba( 255, 255, 255, 0.95  ),
+		inset 0 0 0 3px rgba(   0,   0,   0, 0.15 );
+}
+
+div.picker,
+div.hue {
+	position: relative;
+	overflow: hidden;
+}
+
+div.hue::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+div.picker {
+	width: 258px;
+	height: 258px;
+
+	background:
+		-webkit-linear-gradient(top, hsl(0, 0%, 100%) 0%, hsla(0, 0%, 100%, 0) 50%, hsla(0, 0%, 0%, 0) 50%, hsl(0, 0%, 0%) 100%),
+		-webkit-linear-gradient(left, hsl(0, 0%, 50%) 0%, hsla(0, 0%, 50%, 0) 100%);
+
+	/* background-color: #F00; */
+}
+
+div.hue {
+	height: 40px;
+}
+
+div.hue > div.inner {
+	position: relative;
+	height: 100%;
+
+	width: 200%;
+
+	background: repeating-linear-gradient( 90deg, #F00 0, #FF0 1%, #0F0 2%, #0FF 3%, #00F 4%, #F0F 5%, #F00 6% );
+	background-size: calc( 50% * 50 / 3 );
+}
+
+div.swatch {
+	width: 40px;
+	height: 40px;
+}
+
+div.thumb {
+	width: 16px;
+	height: 16px;
+	position: absolute;
+	left: -8px;
+	top: 11px;
+	z-index: 1;
+}
+
+div.picker > div.thumb {
+	top: -8px;
+}
+
+div.hue::after,
+div.hue > div.inner {
+	pointer-events: none;
+}
+
+div.palette {
+	display: flex;
+	flex-wrap : wrap;
+	/* background: #333; */
+	padding: 7px;
+	margin: 0 -7px;
+}
+
+div.palette > div.swatch {
+	position: relative;
+	margin-right: 3px;
+	margin-bottom: 3px;
+}
+
+div.palette > div.swatch.active::after {
+	content: "";
+
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	width: 40px;
+	height: 40px;
+
+	border: 1px solid #000;
+	box-shadow: inset 0 0 0 1px #FFF;
+	outline: 3px solid #F6E;
+
+	pointer-events: none;
+}
+
+canvas.hue {
+	height: 40px;
+	width: 256px;
+}
+
+input {
+	padding: 0 12px;
+	border: 1px solid #666;
+	line-height: 38px;
+}
+
+form {
+	line-height: 40px;
+	margin: 16px 0 ;
+}
+
+form > p {
+	display: flex;
+	overflow: hidden;
+	height: 40px;
+}
+
+form > p:not( :last-of-type ) {
+	margin-bottom: 8px;
+}
+
+
+label {
+	width: 30%;
+}
+
+label + input {
+	width: 70%;
+}
+
+input[type=checkbox] {
+	margin-left: 30%;
+	width: 20px;
+	margin-top: 14px;
+}
+
+input[type=checkbox] + label {
+	flex-grow: 1;
+}
+
+button {
+	width: 100%;
+	text-align: center;
+	background: transparent;
+}
+
+button > div {
+	background: #DDD;
+}
+
+form {
+	border: 0 solid #DDD;
+	border-width: 1px 0;
+	padding: 16px 0;
+}
+
+button:active > div,
+button:hover > div {
+	background: #000;
+	color: #FFF;
+}
+
+button:active:hover > div {
+	transform: scale( 0.96 );
+}
+
+canvas {
+	margin-left: 1px;
+	outline: 1px solid #666;
+}
+
+
+div.row {
+	display: flex;
+}
+
+div.row > div {
+	margin-right: 4px;
+}
+
+select {
+	width: 100%;
+	border: 1px solid #666;
+}
+
+select {
+	padding: 0 12px;
+}
+
+canvas {
+	margin-bottom: 8px;
+	image-rendering: pixelated;
+}
+
+img {
+	margin-bottom: 8px;
+	/* margin: 40px 0; */
+	outline: 1px solid #666;
+}

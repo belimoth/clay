@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang=en-us>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
+<title>pickles/color-scratch-1</title>
+<link rel=stylesheet href=static/style/1/style.css>
+<body>
+
+<div class=main>
+	<div>
+		<div id=hue-direct class=hue></div>
+		<div id=xy class=picker></div>
+	</div>
+
+	<div>
+		<div id=hue-repaint class=hue></div>
+
+		<div class=row>
+			<div id=swatch-h class=swatch></div>
+			<div id=swatch-hsl class=swatch></div>
+		</div>
+
+		<form>
+			<p><label tabindex=1 for=input-seed>Seed</label><input id=input-seed type=text value=waugh>
+			<p><input tabindex=1 id=input-keep type=checkbox checked><label>Keep seed</label>
+			<p><button tabindex=1 id=button-generate><div>Generate</div></button>
+			<p><select tabindex=1 id=select-palette></select>
+		</form>
+
+		<div id=palette class=palette></div>
+	</div>
+
+	<div>
+		<div id=hue-palette class=hue></div>
+		<canvas id=hue-quantize class=hue width=512 height=1></canvas>
+		<canvas id=spectrum width=256, height=256></canvas>
+	</div>
+</div>
+
+<div id=offscreen hidden></div>
+
+<script src=static/vend/1/seedrandom.min.js></script>
+<script src=static/vend/1/tinycolor.js></script>
+
+<script type=module src=static/script/1/palette.js></script>
+<script type=module src=static/script/1/utility.js></script>
+<script type=module src=static/script/1/main.js></script>
+<script type=module src=static/script/1/ui.js></script>
