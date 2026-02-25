@@ -10,7 +10,7 @@ clear
 
 mode=${1:-"paint"}
 
-[[ $mode == "color" || $mode == "font" || $mode == "model" || $mode == "nes" || $mode == "paint" || $mode == "world" ]] || {
+[[ $mode == "bot" || $mode == "color" || $mode == "font" || $mode == "model" || $mode == "nes" || $mode == "paint" || $mode == "pfx" || $mode == "sfx" || $mode == "vfx" || $mode == "world" ]] || {
 	echo error: unrecognized mode "$mode"
 	exit 1
 }
@@ -21,9 +21,13 @@ mkdir --parents        /a/local/publish/$mode
 
 cd /a/source/$mode
 
+[[ $mode == "bot"   ]] && butler push /a/source/bot   "belimoth/clay-bot:html5"
 [[ $mode == "color" ]] && butler push /a/source/color "belimoth/clay-color:html5"
 [[ $mode == "font"  ]] && butler push /a/source/font  "belimoth/clay-font:html5"
 [[ $mode == "model" ]] && butler push /a/source/model "belimoth/clay-model:html5"
 [[ $mode == "nes"   ]] && butler push /a/source/nes   "belimoth/clay-nes:html5"
 [[ $mode == "paint" ]] && butler push /a/source/paint "belimoth/clay-paint:html5"
+[[ $mode == "pfx"   ]] && butler push /a/source/pfx   "belimoth/clay-pfx:html5"
+[[ $mode == "sfx"   ]] && butler push /a/source/sfx   "belimoth/clay-sfx:html5"
+[[ $mode == "vfx"   ]] && butler push /a/source/vfx   "belimoth/clay-vfx:html5"
 [[ $mode == "world" ]] && butler push /a/source/world "belimoth/clay-world:html5"
