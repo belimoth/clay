@@ -5,31 +5,91 @@
 <meta name=viewport content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
 <title>pickles/color/mixing-2</title>
 <!-- <link rel=stylesheet href=glyphicons/css/glyphicons.css> -->
+ <link rel=stylesheet href=static/style/2/reset.css>
+<link rel=stylesheet href=static/style/2/style.css>
+
+
+<link rel=stylesheet href=static/style/form.css>
+<link rel=stylesheet href=static/style/main.css>
+<link rel=stylesheet href=static/style/list-palette.css>
+<link rel=stylesheet href=static/style/swatch.css>
+<link rel=stylesheet href=static/style/column.css>
+
 <link rel=stylesheet href=static/style/5/reset.css>
 <link rel=stylesheet href=static/style/5/style.css>
-<div id=wui-css></div>
+
 <style id=loading>main{opacity:0.0;}</style>
 <style>main{transition:opacity 0.2s linear;}</style>
+
 <body>
 
 <main id=main>
 	<div class=column style=width:293px;>
-		<ul id=palette>
-
-		</ul>
+		<div class=column-header><a>Edit</a><span> / Extract</span><a style="position:absoulte;right:0;">Cancel</a></div>
+		<form><input id=upload type=file accept=image/png></form>
 	</div>
 
-	<div id=view-work class=column style=flex-grow:1;>
-		<form><input id=upload type=file accept=image/png></form>
+	<div class=column style=width:293px;>
+		<div id=panel-list-palette class="panel active">
+			<div class=column-header><a>Edit</a><span> / Import</span><a style="position:absoulte;right:0;">Cancel</a></div>
 
-		<div class=canvas>
-			<canvas id=work-canvas></canvas>
+			<div class=panel-body>
+				<ul id=import class=list-palette></ul>
+			</div>
 		</div>
 
-		<!-- <div id=view-canvas></div> -->
+		<div id=panel-palette class=panel>
+			<div class=column-header><a>Edit</a> / <a id=a-back>Import</a><span> / </span><a style="position:absoulte;right:0;">Cancel</a></div>
+
+			<form hidden>
+				<p><label for=input-seed>Seed</label><input id=input-seed type=text value=waugh>
+				<p><input id=input-keep type=checkbox checked><label>Keep seed</label>
+				<p><button id=button-generate><div>Generate</div></button>
+			</form>
+
+			<!-- <div id=palette class=palette></div> -->
+			<ul id=palette></ul>
+		</div>
+	</div>
+
+	<div class=column style=width:293px;>
+		<div class=column-header><a>Edit</a><span> / Random</span><a style="position:absoulte;right:0;">Cancel</a></div>
 	</div>
 
 	<div class=column>
+		<div class=column-header><span>Analyze</span><a style="position:absoulte;right:0;">Close</a></div>
+		<canvas id=spectrum width=256 height=256></canvas>
+
+		<div style=width:256px;>
+			<div id=hue-pan class=hue></div>
+			<div id=hue-squash class=hue></div>
+			<div id=hue-sat class=hue></div>
+
+			<div class=column-header>Basis image</div>
+			<form>
+				<label for=radio-none><input id=radio-none type=radio name=distance value=0>None</label>
+			</form>
+
+
+			<div class=column-header>Distance function</div>
+			<form>
+				<label for=radio-none><input id=radio-none type=radio name=distance value=0>None</label>
+				<label for=radio-rgb0><input id=radio-rgb0 type=radio name=distance value=1>R + G + B</label>
+				<label for=radio-rgb1><input id=radio-rgb1 type=radio name=distance value=2 checked>2R + 4G + 3B</label>
+				<label for=radio-rgb2><input id=radio-rgb2 type=radio name=distance value=3>(2 + µ)R + 4G + (3 - µ)B</label>
+				<label for=radio-hsl0><input id=radio-hsl0 type=radio name=distance value=4>H + S + L</label>
+			</form>
+		</div>
+
+		<div>
+			<div class=key data-key=shift></div>
+			<div class=key data-key=ctrl></div>
+		</div>
+	</div>
+
+	<div class=column>
+		<div class=column-header><span>Swatch</span><a style="position:absoulte;right:0;">Close</a></div>
+
 		<div id=swatch-0 class=swatch></div>
 
 		<h2>Discrete</h2>
@@ -43,26 +103,24 @@
 
 		<h2>RGB & CMY</h2>
 		<div id=view-rgb></div>
-	</div>
 
 
-	<div class=column style=flex-grow:1;display:none;>
-		<div class=code-view><code id=code></code></div>
+		<!-- TODO -->
 
-		<script>
-			document.addEventListener( "DOMContentLoaded", function() {
-				var code = document.getElementById( "code" )
-				// code.innerText = document.body.innerHTML;
+		<h2>Legacy</h2>
 
-				Array.from( document.documentElement.children ).forEach( function( el, i ) {
-					code.innerText += el.cloneNode().outerHTML.split( "><" )[0] + ">\n";
-				});
-			});
-		</script>
+		<div id=hue-direct class=hue style="margin-bottom:8px;"></div>
+		<div id=xy class=picker></div>
+
 	</div>
 </main>
 
+<div id=offscreen hidden></div>
+
 <script src=static/vend/hsluv-0.0.3.min.js></script>
+<script src=static/vend/seedrandom.min.js></script>
+<script src=static/vend/tinycolor.js></script>
+
 
 <script src=static/script/5/utility.js></script>
 <script>var app = {};</script>
@@ -70,3 +128,10 @@
 <script src=static/script/5/clay/clay.js></script>
 <script src=static/script/5/ui.js></script>
 <script src=static/script/5/main.js></script>
+
+<!--  -->
+
+<script type=module src=static/script/2/palette.js></script>
+<script type=module src=static/script/2/utility.js></script>
+<script type=module src=static/script/2/main.js></script>
+<script type=module src=static/script/2/ui.js></script>

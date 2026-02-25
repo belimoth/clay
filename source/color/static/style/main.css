@@ -1,0 +1,16 @@
+body {
+	background: #FFF;
+}
+
+div.main {
+	height: 100%;
+	display: flex;
+}
+
+div.main > div {
+	width: 274px;
+	padding: 8px;
+	background: #FFF;
+	margin: 8px;
+	margin-right: 0;
+}

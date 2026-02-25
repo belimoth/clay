@@ -1,0 +1,51 @@
+ul.list-palette {
+	/* line-height: 40px; */
+	padding: 0 2px;
+	height: 100%;
+	/* margin: -8px; */
+}
+
+ul.list-palette > li  {
+
+}
+
+ul.list-palette > li > a {
+	height: 40px;
+	padding: 8px;
+}
+
+ul.list-palette > li > a:hover {
+	background: #FFE8FC;
+}
+
+ul.list-palette:active > li > a:hover {
+	background: #FFD1FA;
+}
+
+ul.list-palette > li > a > div {
+	display: flex;
+}
+
+ul.list-palette > li > a > div > div {
+	height: 4px;
+	flex-grow: 1;
+}
+
+ul.list-palette > li > a > div > div[style="background:#FFFFFF;"] {
+	border: 1px solid #000;
+}
+
+ul.list-palette {
+	padding-bottom: 40px;
+}
+
+ul.list-palette > li > a {
+	height: 80px;
+}
+
+ul.list-palette > li > a > img {
+	width: 64px;
+	height: 64px;
+	float : left;
+	margin-right: 8px;
+}

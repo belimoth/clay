@@ -1,0 +1,99 @@
+input {
+	padding: 0 12px;
+	border: 1px solid #666;
+	line-height: 38px;
+}
+
+form {
+	line-height: 40px;
+	/* margin: 16px 0 ; */
+}
+
+form > p {
+	display: flex;
+	overflow: hidden;
+	height: 40px;
+}
+
+form > p:not( :last-of-type ) {
+	margin-bottom: 8px;
+}
+
+
+label {
+	width: 30%;
+}
+
+label + input {
+	width: 70%;
+}
+
+input[type=checkbox] {
+	margin-left: 30%;
+	width: 20px;
+	margin-top: 14px;
+}
+
+input[type=checkbox] + label {
+	flex-grow: 1;
+}
+
+button {
+	width: 100%;
+	text-align: center;
+	background: transparent;
+}
+
+button > div {
+	background: #DDD;
+}
+
+form {
+	border: 0 solid #DDD;
+	border-width: 1px 0;
+	padding: 16px 0;
+}
+
+button:active > div,
+button:hover > div {
+	background: #000;
+	color: #FFF;
+}
+
+button:active:hover > div {
+	transform: scale( 0.96 );
+}
+
+select {
+	width: 100%;
+	border: 1px solid #666;
+}
+
+select {
+	padding: 0 12px;
+}
+
+form > label {
+	display: block;
+}
+
+form > label {
+	width: 100%;
+}
+
+input[type=radio] {
+	margin-right: 8px;
+}
+
+form {
+	/* overflow: hidden; */
+}
+
+
+form {
+	border: 1px dashed #000;
+	/* border: 2px dashed #CCC; */
+	padding: 0 24px;
+	/* height: 63px; */
+	line-height:61px;
+}

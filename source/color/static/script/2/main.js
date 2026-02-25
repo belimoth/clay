@@ -7,7 +7,7 @@ var spectrum_el = document.getElementById( "spectrum" );
 
 var w = 256;
 w = 1024;
-w = 512;
+w = 256;
 
 spectrum_el.width  = w;
 spectrum_el.height = 256;
@@ -97,7 +97,7 @@ export function repaintSpectrum() {
 			if ( mode == 1 ) { d2 = color.distance2simple( rgb, el.rgb ); } else
 			if ( mode == 2 ) { d2 = color.distance2coef( rgb, el.rgb ); } else
 			if ( mode == 3 ) { d2 = color.distance2( rgb, el.rgb ); } else
-			if ( mode == 4 ) { d2 = color.distance_hsl( hsl, el.hsl ); } else
+			if ( mode == 4 ) { d2 = color.distance_hsl( hsl, el.hsl, app.sat_squash ); } else
 			{}
 
 
@@ -413,7 +413,7 @@ palette_all.sort( function( a, b ) {
 
 	li.appendChild( a );
 	a.outerHTML = html;
-	document.getElementById( "palettes" ).appendChild( li );
+	document.getElementById( "import" ).appendChild( li );
 
 	function activate() {
 		app.palette.generate( colors );
@@ -432,26 +432,26 @@ palette_all.sort( function( a, b ) {
 	li.children[0].addEventListener( "mouseup", function( event ) {
 		activate();
 
-		document.getElementById( "panel-palette-list" ).classList.remove( "active" );
+		document.getElementById( "panel-list-palette" ).classList.remove( "active" );
 		document.getElementById( "panel-palette" ).classList.add( "active" );
-		document.getElementById( "panel-palette" ).children[0].innerHTML = "<a id=a-back>Palettes</a> -- " + el.name;
+		document.getElementById( "panel-palette" ).children[0].innerHTML = "<a>Edit</a> /&nbsp;<a id=a-back>Import</a><span> / " + el.name + "</span>";
 
 		//lol
 		document.getElementById( "a-back" ).addEventListener( "click", function( event ) {
-			document.getElementById( "panel-palette-list" ).classList.add( "active" );
+			document.getElementById( "panel-list-palette" ).classList.add( "active" );
 			document.getElementById( "panel-palette" ).classList.remove( "active" );
 		});
 	});
 });
 
 document.getElementById( "a-back" ).addEventListener( "click", function( event ) {
-	document.getElementById( "panel-palette-list" ).classList.add( "active" );
+	document.getElementById( "panel-list-palette" ).classList.add( "active" );
 	document.getElementById( "panel-palette" ).classList.remove( "active" );
 });
 
 
 document.getElementById( "a-back" ).addEventListener( "click", function( event ) {
-	document.getElementById( "panel-palette-list" ).classList.add( "active" );
+	document.getElementById( "panel-list-palette" ).classList.add( "active" );
 	document.getElementById( "panel-palette" ).classList.remove( "active" );
 });
 

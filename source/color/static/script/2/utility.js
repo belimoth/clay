@@ -81,7 +81,7 @@ color.distance2 = function( a, b ) {
 	return Math.abs( result )
 }
 
-color.distance_hsl = function( a, b ) {
+color.distance_hsl = function( a, b, sat_squash ) {
 	// a.h = a.h / 360;
 	// b.h = b.h / 360;
 
@@ -102,7 +102,7 @@ color.distance_hsl = function( a, b ) {
 		mmm = 1
 	}
 
-	result = dh * dh / ( 180 * 180 ) + ds * ds * app.sat_squash + dl * dl * mmm ;
+	var result = dh * dh / ( 180 * 180 ) + ds * ds * sat_squash + dl * dl * mmm ;
 
 	return Math.abs( result )
 }

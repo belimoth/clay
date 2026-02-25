@@ -7,20 +7,25 @@
 <title>pickles/color-scratch-2</title>
 <link rel=stylesheet href=static/style/2/reset.css>
 <link rel=stylesheet href=static/style/2/style.css>
+<link rel=stylesheet href=static/style/form.css>
+<link rel=stylesheet href=static/style/main.css>
+<link rel=stylesheet href=static/style/list-palette.css>
+<link rel=stylesheet href=static/style/swatch.css>
+<link rel=stylesheet href=static/style/column.css>
 <body>
 
 <div class=main>
 	<div class=column>
-		<div id=panel-palette-list class="panel active">
-			<div class=column-header>Palettes</div>
+		<div id=panel-list-palette class="panel active">
+			<div class=column-header>Import</div>
 
 			<div class=panel-body>
-				<ul id=palettes class=palette-list></ul>
+				<ul id=import class=list-palette></ul>
 			</div>
 		</div>
 
 		<div id=panel-palette class=panel>
-			<div class=column-header><a id=a-back>Palettes</a> -- </div>
+			<div class=column-header><a id=a-back>Import</a> / </div>
 
 			<form hidden>
 				<p><label for=input-seed>Seed</label><input id=input-seed type=text value=waugh>
@@ -36,7 +41,6 @@
 		<div id=hue-direct class=hue></div>
 		<div id=xy class=picker></div>
 	</div>
-
 
 	<div class=column style=width:532px;>
 		<canvas id=spectrum width=512, height=256></canvas>
@@ -58,8 +62,6 @@
 		<div>
 			<div class=key data-key=shift></div>
 			<div class=key data-key=ctrl></div>
-
-
 		</div>
 	</div>
 </div>

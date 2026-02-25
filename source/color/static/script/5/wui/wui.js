@@ -2,9 +2,6 @@ var wui = {};
 
 wui.view = null;
 
-var css_el = document.getElementById( "wui-css" );
-// var js_el  = document.getElementById( "wui-js"  );
-
 const modules = "picnic, canvas, swatch, slider, gradient, utility";
 
 modules.split( ", " ).forEach( function( el, i ) {

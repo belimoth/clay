@@ -36,7 +36,7 @@ window.addEventListener( "load", function() {
 						for ( var x = 0; x < w; x += 1 ) {
 							var i = ( x + y * w ) * 4;
 
-							hex = rgbToHex( data[i+0], data[i+1], data[i+2] );
+							var hex = rgbToHex( data[i+0], data[i+1], data[i+2] );
 
 							if ( colors[ hex ] ) {
 								colors[hex].count += 1;
@@ -53,7 +53,7 @@ window.addEventListener( "load", function() {
 
 					for ( var key in colors ) {
 						var color = colors[key];
-						console.log( color.hex, color.count );
+						// console.log( color.hex, color.count );
 						new wui.swatch().set( hexToRgb( color.hex ));
 					}
 
@@ -69,7 +69,7 @@ window.addEventListener( "load", function() {
 			reader.readAsDataURL( el );
 		});
 
-		console.log( files );
+		// console.log( files );
 	});
 
 	var w, h;
