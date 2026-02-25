@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang=en-us>
+<head>
+<meta charset=utf-8>
+<link rel=icon type=image/png sizes=96x96 href=/static/favicon/favicon-96x96.png  />
+<link rel=icon type=image/svg+xml         href=/static/favicon/favicon.svg />
+<link rel=shortcut icon                   href=/static/favicon/favicon.ico />
+<link rel=apple-touch-icon sizes=180x180  href=/static/favicon/apple-touch-icon.png />
+<meta name=apple-mobile-web-app-title content="CLAY NES" />
+<link rel="manifest" href="/static/image/site.webmanifest" />
+<link rel=stylesheet href=static/style/style.css>
+<body>
+
+<div class=center>
+    <div id=frame class=frame>
+        <!-- <canvas style=display:none; id=display width=256 height=240></canvas> -->
+        <canvas id=layer-sprites-bg width=256 height=240></canvas>
+        <canvas id=layer-tiles      width=256 height=240></canvas>
+        <canvas id=layer-sprites-fg width=256 height=240></canvas>
+    </div>
+
+    <div id=monitor class=monitor>
+        <canvas id=monitor-fps width=1024 height=256></canvas>
+    </div>
+
+    <div id=fps></div>
+</div>
+
+<div class=overlay>
+    <div class=page>
+        <h2>ROM Info</h2>
+
+        <dl id=dl-rom-info></dl>
+    </div>
+
+    <div class=page>
+        <h2>ROMS</h2>
+        <div id=drop></div>
+        <ul id=roms></ul>
+    </div>
+</div>
+
+<div>
+    <canvas id=nts width=512 height=480></canvas>
+    <div><canvas id=chr width=1024 height=256></canvas></div>
+</div>
+
+<script src=static/vend/spark-md5.min.js></script>
+<script type=module src=static/script/util.js></script>
+<script type=module src=static/script/index.js></script>

@@ -1,0 +1,147 @@
+div.hex {
+    width: 100%;
+    height: 100%;
+
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    font-family: "Consolas", "Courier New", Courier, monospace;
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 19px;
+
+    scroll-snap-type: y mandatory;
+    scroll-behavior: auto;
+}
+
+div.row {
+    scroll-snap-align: start;
+    height: 20px;
+    border-bottom: 1px solid #D4D4D4;
+}
+
+div.row::before {
+    content: attr( data-address );
+    margin-right: calc( 0.5ch - 1px );
+    /* padding-right: 0.5ch; */
+    border-right: 1px solid #999;
+    /* width: 4ch; */
+    display: inline-block;
+    background: #E6E6E6;
+    /* width: 35px; */
+    width: 40px;
+    padding-left: 4px;
+    border-bottom: 1px solid #999;
+}
+
+div.row:first-child::before {
+    border: 0;
+}
+
+div.hex {
+    position: relative;
+}
+
+div.bar {
+    width: 1ch;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    /* left: 7ch; */
+    left: 4.5ch;
+    background: #444;
+    border: 0 solid #FFF;
+    border-width: 0 3px;
+    cursor: w-resize;
+}
+
+div.bar:active {
+    background: #07D;
+}
+
+div.data {
+    -webkit-user-select: contain; user-select: contain;
+}
+
+div.row {
+    /* -webkit-user-select: all; user-select: all;*/
+}
+
+div.byte {
+    display: inline-block;
+    -webkit-user-select: all;  user-select: all;
+    width: 3ch;
+    overflow: hidden;
+    /* text-align: center; */
+    text-indent: -0.5ch;
+}
+
+div.byte:   :before,
+div.byte::after {
+    /* content: "\00a0";/ */
+    /* -webkit-user-select: all; user-select: all; */
+    /* pointer-events: none; */
+}
+
+::selection {
+    background: #ffb7b7;
+    opacity: 1.0;
+}
+
+div.bar.drag {
+    background: #07D;
+    pointer-events: none;
+}
+
+div.byte:last-of-type {
+    margin-right: 0.5ch;
+}
+
+div.byte {
+    border-right: 1px solid #D4D4D4;
+}
+
+div.head.row {
+    background: #E6E6E6;
+    border-color: #999;
+}
+
+div.head.row > div.byte {
+    -webkit-user-select: none; user-select: none;
+    border-color: #999;
+}
+
+div.byte {
+    width: 40px;
+    text-align: center;
+}
+
+div.cell {
+    display: inline-block;
+}
+
+div.cell {
+    border-right: 1px solid #D4D4D4;
+    width: 128px;
+}
+
+div.row.head > div.cell {
+    border-color: #999;
+    text-align: center;
+}
+
+div.byte.cdl-data {
+    color: #F00;
+}
+
+div.byte.cdl-code {
+    color: #00F;
+}
+
+div.byte.cdl-data.cdl-code {
+    color: #F0F;
+}
+
+div.bar {
+    opacity: 0;
+}

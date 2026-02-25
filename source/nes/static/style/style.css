@@ -1,0 +1,204 @@
+html {
+    -webkit-user-select: none; user-select: none;
+    -webkit-user-drag: none;
+    vertical-align: center;
+}
+
+body,
+html {
+    height: 100vh;
+    overflow: hidden;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    outline: 0;
+    border: 0;
+    padding: 0;
+    -webkit-user-drag: none;
+    line-height: inherit;
+
+    vertical-align: top;
+}
+
+body {
+    background: #000;
+}
+
+canvas#chr {
+    width: 2048px;
+    width: 1024px;
+}
+
+canvas {
+    /* margin: 10px; */
+    /* margin-left: calc( 50vw - 256px ); */
+}
+
+canvas#nts {
+    width: 512px;
+}
+
+body {
+    overflow: auto;
+}
+
+canvas#palette-debug {
+    width: 64px;
+    height: 512px;
+}
+
+div.center {
+    width: 512px;
+    margin-left: calc( 50vw - 256px );
+}
+
+div#drop {
+    border: 4px dashed #444;
+    height: 64px;
+    margin: 4px 0;
+}
+
+div#drop.drag-over {
+    border-color: #666;
+}
+
+html {
+    color: #666;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+ul {
+    list-style: none;
+    line-height: 32px;
+}
+
+ul > li > a {
+    display: block;
+}
+
+ul > li > a:hover {
+    background: #222;
+}
+
+div#fps {
+    line-height: 32px;
+    height: 32px;
+}
+
+ul#roms > li > a::before {
+    content: attr( data-key );
+}
+
+div.monitor {
+    height: 128px;
+    background: #444;
+}
+
+div.monitor > canvas {
+    height: 128px;
+}
+
+canvas#display {
+    margin-top: 32px;
+}
+
+canvas#display {
+    display: block;
+    width: 1024px;
+    width: 512px;
+
+    width:  calc( 256px * 2 );
+    height: calc( 240px * 2 );
+}
+
+canvas {
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+html {
+    color: #FFF;
+}
+
+div.frame {
+    position: relative;
+    height: calc( 240px * 2 );
+    margin-bottom: 32px;
+}
+
+canvas#display {
+    margin: 0;
+}
+
+div.frame > canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+}
+
+div.frame {
+    margin-top: 32px;
+}
+
+canvas#chr {
+    width: 512px;
+}
+
+body {
+    position: relative;
+    overflow: hidden;
+}
+
+div.overlay {
+    opacity: 1.0;
+    pointer-events: all;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba( 255, 255, 255, 0.2 );
+    overflow-y: scroll;
+    width: 100vw;
+    height: 100vh;
+    padding: 32px;
+}
+
+body.hide-overlay > div.overlay {
+    opacity: 0;
+    pointer-events: none;
+
+}
+
+dl {
+    display: block;
+    width: 256px;
+    border: 1px solid #FFF;
+}
+
+dt, dd {
+    float: left;
+    padding-left: 6px;
+}
+
+dt, dd {
+    width: 127px;
+}
+
+h2 {
+    margin-top: 32px;
+}
+
+dl::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+body {
+    overflow: scroll;
+}
