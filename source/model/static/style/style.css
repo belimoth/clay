@@ -1,0 +1,708 @@
+* { box-sizing: border-box }
+
+html,
+body {
+	background: #604A4D;
+	padding: 0;
+	margin: 0;
+}
+
+html {
+	-webkit-user-select: none; user-select: none;
+	cursor: default;
+}
+
+html {
+	font-family:
+		-apple-system,
+		BlinkMacSystemFont,
+		"Segoe UI",
+		"Roboto",
+		"Oxygen",
+		"Ubuntu",
+		"Cantarell",
+		"Fira Sans",
+		"Droid Sans",
+		"Helvetica Neue",
+		sans-serif;
+
+	font-weight: 100;
+	color: #FFF;
+}
+
+canvas {
+	background: #66A;
+	image-rendering: optimizeSpeed;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: -webkit-optimize-contrast;
+	image-rendering: optimize-contrast;
+	-ms-interpolation-mode: nearest-neighbor;
+}
+
+:focus {
+	outline: none;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+/* ----------------------------------------------------------------------------------------------------------- */
+
+div.main {
+	width: 1440px;
+	height: 1240px;
+}
+
+div.main > canvas {
+	float: left;
+	width: 600px;
+	height: 600px;
+}
+
+.layer > li > a > canvas {
+	width: 32px;
+	height: 32px;
+}
+
+/* ----------------------------------------------------------------------------------------------------------- */
+
+div.side {
+	position: relative;
+	display: inline-block;
+
+	width: 198px;
+	height: 640px;
+	background: #896A6E;
+	margin-left: 42px;
+}
+
+/* ----------------------------------------------------------------------------------------------------------- */
+
+div.height {
+	display: inline-block;
+	width: 40px;
+	height: 600px;
+
+	position: absolute;
+	top: 0;
+	left: -42;
+	margin-left: 1px;
+
+	background: #896A6E;
+}
+
+#rangeHeight {
+
+	margin: 0;
+
+	//-webkit-appearance: slider-vertical;
+	//writing-mode: bt-lr;
+
+	width: 532px;
+	height: 24px;
+
+	transform: translate( -50%, -50% ) rotate( 90deg ) ;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+}
+
+/* ----------------------------------------------------------------------------------------------------------- */
+
+div.offscreen {
+	display: none;
+	font-size: 0;
+}
+
+div.offscreen > canvas {
+	display: block;
+	margin-top: 2px;
+}
+
+/* ----------------------------------------------------------------------------------------------------------- */
+
+ul.layer {
+	line-height: 32px;
+}
+
+.layer > li > a {
+	display: block;
+	height: 48px;
+	padding: 8px;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.layer > li > a:after {
+	content: attr( data-name );
+	font-size: 14px;
+	vertical-align: bottom;
+	margin-left: 8px;
+}
+
+
+div.side.panel-root ul.layer > li > a:after {
+	font-size: 0;
+}
+
+.layer > li > a:hover {
+	/*background: #7F6266;*/
+	background: rgba( 255, 255, 255, 0.125 );
+	background: #987D80;
+	background: rgba( 152, 125, 128, 0.8 );
+}
+
+.layer > li.active > a {
+	background: #604A4D;
+	background: #7F6266;
+}
+
+.layer > li > a > canvas {
+	background: transparent;
+	outline: 0.5px solid #FFF;
+}
+
+.layer > li.active > a > canvas {
+	background: #7F6266;
+}
+
+/* ----------------------------------------------------------------------------------------------------------- */
+
+h3 {
+	margin: 0;
+	padding: 8px;
+	font-weight: inherit;
+	font-size: 14px;
+	text-transform: uppercase;
+	line-height: 14px;
+	height: 32px;
+	vertical-align: middle;
+	margin: 1px;
+}
+
+div.side > h3:first-of-type {
+	margin-top: 0;
+}
+
+/* ----------------------------------------------------------------------------------------------------------- */
+
+button {
+	border: none;
+	background: transparent;
+}
+
+button:hover {
+	background-color: #7F6266;
+	background-color: #987D80;
+}
+
+button:active {
+	background-color: #604A4D;
+	background-color: #7F6266;
+}
+
+button.icon {
+	width: 32px;
+	height: 32px;
+	background-size: 16px 16px;
+	background-repeat: no-repeat;
+	background-origin: content-box;
+	padding: 8px;
+	margin: -8px;
+	margin-right: 8px;
+	float: left;
+}
+
+button.radio {
+	position: absolute;
+	right: -8px;
+	top: 8px;
+	padding: 8px;
+}
+
+#buttonBack {
+	/*width: 40px;
+	padding: 8px 12px;*/
+}
+
+#buttonBack { background-image: url(static/icon-back.png); }
+#buttonPick { background-image: url(static/icon-pick.png); }
+/*#buttonMore { background-image: url(static/icon-menu.png); }*/
+
+
+div.side.panel-root #buttonBack {
+	background-image: url(static/icon-menu.png);
+	background-position: -1px -1px;
+}
+
+button.icon {
+	/*note identical to buttonBack now*/
+	background-image: url(static/icon-menu.png);
+	background-position: -1px -1px;
+	/*width: 40px;
+	padding: 8px 12px;*/
+	margin-right: 8px;
+}
+
+div.preview {
+	position: relative;
+}
+
+#buttonSpin {
+	background-image: url(static/icon-spin-inactive.png);
+	position: absolute;
+	right: 12.5px;
+	top: 42.5px;
+	background-position: 0px 0px;
+	//border: 0.5px solid #FFF;
+	outline: 0.5px solid #FFF;
+	//border-color: #604A4D;
+	//border-color: #C4B4B6;;
+	width: 31px;
+	height: 31px;
+}
+
+#buttonLoad {
+	width: 31px;
+	height: 31px;
+
+	position: absolute;
+	right: 12.5px;
+	top: calc( 42.5px + 40px );
+
+	outline: 0.5px solid #FFF;
+
+	opacity: 0.4;
+
+	background-image: url(static/icon-load.png);
+}
+
+#aDownload {
+	display: block;
+	width: 31px;
+	height: 31px;
+
+	position: absolute;
+	right: 12.5px;
+	top: calc( 42.5px + 40px + 40px );
+
+	outline: 0.5px solid #FFF;
+
+	background-image: url(static/icon-save.png);
+	background-position: -1px -1px;
+	margin-right: 8px;
+
+	background-size: 16px 16px;
+	background-repeat: no-repeat;
+	background-origin: content-box;
+	padding: 8px;
+	margin-top: -8px;
+}
+
+
+
+
+#buttonSpin:hover {
+	//border-color: #C4B4B6;
+}
+
+#buttonSpin.active {
+	background-image: url(static/icon-spin.png);
+}
+
+#buttonSpin.active:not(:hover) { //background-color: #7F6266; }
+
+/* ----------------------------------------------------------------------------------------------------------- */
+
+div.side.panel-root > div.layer-panel > ul.layer {
+	display: flex;
+	flex-direction: row-reverse;
+	width: calc( 3 * 48px );
+}
+
+div.side.panel-root > div.layer-panel > .layer > li {
+	display: inline-block;
+}
+
+div.side.panel-root > div.layer-panel > .layer > li > a {
+	display: inline-block;
+	width: 66px;
+	width: 48px;
+	padding: 8px 18px;
+	padding: 8px;
+	position: relative;
+}
+
+div.side.panel-root > div.layer-panel > .layer > li:not(:first-of-type):not( .active ) > a {
+	/* margin-right: -66px; */
+	margin-right: -48px;
+}
+
+.side.panel-root > div.layer-panel > .layer > li.active > a {
+	/* margin-left: 66px; */
+	margin-left: 48px;
+}
+
+.side.panel-root > div.layer-panel > .layer > li:first-of-type.active > a {
+	/* margin-right: 66px; */
+	margin-right: 48px;
+}
+
+.side.panel-root > div.layer-panel > .layer > li > a {
+	/* TODO this is good but needs work */
+	/* transition: margin 0.5s ease; */
+}
+
+div.side.panel-root > div.layer-panel > .layer {
+	font-size: 0;
+}
+
+.layer::after,
+.layer::before {
+	content: "";
+	display: block;
+	position: absolute;
+	width: 32px;
+	height: 32px;
+	outline: 0.5px dashed #FFF;
+}
+
+ul.layer {
+	position: relative;
+}
+
+.layer::after {
+	top: 8px;
+	left: 8px;
+}
+
+.layer::before {
+	top: 8px;
+	right: 8px;
+}
+
+div.side.panel-root > div.layer-panel > .layer > li.active ~ li > a {
+	z-index: 0;
+}
+
+div.side.panel-root > div.layer-panel > .layer > li.active + li > a {
+	z-index: 1;
+}
+
+div.side:not(.panel-root) > div.layer-panel > ul.layer::before,
+div.side:not(.panel-root) > div.layer-panel > ul.layer::after {
+	display: none;
+}
+
+div.side.panel-root > div.layer-panel > ul.layer {
+	padding-bottom: 40px;
+}
+
+div.side.panel-root > div.layer-panel > .layer > li > a {
+	overflow: visible;
+}
+
+div.side.panel-root > div.layer-panel > .layer > li.active > a::after {
+	content: attr( data-name );
+	width: 198px;
+	display: block;
+	position: absolute;
+	bottom: -32px;
+	left: -16px;
+	font-size: 14px;
+}
+
+a[data-name="untitled layer"]::after {
+	font-style: italic;
+}
+
+/*div.side.panel-root #buttonBack {
+	margin-left: -48px;
+	opacity: 0;
+	transition: margin-left 0.2s ease, opacity 0.2s ease;
+}*/
+
+/*div.side.panel-root #buttonPick {
+	right: 40px;
+	opacity: 0;
+}*/
+
+/*div.side:not(.panel-root) #buttonMore {
+	right: -40px;
+	opacity: 0;
+}*/
+
+/*#buttonPick,
+#buttonMore {
+	transition: right 0.2s ease, opacity 0.2s ease;
+}*/
+
+h3 {
+	overflow: hidden;
+	position: relative;
+}
+
+input[type=range] {
+	-webkit-appearance: none;
+	background: transparent;
+}
+
+input[type=range]::-ms-thumb {
+	width: 10px;
+	height: 24px;
+	border: 0.5px solid #FFF;
+	position: relative;
+	top: -12px;
+
+	background: #896A6E;
+}
+
+input[type=range]::-moz-range-thumb {
+	width: 10px;
+	height: 24px;
+	border: 0.5px solid #FFF;
+	position: relative;
+	top: -12px;
+
+	background: #896A6E;
+}
+
+input[type=range]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+
+	width: 10px;
+	height: 24px;
+	border: 0.5px solid #FFF;
+	position: relative;
+	top: -12px;
+
+	background: #896A6E;
+}
+
+input[type=range]::-ms-thumb:hover {
+	background: #7F6266;
+	background: #987D80;
+}
+
+input[type=range]::-moz-range-thumb:hover {
+	background: #7F6266;
+	background: #987D80;
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
+	background: #7F6266;
+	background: #987D80;
+}
+
+input[type=range]::-ms-thumb:active {
+	background: #604A4D;
+	background: #7F6266;
+}
+
+input[type=range]::-moz-range-thumb:active {
+	background: #604A4D;
+	background: #7F6266;
+}
+
+input[type=range]::-webkit-slider-thumb:active {
+	background: #604A4D;
+	background: #7F6266;
+}
+
+
+input[type=range] {
+	border: 0 solid #FFF;
+	border-width: 0 0.5px;
+}
+
+input[type=range]::-ms-track {
+	height: 1px;
+	width: 100%;
+	border-top: 1px solid #C4B4B6;
+}
+
+input[type=range]::-moz-range-track {
+	height: 1px;
+	width: 100%;
+	border-top: 1px solid #C4B4B6;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+	height: 1px;
+	width: 100%;
+	border-top: 1px solid #C4B4B6;
+}
+
+div.height::before {
+	content: "16";
+	position: absolute;
+	top: 8px;
+	width: 40px;
+	text-align: center;
+	line-height: 16px;
+	font-size: 14px;
+}
+
+div.height::after {
+	content: "0";
+	position: absolute;
+	bottom: 8px;
+	width: 40px;
+	text-align: center;
+	line-height: 16px;
+	font-size: 14px;
+}
+
+span.tick {
+	width: 8px;
+	height: 8px;
+	border: 1px solid #C4B4B6;
+	position: absolute;
+	left: 16px;
+	bottom: 0;
+}
+
+div[disabled] {
+	color: rgba( 255, 255, 255, 0.4 );
+}
+
+button.icon[disabled],
+div[disabled] button.icon {
+	pointer-events: none;
+	background-image: url(static/icon-menu-disabled.png);
+}
+
+div.layer-props {
+	border-top: 1px solid #604A4D;
+	padding: 8px;
+}
+
+div.side.panel-root > div.layer-props {
+	display: none;
+}
+
+#textLayerName {
+	-webkit-appearance: none;
+	width: 100%;
+	border: 0.5px solid #FFF;
+	background: #896A6E;
+	color: #FFF;
+	padding: 8px;
+	font: inherit;
+	font-size: 14px;
+}
+
+
+div.layer-panel {
+	border-top: 1px solid #604A4D;
+}
+
+div.preview {
+	border-top: 1px solid #604A4D;
+}
+
+div.joints {
+	border-top: 1px solid #604A4D;
+	height: calc( 640px - 121px - 181px + 8px - 32px - 4px );
+}
+
+div.preview > canvas {
+	background: #896A6E;
+	width: 128px;
+	height: 128px;
+	margin: 9px;
+	margin-top: 1px;
+	outline: 1px solid #604A4D;
+}
+
+div.side:not(.panel-root) > div.joints,
+div.side:not(.panel-root) > div.preview {
+	display: none;
+}
+
+#rangeRotation {
+	width: calc( 100% - 16px );
+	height: 24px;
+	margin: 0 8px;
+}
+
+#buttonMirror {
+	position: absolute;
+	bottom: 0;
+	right: 199px;
+	width: 40px;
+	height: 39px;
+	background: #896A6E;
+}
+
+div.main {
+	position: relative;
+}
+
+div.side:not( .panel-root ) {
+
+}
+
+
+div.form {
+	padding: 8px 34px;
+	height: 39px;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	background: #896A6E;
+	width: 600px;
+}
+
+div.form::before {
+	content: "0";
+	position: absolute;
+	left: 0;
+	top: 0;
+
+	text-align: center;
+	line-height: 16px;
+	font-size: 14px;
+	height: 40px;
+	line-height: 40px;
+	width: 40px;
+}
+
+div.form::after {
+	content: "360";
+	position: absolute;
+	right: 0;
+	top: 0;
+
+	text-align: center;
+	line-height: 16px;
+	font-size: 14px;
+	height: 40px;
+	line-height: 40px;
+	width: 40px;
+}
+
+
+ul.layer > li:nth-of-type(1) > a::before { content: "1/8"; }
+ul.layer > li:nth-of-type(2) > a::before { content: "2/8"; }
+ul.layer > li:nth-of-type(3) > a::before { content: "3/8"; }
+ul.layer > li:nth-of-type(4) > a::before { content: "4/8"; }
+ul.layer > li:nth-of-type(5) > a::before { content: "5/8"; }
+ul.layer > li:nth-of-type(6) > a::before { content: "6/8"; }
+ul.layer > li:nth-of-type(7) > a::before { content: "7/8"; }
+ul.layer > li:nth-of-type(8) > a::before { content: "8/8"; }
+
+ul.layer > li > a::before {
+	font-size: 14px;
+	display: none;
+	position: absolute;
+	bottom: -32px;
+	left: -40px;
+}
+
+div.side.panel-root ul.layer > li.active > a::before {
+	display: block;
+}

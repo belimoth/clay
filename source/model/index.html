@@ -1,0 +1,102 @@
+<!doctype html>
+
+<html lang=en-us>
+<head>
+<meta charset=utf-8>
+<title></title>
+<link rel=stylesheet href=static/style/style.css>
+
+<body>
+
+<div id=main class=main>
+	<canvas id=canvasDisplay tabindex=1 width=1200 height=1200></canvas>
+	<canvas id=canvas_display_x tabindex=1 width=1200 height=1200></canvas>
+	<canvas id=canvas_display_y tabindex=1 width=1200 height=1200></canvas>
+	<canvas id=canvas_display_z tabindex=1 width=1200 height=1200></canvas>
+
+	<div class=form>
+		<!-- <h3>
+			<button class=icon></button>
+			<span>camera</span>
+		</h3> -->
+
+		<input type=range id=rangeRotation min=0 max=360 value=0 step=1>
+	</div>
+
+	<button id=buttonMirror></button>
+
+	<div id=side class="side panel-root">
+		<div id=height class=height>
+			<span id=tickLayer7 class=tick></span>
+			<span id=tickLayer6 class=tick></span>
+			<span id=tickLayer5 class=tick></span>
+			<span id=tickLayer4 class=tick></span>
+			<span id=tickLayer3 class=tick></span>
+			<span id=tickLayer2 class=tick></span>
+			<span id=tickLayer1 class=tick></span>
+			<span id=tickLayer0 class=tick></span>
+			<input id=rangeHeight type=range orient=vertical min=0 max=32 step=1>
+		</div>
+
+		<div class=objects disabled>
+			<h3>
+				<button class=icon></button>
+				<span>objects</span>
+			</h3>
+		</div>
+
+		<div class=layer-panel>
+			<h3>
+				<button class=icon id=buttonBack></button>
+				<span>layers</span>
+			</h3>
+
+			<ul class=layer>
+				<li><a id=aLayer7><canvas id=canvasLayer7 width=64 height=64></canvas></a></li>
+				<li><a id=aLayer6><canvas id=canvasLayer6 width=64 height=64></canvas></a></li>
+				<li><a id=aLayer5><canvas id=canvasLayer5 width=64 height=64></canvas></a></li>
+				<li><a id=aLayer4><canvas id=canvasLayer4 width=64 height=64></canvas></a></li>
+				<li><a id=aLayer3><canvas id=canvasLayer3 width=64 height=64></canvas></a></li>
+				<li><a id=aLayer2><canvas id=canvasLayer2 width=64 height=64></canvas></a></li>
+				<li><a id=aLayer1><canvas id=canvasLayer1 width=64 height=64></canvas></a></li>
+				<li><a id=aLayer0><canvas id=canvasLayer0 width=64 height=64></canvas></a></li>
+			</ul>
+		</div>
+
+		<div class=layer-props>
+			<input id=textLayerName type=text>
+		</div>
+
+		<div class=joints disabled>
+			<h3>
+				<button class=icon></button>
+				<span>joints</span>
+			</h3>
+		</div>
+
+		<div class=preview>
+			<h3>
+				<button class=icon disabled></button>
+				<span>preview</span>
+			</h3>
+
+			<canvas id=canvasPreview width=256 height=256></canvas>
+
+			<button class=icon id=buttonSpin></button>
+			<button class=icon id=buttonLoad disabled></button>
+			<a id=aDownload download="cool jeep.json"></a>
+		</div>
+	</div>
+</div>
+
+<div class=offscreen>
+	<canvas id=canvasRender width=600 height=600></canvas>
+	<canvas id=canvasAbove width=600 height=600></canvas>
+	<!-- <canvas id=canvasBelow width=600 height=600></canvas> -->
+	<canvas id=canvasGrid width=384 height=384></canvas>
+	<canvas id=canvasShadow width=256 height=256></canvas>
+	<canvas id=canvasStencil width=256 height=256></canvas>
+</div>
+
+<script src=static/vend/matrix.min.js></script>
+<script src=static/script/main.js></script>
