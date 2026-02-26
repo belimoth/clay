@@ -1,3 +1,5 @@
+"use strict";
+
 const INTERRUPT_NONE  = 0;
 const INTERRUPT_IRQ   = 1;
 const INTERRUPT_NMI   = 2;
@@ -17,7 +19,7 @@ export function update_pads() {
 		// }
 
 		// for ( var i = 0; i < pad.axes.length; i += 1 ) {
-		// 	if ( Math.abs( pad.axes[i] ) > 0.5 ) { console.log("axis: " + i + " = " + pad.axes[i] ); } 
+		// 	if ( Math.abs( pad.axes[i] ) > 0.5 ) { console.log("axis: " + i + " = " + pad.axes[i] ); }
 		// }
 
 		pad_buttons = [
@@ -170,7 +172,7 @@ export function apu() {
 			// this.channels[0].update_gain();
 			// this.channels[1].update_gain();
 
-			// gain_0.gain.setValueAtTime( this.channels[0].gain, audio.currentTime + i / 240 );		
+			// gain_0.gain.setValueAtTime( this.channels[0].gain, audio.currentTime + i / 240 );
 			// gain_1.gain.setValueAtTime( this.channels[1].gain, audio.currentTime + i / 240 );
 		}
 
@@ -202,7 +204,7 @@ export function apu() {
 				app.nes.apu.channels[0].length_counter.step();
 				app.nes.apu.channels[1].length_counter.step();
 				app.nes.apu.channels[2].length_counter.step();
-					
+
 				app.nes.apu.channels[0].sweep.step();
 				app.nes.apu.channels[1].sweep.step();
 			}
@@ -271,7 +273,7 @@ export function apu() {
 
 	length_counter.prototype.set_enabled = function( value ) {
 		this.enabled = value;
-		
+
 		if ( value == 0 ) {
 			this.i = 0;
 		}
@@ -290,7 +292,7 @@ export function apu() {
 
 	sweep.prototype.step = function() {
 		if ( this.i == 0 ) {
-			// TODO ? 
+			// TODO ?
 		}
 
 		if ( this.i == 0 || this.reload == 1 ) {
@@ -347,13 +349,13 @@ export function apu() {
 		this.gain = result
 	};
 
-	pulse_channel.prototype.update_frequency = function( wave_node ) {		
+	pulse_channel.prototype.update_frequency = function( wave_node ) {
 		var timer_delta = this.timer >> this.sweep.shift;
-		
+
 		if ( this.sweep.negate ) {
 			timer_delta = timer_delta * -1;
 		}
-		
+
 		if ( this.sweep.enabled == 0 ) {
 			timer_delta = 0;
 			this.period_target = this.timer + 1;
@@ -520,7 +522,7 @@ export function apu() {
 
 				return  temp;
 				// NOTE
-				// When no controller is connected, the corresponding status bit will report 0. 
+				// When no controller is connected, the corresponding status bit will report 0.
 
 				// TODO fallthru if READ (value = null)
 
@@ -572,7 +574,7 @@ export function apu() {
 			case 0x400B:
 				this.channels[ 2 ].bus_write( address, value );
 				break;
-			
+
 			case 0x400C: break;
 			// 400D
 			case 0x400E: break;
@@ -594,7 +596,7 @@ export function apu() {
 
 			case 0x4016:
 				value = value & 0b111;
-				
+
 				if ( this.strobe == 1 && value == 0 ) {
 					update_pad();
 					this.pad_i = 0;
@@ -609,7 +611,7 @@ export function apu() {
 				this.frame_counter.mode = ( value >> 7 ) & 1;
 				this.frame_counter.i    = 0;
 				this.irq_inhibit        = ( value >> 6 ) & 1;
-				
+
 				break;
 		}
 
@@ -635,7 +637,7 @@ function get_length( byte ) {
 		case 0x05 : return   4;
 		case 0x03 : return   2;
 		case 0x01 : return 254;
-		
+
 		case 0x1E : return  32;
 		case 0x1C : return  16;
 		case 0x1A : return  72;
@@ -644,7 +646,7 @@ function get_length( byte ) {
 		case 0x14 : return  48;
 		case 0x12 : return  24;
 		case 0x10 : return  12;
-		
+
 		case 0x0E : return  26;
 		case 0x0C : return  14;
 		case 0x0A : return  60;

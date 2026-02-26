@@ -1,3 +1,5 @@
+"use strict";
+
 var ch = 30.789 / 4;
 
 var spans = [];
@@ -17,7 +19,7 @@ for ( var i = 0; i < cdl_data.length; i += 1 ) {
             type : cdl_data[i] & 0b00000001,
             start : i
         };
-    } 
+    }
 }
 
 var byte_to_hex = [];
@@ -30,7 +32,7 @@ for ( var i = 0; i < 0x100; i += 1 ) {
 
 function array_to_string( array ) {
     var octet_array = new Array( array.length );
-    
+
     for ( var i = 0; i < array.length; i += 1 ) {
         octet_array[ i ] = byte_to_hex[ array[ i ] ];
     }
@@ -48,7 +50,7 @@ function render( stride ) {
         var header = new rom_header( nes_data );
 
         var html = "";
-        
+
         spans.forEach( function( el, i ) {
             var span = el;
             if ( el.type == 0b000001 ) {
@@ -118,7 +120,7 @@ function render( stride ) {
 
             el.appendChild( el_byte );
         }
-        
+
 
         if ( false ) {
             var el_cell = document.createElement( "div" );

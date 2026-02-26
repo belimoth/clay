@@ -1,29 +1,9 @@
+@import "overlay.css";
+
 html {
-    -webkit-user-select: none; user-select: none;
-    -webkit-user-drag: none;
-    vertical-align: center;
-}
-
-body,
-html {
-    height: 100vh;
-    overflow: hidden;
-}
-
-*, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    outline: 0;
-    border: 0;
-    padding: 0;
-    -webkit-user-drag: none;
-    line-height: inherit;
-
-    vertical-align: top;
-}
-
-body {
     background: #000;
+    color: #FFF;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 canvas#chr {
@@ -62,11 +42,6 @@ div#drop {
 
 div#drop.drag-over {
     border-color: #666;
-}
-
-html {
-    color: #666;
-    font-family: 'Courier New', Courier, monospace;
 }
 
 ul {
@@ -120,9 +95,6 @@ canvas {
     image-rendering: crisp-edges;
 }
 
-html {
-    color: #FFF;
-}
 
 div.frame {
     position: relative;
@@ -149,31 +121,6 @@ canvas#chr {
     width: 512px;
 }
 
-body {
-    position: relative;
-    overflow: hidden;
-}
-
-div.overlay {
-    opacity: 1.0;
-    pointer-events: all;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: rgba( 255, 255, 255, 0.2 );
-    overflow-y: scroll;
-    width: 100vw;
-    height: 100vh;
-    padding: 32px;
-}
-
-body.hide-overlay > div.overlay {
-    opacity: 0;
-    pointer-events: none;
-
-}
-
 dl {
     display: block;
     width: 256px;
@@ -197,8 +144,4 @@ dl::after {
     content: "";
     display: block;
     clear: both;
-}
-
-body {
-    overflow: scroll;
 }

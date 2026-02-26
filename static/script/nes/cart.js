@@ -1,3 +1,5 @@
+"use strict";
+
 function mask_bits( value, mask ) {
     if ( mask == 0 ) { return; }
     // position of rightmst set bit
@@ -32,7 +34,7 @@ export function cart( rom ) {
         if ( this.mapper.bus_write ) {
             this.mapper.bus_write( address, value );
         }
-        
+
         address = this.mapper.map( address );
         // TODO
         // this.rom_data[ address ] = value;
@@ -121,7 +123,7 @@ mappers[ 1 ] = function( rom ) {
             case address + 0x8000 <= 0xefff : i = 3; break;
             default: throw "panic " + hex( address, 4 );
         }
-        
+
         if ( reset == 1 ) {
             // reset register
             this.registers[i] = 0;
@@ -133,7 +135,7 @@ mappers[ 1 ] = function( rom ) {
         } else {
             this.t = this.t | ( data << this.w );
             this.w = ( this.w + 1 ) % 5;
-            
+
             if ( this.w == 0 ) {
                 console.log( "register " + i + " = " + this.t );
                 this.registers[i] = this.t;
@@ -148,7 +150,7 @@ mappers[ 2 ] = function( rom ) {
 
     this.map = function( address ) {
         var bank;
-        
+
         if ( address < 0x4000 ) {
             bank = this.bank;
         } else {

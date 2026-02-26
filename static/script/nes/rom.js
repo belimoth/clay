@@ -1,3 +1,5 @@
+"use strict";
+
 var mirror_names = [ "horizontal", "vertical" ];
 var mapper_names = [ "NROM", "MMC1", "UxROM", "CNROM", "MMC", "MMC", "AxROM", "MMC2", "MMC4" ];
 
@@ -8,11 +10,9 @@ var screen_layouts = [
 	"AAAA", // 32 x 30 single-screen
 	"ABBA", // diagonal mirroring
 	"ABBB", // L-shaped mirroring
-	"ABCC", // three-screen horizontal 
+	"ABCC", // three-screen horizontal
 	"ABBC", // three-screen diagonal
 ];
-
-"use strict";
 
 export function rom( rom_buffer ) {
     var nes_data = new Uint8Array( rom_buffer, 0, 16 );
@@ -25,7 +25,7 @@ export function rom( rom_buffer ) {
     this.chr_banks = data[5];
 
     this.mirroring   = ( data[6] >> 0 ) & 1;
-    
+
     this.four_screen = ( data[6] >> 3 ) & 1;
     this.has_battery = ( data[6] >> 1 ) & 1;
     this.has_trainer = ( data[6] >> 2 ) & 1;
@@ -42,7 +42,7 @@ export function rom( rom_buffer ) {
         this.prg_banks = this.prg_banks | ( ( data[ 9 ] & 0x0f ) << 4 );
 
         this.chr_banks = this.chr_banks | ( ( data[ 9 ] & 0xf0 ) << 0 );
-        
+
         this.prg_ram_size   = 64 << ( ( data[ 10 ] >> 4 ) & 0x0f );
         this.prg_nvram_size = 64 << ( ( data[ 10 ] >> 0 ) & 0x0f );
 
@@ -69,7 +69,7 @@ export function rom( rom_buffer ) {
         console.log( "battery: "     + [ "no", "yes" ][ this.has_battery ] );
         console.log( "trainer: "     + [ "no", "yes" ][ this.has_trainer ] );
         console.log( "mapper: "      + mapper_names[ this.mapper ] + " (" + ( this.mapper + "" ).padStart( 3, "0" ) + ")" );
-        console.log( "submapper: (" + this.submapper + ")" );   
+        console.log( "submapper: (" + this.submapper + ")" );
 
         var el = document.getElementById( "dl-rom-info" );
 
@@ -99,7 +99,7 @@ export function rom( rom_buffer ) {
 
     // TEMP
     // this.chr_data = new Uint8Array( 0x2000 );
-    
+
     // REALLY GOOD DONKEY KONG CORRUPTION
     if ( false ) {
         // this.chr_size = 0x2000;

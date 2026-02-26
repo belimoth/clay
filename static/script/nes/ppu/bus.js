@@ -1,3 +1,5 @@
+"use strict";
+
 export function ppu_bus() {
     this.bus_read = function( address, peek = false ) {
         switch( address ) {

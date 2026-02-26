@@ -1,4 +1,6 @@
-//https://en.wikipedia.org/wiki/Base32
+"use strict";
+
+// https://en.wikipedia.org/wiki/Base32
 
 var format = {};
 
@@ -15,7 +17,7 @@ format.yEnc = function( buffer ) {
     while ( buffer.length > 128 ) {
 
     }
-    
+
 }
 
 format.base85 = function() {

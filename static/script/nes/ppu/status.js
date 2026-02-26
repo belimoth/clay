@@ -1,3 +1,5 @@
+"use strict";
+
 export function ppu_status() {
     this.in_vblank       = 0;
     this.sprite_zero_hit = 0;

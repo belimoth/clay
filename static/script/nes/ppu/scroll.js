@@ -1,3 +1,5 @@
+"use strict";
+
 export function ppu_scroll() {
     this.write_scroll = function( value ) {
         // console.log( hex( this.t, 4 ) + " " + hex( this.v, 4 ) + " " + hex( this.w, 1 ) + " scroll write" );

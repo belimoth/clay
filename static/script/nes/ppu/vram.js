@@ -1,3 +1,5 @@
+"use strict";
+
 export function ppu_vram() {
     // this.vram = new Uint8Array( 0x4000 );
 
@@ -37,7 +39,7 @@ export function ppu_vram() {
             case address < 0x3F00 : break;
             case address < 0x4000 : return this.vram_palettes[ address - 0x3F00 ];
         }
-        
+
         return 0;
     };
 
@@ -101,7 +103,7 @@ export function ppu_vram() {
                 this.render_chr = true;
                 break;
         }
-        
+
         return 0;
     };
 }

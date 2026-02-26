@@ -1,3 +1,5 @@
+"use strict";
+
 export function ppu_data() {
     // this.vram_address  = [ 0, 0 ];
     this.vram_data = 0;
@@ -47,7 +49,7 @@ export function ppu_data() {
         // if ( ! peek ) {
             this.vram_data = this.read_vram( address );
         // }
-        
+
         if ( address >= 0x3f00 && address <= 0x3fff ) {
             address = ( ( address - 0x3f00 ) & 0x1f ) + 0x3f00;
             return this.read_vram( address );
@@ -69,7 +71,7 @@ export function ppu_data() {
             address = ( ( address - 0x3f00 ) & 0x1f ) + 0x3f00;
             temp = this.read_vram( address );
         }
-        
+
         this.increment_vram_address();
 
         return temp;
@@ -88,7 +90,7 @@ export function ppu_data() {
         if ( this.v >= 0x3F00 && this.v < 0x3F20 ) {
             this.render_chr = true;
         }
-        
+
         this.increment_vram_address();
     };
 }

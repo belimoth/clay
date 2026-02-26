@@ -1,3 +1,5 @@
+"use strict";
+
 var el_drop = document.getElementById( "drop" );
 
 el_drop.ondragenter = function( event ) {
@@ -52,7 +54,7 @@ window.onblur = function( event ) {
 
 window.app = {};
 
-import { nes } from "/static/script/nes.js";
+import { nes } from "/static/script/nes/nes.js";
 
 app.nes = new nes();
 

@@ -1,0 +1,18 @@
+div.overlay {
+    opacity: 1.0;
+    pointer-events: all;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba( 255, 255, 255, 0.2 );
+    overflow-y: scroll;
+    width: 100vw;
+    height: 100vh;
+    padding: 32px;
+}
+
+body.hide-overlay > div.overlay {
+    opacity: 0;
+    pointer-events: none;
+}

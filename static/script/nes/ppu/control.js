@@ -1,3 +1,5 @@
+"use strict";
+
 export function ppu_control() {
     this.control = 0;
 

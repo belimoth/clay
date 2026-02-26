@@ -3,16 +3,16 @@ const INTERRUPT_IRQ   = 1;
 const INTERRUPT_NMI   = 2;
 const INTERRUPT_RESET = 3;
 
-import { cpu   } from "/static/script/cpu.js";
-import { ppu   } from "/static/script/ppu.js";
-import { apu   } from "/static/script/apu.js";
-import { cart  } from "/static/script/cart.js";
-import { rom   } from "/static/script/rom.js";
-import { audio } from "/static/script/audio.js";
+import { cpu   } from "/static/script/nes/cpu.js";
+import { ppu   } from "/static/script/nes/ppu.js";
+import { apu   } from "/static/script/nes/apu.js";
+import { cart  } from "/static/script/nes/cart.js";
+import { rom   } from "/static/script/nes/rom.js";
+import { audio } from "/static/script/nes/audio.js";
 
-import { update_pads      } from "/static/script/apu.js";
-import { render_crt       } from "/static/script/render.js";
-import { hex, base64_to_buffer } from "/static/script/util.js";
+import { update_pads           } from "/static/script/nes/apu.js";
+import { render_crt            } from "/static/script/nes/render.js";
+import { hex, base64_to_buffer } from "/static/script/nes/util.js";
 
 export function nes() {
 	this.frame = 0;
