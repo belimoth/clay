@@ -12,43 +12,117 @@
 <link rel=apple-touch-icon sizes=180x180  href=/static/favicon/apple-touch-icon.png>
 <link rel="manifest"                      href=/static/favicon/site.webmanifest>
 
+<link rel=stylesheet href=static/style/reset.css>
 <link rel=stylesheet href=static/style/nes/style.css>
 <body>
 
-<div class=center>
-    <div id=frame class=frame>
-        <!-- <canvas style=display:none; id=display width=256 height=240></canvas> -->
-        <canvas id=layer-sprites-bg width=256 height=240></canvas>
-        <canvas id=layer-tiles      width=256 height=240></canvas>
-        <canvas id=layer-sprites-fg width=256 height=240></canvas>
-    </div>
+<top><t>Clay NES</t><a id=f11>Fullscreen (F11)</a><a id=f12>Focus (F12)</a></top>
 
-    <div id=monitor class=monitor>
-        <canvas id=monitor-fps width=1024 height=256></canvas>
-    </div>
+<main>
+	<column style=width:480px;>
+		<page active>
+			<h>
+				<t>ROM</t>
+				<a>Edit</a>
+				<label>Sort by <select>
+					<option>Mapper</option>
+					<option>Name</option>
+				</select></label>
+			</h>
 
-    <div id=fps></div>
-</div>
 
-<div class=overlay>
-    <div class=page>
-        <h2>ROM Info</h2>
 
-        <dl id=dl-rom-info></dl>
-    </div>
+			<ul id=roms></ul>
+		</page>
 
-    <div class=page>
-        <h2>ROMS</h2>
-        <div id=drop></div>
-        <ul id=roms></ul>
-    </div>
-</div>
+		<page>
+			<h><a href>ROM</a><t>/ ROM Name</t></h>
 
-<div>
-    <canvas id=nts width=512 height=480></canvas>
-    <div><canvas id=chr width=1024 height=256></canvas></div>
-</div>
+			<dl id=dl-rom-info></dl>
+		</page>
+
+		<page>
+			<h><a href>ROM</a><t>/ Upload</t></h>
+			<input id=drop type=file>
+		</page>
+	</column>
+
+	<column class=main>
+		<h>Display</h>
+		<display id=frame>
+			<canvas id=display          width=256 height=240></canvas>
+			<canvas style=display:none; id=layer-sprites-bg width=256 height=240></canvas>
+			<canvas style=display:none; id=layer-tiles      width=256 height=240></canvas>
+			<canvas style=display:none; id=layer-sprites-fg width=256 height=240></canvas>
+		</display>
+
+		<h id=fps>FPS</h>
+		<monitor id=monitor><canvas id=monitor-fps width=1024 height=256></canvas></monitor>
+	</column>
+
+	<column>
+		<h>NTS</h>
+		<canvas id=nts width=512 height=480></canvas>
+		<canvas id=chr width=1024 height=256></canvas>
+	</column>
+
+	<column>
+		<h>CHR</h>
+		<canvas id=chr-total width=128 height=256 style=width:calc(64px*4);height:calc(128px*4);></canvas>
+	</column>
+</main>
+
+<!-- <overlay></overlay> -->
 
 <script src=static/vend/spark-md5.min.js></script>
 <script type=module src=static/script/nes/util.js></script>
 <script type=module src=static/script/nes/index.js></script>
+
+<script>
+
+function foggle() {
+	if ( document.fullscreen ) {
+		document.exitFullscreen();
+	} else {
+		if ( document.body.requestFullscreen       ) { document.body.requestFullscreen();       } else
+		if ( document.body.webkitRequestFullscreen ) { document.body.webkitRequestFullscreen(); } else
+		if ( document.body.mozRequestFullScreen    ) { document.body.mozRequestFullScreen();    } else
+		if ( document.body.msRequestFullscreen     ) { document.body.msRequestFullscreen();     }
+	}
+
+	if ( document.fullscreen ) {
+		document.body.classList.add( "fullscreen" );
+	} else {
+		document.body.classList.remove( "fullscreen" );
+	}
+}
+
+document.getElementById( "f11" ).addEventListener( "click", function() {
+	foggle();
+});
+
+document.getElementById( "f12" ).addEventListener( "click", function() {
+	document.body.classList.toggle( "focus" );
+});
+
+document.addEventListener( "keydown", function( event ) {
+	if ( event.key == "F11" ) {
+		event.preventDefault();
+		foggle();
+	}
+
+	if ( event.key == "F12" ) {
+		event.preventDefault();
+		document.body.classList.toggle( "focus" );
+	}
+});
+
+document.addEventListener( "fullscreenchange", function( event ) {
+	if ( document.fullscreen ) {
+		document.body.classList.add( "fullscreen" );
+	} else {
+		document.body.classList.remove( "fullscreen" );
+	}
+});
+
+</script>

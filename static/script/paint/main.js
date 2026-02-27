@@ -19,7 +19,7 @@ function loop( time_new ) {
 	if ( app.toPause ) {
 		app.toPause = false;
 		app.isRunning = false;
-		app.time_total += time - app.time_total; // NOTE dumb as hell
+		app.time_total += app.time - app.time_total; // NOTE dumb as hell
 	} else {
 		requestAnimationFrame( loop );
 		var time_elapsed = time_new - time_old;

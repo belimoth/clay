@@ -219,7 +219,7 @@ export function nes() {
 		var el_fps = document.getElementById( "fps" );
 
 		setInterval(function(){
-			el_fps.innerHTML = ( 1000 / timeElapsedReal ).toFixed( 1 ).padStart( 5, " " ) + " fps";
+			el_fps.innerHTML = ( 1000 / timeElapsedReal ).toFixed( 1 ).padStart( 5, " " ) + " FPS";
 		}, 500 );
 
 		app.audio = new audio();

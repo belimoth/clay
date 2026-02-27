@@ -27,7 +27,6 @@ function make_canvas( width, height, options ) {
     return [ canvas, context ];
 }
 
-// var context_display = get_context_for_id( "display", { alpha : false, desynchronized : true } );
 
 // var [ canvas_chr, context_chr ] = make_canvas( 1024, 256, { alpha : false } );
 var [ canvas_chr, context_chr ] = get_context_for_id( "chr" );
@@ -38,6 +37,9 @@ var [ canvas_nts   , context_nts    ] = get_context_for_id( "nts"              )
 var [ canvas_spr_bg, context_spr_bg ] = get_context_for_id( "layer-sprites-bg" );
 var [ canvas_spr_fg, context_spr_fg ] = get_context_for_id( "layer-sprites-fg" );
 var [ canvas_tiles , context_tiles  ] = get_context_for_id( "layer-tiles"      );
+
+var [ canvas_display, context_display ] = get_context_for_id( "display", { alpha : false, desynchronized : true });
+var [ canvas_chr_total, context_chr_total ] = get_context_for_id( "chr-total" );
 
 function render_chr() {
     var canvas  = canvas_chr;
@@ -367,4 +369,16 @@ export function render_crt() {
 
     var bg_color = nes_palette[ app.nes.ppu.read_vram( 0x3F00 ) ][ 3 ];
     document.body.style.background = bg_color;
+
+    //
+
+    context_display.fillStyle = bg_color;
+    context_display.fillRect( 0, 0, 256, 240 );
+    context_display.drawImage( canvas_spr_bg, 0, 0 );
+    context_display.drawImage( canvas_tiles,  0, 0 );
+    context_display.drawImage( canvas_spr_fg, 0, 0 );
+
+    //
+
+    context_chr_total.drawImage( canvas_chr, 0, 0, 128, 256, 0, 0, 128, 256 );
 }

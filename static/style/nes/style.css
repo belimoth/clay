@@ -1,4 +1,5 @@
 @import "overlay.css";
+@import "canvas.css";
 
 html {
     background: #000;
@@ -6,27 +7,9 @@ html {
     font-family: 'Courier New', Courier, monospace;
 }
 
-canvas#chr {
-    width: 2048px;
-    width: 1024px;
-}
-
-canvas {
-    /* margin: 10px; */
-    /* margin-left: calc( 50vw - 256px ); */
-}
-
-canvas#nts {
-    width: 512px;
-}
-
 body {
-    overflow: auto;
-}
-
-canvas#palette-debug {
-    width: 64px;
-    height: 512px;
+    overflow: hidden;
+    margin: 0;
 }
 
 div.center {
@@ -53,72 +36,17 @@ ul > li > a {
     display: block;
 }
 
-ul > li > a:hover {
+/* ul > li > a:hover {
     background: #222;
-}
+} */
 
-div#fps {
+h#fps {
     line-height: 32px;
     height: 32px;
 }
 
 ul#roms > li > a::before {
     content: attr( data-key );
-}
-
-div.monitor {
-    height: 128px;
-    background: #444;
-}
-
-div.monitor > canvas {
-    height: 128px;
-}
-
-canvas#display {
-    margin-top: 32px;
-}
-
-canvas#display {
-    display: block;
-    width: 1024px;
-    width: 512px;
-
-    width:  calc( 256px * 2 );
-    height: calc( 240px * 2 );
-}
-
-canvas {
-    image-rendering: -moz-crisp-edges;
-    image-rendering: -webkit-crisp-edges;
-    image-rendering: pixelated;
-    image-rendering: crisp-edges;
-}
-
-
-div.frame {
-    position: relative;
-    height: calc( 240px * 2 );
-    margin-bottom: 32px;
-}
-
-canvas#display {
-    margin: 0;
-}
-
-div.frame > canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-}
-
-div.frame {
-    margin-top: 32px;
-}
-
-canvas#chr {
-    width: 512px;
 }
 
 dl {
@@ -136,12 +64,139 @@ dt, dd {
     width: 127px;
 }
 
-h2 {
-    margin-top: 32px;
-}
-
 dl::after {
     content: "";
     display: block;
     clear: both;
+}
+
+main {
+    display: flex;
+}
+
+main > column {
+
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+h {
+    display: block;
+    height: 32px;
+    line-height: 32px;
+}
+
+top {
+    height: 32px;
+    border-bottom: 1px solid currentColor;
+    display: flex;
+}
+
+top > t {
+    padding: 0 8px;
+    display: block;
+    flex-grow: 1;
+    line-height: 32px;
+}
+
+a {
+    padding: 0 8px;
+    color: currentColor;
+    line-height: 32px;
+    color: #F6E;
+}
+
+a:hover {
+    background: currentColor;
+    color: #FFF;
+}
+
+main {
+    flex-grow: 1;
+    border-top: 1px solid currentColor;
+}
+
+
+a:hover {
+	background: #FFE8FC;
+    color: #444;
+}
+
+a:hover:active {
+	background: #FFD1FA;
+    color: #444;
+}
+
+h {
+    display: flex;
+}
+
+column {
+    border: 0 solid currentColor;
+    border-width: 0 1px;
+}
+
+column.main {
+    flex-grow: 1;
+}
+
+
+body.focus column:not( column.main ) {
+    display: none;
+}
+
+
+body.fullscreen, main,
+body.focus column.main {
+    border: 0;
+}
+
+body.focus column.main h,
+body.focus column.main monitor  {
+    display: none;
+}
+
+body.focus top,
+body.fullscreen top {
+    display: none;
+}
+
+select {
+    background: transparent;
+}
+
+option {
+    background: #000;
+    color: #FFF;
+    line-height: 32px;
+}
+
+optgroup + optgroup {
+    border-top: 1px solid currentColor;
+}
+
+label {
+    display: block;
+    line-height: 32px;
+    padding-left: 8px;
+}
+
+column > page {
+    /* display: block; */
+    /* width: 100%; */
+}
+
+column > page:not([active]) {
+    display: none;
+}
+
+h {
+    display: flex;
+}
+
+h > t {
+    flex-grow: 1;
 }

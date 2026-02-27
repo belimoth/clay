@@ -132,12 +132,12 @@ export function palette( el ) {
 
 	document.addEventListener( "wheel", function( event ) {
 		// TODO subpalette switcher with deltaX
-		var isSolo = app.ui.palette.select.length == 1;
-		var select = app.ui.palette.select;
-		if ( isSolo ) { select = app.ui.palette.swatch; }
-		var i = select.indexOf( app.ui.palette.swatch_active );
+		var isSolo = palette.select.length == 1;
+		var select = palette.select;
+		if ( isSolo ) { select = palette.swatch; }
+		var i = select.indexOf( palette.swatch_active );
 		i = ( i + Math.sign( event.deltaY ) + select.length ) % select.length;
-		app.ui.palette.set_active( select[i] );
-		if ( isSolo ) { app.ui.palette.set_select([ select[i] ]); }
+		palette.set_active( select[i] );
+		if ( isSolo ) { palette.set_select([ select[i] ]); }
 	});
 }
