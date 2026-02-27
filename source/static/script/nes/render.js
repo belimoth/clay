@@ -38,7 +38,8 @@ var [ canvas_spr_bg, context_spr_bg ] = get_context_for_id( "layer-sprites-bg" )
 var [ canvas_spr_fg, context_spr_fg ] = get_context_for_id( "layer-sprites-fg" );
 var [ canvas_tiles , context_tiles  ] = get_context_for_id( "layer-tiles"      );
 
-var [ canvas_display, context_display ] = get_context_for_id( "display", { alpha : false, desynchronized : true });
+// var [ canvas_display, context_display ] = get_context_for_id( "display", { alpha : false, desynchronized : true });
+var [ canvas_display, context_display ] = get_context_for_id( "display" );
 var [ canvas_chr_total, context_chr_total ] = get_context_for_id( "chr-total" );
 
 function render_chr() {

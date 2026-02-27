@@ -7,6 +7,8 @@ mode=${1:-"base"}
 	exit 1
 }
 
+[[ $mode == "base" ]] && cd source
 [[ $mode == "base" ]] || cd source/$mode
+
 echo http://localhost:8000
 python -m http.server
