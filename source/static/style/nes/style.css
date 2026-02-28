@@ -269,3 +269,32 @@ ol > li[active] > a:hover::after {
 ol > li[active] > a:hover:active::after {
 	background: #FFD1FA;
 }
+
+ol > li:last-child {
+    flex-grow: 1;
+    display: flex;
+}
+
+ol > li:last-child::before {
+    content: "";
+    display: block;
+    flex-grow: 1;
+}
+
+ol > li:last-child {
+    border-right-width: 0;
+}
+
+panel {
+    display: block;
+}
+
+column > panel {
+    border-top: 1px solid #FFF;
+    margin: 0 -8px;
+    padding: 0 8px;
+}
+
+monitor {
+    margin-top: 8px;
+}
