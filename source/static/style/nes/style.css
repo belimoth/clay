@@ -200,3 +200,72 @@ h {
 h > t {
     flex-grow: 1;
 }
+
+column.main {
+    position: relative;
+    overflow: hidden;
+    min-width: 1024px;
+}
+
+canvas#display {
+    margin-left: calc( 50% - 128px * 4 );
+}
+
+canvas#nts,
+canvas#chr,
+canvas#chr-total {
+    border: 1px solid #FFF;
+    box-shadow: inset 0 0 0 1px #000;
+}
+
+canvas#nts + canvas#chr {
+    margin-top: -1px;
+}
+
+ol {
+    display: flex;
+    line-height: 32px;
+    margin: 0 -8px;
+    border-bottom: 1px solid #FFF;
+    height: 32px;
+
+}
+
+ol > li {
+    border: 0 solid #FFF;
+    border-right-width: 1px;
+    margin-bottom: -1px;
+    height: 32px;
+}
+
+ol > li:first {
+    border-left-width: 0;
+}
+
+ol > li[active] > a {
+    position: relative;
+}
+
+ol > li[active] > a::after {
+    content: "";
+    display: block;
+    background: #000;
+    width: 100%;
+    height: 1px;
+    bottom: 0px;
+    position: absolute;
+    left: 0;
+}
+
+ol > li > a {
+    display: block;
+    height: 32px;
+}
+
+ol > li[active] > a:hover::after {
+    background: #FFE8FC;
+}
+
+ol > li[active] > a:hover:active::after {
+	background: #FFD1FA;
+}

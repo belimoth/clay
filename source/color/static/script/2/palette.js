@@ -57,16 +57,7 @@ data :
 },{
 
 name :
-"CGA - RGBI",
-year:
-"1981",
-data :
-"000000,0000AA,00AA00,00AAAA,AA0000,AA00AA,AA5500,AAAAAA,555555,5555FF,55FF55,55FFFF,FF5555,FF55FF,FFFF55,FFFFFF"
-
-},{
-
-name :
-"CGA - NTSC",
+"CGA",
 year:
 "1981",
 data :
@@ -90,42 +81,6 @@ year :
 "1982",
 data :
 "000000,626262,898989,adadad,ffffff,9f4e44,cb7e75,6d5412,a1683c,c9d487,9ae29b,5cab5e,6abfc6,887ecb,50459b,a057a3"
-
-},{
-
-name :
-"DawnBringer's 16",
-year :
-"2011",
-data :
-"140c1c,442434,30346d,4e4a4e,854c30,346524,d04648,757161,597dce,d27d2c,8595a1,6daa2c,d2aa99,6dc2ca,dad45e,deeed6"
-
-},{
-
-name :
-"DawnBringer's 32",
-year :
-"2013",
-data :
-"000000,222034,45283c,663931,8f563b,df7126,d9a066,eec39a,fbf236,99e550,6abe30,37946e,4b692f,524b24,323c39,3f3f74,306082,5b6ee1,639bff,5fcde4,cbdbfc,ffffff,9badb7,847e87,696a6a,595652,76428a,ac3232,d95763,d77bba,8f974a,8a6f30"
-
-},{
-
-name :
-"DawnBringer's 8",
-year :
-"2017",
-data :
-"000000,55415f,646964,d77355,508cd7,64b964,e6c86e,dcf5ff"
-
-},{
-
-name :
-"PICO-8",
-year:
-"2015",
-data :
-"000000,5f5750,82759a,c0c1c5,fff0e7,7d2953,ff074e,ff76a6,a95238,ffa108,feeb2c,ffcaa8,008551,00e339,222e53,2cabfe"
 
 },{
 
@@ -180,6 +135,44 @@ year :
 "1984",
 data:
 "040404,808080,ffffff,800000,ff0000,ff8080,ff7f00,ffff80,ffff00,808000,008000,01ff00,80ff00,80ff80,01ff80,008080,01ffff,80ffff,0080ff,0000ff,00007f,7f00ff,8080ff,ff80ff,ff00ff,ff0080,800080"
+
+},{
+
+// 2000's
+
+name :
+"DawnBringer's 8",
+year :
+"2017",
+data :
+"000000,55415f,646964,d77355,508cd7,64b964,e6c86e,dcf5ff"
+
+},{
+
+name :
+"DawnBringer's 16",
+year :
+"2011",
+data :
+"140c1c,442434,30346d,4e4a4e,854c30,346524,d04648,757161,597dce,d27d2c,8595a1,6daa2c,d2aa99,6dc2ca,dad45e,deeed6"
+
+},{
+
+name :
+"DawnBringer's 32",
+year :
+"2013",
+data :
+"000000,222034,45283c,663931,8f563b,df7126,d9a066,eec39a,fbf236,99e550,6abe30,37946e,4b692f,524b24,323c39,3f3f74,306082,5b6ee1,639bff,5fcde4,cbdbfc,ffffff,9badb7,847e87,696a6a,595652,76428a,ac3232,d95763,d77bba,8f974a,8a6f30"
+
+},{
+
+name :
+"PICO-8",
+year:
+"2015",
+data :
+"000000,5f5750,82759a,c0c1c5,fff0e7,7d2953,ff074e,ff76a6,a95238,ffa108,feeb2c,ffcaa8,008551,00e339,222e53,2cabfe"
 
 },{
 
