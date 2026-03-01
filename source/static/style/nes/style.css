@@ -102,6 +102,7 @@ top > t {
     line-height: 32px;
 }
 
+button,
 a {
     padding: 0 8px;
     color: currentColor;
@@ -109,6 +110,7 @@ a {
     color: #F6E;
 }
 
+button:hover,
 a:hover {
     background: currentColor;
     color: #FFF;
@@ -119,12 +121,13 @@ main {
     border-top: 1px solid currentColor;
 }
 
-
+button:hover,
 a:hover {
 	background: #FFE8FC;
     color: #444;
 }
 
+button:hover:active,
 a:hover:active {
 	background: #FFD1FA;
     color: #444;
@@ -297,4 +300,137 @@ column > panel {
 
 monitor {
     margin-top: 8px;
+}
+
+top > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 32px;
+    border-bottom: 1px solid #FFF;
+}
+
+top {
+    padding-left: 32px;
+}
+
+
+
+
+p > input,
+p > label {
+    display: block;
+    line-height: 31px;
+    height: 31px;
+    width: 100%;
+}
+
+p>label[data-value]::before {
+    content: attr(data-value);
+}
+
+p label::after, p label::before {
+    font-family: monospace;
+    float: right;
+}
+
+p.unlocked>label[data-prefix]::after
+ {
+    color: var(--color-fg);
+    opacity: 1;
+}
+
+p label[data-prefix]::after {
+    content: attr(data-prefix) ".";
+    color: #839496;
+    opacity: .5;
+}
+
+p > b {
+    display: flex;
+}
+
+p > b::before {
+        content: "";
+    flex-grow: 0;
+}
+
+input[type=checkbox], p>b>input[type=checkbox] {
+    width: 16px;
+    height: 16px;
+    margin-right: 2px;
+    box-shadow: inset 0 0 0 1px #000;
+}
+
+input[type=checkbox] {
+    -webkit-appearance: none;
+    border: 1px solid #7092BE;
+}
+
+
+input[type=checkbox], p.param-seed>b>input[type=checkbox] {
+    width: 16px;
+    height: 16px;
+    margin-right: 2px;
+    box-shadow: inset 0 0 0 1px #000;
+}
+
+input[type=checkbox] {
+    -webkit-appearance: none;
+    border: 1px solid #7092BE;
+}
+
+button {
+    width: 64px;
+    line-height: 30px;
+    border: 1px solid currentColor;
+    background: 0 0;
+    color: var(--color-neutral);
+    padding: 0 12px;
+    text-align: center;
+}
+
+button, h2, select {
+    /* height: 32px; */
+}
+
+button.spin {
+    width: 32px;
+    padding: 0;
+}
+
+button.spin, h2 {
+    font-size: 16px;
+}
+
+p {
+    display: block;
+    line-height: 32px;
+}
+
+p > b {
+    display: flex;
+    width: 100%;
+}
+
+b::before, button.reset, p.spacer {
+    flex-grow: 1;
+}
+
+
+
+page {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+page > ul {
+    flex-grow: 1;
+}
+
+page > p {
+    margin: 0 -8px;
+    padding: 0 8px;
+    padding-bottom: 8px;
 }
