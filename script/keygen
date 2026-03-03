@@ -1,0 +1,5 @@
+#!/bin/bash
+
+mkdir --parents /a/local/key
+
+MSYS_NO_PATHCONV=1 openssl req -new -x509 -keyout a:/local/key/key.pem -out a:/local/key/key.pem.pub -days 365 -nodes -subj "/C=XX/ST=StateName/L=CityName/O=CompanyName/OU=CompanySectionName/CN=CommonNameOrHostname"
