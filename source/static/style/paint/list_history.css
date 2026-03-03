@@ -70,7 +70,7 @@ ul.history-list::after {
 	height: 40px;
 }
 
-div.panel-history > div.panel-body > ul.history-list {
+panel.panel-history > panel-body > ul.history-list {
 	flex-grow: 1;
 }
 

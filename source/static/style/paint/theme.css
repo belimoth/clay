@@ -1,0 +1,122 @@
+html {
+	color: #444;
+}
+
+top {
+	background: #F2F2F2;
+	background: #FFF;
+}
+
+ul.menu-list > li > a:hover {
+	background: #F2F2F2;
+}
+
+ul.menu-list > li > a[disabled] {
+	color: #AAA;
+}
+
+ul.menu-list > li.active > a {
+	background: #000;
+	color: #FFF;
+}
+
+
+traffic > a:hover {
+	background: #000;
+	color: #FFF;
+}
+
+ul.menu-list > li > ul {
+	background: #FFF;
+	border: 1px solid #000;
+}
+
+
+ul.menu-list > li > ul > li > a:hover {
+	background: #FFE8FC;
+}
+
+ul.menu-list > li > ul > li > a[disabled] {
+	color: #AAA;
+}
+
+ul.menu-list > li > ul > li > a[disabled]:hover {
+	background: #F2F2F2;
+}
+
+ul.menu-list > li > ul > li > a:not( [disabled] ):active {
+	background: #FFD1FA;
+	color: #000;
+}
+
+li.b {
+	color: #07D;
+}
+
+#a-layer-close:not( :hover ):not( :active ) {
+	color: #C00;
+}
+
+panel.panel-canvas > panel-header {
+    border-color: #666;
+}
+
+body {
+	background: #000;
+}
+
+main {
+	background: #FFF;
+}
+
+div.box {
+	border-color: #F6E;
+}
+
+main {
+	background: #000;
+	background: #FFF;
+}
+
+body {
+	background: #000;
+	/* background: #808080; */
+	/* background: #FFF; */
+}
+
+/* TODO have div.main-body intermediate element instead of >* */
+
+main > * {
+	background: #FFF;
+}
+
+main.mute-active ul > li.active > a {
+	background: #FFF;
+	color: #444;
+}
+
+main:not( .layer-focus ) ul.layer-list > li.selected:not( .active ) > a,
+ul.layer-list > li > a:hover:not( :active ), ul.layer-list > li > a:hover:not( :active ) + a {
+	background: #FFE8FC;
+}
+
+ul.layer-list > li.active > a:first-child,
+ul.layer-list > li.active > a:first-child + a {
+	background: #FFD1FA;
+}
+
+ul.layer-list > li.active {
+	color: #000;
+}
+
+ul.layer-list > li.active > a:first-child {
+	background: #FFD1FA;
+}
+
+ul.layer-list > li:not( .active ) > a:hover {
+
+}
+
+ul.layer-list > li {
+	border-color: #FFF;
+}

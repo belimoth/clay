@@ -104,7 +104,7 @@ html,
 	background: var( --color-content-border );
 }
 
-/* div.panel-canvas > div.panel-body::after {
+/* panel.panel-canvas > panel-body::after {
 	content: "";
 	display: block;
 	width: 100vw;

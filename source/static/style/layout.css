@@ -1,20 +1,20 @@
-div.top {
+top {
 	display: flex;
 	height: 36px;
 	line-height: 36px;
 	padding-right: 16px;
 }
 
-div.top > div.spacer {
+top > div.spacer {
 	flex-grow: 1;
 }
 
-div.top {
+top {
 	padding: 0 16px;
 }
 
 
-div.main {
+main {
 	position: relative;
 
 	width: 100vw;
@@ -28,7 +28,7 @@ div.main {
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-div.main > * {
+main > * {
 	position: absolute;
 	height: 100%;
 	top: 0;
@@ -36,34 +36,34 @@ div.main > * {
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-div.panel-menu {
+panel.panel-menu {
 	width: 48px;
 	left: 0;
 	border-right: 1px solid #666
 }
 
-div.panel-menu {
+panel.panel-menu {
 	width: 203px;
 	border-right: 1px solid #666;
 }
 
-div.panel-menu {
+panel.panel-menu {
 	width: 240px;
 }
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-div.panel-canvas {
+panel.panel-canvas {
 	left: 203px;
 	overflow: hidden;
 }
 
-div.main.layer-full   > div.panel-canvas,
-div.main.layer-normal > div.panel-canvas { width: calc( 100vw - 155px - 48px - 240px ); }
-div.main.layer-focus  > div.panel-canvas { width: calc( 100vw - 240px -  48px        ); }
-div.main.layer-hidden > div.panel-canvas { width: calc( 100vw - 155px - 48px -   0px ); }
+main.layer-full   > panel.panel-canvas,
+main.layer-normal > panel.panel-canvas { width: calc( 100vw - 155px - 48px - 240px ); }
+main.layer-focus  > panel.panel-canvas { width: calc( 100vw - 240px -  48px        ); }
+main.layer-hidden > panel.panel-canvas { width: calc( 100vw - 155px - 48px -   0px ); }
 
-div.main.layer-full > div.panel-canvas {
+main.layer-full > panel.panel-canvas {
 	opacity: 0.0;
 	transition: opacity 0.1s linear, width 0.2s step-end;
 	/* NOTE width doesn't change actually */
@@ -72,7 +72,7 @@ div.main.layer-full > div.panel-canvas {
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-div.main.layer-full > div.column-right {
+main.layer-full > div.column-right {
 	left: calc( 48px + 155px );
 	border-left: 0;
 	overflow-y: scroll;
@@ -80,13 +80,13 @@ div.main.layer-full > div.column-right {
 
 
 
-div.column-right > div.panel-body > div.panel {
+div.column-right > panel-body > panel {
 	transform: translateX( 0 );
 	transition: transform 0.2s ease, width 0.2s ease;
 }
 
 
-div.main.layer-full > div.column-right > div.panel-body > div.panel {
+main.layer-full > div.column-right > panel-body > panel {
 	margin-left: 24px;
 	transform: translateX( -24px );
 	transition: transform 0.2s ease-out 0.0s;
@@ -114,7 +114,7 @@ ul.tab-list > li > a {
 	/* margin-right: -1px; */
 }
 
-div.main.layer-full > div.column-right > ul.tab-list {
+main.layer-full > div.column-right > ul.tab-list {
 	opacity: 1.0;
 	transform: translateX( 0px );
 	transition: transform 0.2s ease-out 0.0s;
@@ -125,7 +125,7 @@ div.column-right > ul.tab-list > li.spacer ~ li {
 	transform: translateX( -24px );
 }
 
-div.main.layer-full > div.column-right > ul.tab-list > li.spacer ~ li {
+main.layer-full > div.column-right > ul.tab-list > li.spacer ~ li {
 	transform: translateX( 0 );
 	transition: transform 0.2s ease-out 0.0s;
 }
@@ -136,17 +136,17 @@ div.column-right {
 }
 
 
-div.column-right > div.panel-body {
+div.column-right > panel-body {
 	margin-top: -41px;
 }
 
-div.main.layer-full > div.column-right > div.panel-body {
+main.layer-full > div.column-right > panel-body {
 	margin-top: 0;
 }
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-div.main.layer-focus > div.column-right {
+main.layer-focus > div.column-right {
 	left: calc( 100vw - 48px );
 }
 
@@ -160,11 +160,11 @@ div.column-right {
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-div.panel-body {
+panel-body {
 	height: 100%;
 }
 
-div.main.layer-full > div.column-right > div.panel-body {
+main.layer-full > div.column-right > panel-body {
 	margin-right: -24px;
 }
 
@@ -174,7 +174,7 @@ div.column-right {
 	display: block;
 }
 
-div.panel-body {
+panel-body {
 	display: flex;
 	flex-direction: column;
 }
@@ -191,7 +191,7 @@ div.history > ul.layer-list {
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-div.panel-body > div.panel {
+panel-body > panel {
 	border-top: 1px solid #666;
 	margin-top: -1px;
 	width: 240px;
@@ -200,39 +200,39 @@ div.panel-body > div.panel {
 
 }
 
-div.panel-history {
+panel.panel-history {
 	display: flex;
 }
 
-div.panel-body > div.panel {
+panel-body > panel {
 	overflow-x: hidden;
 	overflow-y: scroll;
 }
 
 
-div.main.layer-focus div.panel-history > ul {
+main.layer-focus panel.panel-history > ul {
 	display: none;
 }
 
 
-div.panel-history > ul {
+panel.panel-history > ul {
 	border-right: 1px solid #666;
 }
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-div.panel-canvas {
+panel.panel-canvas {
 	left: 240px;
 }
 
-div.main.layer-full > div.panel-canvas,
-div.main.layer-normal > div.panel-canvas {
+main.layer-full   > panel.panel-canvas,
+main.layer-normal > panel.panel-canvas {
 	width: calc( 100vw - 240px - 240px );
     left: 240px;
 
 }
 
-div.main.layer-full > div.column-right {
+main.layer-full > div.column-right {
     left: 240px;
 	width: calc( 100vw - 240px );
 }
@@ -251,20 +251,20 @@ div.column-right {
 	flex-direction: column;
 }
 
-/* div.main.layer-full > div.column-right, */
-div.main.layer-full > div.column-right > div.panel-body,
-div.main.layer-full > div.column-right > div.panel-body > div.panel {
+/* main.layer-full > div.column-right, */
+main.layer-full > div.column-right > panel-body,
+main.layer-full > div.column-right > panel-body > panel {
 	width: 100%;
 }
 
-div.panel > div.panel-body > div.panel {
+panel > panel-body > panel {
 	width: 100%;
 }
 
-div.panel-menu > div.panel-body > div.panel {
+panel.panel-menu > panel-body > panel {
 	overflow: hidden;
 }
 
-div.main.layer-focus > div.column-right > div.panel-body > div.panel-header > div:first-child {
+main.layer-focus > div.column-right > panel-body > panel-header > div:first-child {
 	display: none;
 }

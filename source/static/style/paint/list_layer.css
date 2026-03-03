@@ -21,17 +21,17 @@ canvas.thumb {
 	float: left;
 }
 
-div.main.layer-full > div.column-right > div.panel-body > ul.layer-list {
+main.layer-full > div.column-right > panel-body > ul.layer-list {
 	position: absolute;
 	overflow-y: hidden;
 }
 
-div.main.layer-full > div.column-right > div.panel-body  > ul.layer-list.active {
+main.layer-full > div.column-right > panel-body  > ul.layer-list.active {
 	width: calc( 100% - 12px );
 	height: 100%;
 }
 
-div.main.layer-full > div.column-right > div.panel-body  > ul.layer-list:not( .active ) {
+main.layer-full > div.column-right > panel-body  > ul.layer-list:not( .active ) {
 	opacity: 0;
 }
 
@@ -86,12 +86,12 @@ ul.layer-list > li > a:active {
 	z-index: 1;
 }
 
-div.main.layer-focus > div.column-right > div.panel-body  > ul.layer-list:not( .active ) {
+main.layer-focus > div.column-right > panel-body  > ul.layer-list:not( .active ) {
 	opacity: 0.0;
 }
 
-div.main.layer-full  > div.column-right > div.panel-body  > ul.layer-list > li.h,
-div.main.layer-focus > div.column-right > div.panel-body  > ul.layer-list > li.h {
+main.layer-full  > div.column-right > panel-body  > ul.layer-list > li.h,
+main.layer-focus > div.column-right > panel-body  > ul.layer-list > li.h {
 	opacity: 0.0;
 }
 
@@ -239,7 +239,7 @@ ul.layer-list > li.fill > a > canvas.thumb {
 	image-rendering: pixelated;
 }
 
-div.main.layer-focus ul.layer-list > li > a:first-child {
+main.layer-focus ul.layer-list > li > a:first-child {
     margin-left: -24px;
 }
 
@@ -290,10 +290,10 @@ ul.layer-list > li.active::before {
 	left: -14px;
 }
 
-div.main.layer-focus ul.layer-list > div.box {
+main.layer-focus ul.layer-list > div.box {
 	display: none;
 }
 
-div.main.layer-focus ul.layer-list > li.active::before {
+main.layer-focus ul.layer-list > li.active::before {
 	left: -18px;
 }

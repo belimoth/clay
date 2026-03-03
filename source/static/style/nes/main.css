@@ -1,21 +1,16 @@
-@import "overlay.css";
-@import "canvas.css";
+@import "/static/style/reset.css";
+@import "/static/style/nes/overlay.css";
+@import "/static/style/nes/canvas.css";
+@import "/static/style/top.css";
+
+@import "/static/style/nes/layout.css";
 
 html {
     background: #000;
     color: #FFF;
-    font-family: 'Courier New', Courier, monospace;
+    /* font-family: 'Courier New', Courier, monospace; */
 }
 
-body {
-    overflow: hidden;
-    margin: 0;
-}
-
-div.center {
-    width: 512px;
-    margin-left: calc( 50vw - 256px );
-}
 
 div#drop {
     border: 4px dashed #444;
@@ -46,7 +41,7 @@ h#fps {
 }
 
 ul#roms > li > a::before {
-    content: attr( data-key );
+    content: attr( data-label );
 }
 
 dl {
@@ -70,35 +65,16 @@ dl::after {
     clear: both;
 }
 
-main {
-    display: flex;
-}
-
-main > column {
-
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-}
-
 h {
     display: block;
     height: 32px;
     line-height: 32px;
 }
 
-top {
-    height: 32px;
-    border-bottom: 1px solid currentColor;
-    display: flex;
-}
-
 top > t {
     padding: 0 8px;
     display: block;
-    flex-grow: 1;
+    /* flex-grow: 1; */
     line-height: 32px;
 }
 
@@ -107,6 +83,10 @@ a {
     padding: 0 8px;
     color: currentColor;
     line-height: 32px;
+    height: 32px;
+}
+
+button, a {
     color: #F6E;
 }
 
@@ -114,11 +94,6 @@ button:hover,
 a:hover {
     background: currentColor;
     color: #FFF;
-}
-
-main {
-    flex-grow: 1;
-    border-top: 1px solid currentColor;
 }
 
 button:hover,
@@ -137,28 +112,17 @@ h {
     display: flex;
 }
 
-column {
-    border: 0 solid currentColor;
-    border-width: 0 1px;
-}
 
-column.main {
-    flex-grow: 1;
-}
-
-
-body.focus column:not( column.main ) {
+body.focus menu, body.focus side {
     display: none;
 }
 
-
-body.fullscreen, main,
-body.focus column.main {
+body.fullscreen, body.focus main {
     border: 0;
 }
 
-body.focus column.main h,
-body.focus column.main monitor  {
+body.focus main h,
+body.focus main monitor  {
     display: none;
 }
 
@@ -187,11 +151,6 @@ label {
     padding-left: 8px;
 }
 
-column > page {
-    /* display: block; */
-    /* width: 100%; */
-}
-
 column > page:not([active]) {
     display: none;
 }
@@ -204,11 +163,9 @@ h > t {
     flex-grow: 1;
 }
 
-column.main {
-    position: relative;
-    overflow: hidden;
-    min-width: 1024px;
-}
+
+
+
 
 canvas#display {
     margin-left: calc( 50% - 128px * 4 );
@@ -228,7 +185,6 @@ canvas#nts + canvas#chr {
 ol {
     display: flex;
     line-height: 32px;
-    margin: 0 -8px;
     border-bottom: 1px solid #FFF;
     height: 32px;
 
@@ -266,11 +222,11 @@ ol > li > a {
 }
 
 ol > li[active] > a:hover::after {
-    background: #FFE8FC;
+    /* background: #FFE8FC; */
 }
 
 ol > li[active] > a:hover:active::after {
-	background: #FFD1FA;
+	/* background: #FFD1FA; */
 }
 
 ol > li:last-child {
@@ -288,14 +244,21 @@ ol > li:last-child {
     border-right-width: 0;
 }
 
+
+
+
+
+
+
+
+
 panel {
     display: block;
 }
 
-column > panel {
+panel {
     border-top: 1px solid #FFF;
-    margin: 0 -8px;
-    padding: 0 8px;
+    /* padding: 0 8px; */
 }
 
 monitor {
@@ -422,7 +385,7 @@ b::before, button.reset, p.spacer {
 page {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    /* height: 100%; */
 }
 
 page > ul {
@@ -430,7 +393,133 @@ page > ul {
 }
 
 page > p {
-    margin: 0 -8px;
     padding: 0 8px;
     padding-bottom: 8px;
+}
+
+label[disabled] {
+    color: #AAA;
+    pointer-events: none;
+}
+
+
+
+
+traffic {
+    flex-grow: 1;
+    display: flex;
+}
+
+traffic::before {
+    content: "";
+    flex-grow: 1;
+}
+
+ul#rom > li > a::before {
+    content: attr( data-label );
+}
+
+
+
+
+
+
+
+
+ol#side-tab > li > a:hover {
+    background: none;
+    color: #F6E;
+}
+
+ol#side-tab > li > a:hover:active {
+    background: none;
+    color: #F6E;
+
+}
+
+pre.code {
+    overflow-y:scroll;
+}
+
+
+
+
+
+
+
+
+
+page {
+    display: flex;
+    overflow: hidden;
+    /* overflow-y: scroll; */
+}
+
+page > table {
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-height: 0;
+    overflow-y: scroll;
+}
+
+page > div {
+    overflow-y: scroll;
+}
+
+page:not([active]) {
+    display: none;
+}
+
+page {
+    padding-left: 8px;
+
+}
+
+h {
+    padding-left: 0;
+}
+
+main > h {
+    padding-left: 8px;
+}
+
+ul#rom {
+    margin-left: -8px;
+}
+
+ul#rom > li > a {
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+
+
+table#code {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+    width: 100%;
+}
+
+
+td {
+
+}
+
+td:first-child {
+    color: #888;
+}
+
+tr {
+    display: block;
+    width: 100%;
+}
+
+
+tr.nes-header {
+    background: #660;
+}
+
+side > page > div {
+    margin-left: -8px;
 }

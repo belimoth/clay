@@ -1,0 +1,97 @@
+top {
+	position: relative;
+	padding: 0;
+
+	line-height: 32px;
+	height: 32px;
+}
+
+body.window-full top {
+	display: none;
+}
+
+/*  */
+
+ul.menu-list {
+	display: flex;
+}
+
+ul.menu-list > li {
+	width: 48px;
+	position: relative;
+}
+
+ul.menu-list > li:first-child {
+	width: 48px;
+}
+
+/*  */
+
+ul.menu-list > li > a {
+	padding: 0 12px;
+	/* padding: 0 16px; */
+}
+
+ul.menu-list > li > a {
+	display: block;
+	height: 32px;
+	line-height: 32px;
+}
+
+ul.menu-list > li:first-child > a {
+	display: block;
+}
+
+ul.menu-list > li:first-child > a  {
+	/* padding-top: 2px; */
+	padding: 0;
+	text-align: center;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+top > ul.menu-list > li:first-child > a > div.a-inner {
+	height: 32px;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+
+
+ul.menu-list > li > ul {
+	position: absolute;
+	left: -1px;
+
+	background: #FFF;
+	width: 150px;
+	line-height: 24px;
+	line-height: 32px;
+	padding: 1px;
+	/* border-top: 1px solid #666; */
+	border: 1px solid #000;
+}
+
+ul.menu-list > li:not( .active ) > ul {
+	opacity: 0.0;
+	pointer-events: none;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+ul.menu-list > li > ul > li > a {
+	padding: 0 11px;
+}
+
+top > t {
+	padding: 0 8px;
+}
+
+
+top > img {
+	flex-grow: 0;
+	width: 32px;
+}
+
+top {
+	z-index: 100;
+}

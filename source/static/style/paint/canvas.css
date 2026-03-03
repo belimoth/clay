@@ -41,10 +41,10 @@ div.canvas > canvas {
 
 /*  */
 
-div.panel-canvas {
+panel.panel-canvas {
 	padding-right: 1px;
 }
 
-div.panel-canvas > div.panel-header {
+panel.panel-canvas > panel-header {
 	/* font-weight: 700; */
 }
