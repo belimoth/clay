@@ -1,10 +1,10 @@
-div.column-header {
+column-header {
 	height: 40px;
 	line-height: 40px;
 	margin-top: 2px;
 }
 
-div.column {
+column {
 	/* border: 1px solid #AAA; */
 	padding: 0;
 
@@ -12,38 +12,38 @@ div.column {
 	flex-direction: column;
 }
 
-div.column {
+column {
 	position: relative;
 }
 
-div.panel {
+panel {
 	position: absolute;
 	left: 0;
 	top: 0;
-	width: 100%;
-	height: 100%;
+	/* width: 100%;
+	height: 100%; */
 	/* overflow: hidden; */
 	display: flex;
 	flex-direction: column;
 }
 
-div.panel:not( :only-child ):not( .active ) {
+panel:not( :only-child ):not( .active ) {
 	display: none;
 }
 
-div.panel-body {
+panel-body {
 	flex-grow: 1;
 	/* flex-shrink: 1; */
 	overflow-y: scroll;
 	/* height: calc( 100% - 40px ); */
 }
 
-div.column-header {
+column-header {
 	display: flex;
 	flex-shrink: 0;
 }
 
-div.column-header a {
+column-header a {
 	display: block;
 	color: #07D;
 	padding: 0 8px;
@@ -51,32 +51,32 @@ div.column-header a {
 	cursor: pointer;
 }
 
-div.column-header a:hover {
+column-header a:hover {
 	background: #F2F2F2;
 }
 
-div.column-header a:active {
+column-header a:active {
 	background: #DDD;
 }
 
-div.column > div.column-header:first-child {
+column > column-header:first-child {
 	margin-top: -6px;
 	margin-bottom: 2px;
 }
 
-div.column-header {
+column-header {
 	display:flex;
 }
 
-div.column-header > span {
+column-header > span {
 	flex-grow: 1;
 }
 
-div.column-header > a {
+column-header > a {
 	position: relative;
 }
 
-div.column-header > a:first-child:hover::before {
+column-header > a:first-child:hover::before {
 	content: "";
 	display: block;
 	position: absolute;
@@ -86,4 +86,8 @@ div.column-header > a:first-child:hover::before {
 	height: 1268px;
 	border: 2px solid #F0F;
 	pointer-events: none;
+}
+
+column {
+	padding-top: 2px;
 }

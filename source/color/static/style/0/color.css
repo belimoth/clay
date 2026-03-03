@@ -38,12 +38,12 @@ body {
 	background: #DDD;
 }
 
-div.main {
+main {
 	height: 100%;
 	display: flex;
 }
 
-div.main > div {
+main > div {
 	width: 274px;
 	padding: 8px;
 	background: #FFF;
@@ -51,7 +51,7 @@ div.main > div {
 	margin-right: 0;
 }
 
-div.main > div > div {
+main > div > div {
 	margin-bottom: 9px;
 }
 

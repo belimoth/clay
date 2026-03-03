@@ -51,12 +51,12 @@ ul {
 
 /* ----------------------------------------------------------------------------------------------------------- */
 
-div.main {
+main {
 	width: 1440px;
 	height: 1240px;
 }
 
-div.main > canvas {
+main > canvas {
 	float: left;
 	width: 600px;
 	height: 600px;
@@ -638,7 +638,7 @@ div.side:not(.panel-root) > div.preview {
 	background: #896A6E;
 }
 
-div.main {
+main {
 	position: relative;
 }
 

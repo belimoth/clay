@@ -2,12 +2,12 @@ body {
 	background: #FFF;
 }
 
-div.main {
+main {
 	height: 100%;
 	display: flex;
 }
 
-div.main > div {
+main > div {
 	width: 274px;
 	padding: 8px;
 	background: #FFF;
