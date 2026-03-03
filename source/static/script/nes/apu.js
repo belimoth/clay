@@ -10,27 +10,49 @@ const APU_CLOCK = 1000 / 240;
 var pads = [];
 var pad_buttons = [];
 
+var pad_i = 0;
+
+window.addEventListener( "gamepadconnected", function( event ) {
+	pad_i = event.gamepad.index;
+
+	console.log(
+		"Gamepad connected at index %d: %s. %d buttons, %d axes.",
+		event.gamepad.index,
+		event.gamepad.id,
+		event.gamepad.buttons.length,
+		event.gamepad.axes.length
+	);
+});
+
+window.addEventListener( "gamepaddisconnected", function(e) {
+	console.log(
+		"Gamepad disconnected from index %d: %s",
+		e.gamepad.index,
+		e.gamepad.id
+	);
+});
+
 export function update_pads() {
-	var pad = navigator.getGamepads()[1];
+	var pad = navigator.getGamepads()[ pad_i ];
 
 	if ( pad ) {
-		// for ( var i = 0; i < pad.buttons.length; i += 1 ) {
-		// 	if ( pad.buttons[i].pressed ) { console.log( "button : " + i ); }
-		// }
+		for ( var i = 0; i < pad.buttons.length; i += 1 ) {
+			// if ( pad.buttons[i].pressed ) { console.log( "button : " + i ); }
+		}
 
-		// for ( var i = 0; i < pad.axes.length; i += 1 ) {
-		// 	if ( Math.abs( pad.axes[i] ) > 0.5 ) { console.log("axis: " + i + " = " + pad.axes[i] ); }
-		// }
+		for ( var i = 0; i < pad.axes.length; i += 1 ) {
+			// if ( Math.abs( pad.axes[i] ) > 0.5 ) { console.log("axis: " + i + " = " + pad.axes[i] ); }
+		}
 
 		pad_buttons = [
-			pad.buttons[ 1 ].pressed,
-			pad.buttons[ 2 ].pressed,
-			pad.buttons[ 8 ].pressed,
-			pad.buttons[ 9 ].pressed,
-			pad.axes[ 1 ] == -1 ? 1 : 0,
-			pad.axes[ 1 ] ==  1 ? 1 : 0,
-			pad.axes[ 0 ] == -1 ? 1 : 0,
-			pad.axes[ 0 ] ==  1 ? 1 : 0,
+			pad.buttons[  0 ].pressed,
+			pad.buttons[  2 ].pressed,
+			pad.buttons[  8 ].pressed,
+			pad.buttons[  9 ].pressed,
+			pad.buttons[ 12 ].pressed,
+			pad.buttons[ 13 ].pressed,
+			pad.buttons[ 14 ].pressed,
+			pad.buttons[ 15 ].pressed,
 		];
 	}
 }
@@ -86,24 +108,6 @@ keys[ button_to_key[ BUTTON_UP     ] ] = 0;
 keys[ button_to_key[ BUTTON_DOWN   ] ] = 0;
 keys[ button_to_key[ BUTTON_LEFT   ] ] = 0;
 keys[ button_to_key[ BUTTON_RIGHT  ] ] = 0;
-
-window.addEventListener( "gamepadconnected", function( event ) {
-	console.log(
-		"Gamepad connected at index %d: %s. %d buttons, %d axes.",
-		event.gamepad.index,
-		event.gamepad.id,
-		event.gamepad.buttons.length,
-		event.gamepad.axes.length
-	);
-});
-
-window.addEventListener("gamepaddisconnected", function(e) {
-	console.log(
-		"Gamepad disconnected from index %d: %s",
-		e.gamepad.index,
-		e.gamepad.id
-	);
-});
 
 // TODO prevent impossible key states ( up + down etc)
 
@@ -180,9 +184,9 @@ export function apu() {
 		this.channels[1].update_gain();
 		this.channels[2].update_gain();
 
-		app.audio.gain_nodes[ 0 ].gain.value = this.channels[0].gain;
-		app.audio.gain_nodes[ 1 ].gain.value = this.channels[1].gain;
-		app.audio.gain_nodes[ 2 ].gain.value = this.channels[2].gain;
+		app.audio.gain_nodes[0].gain.value = this.channels[0].gain;
+		app.audio.gain_nodes[1].gain.value = this.channels[1].gain;
+		app.audio.gain_nodes[2].gain.value = this.channels[2].gain;
 
 		if ( this.channels[0].gain != 0 ) { this.channels[0].update_frequency( app.audio.wave_nodes[0] ); }
 		if ( this.channels[1].gain != 0 ) { this.channels[1].update_frequency( app.audio.wave_nodes[1] ); }

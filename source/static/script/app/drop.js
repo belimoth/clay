@@ -24,7 +24,7 @@ el_drop.addEventListener( "drop", function( event ) {
 
 				reader.onload = function() {
 					var result = reader.result.split( "," )[ 1 ];
-					app.storage.roms[ file.name ] = result;
+					app.storage.rom[ file.name ] = result;
 					localStorage.setItem( "data.nes", JSON.stringify( app.storage ) );
 					rom_draw();
 				};

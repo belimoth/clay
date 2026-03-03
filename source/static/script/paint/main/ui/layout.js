@@ -3,20 +3,20 @@
 import { app, app_canvas_resize } from "../../app.js"
 
 document.getElementById( "column-right" ).addEventListener( "mouseout", function( event ) {
-	// $$( "div.column-right div.panel-header > a" ).forEach( el => el.classList.remove( "mute" ) );
-	$$( "div.column-right div.panel-header > a" ).forEach( el => el.classList.remove( "hover" ) );
+	// $$( "div.column-right panel-header > a" ).forEach( el => el.classList.remove( "mute" ) );
+	$$( "div.column-right panel-header > a" ).forEach( el => el.classList.remove( "hover" ) );
 });
 
 document.getElementById( "column-right" ).addEventListener( "mousemove", function( event ) {
-	$$( "div.column-right div.panel-header > a" ).forEach( el => el.classList.remove( "mute" ) );
-	$$( "div.column-right div.panel-header > a" ).forEach( el => el.classList.remove( "hover" ) );
+	$$( "div.column-right panel-header > a" ).forEach( el => el.classList.remove( "mute" ) );
+	$$( "div.column-right panel-header > a" ).forEach( el => el.classList.remove( "hover" ) );
 });
 
 document.getElementById( "a-layer-expand" ).addEventListener( "click", function( event ) {
 	if( event.target.closest( "a" ).hasAttribute( "disabled" ) ) { return; }
 
-	$$( "div.column-right div.panel-header > a" ).forEach( el => el.classList.remove( "mute" ) );
-	$$( "div.column-right div.panel-header > a" ).forEach( el => el.classList.remove( "hover" ) );
+	$$( "div.column-right panel-header > a" ).forEach( el => el.classList.remove( "mute" ) );
+	$$( "div.column-right panel-header > a" ).forEach( el => el.classList.remove( "hover" ) );
 
 	event.target.classList.add( "mute" );
 	app.layer_mode_index = Math.max( app.layer_mode_index - 1, 0 );
@@ -33,8 +33,8 @@ document.getElementById( "a-layer-expand" ).addEventListener( "click", function(
 document.getElementById( "a-layer-collapse" ).addEventListener( "click", function( event ) {
 	if( event.target.closest( "a" ).hasAttribute( "disabled" ) ) { return; }
 
-	$$( "div.column-right div.panel-header > a" ).forEach( el => el.classList.remove( "mute" ) );
-	$$( "div.column-right div.panel-header > a" ).forEach( el => el.classList.remove( "hover" ) );
+	$$( "div.column-right panel-header > a" ).forEach( el => el.classList.remove( "mute" ) );
+	$$( "div.column-right panel-header > a" ).forEach( el => el.classList.remove( "hover" ) );
 
 	event.target.classList.add( "mute" );
 	app.layer_mode_index = Math.min( app.layer_mode_index + 1, 2 );
@@ -70,15 +70,15 @@ export function update_layer_mode() {
 var tool_mode_index = 2;
 
 document.getElementById( "menu" ).addEventListener( "mousemove", function( event ) {
-	$$( "div.panel-menu div.panel-header > a" ).forEach( el => el.classList.remove( "mute" ) );
-	// $$( "div.menu div.panel-header > a" ).forEach( el => el.classList.remove( "hover" ) );
+	$$( "panel.panel-menu panel-header > a" ).forEach( el => el.classList.remove( "mute" ) );
+	// $$( "div.menu panel-header > a" ).forEach( el => el.classList.remove( "hover" ) );
 });
 
 document.getElementById( "a-tools-expand" ).addEventListener( "click", function( event ) {
 	if( event.target.closest( "a" ).hasAttribute( "disabled" ) ) { return; }
 
-	// $$( "div.column-right div.panel-header > a" ).forEach( el => el.classList.remove( "mute" ) );
-	// $$( "div.column-right div.panel-header > a" ).forEach( el => el.classList.remove( "hover" ) );
+	// $$( "div.column-right panel-header > a" ).forEach( el => el.classList.remove( "mute" ) );
+	// $$( "div.column-right panel-header > a" ).forEach( el => el.classList.remove( "hover" ) );
 
 	event.target.classList.add( "mute" );
 	tool_mode_index = Math.max( tool_mode_index - 1, 0 );
@@ -95,8 +95,8 @@ document.getElementById( "a-tools-expand" ).addEventListener( "click", function(
 document.getElementById( "a-tools-collapse" ).addEventListener( "click", function( event ) {
 	if( event.target.closest( "a" ).hasAttribute( "disabled" ) ) { return; }
 
-	// $$( "div.column-right div.panel-header > a" ).forEach( el => el.classList.remove( "mute" ) );
-	// $$( "div.column-right div.panel-header > a" ).forEach( el => el.classList.remove( "hover" ) );
+	// $$( "div.column-right panel-header > a" ).forEach( el => el.classList.remove( "mute" ) );
+	// $$( "div.column-right panel-header > a" ).forEach( el => el.classList.remove( "hover" ) );
 
 	// event.target.classList.add( "mute" );
 	tool_mode_index = Math.min( tool_mode_index + 1, 2 );

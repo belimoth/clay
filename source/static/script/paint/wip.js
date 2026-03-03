@@ -1,36 +1,5 @@
 "use strict";
 
-$( "div#top-menu" )._.delegate( "mousedown", "ul.menu-list > li > a:not([disabled])", function( event ) {
-	document.body.classList.toggle( "app-overlay-show" );
-
-	$$( "ul.menu-list > li.active" ).forEach( el => el.classList.remove( "active" ) );
-
-	if ( document.body.classList.contains( "app-overlay-show" ) ) {
-		event.target.closest( "li" ).classList.add( "active" );
-	}
-
-	event.stopPropagation();
-});
-
-document.body.addEventListener( "mousedown", function( event ) {
-	if ( document.body.classList.contains( "app-overlay-show" ) ) {
-		$$( "ul.menu-list > li.active" ).forEach( el => el.classList.remove( "active" ) );
-		document.body.classList.remove( "app-overlay-show" )
-	}
-});
-
-$( "div#top-menu" )._.delegate( "mouseover", "ul.menu-list > li > a:not([disabled])", function( event ) {
-	if ( document.body.classList.contains( "app-overlay-show" ) ) {
-		$$( "ul.menu-list > li.active" ).forEach( el => el.classList.remove( "active" ) );
-		event.target.closest( "li" ).classList.add( "active" );
-	}
-});
-
-$$( "ul.menu-list > li > ul > li > a" ).forEach( function( el, i ) {
-	el.addEventListener( "mousedown", function( event ) {
-		event.stopPropagation();
-	});
-});
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 

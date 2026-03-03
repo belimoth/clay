@@ -1,24 +1,51 @@
 "use strict";
 
-function rom_draw() {
-    var el_rom = document.getElementById( "rom" );
-    el_rom.innerHTML = "";
+import { code_draw } from "/static/script/app/code.js";
+import { nes } from "/static/script/nes/nes.js";
 
-    Object.keys( app.storage.rom ).forEach( function( el, i ) {
-        var el_li = document.createElement( "li" );
-        var el_a  = document.createElement( "a"  );
-        el_a.dataset.key = el;
+export function rom_draw() {
+	var el_rom = document.getElementById( "rom" );
+	el_rom.innerHTML = "";
 
-        el_a.addEventListener( "click", function( event ) {
-            document.body.classList.add( "hide-overlay" );
-            app.nes.cpu.start();
-            app.nes.load_rom( el );
-            app.nes.play();
-        });
+	Object.keys( app.storage.rom ).forEach( function( el, i ) {
+		var el_li = document.createElement( "li" );
+		var el_a  = document.createElement( "a"  );
 
-        el_li.appendChild( el_a );
-        el_rom.appendChild( el_li );
-    });
+		el_a.dataset.key = el
+		var key = el.split(".nes")[0];
+		el_a.dataset.label = key.split( "(" )[0];
+		el_a.dataset.region = "";
+
+		try {
+			app.nes.load_rom( el );
+			el_a.dataset.mapper = app.nes.cart.rom.mapper;
+			el_a.dataset.hash   = app.nes.cart.rom.hash;
+		} catch( error ) {
+
+		}
+
+		el_a.addEventListener( "click", function( event ) {
+			document.body.classList.add( "hide-overlay" );
+
+			app.nes.stop();
+			if ( app.audio && app.audio.context ) app.audio.context.close();
+			delete( app.nes );
+			app.nes = new nes();
+
+			app.nes.cpu.start();
+			app.nes.load_rom( el );
+			app.nes.play();
+			code_draw();
+
+			document.getElementById( "page-rom-list" ).removeAttribute( "active" );
+			document.getElementById( "page-rom-info" ).setAttribute( "active", "" );
+			document.getElementById( "page-rom-edit" ).removeAttribute( "active" );
+			document.getElementById( "page-rom-edit-upload" ).removeAttribute( "active" );
+		});
+
+		el_li.appendChild( el_a );
+		el_rom.appendChild( el_li );
+	});
 }
 
 export function rom_init() {

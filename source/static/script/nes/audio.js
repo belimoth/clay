@@ -32,10 +32,10 @@ export function audio() {
     function create_wave( duty ) {
         const count = 64;
 
-        function f ( duty, i ) {
+        function f( duty, i ) {
             return Math.sin( duty * i * Math.PI ) / ( i * Math.PI );
         }
-        
+
         var real = new Float32Array( count + 1 );
         var imag = new Float32Array( count + 1 );
 
@@ -89,7 +89,7 @@ export function audio() {
     //         update_apu();
     //     };
     //     node.connect( gain );
-    
+
     this.update_fixed = function() {
         app.nes.apu.update_fixed();
     };

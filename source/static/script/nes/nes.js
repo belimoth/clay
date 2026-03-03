@@ -21,8 +21,8 @@ export function nes() {
 	this.save = new Uint8Array( 0x2000 ); // TODO
 
 	this.cpu = new cpu();
-	this.ppu  = new ppu();
-	this.apu  = new apu();
+	this.ppu = new ppu();
+	this.apu = new apu();
 	this.cart;
 	this.audio;
 
@@ -96,12 +96,11 @@ export function nes() {
 	};
 
 	this.load_rom = function( key ) {
-		var rom_text   = app.storage.roms[ key ];
+		var rom_text   = app.storage.rom[ key ];
 		var rom_buffer = base64_to_buffer( rom_text );
 
-		console.log( "MD5", SparkMD5.ArrayBuffer.hash( rom_buffer.slice(16) ) );
-
 		this.cart = new cart( new rom( rom_buffer ) );
+		this.cart.rom.hash = SparkMD5.ArrayBuffer.hash( rom_buffer.slice(16) );
 
 		function get_2( i ) {
 			return ( app.nes.bus_read( i + 1 ) << 8 ) | app.nes.bus_read( i );
@@ -111,9 +110,9 @@ export function nes() {
 		var vector_reset = get_2( 0xfffc );
 		var vector_brk   = get_2( 0xfffe );
 
-		console.log( "nmi: "   + hex( vector_nmi  , 4 ) );
-		console.log( "reset: " + hex( vector_reset, 4 ) );
-		console.log( "brk: "   + hex( vector_brk  , 4 ) );
+		// console.log( "nmi: "   + hex( vector_nmi  , 4 ) );
+		// console.log( "reset: " + hex( vector_reset, 4 ) );
+		// console.log( "brk: "   + hex( vector_brk  , 4 ) );
 
 		this.cpu.start();
 		this.cpu.pc = vector_reset;
@@ -153,6 +152,8 @@ export function nes() {
 			cycles_previous = cycles_current;
 		} while ( cycles_current < vblank_end );
 	};
+
+	this.loop = null;
 
 	this.play = function() {
 		// var dump = "";
@@ -197,7 +198,7 @@ export function nes() {
 			if ( app.nes.frame == 1 && false ) {
 
 			} else {
-				window.requestAnimationFrame( loop );
+				app.nes.loop = window.requestAnimationFrame( loop );
 			}
 
 			timeElapsed = timeCurrent - timePrevious;
@@ -224,9 +225,14 @@ export function nes() {
 
 		app.audio = new audio();
 
-		window.requestAnimationFrame( loop );
+		app.nes.loop = window.requestAnimationFrame( loop );
+	};
+
+	this.stop = function() {
+		 window.cancelAnimationFrame( app.nes.loop );
 	};
 }
+
 
 var fps_buffer = new Float32Array( 256 );
 var fps_i = 0;

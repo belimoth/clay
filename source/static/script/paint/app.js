@@ -1,57 +1,12 @@
 "use strict";
 
-import { tool_all } from "./main/tool.js";
-import { palette  } from "./main/ui/palette.js";
-import { canvas, screen_to_canvas } from "./main/ui.js";
-import { layer    } from "./main/ui/layer.js";
-import { storage   } from "./session.js";
+import { tool_all }                 from "/static/script/paint/main/tool.js";
+import { palette }                  from "/static/script/paint/main/ui/palette.js";
+import { canvas, screen_to_canvas } from "/static/script/paint/main/ui.js";
+import { layer }                    from "/static/script/paint/main/ui/layer.js";
+import { storage }                  from "/static/script/paint/session.js";
 
-// window
-
-if (
-	document.fullscreenEnabled       ||
-	document.webkitFullscreenEnabled ||
-	document.mozFullScreenEnabled    ||
-	document.msFullscreenEnabled
-) {
-	document.getElementById( "a-fullscreen" ).addEventListener( "click", function() {
-		var el = document.getElementById( "main" );
-		el = document.body;
-
-		if ( el.requestFullscreen       ) { el.requestFullscreen();       } else
-		if ( el.webkitRequestFullscreen ) { el.webkitRequestFullscreen(); } else
-		if ( el.mozRequestFullScreen    ) { el.mozRequestFullScreen();    } else
-		if ( el.msRequestFullscreen     ) { el.msRequestFullscreen();     }
-	});
-} else {
-
-}
-
-function app_window_check_fullscreen() {
-	// NOTE this will basically never work
-	// if ( screen.width == window.innerWidth && screen.height == window.innerHeight ) {
-
-	if ( screen.height == window.innerHeight ) {
-		// NOTE unlike the following, this will only trigger on resize up, not down
-		// onFullscreen();
-
-		document.body.classList.add( "window-full" );
-	} else {
-		document.body.classList.remove( "window-full" );
-	}
-
-}
-
-app_window_check_fullscreen();
-
-function app_window_on_fullscreen() {
-
-}
-
-document.addEventListener( "fullscreenchange"      , app_window_on_fullscreen );
-document.addEventListener( "webkitfullscreenchange", app_window_on_fullscreen );
-document.addEventListener( "mozfullscreenchange"   , app_window_on_fullscreen );
-document.addEventListener( "MSFullscreenChange"    , app_window_on_fullscreen );
+import "/static/script/app/top.js"
 
 //
 

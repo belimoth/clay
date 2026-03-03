@@ -13,89 +13,141 @@
 <link rel="manifest"                      href=/static/favicon/site.webmanifest>
 
 <link rel=stylesheet href=/static/style/reset.css>
-<link rel=stylesheet href=/static/style/nes/style.css>
+<link rel=stylesheet href=/static/style/nes/main.css>
 <body>
 
-<top><img src=/static/image/subhelion_app.png><t>Clay NES</t><a id=f11>Fullscreen (F11)</a><a id=f12>Focus (F12)</a></top>
+<top>
+	<img src=/static/image/subhelion_app.png>
+	<t>Clay NES</t>
+
+	<ul class=menu-list>
+		<li>
+			<a>File</a>
+
+			<ul>
+				<li><a disabled>New</a>
+				<li><a disabled>Open</a>
+				<li><a>Save</a>
+				<li><a disabled>Save As</a>
+				<li><a id=a-export>Export</a>
+			</ul>
+
+		<li>
+			<a>Edit</a>
+
+			<ul>
+				<li><a disabled>Undo</a>
+				<li><a disabled>Redo</a>
+				<li><a disabled>Cut</a>
+				<li><a disabled>Copy</a>
+				<li><a disabled>Paste</a>
+				<li><a disabled>Delete</a>
+			</ul>
+		<li><a>View</a>
+		<li><a disabled>Help</a>
+	</ul>
+
+	<traffic>
+		<a id=f11>Fullscreen (F11)</a>
+		<a id=f12>Focus (F12)</a>
+	</traffic>
+</top>
+
+<menu>
+	<page active id=page-rom-list>
+		<h><t>ROM</t><a id=a-rom-edit>Edit</a>
+			<label disabled>Sort by <select>
+				<option>Profile</option>
+				<option>Region</option>
+				<option>Mapper</option>
+				<option selected>Name</option>
+				<option>Type</option>
+				<option>Year</option>
+			</select></label>
+		</h>
+
+		<ul id=rom></ul>
+	</page>
+
+	<page id=page-rom-edit>
+		<h>
+			<a id=a-rom-edit-back>ROM</a>
+			<t>/ Edit</t>
+			<a id=a-rom-edit-clear>Clear</a>
+			<a id=a-rom-edit-upload>Upload</a>
+			<label disabled>Sort by <select>
+				<option>Profile</option>
+				<option>Region</option>
+				<option>Mapper</option>
+				<option selected>Name</option>
+				<option>Type</option>
+				<option>Year</option>
+			</select></label>
+		</h>
+
+		<!-- <p><b><input type=checkbox><button id=rom-reset class=reset disabled >Reset storage</button></b></p> -->
+	</page>
+
+	<page id=page-rom-edit-upload>
+		<h><a id=a-rom-edit-upload-back>ROM</a><t>/ Edit</t></h>
+		<input id=drop type=file>
+	</page>
+
+	<page id=page-rom-info>
+		<h><a id=a-rom-info-back>ROM</a><t>/ ROM Name</t></h>
+		<dl id=dl-rom-info></dl>
+	</page>
+</menu>
 
 <main>
-	<column style=width:480px;>
-		<page active>
-			<h><t>ROM</t><a id=a-rom-edit>Edit</a>
-				<label>Sort by <select>
-					<option>Mapper</option>
-					<option selected>Name</option>
-				</select></label>
-			</h>
+	<h>Display</h>
 
-			<ul id=rom></ul>
+	<display id=frame>
+		<canvas id=display          width=256 height=240></canvas>
+		<canvas style=display:none; id=layer-sprites-bg width=256 height=240></canvas>
+		<canvas style=display:none; id=layer-tiles      width=256 height=240></canvas>
+		<canvas style=display:none; id=layer-sprites-fg width=256 height=240></canvas>
+	</display>
 
-			<p>
-				<label for=param-1 data-value=0000 data-prefix=9906>noise.seed</label>
-
-				<b id=param-1>
-					<input type=checkbox>
-					<button id=param-1-reset class=reset>Reroll</button>
-					<button id=param-1-dec class=spin disabled>-</button>
-					<button id=param-1-inc class=spin>+</button>
-				</b>
-			</p>
-		</page>
-
-		<page>
-			<h><a href>ROM</a><t>/ ROM Name</t></h>
-
-			<dl id=dl-rom-info></dl>
-		</page>
-
-		<page>
-			<h><a href>ROM</a><t>/ Upload</t></h>
-			<input id=drop type=file>
-		</page>
-	</column>
-
-	<column class=main>
-		<h>Display</h>
-		<display id=frame>
-			<canvas id=display          width=256 height=240></canvas>
-			<canvas style=display:none; id=layer-sprites-bg width=256 height=240></canvas>
-			<canvas style=display:none; id=layer-tiles      width=256 height=240></canvas>
-			<canvas style=display:none; id=layer-sprites-fg width=256 height=240></canvas>
-		</display>
-
-		<panel>
-			<ol>
-				<li active><a>FPS</a>
-				<li><a>Timeline</a>
-				<li><a>Close</a>
-			</ol>
-			<monitor id=monitor><canvas id=monitor-fps width=1024 height=256></canvas></monitor>
-		</panel>
-	</column>
-
-	<column>
+	<panel>
 		<ol>
-			<li><a>Code</a>
-			<li active><a>GFX</a>
-			<li><a>SFX</a>
+			<li active><a id=fps>FPS</a>
+			<li><a>Timeline</a>
 			<li><a>Close</a>
 		</ol>
+		<monitor id=monitor><canvas id=monitor-fps width=1024 height=256></canvas></monitor>
+	</panel>
+</main>
 
-		<page active>
+<side>
+	<ol id=side-tab>
+		<li active><a>Code</a>
+		<li><a>GFX</a>
+		<li><a>SFX</a>
+		<li><a id=a-side-close>Close</a>
+	</ol>
 
+	<page active>
+		<h>Code</h>
+		<div><table id=code></table></div>
+	</page>
+
+	<page>
 		<h>NTS</h>
 		<canvas id=nts width=512 height=480></canvas>
 		<canvas id=chr width=1024 height=256></canvas>
 		<h>CHR</h>
 		<canvas id=chr-total width=128 height=256 style=width:calc(64px*4);height:calc(128px*4);></canvas>
-		</page>
+	</page>
 
-	</column>
-</main>
+	<page>
+		<h>SFX</h>
+	</page>
+</side>
 
 <!-- <overlay></overlay> -->
 
+<script src=/static/vend/bliss.min.js></script>
 <script src=/static/vend/spark-md5.min.js></script>
-<script type=module src=/static/script/app.js></script>
-<script type=module src=/static/script/nes/util.js></script>
-<script type=module src=/static/script/nes/index.js></script>
+
+<script type=module src=/static/script/nes/main.js></script>
