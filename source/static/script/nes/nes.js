@@ -6,232 +6,270 @@ const INTERRUPT_RESET = 3;
 import { cpu   } from "/static/script/nes/cpu.js";
 import { ppu   } from "/static/script/nes/ppu.js";
 import { apu   } from "/static/script/nes/apu.js";
-import { cart  } from "/static/script/nes/cart.js";
-import { rom   } from "/static/script/nes/rom.js";
+import { default as cart } from "/static/script/nes/cart.js";
+import { default as rom  } from "/static/script/nes/rom.js";
 import { audio } from "/static/script/nes/audio.js";
 
 import { update_pads           } from "/static/script/nes/apu.js";
 import { render_crt            } from "/static/script/nes/render.js";
 import { hex, base64_to_buffer } from "/static/script/nes/util.js";
 
-export function nes() {
-	this.frame = 0;
+function nes_init() {
+	app.nes = {};
 
-	this.wram = new Uint8Array( 0x0800 );
-	this.save = new Uint8Array( 0x2000 ); // TODO
+	app.nes.frame = 0;
 
-	this.cpu = new cpu();
-	this.ppu = new ppu();
-	this.apu = new apu();
-	this.cart;
-	this.audio;
+	app.nes.wram = new Uint8Array( 0x0800 );
+	app.nes.save = new Uint8Array( 0x2000 ); // TODO
 
-	this.bus_read = function( address, peek = false ) {
-		switch ( true ) {
-			case ( address < 0x0800 ):
-				return this.wram[ address ];
+	app.nes.cpu = new cpu();
+	app.nes.ppu = new ppu();
+	app.nes.apu = new apu();
+	app.nes.cart;
+	app.nes.audio;
 
-			case ( address < 0x2000 ):
-				address = address & 0x07ff;
-				return this.wram[ address ];
+	app.nes.loop = null;
+}
 
-			case ( address < 0x4000 ):
-				// address = ( address - 0x2000 ) % 8 + 0x2000; // TODO
-				address = address & 0x2007;
-			case ( address == 0x4014 ):
-				return this.ppu.bus_read( address, peek );
+function nes_bus_read( address, peek = false ) {
+	switch ( true ) {
+		case ( address < 0x0800 ):
+		return app.nes.wram[ address ];
 
-			case ( address < 0x4020 ):
-				return this.apu.bus_read( address, peek );
+		case ( address < 0x2000 ):
+		address = address & 0x07ff;
+		return app.nes.wram[ address ];
 
-			case ( address < 0x6000 ):
-				break;
+		case ( address < 0x4000 ):
+		// address = ( address - 0x2000 ) % 8 + 0x2000; // TODO
+		address = address & 0x2007;
+		case ( address == 0x4014 ):
+		return app.nes.ppu.bus_read( address, peek );
 
-			case ( address < 0x8000 ):
-				return this.save[ address - 0x8000 ];
+		case ( address < 0x4020 ):
+		return app.nes.apu.bus_read( address, peek );
 
-			default:
-				return this.cart.bus_read( address, peek );
-		}
+		case ( address < 0x6000 ):
+		break;
 
-		return 0;
-	};
+		case ( address < 0x8000 ):
+		return app.nes.save[ address - 0x8000 ];
 
-	this.bus_write = function( address, value ) {
-		address = address & 0xffff;
+		default:
+		return cart.bus_read( address, peek );
+	}
 
-		switch ( true ) {
-			case ( address < 0x0800 ):
-				this.wram[ address ] = value;
-				break;
+	return 0;
+};
 
-			case ( address < 0x2000 ):
-				// address = address % 0x0800;
-				address = address & 0x7ff;
-				this.wram[ address ] = value;
-				break;
+function nes_bus_write( address, value ) {
+	address = address & 0xffff;
 
-			case ( address < 0x4000 ):
-				address = ( address - 0x2000 ) % 8 + 0x2000;
-				this.ppu.bus_write( address, value );
-				break;
+	switch ( true ) {
+		case ( address < 0x0800 ):
+		app.nes.wram[ address ] = value;
+		break;
 
-			case ( address == 0x4014 ):
-				this.ppu.bus_write( address, value );
-				break;
+		case ( address < 0x2000 ):
+		// address = address % 0x0800;
+		address = address & 0x7ff;
+		app.nes.wram[ address ] = value;
+		break;
 
-			case ( address < 0x4020 ):
-				this.apu.bus_write( address, value );
-				break;
+		case ( address < 0x4000 ):
+		address = ( address - 0x2000 ) % 8 + 0x2000;
+		app.nes.ppu.bus_write( address, value );
+		break;
 
-			// case ( address < 0x8000 ):
-			// 	// TODO
-			// 	break;
+		case ( address == 0x4014 ):
+		app.nes.ppu.bus_write( address, value );
+		break;
 
-			default:
-				this.cart.bus_write( address, value );
-		}
+		case ( address < 0x4020 ):
+		app.nes.apu.bus_write( address, value );
+		break;
 
-		return 0;
-	};
+		// case ( address < 0x8000 ):
+		// // TODO
+		// break;
 
-	this.load_rom = function( key ) {
-		var rom_text   = app.storage.rom[ key ];
-		var rom_buffer = base64_to_buffer( rom_text );
+		default:
+		cart.bus_write( address, value );
+	}
 
-		this.cart = new cart( new rom( rom_buffer ) );
-		this.cart.rom.hash = SparkMD5.ArrayBuffer.hash( rom_buffer.slice(16) );
+	return 0;
+};
 
-		function get_2( i ) {
-			return ( app.nes.bus_read( i + 1 ) << 8 ) | app.nes.bus_read( i );
-		}
+function nes_load( key ) {
+	var rom_text   = app.storage.rom[ key ];
+	var rom_buffer = base64_to_buffer( rom_text );
 
-		var vector_nmi   = get_2( 0xfffa );
-		var vector_reset = get_2( 0xfffc );
-		var vector_brk   = get_2( 0xfffe );
+	rom.init( rom_buffer );
+	app.nes.rom.hash = SparkMD5.ArrayBuffer.hash( rom_buffer.slice(16) );
+	cart.init( app.nes.rom );
 
-		// console.log( "nmi: "   + hex( vector_nmi  , 4 ) );
-		// console.log( "reset: " + hex( vector_reset, 4 ) );
-		// console.log( "brk: "   + hex( vector_brk  , 4 ) );
+	function get_2( i ) {
+		return ( nes_bus_read( i + 1 ) << 8 ) | nes_bus_read( i );
+	}
 
-		this.cpu.start();
-		this.cpu.pc = vector_reset;
-	};
+	var vector_nmi   = get_2( 0xfffa );
+	var vector_reset = get_2( 0xfffc );
+	var vector_brk   = get_2( 0xfffe );
 
+	// console.log( "nmi: "   + hex( vector_nmi  , 4 ) );
+	// console.log( "reset: " + hex( vector_reset, 4 ) );
+	// console.log( "brk: "   + hex( vector_brk  , 4 ) );
+
+	app.nes.cpu.start();
+	app.nes.cpu.pc = vector_reset;
+}
+
+function nes_step() {
 	const vblank_start = 27166;
 	const vblank_end   = 29780;
 
-	this.emulate = function() {
-		// app.cycles_start = app.nes.cpu.cycles;
-		app.cycles_start = app.nes.cpu.cycles - ( app.nes.cpu.cycles % vblank_end );
+	// app.cycles_start = app.nes.cpu.cycles;
+	app.cycles_start = app.nes.cpu.cycles - ( app.nes.cpu.cycles % vblank_end );
+	var cycles_previous = 0;
+	app.nes.ppu.start_frame();
+	var cycles_current = app.nes.cpu.cycles - app.cycles_start;
+	var target = vblank_start;
 
-		var cycles_previous = 0;
+	do {
+		cycles_current = app.nes.cpu.cycles - app.cycles_start;
+		app.nes.cpu.step();
 
-		app.nes.ppu.start_frame();
-
-		var cycles_current = app.nes.cpu.cycles - app.cycles_start;
-
-		var target = vblank_start;
-
-		do {
-			cycles_current = app.nes.cpu.cycles - app.cycles_start;
-			app.nes.cpu.step();
-
-			if ( cycles_previous < target && cycles_current >= target ) {
-				app.nes.ppu.in_vblank = 1;
-			}
-
-			if ( cycles_previous < target + 7 && cycles_current >= target + 7 ) {
-				var nmi_enabled = ( app.nes.ppu.control >> 7 ) & 1;
-
-				if ( nmi_enabled == 1 ) {
-					app.nes.cpu.interrupt_pending = INTERRUPT_NMI;
-				}
-			}
-
-			cycles_previous = cycles_current;
-		} while ( cycles_current < vblank_end );
-	};
-
-	this.loop = null;
-
-	this.play = function() {
-		// var dump = "";
-
-		// for ( var i = 0; i <= 0xffff; i += 1 ) {
-		// 	if ( i % 16 == 0 ) {
-		// 		dump = dump + "\n" + hex( i, 4 ) + "  ";
-		// 	}
-
-		// 	if ( i % 16 == 8 ) {
-		// 		dump = dump + " ";
-		// 	}
-
-		// 	dump = dump + hex( app.nes.bus_read( i ), 2 ) + " ";
-
-
-		// }
-
-		// console.log( dump );
-
-		// return;
-
-		function main() {
-			app.nes.emulate();
-			render_crt();
-			app.audio.update_fixed();
-			app.nes.frame = app.nes.frame + 1;
+		if ( cycles_previous < target && cycles_current >= target ) {
+			app.nes.ppu.in_vblank = 1;
 		}
 
-		var timePrevious = window.performance.now(), timeElapsed;
-		var timePreviousReal = window.performance.now(), timeElapsedReal;
+		if ( cycles_previous < target + 7 && cycles_current >= target + 7 ) {
+			var nmi_enabled = ( app.nes.ppu.control >> 7 ) & 1;
 
-		// TODO research setting timer precision in electron build
-
-		// /*
-		const interval = 1000 / 60;
-		/*/
-		const interval = 100;
-		//*/
-
-		function loop( timeCurrent ) {
-			if ( app.nes.frame == 1 && false ) {
-
-			} else {
-				app.nes.loop = window.requestAnimationFrame( loop );
-			}
-
-			timeElapsed = timeCurrent - timePrevious;
-
-			if ( timeElapsed >= interval ) {
-				update_pads();
-				main();
-
-				timeElapsedReal = timeCurrent - timePreviousReal;
-				fps_buffer[ fps_i ] = timeElapsedReal;
-				render_fps_buffer();
-				fps_i = ( fps_i + 1 ) % ( 1024 / 4 );
-
-				timePrevious = timeCurrent - ( timeElapsed % interval );
-				timePreviousReal = timeCurrent;
+			if ( nmi_enabled == 1 ) {
+				app.nes.cpu.interrupt_pending = INTERRUPT_NMI;
 			}
 		}
 
-		var el_fps = document.getElementById( "fps" );
-
-		setInterval(function(){
-			el_fps.innerHTML = ( 1000 / timeElapsedReal ).toFixed( 1 ).padStart( 5, " " ) + " FPS";
-		}, 500 );
-
-		app.audio = new audio();
-
-		app.nes.loop = window.requestAnimationFrame( loop );
-	};
-
-	this.stop = function() {
-		 window.cancelAnimationFrame( app.nes.loop );
-	};
+		cycles_previous = cycles_current;
+	} while ( cycles_current < vblank_end );
 }
+
+
+function nes_play() {
+	// var dump = "";
+
+	// for ( var i = 0; i <= 0xffff; i += 1 ) {
+	// 	if ( i % 16 == 0 ) {
+	// 		dump = dump + "\n" + hex( i, 4 ) + "  ";
+	// 	}
+
+	// 	if ( i % 16 == 8 ) {
+	// 		dump = dump + " ";
+	// 	}
+
+	// 	dump = dump + hex( app.nes.bus_read( i ), 2 ) + " ";
+
+
+	// }
+
+	// console.log( dump );
+
+	// return;
+
+	function main() {
+		nes.step();
+		render_crt();
+		app.audio.update_fixed();
+		app.nes.frame = app.nes.frame + 1;
+	}
+
+	var timePrevious = window.performance.now(), timeElapsed;
+	var timePreviousReal = window.performance.now(), timeElapsedReal;
+
+	// TODO research setting timer precision in electron build
+
+	// /*
+	const interval = 1000 / 60;
+	/*/
+	const interval = 100;
+	//*/
+
+	function loop( timeCurrent ) {
+		if ( app.nes.frame == 1 && false ) {
+
+		} else {
+			app.nes.loop = window.requestAnimationFrame( loop );
+		}
+
+		timeElapsed = timeCurrent - timePrevious;
+
+		if ( timeElapsed >= interval ) {
+			update_pads();
+			main();
+
+			timeElapsedReal = timeCurrent - timePreviousReal;
+			fps_buffer[ fps_i ] = timeElapsedReal;
+			render_fps_buffer();
+			fps_i = ( fps_i + 1 ) % ( 1024 / 4 );
+
+			timePrevious = timeCurrent - ( timeElapsed % interval );
+			timePreviousReal = timeCurrent;
+		}
+	}
+
+	var el_fps = document.getElementById( "fps" );
+
+	setInterval(function(){
+		el_fps.innerHTML = ( 1000 / timeElapsedReal ).toFixed( 1 ).padStart( 5, " " ) + " FPS";
+	}, 500 );
+
+	app.audio = new audio();
+
+	app.nes.loop = window.requestAnimationFrame( loop );
+}
+
+function nes_stop() {
+		window.cancelAnimationFrame( app.nes.loop );
+}
+
+let nes = {};
+nes.init      = nes_init;
+nes.bus_read  = nes_bus_read;
+nes.bus_write = nes_bus_write;
+nes.load      = nes_load;
+nes.step      = nes_step;
+nes.play      = nes_play;
+nes.stop      = nes_stop;
+
+export default nes;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 var fps_buffer = new Float32Array( 256 );

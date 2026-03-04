@@ -14,105 +14,91 @@ var screen_layouts = [
 	"ABBC", // three-screen diagonal
 ];
 
-export function rom( rom_buffer ) {
-	var nes_data = new Uint8Array( rom_buffer, 0, 16 );
-
-	var data = nes_data;
+function rom_init( rom_buffer ) {
+	let nes_data = new Uint8Array( rom_buffer, 0, 16 );
+	let data = nes_data;
 
 	// assert data[0-3] == 0x4e45531a
 
-	this.prg_banks = data[4];
-	this.chr_banks = data[5];
+	app.nes.rom = {};
 
-	this.mirroring   = ( data[6] >> 0 ) & 1;
+	app.nes.rom.prg_banks = data[4];
+	app.nes.rom.chr_banks = data[5];
 
-	this.four_screen = ( data[6] >> 3 ) & 1;
-	this.has_battery = ( data[6] >> 1 ) & 1;
-	this.has_trainer = ( data[6] >> 2 ) & 1;
-	this.arcade      = ( data[7] >> 0 ) & 3;
-	this.is_nes_2    = ( ( data[7] >> 2 ) & 3 ) == 2 ? 1 : 0;
+	app.nes.rom.mirroring   = ( data[6] >> 0 ) & 1;
 
-	this.mapper = ( data[6] >> 4 ) | ( data[7] & 0xf0 );
-	this.submapper = 0;
+	app.nes.rom.four_screen = ( data[6] >> 3 ) & 1;
+	app.nes.rom.has_battery = ( data[6] >> 1 ) & 1;
+	app.nes.rom.has_trainer = ( data[6] >> 2 ) & 1;
+	app.nes.rom.arcade      = ( data[7] >> 0 ) & 3;
+	app.nes.rom.is_nes_2    = ( ( data[7] >> 2 ) & 3 ) == 2 ? 1 : 0;
 
-	if ( this.is_nes_2 ) {
-		this.mapper = this.mapper | ( ( data[8] & 0b1111 ) << 8 );
+	app.nes.rom.mapper = ( data[6] >> 4 ) | ( data[7] & 0xf0 );
+	app.nes.rom.submapper = 0;
 
-		this.chr_banks = this.chr_banks | ( ( data[ 9 ] & 0xf0 ) << 0 );
-		this.prg_banks = this.prg_banks | ( ( data[ 9 ] & 0x0f ) << 4 );
+	if ( app.nes.rom.is_nes_2 ) {
+		app.nes.rom.mapper = app.nes.rom.mapper | ( ( data[8] & 0b1111 ) << 8 );
 
-		this.chr_banks = this.chr_banks | ( ( data[ 9 ] & 0xf0 ) << 0 );
+		app.nes.rom.chr_banks = app.nes.rom.chr_banks | ( ( data[ 9 ] & 0xf0 ) << 0 );
+		app.nes.rom.prg_banks = app.nes.rom.prg_banks | ( ( data[ 9 ] & 0x0f ) << 4 );
 
-		this.prg_ram_size   = 64 << ( ( data[ 10 ] >> 4 ) & 0x0f );
-		this.prg_nvram_size = 64 << ( ( data[ 10 ] >> 0 ) & 0x0f );
+		app.nes.rom.chr_banks = app.nes.rom.chr_banks | ( ( data[ 9 ] & 0xf0 ) << 0 );
 
-		this.chr_ram_size   = 64 << ( ( data[ 11 ] >> 4 ) & 0x0f );
-		this.chr_nvram_size = 64 << ( ( data[ 11 ] >> 0 ) & 0x0f );
+		app.nes.rom.prg_ram_size   = 64 << ( ( data[ 10 ] >> 4 ) & 0x0f );
+		app.nes.rom.prg_nvram_size = 64 << ( ( data[ 10 ] >> 0 ) & 0x0f );
+
+		app.nes.rom.chr_ram_size   = 64 << ( ( data[ 11 ] >> 4 ) & 0x0f );
+		app.nes.rom.chr_nvram_size = 64 << ( ( data[ 11 ] >> 0 ) & 0x0f );
 
 		// console.log( data[10].toString( 2 ) );
 	} else {
-		this.prg_ram_size   = 0;
-		this.prg_nvram_size = 0;
-		this.chr_ram_size   = 0;
-		this.chr_nvram_size = 0;
+		app.nes.rom.prg_ram_size   = 0;
+		app.nes.rom.prg_nvram_size = 0;
+		app.nes.rom.chr_ram_size   = 0;
+		app.nes.rom.chr_nvram_size = 0;
 	}
 
-	this.info = function() {
-//         console.log( "NES 2.0: " + [ "no", "yes" ][ this.is_nes_2 ] );
-//
-//         console.log( "PRG size: "    + ( this.prg_banks * 16 + "" ).padStart( 2, " " ) + " KiB" );
-//         console.log( "CHR size: "    + ( this.chr_banks *  8 + "" ).padStart( 2, " " ) + " KiB" );
-//
-//         console.log( "PRG RAM:   " + this.prg_ram_size   + " bytes" );
-//         console.log( "PRG NVRAM: " + this.prg_nvram_size + " bytes" );
-//
-//         console.log( "CHR RAM:   " + this.chr_ram_size   + " bytes" );
-//         console.log( "CHR NVRAM: " + this.chr_nvram_size + " bytes" );
-//
-//         console.log( "mirroring: "      + mirror_names[ this.mirroring ] );
-//
-//         console.log( "battery: "     + [ "no", "yes" ][ this.has_battery ] );
-//         console.log( "trainer: "     + [ "no", "yes" ][ this.has_trainer ] );
-//         console.log( "mapper: "      + mapper_names[ this.mapper ] + " (" + ( this.mapper + "" ).padStart( 3, "0" ) + ")" );
-//         console.log( "submapper: (" + this.submapper + ")" );
+	rom_info_draw();
 
-		var el = document.getElementById( "dl-rom-info" );
+	app.nes.rom.prg_size = app.nes.rom.prg_banks * 0x4000;
+	app.nes.rom.chr_size = app.nes.rom.chr_banks * 0x2000;
 
-		el.innerHTML = "";
-
-		function add_fact( key, value ) {
-			var dt = document.createElement( "dt" );
-			var dd = document.createElement( "dd" );
-			dt.innerHTML = key;
-			dd.innerHTML = value;
-			el.appendChild( dt );
-			el.appendChild( dd );
-		}
-
-		add_fact( "NES 2.0",         [ "no", "yes" ][ this.is_nes_2 ] );
-		add_fact( "PRG size",  ( this.prg_banks * 16 + "" ).padStart( 2, " " ) + " KiB" );
-		add_fact( "CHR size",  ( this.chr_banks *  8 + "" ).padStart( 2, " " ) + " KiB" );
-		add_fact( "PRG RAM",   this.prg_ram_size   + " bytes" );
-		add_fact( "PRG NVRAM", this.prg_nvram_size + " bytes" );
-		add_fact( "CHR RAM",   this.chr_ram_size   + " bytes" );
-		add_fact( "CHR NVRAM", this.chr_nvram_size + " bytes" );
-		add_fact( "Mirroring", mirror_names[ this.mirroring ] );
-		add_fact( "Battery",   [ "no", "yes" ][ this.has_battery ] );
-		add_fact( "Trainer",   [ "no", "yes" ][ this.has_trainer ] );
-		add_fact( "Mapper",    mapper_names[ this.mapper ] + " (" + ( this.mapper + "" ).padStart( 3, "0" ) + ")" );
-		add_fact( "Submapper", this.submapper );
-	};
-
-	this.info();
-
-	this.prg_size = this.prg_banks * 0x4000;
-	this.chr_size = this.chr_banks * 0x2000;
-
-	this.rom_data = new Uint8Array( rom_buffer, 16, this.prg_size );
-	this.chr_data = new Uint8Array( rom_buffer, 16 + this.prg_size );//, this.chr_size );
+	app.nes.rom.rom_data = new Uint8Array( rom_buffer, 16, app.nes.rom.prg_size );
+	app.nes.rom.chr_data = new Uint8Array( rom_buffer, 16 + app.nes.rom.prg_size );//, app.nes.rom.chr_size );
 
 	// REALLY GOOD DONKEY KONG CORRUPTION
-	if ( false ) {
-		this.chr_data = new Uint8Array( rom_buffer, 16 + 0x3800 )
-	}
+	if ( false ) { app.nes.rom.chr_data = new Uint8Array( rom_buffer, 16 + 0x3800 ) }
 }
+
+function rom_info_draw() {
+	var el = document.getElementById( "dl-rom-info" );
+
+	el.innerHTML = "";
+
+	function add_fact( key, value ) {
+		var dt = document.createElement( "dt" );
+		var dd = document.createElement( "dd" );
+		dt.innerHTML = key;
+		dd.innerHTML = value;
+		el.appendChild( dt );
+		el.appendChild( dd );
+	}
+
+	add_fact( "NES 2.0",   [ "no", "yes" ][ app.nes.rom.is_nes_2 ] );
+	add_fact( "PRG size",  ( app.nes.rom.prg_banks * 16 + "" ).padStart( 2, " " ) + " KiB" );
+	add_fact( "CHR size",  ( app.nes.rom.chr_banks *  8 + "" ).padStart( 2, " " ) + " KiB" );
+	add_fact( "PRG RAM",   app.nes.rom.prg_ram_size   + " bytes" );
+	add_fact( "PRG NVRAM", app.nes.rom.prg_nvram_size + " bytes" );
+	add_fact( "CHR RAM",   app.nes.rom.chr_ram_size   + " bytes" );
+	add_fact( "CHR NVRAM", app.nes.rom.chr_nvram_size + " bytes" );
+	add_fact( "Mirroring", mirror_names[ app.nes.rom.mirroring ] );
+	add_fact( "Battery",   [ "no", "yes" ][ app.nes.rom.has_battery ] );
+	add_fact( "Trainer",   [ "no", "yes" ][ app.nes.rom.has_trainer ] );
+	add_fact( "Mapper",    mapper_names[ app.nes.rom.mapper ] + " (" + ( app.nes.rom.mapper + "" ).padStart( 3, "0" ) + ")" );
+	add_fact( "Submapper", app.nes.rom.submapper );
+};
+
+let rom = {};
+rom.init      = rom_init;
+rom.info_draw = rom_info_draw;
+export default rom;

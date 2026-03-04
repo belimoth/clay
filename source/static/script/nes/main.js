@@ -17,10 +17,9 @@ window.onblur = function( event ) {
 };
 
 import "/static/script/app.js";
-import { nes } from "/static/script/nes/nes.js";
+import { default as nes } from "/static/script/nes/nes.js";
 
-app.nes = new nes();
-
+nes.init();
 rom_init();
 
 // Z:\belimoth\data\data.subhelion.com\rom\nes

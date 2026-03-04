@@ -16,34 +16,36 @@ function bit_mask( mask ) {
     };
 }
 
-export function cart( rom ) {
-    this.rom = rom;
-    this.rom_data = rom.rom_data;
-    this.mapper = new mappers[ rom.mapper ]( rom );
+function cart_init() {
+    app.nes.cart = {};
 
-    this.bus_read = function( address ) {
-        address = address - 0x8000;
-        address = this.mapper.map( address );
-
-        return this.rom_data[ address ];
-    };
-
-    this.bus_write = function( address, value ) {
-        address = address - 0x8000;
-
-        if ( this.mapper.bus_write ) {
-            this.mapper.bus_write( address, value );
-        }
-
-        address = this.mapper.map( address );
-        // TODO
-        // this.rom_data[ address ] = value;
-    };
-
-    this.chr_read = function( address ) {
-        // TODO
-    };
+    app.nes.cart.rom = app.nes.rom;
+    app.nes.cart.rom_data = app.nes.rom.rom_data;
+    app.nes.cart.mapper = new mappers[ app.nes.rom.mapper ]( app.nes.rom );
 }
+
+function cart_bus_read( address ) {
+    address = address - 0x8000;
+    address = app.nes.cart.mapper.map( address );
+
+    return app.nes.cart.rom_data[ address ];
+};
+
+function cart_bus_write( address, value ) {
+    address = address - 0x8000;
+
+    if ( app.nes.cart.mapper.bus_write ) {
+        app.nes.cart.mapper.bus_write( address, value );
+    }
+
+    address = app.nes.cart.mapper.map( address );
+    // TODO
+    // app.nes.cart.rom_data[ address ] = value;
+};
+
+function nes_cart_chr_read( address ) {
+    // TODO
+};
 
 var mappers = {};
 
@@ -499,3 +501,9 @@ mappers[232 ] = function( rom ) {
 // 210	Namco 175 and 340	Namco 163 with different mirroring
 // 228	Action 52
 // 232	Camerica/Codemasters Quattro	Multicarts
+
+let cart = {};
+cart.init      = cart_init;
+cart.bus_read  = cart_bus_read;
+cart.bus_write = cart_bus_write;
+export default cart;

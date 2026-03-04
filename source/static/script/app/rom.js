@@ -1,7 +1,7 @@
 "use strict";
 
 import { code_draw } from "/static/script/app/code.js";
-import { nes } from "/static/script/nes/nes.js";
+import { default as nes } from "/static/script/nes/nes.js";
 
 export function rom_draw() {
 	var el_rom = document.getElementById( "rom" );
@@ -27,14 +27,14 @@ export function rom_draw() {
 		el_a.addEventListener( "click", function( event ) {
 			document.body.classList.add( "hide-overlay" );
 
-			app.nes.stop();
+			nes.stop();
 			if ( app.audio && app.audio.context ) app.audio.context.close();
 			delete( app.nes );
-			app.nes = new nes();
 
+			nes.init();
 			app.nes.cpu.start();
-			app.nes.load_rom( el );
-			app.nes.play();
+			nes.load( el );
+			nes.play();
 			code_draw();
 
 			document.getElementById( "page-rom-list" ).removeAttribute( "active" );
