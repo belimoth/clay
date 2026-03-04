@@ -62,13 +62,11 @@ ul.menu-list > li > ul {
 	position: absolute;
 	left: -1px;
 
-	background: #FFF;
 	width: 150px;
 	line-height: 24px;
 	line-height: 32px;
 	padding: 1px;
-	/* border-top: 1px solid #666; */
-	border: 1px solid #000;
+
 }
 
 ul.menu-list > li:not( .active ) > ul {

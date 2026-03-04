@@ -120,3 +120,10 @@ ul.layer-list > li:not( .active ) > a:hover {
 ul.layer-list > li {
 	border-color: #FFF;
 }
+
+
+ul.menu-list > li > ul {
+	background: #FFF;
+		/* border-top: 1px solid #666; */
+	border: 1px solid #000;
+}

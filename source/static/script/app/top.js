@@ -32,6 +32,9 @@ $$( "ul.menu-list > li > ul > li > a" ).forEach( function( el, i ) {
 	});
 });
 
+function top( el ) {
+	this.el = el;
+}
 
 // traffic
 

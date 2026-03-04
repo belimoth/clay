@@ -4,23 +4,16 @@
 @import "/static/style/top.css";
 
 @import "/static/style/nes/layout.css";
+@import "/static/style/nes/theme.css";
 
-html {
-    background: #000;
-    color: #FFF;
-    /* font-family: 'Courier New', Courier, monospace; */
-}
 
 
 div#drop {
-    border: 4px dashed #444;
+    border: 4px dashed;
     height: 64px;
     margin: 4px 0;
 }
 
-div#drop.drag-over {
-    border-color: #666;
-}
 
 ul {
     list-style: none;
@@ -47,8 +40,23 @@ ul#roms > li > a::before {
 dl {
     display: block;
     width: 256px;
-    border: 1px solid #FFF;
+    border: 1px solid;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 dt, dd {
     float: left;
@@ -86,27 +94,15 @@ a {
     height: 32px;
 }
 
-button, a {
-    color: #F6E;
-}
 
-button:hover,
-a:hover {
-    background: currentColor;
-    color: #FFF;
-}
 
-button:hover,
-a:hover {
-	background: #FFE8FC;
-    color: #444;
-}
 
-button:hover:active,
-a:hover:active {
-	background: #FFD1FA;
-    color: #444;
-}
+
+
+
+
+
+
 
 h {
     display: flex;
@@ -135,11 +131,14 @@ select {
     background: transparent;
 }
 
+
 option {
-    background: #000;
-    color: #FFF;
     line-height: 32px;
 }
+
+
+
+
 
 optgroup + optgroup {
     border-top: 1px solid currentColor;
@@ -185,13 +184,13 @@ canvas#nts + canvas#chr {
 ol {
     display: flex;
     line-height: 32px;
-    border-bottom: 1px solid #FFF;
+    border-bottom: 1px solid
     height: 32px;
 
 }
 
 ol > li {
-    border: 0 solid #FFF;
+    border: 0 solid
     border-right-width: 1px;
     margin-bottom: -1px;
     height: 32px;
@@ -208,13 +207,13 @@ ol > li[active] > a {
 ol > li[active] > a::after {
     content: "";
     display: block;
-    background: #000;
     width: 100%;
     height: 1px;
     bottom: 0px;
     position: absolute;
     left: 0;
 }
+
 
 ol > li > a {
     display: block;
@@ -257,7 +256,7 @@ panel {
 }
 
 panel {
-    border-top: 1px solid #FFF;
+    border-top: 1px solid
     /* padding: 0 8px; */
 }
 
@@ -270,7 +269,7 @@ top > img {
     top: 0;
     left: 0;
     height: 32px;
-    border-bottom: 1px solid #FFF;
+    border-bottom: 1px solid;
 }
 
 top {
@@ -426,14 +425,6 @@ ul#rom > li > a::before {
 
 
 
-ol#side-tab > li > a:hover {
-    background: none;
-    color: #F6E;
-}
-
-ol#side-tab > li > a:hover:active {
-    background: none;
-    color: #F6E;
 
 }
 
@@ -506,9 +497,6 @@ td {
 
 }
 
-td:first-child {
-    color: #888;
-}
 
 tr {
     display: block;
@@ -516,10 +504,21 @@ tr {
 }
 
 
-tr.nes-header {
-    background: #660;
-}
 
 side > page > div {
     margin-left: -8px;
+}
+
+ul.menu-list > li > ul > li {
+    padding-left: 8px;
+}
+
+ul.menu-list > li > ul > li > a,
+ul.menu-list > li > ul > li > label {
+    margin-left: -8px;
+}
+
+ul.menu-list > li > ul {
+    border: 1px solid;
+    border-top-width: 0;
 }

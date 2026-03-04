@@ -21,30 +21,39 @@
 	<t>Clay NES</t>
 
 	<ul class=menu-list>
-		<li>
-			<a>File</a>
+		<li><a>File</a><ul>
+			<li><a disabled>New</a>
+			<li><a disabled>Open</a>
+			<li><a>Save</a>
+			<li><a disabled>Save As</a>
+			<li><a id=a-export>Export</a>
+		</ul>
 
-			<ul>
-				<li><a disabled>New</a>
-				<li><a disabled>Open</a>
-				<li><a>Save</a>
-				<li><a disabled>Save As</a>
-				<li><a id=a-export>Export</a>
-			</ul>
+		<li><a>Edit</a><ul>
+			<li><a disabled>Undo</a>
+			<li><a disabled>Redo</a>
+			<li><a disabled>Cut</a>
+			<li><a disabled>Copy</a>
+			<li><a disabled>Paste</a>
+			<li><a disabled>Delete</a>
+		</ul>
 
-		<li>
-			<a>Edit</a>
+		<li><a>View</a><ul>
+			<li>Main
+			<li><label><input type=checkbox checked>Playback </label>
+			<li>Side
+			<li><label><input type=checkbox checked>Code     </label>
+			<li><label><input type=checkbox checked>GFX      </label>
+			<li><label><input type=checkbox checked>SFX      </label>
+			<li>Tray
+			<li><label><input type=checkbox checked>FPS     </label>
+			<li><label><input type=checkbox checked>Timeline</label>
 
-			<ul>
-				<li><a disabled>Undo</a>
-				<li><a disabled>Redo</a>
-				<li><a disabled>Cut</a>
-				<li><a disabled>Copy</a>
-				<li><a disabled>Paste</a>
-				<li><a disabled>Delete</a>
-			</ul>
-		<li><a>View</a>
-		<li><a disabled>Help</a>
+		</ul>
+
+		<li><a>Help</a><ul>
+			<li><a>About</a>
+		</ul>
 	</ul>
 
 	<traffic>
@@ -100,7 +109,16 @@
 </menu>
 
 <main>
-	<h>Display</h>
+	<h>
+		<t>Display</t>
+		<a>Pause</a>
+		<label>Playback speed<select>
+			<option>1/4</option>
+			<option>1/3</option>
+			<option>1/2</option>
+			<option selected>1/1</option>
+		</select></label>
+	</h>
 
 	<display id=frame>
 		<canvas id=display          width=256 height=240></canvas>

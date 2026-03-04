@@ -1,0 +1,114 @@
+
+html {
+    background: #000;
+    color: #FFF;
+}
+
+
+
+div#drop {
+    border-color: #444;
+}
+
+div#drop.drag-over {
+    border-color: #666;
+}
+
+
+dl {
+    border-color: #FFF;
+}
+
+
+button, a {
+    color: #F6E;
+}
+
+button:hover,
+a:hover {
+    background: currentColor;
+    color: #FFF;
+}
+
+button:hover,
+a:hover {
+	background: #FFE8FC;
+    color: #444;
+}
+
+button:hover:active,
+a:hover:active {
+	background: #FFD1FA;
+    color: #444;
+}
+
+
+option {
+    background: #000;
+    color: #FFF;
+}
+ol, ol > li {
+    border-color: #FFF;
+}
+
+ol > li[active] > a::after {
+    background: #000;
+
+}
+
+top > img {
+    border-color: #FFF;
+}
+
+panel {
+    border-color: #FFF;
+}
+
+
+
+
+
+ol#side-tab > li > a:hover {
+    background: none;
+    color: #F6E;
+}
+
+ol#side-tab > li > a:hover:active {
+    background: none;
+    color: #F6E;
+
+
+td:first-child {
+    color: #888;
+}
+
+tr.nes-header {
+    background: #660;
+}
+
+
+ul.menu-list > li > ul {
+	background: #000;
+	border-color: #FFF;
+}
+
+
+a {
+    color: #FFF;
+}
+
+a:hover, a:active {
+    background: #FFF;
+    color: #000;
+
+}
+
+a:hover:active {
+    background: #FFF;
+    transform: scale(0.95);
+}
+
+ul.menu-list > li.active > a {
+    background: #FFF;
+    color: #000;
+}
