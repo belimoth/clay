@@ -14,20 +14,38 @@ mode=${1:-"paint"}
 	echo error: unrecognized mode "$mode"
 	exit 1
 }
+
 #
 
-rm --recursive --force /a/local/publish/$mode
-mkdir --parents        /a/local/publish/$mode
+rm --recursive --force                       /a/local/publish/$mode
+mkdir --parents                              /a/local/publish/$mode
+cp             /a/source/$mode.html          /a/local/publish/$mode/index.html
+mkdir --parents                              /a/local/publish/$mode/static
+cp --recursive /a/source/static/favicon      /a/local/publish/$mode/static/favicon
+mkdir --parents                              /a/local/publish/$mode/static/data/$mode
+cp --recursive /a/source/static/data/$mode   /a/local/publish/$mode/static/data
+mkdir --parents                              /a/local/publish/$mode/static/image/$mode
+# cp --recursive /a/source/static/image/$mode  /a/local/publish/$mode/static/image
+cp --recursive /a/source/static/image        /a/local/publish/$mode/static
+mkdir --parents                              /a/local/publish/$mode/static/script/$mode
+cp --recursive /a/source/static/script       /a/local/publish/$mode/static
+# cp --recursive /a/source/static/script/$mode /a/local/publish/$mode/static/script
+# cp --recursive /a/source/static/script/app   /a/local/publish/$mode/static/script
+mkdir --parents                              /a/local/publish/$mode/static/style/$mode
+# cp --recursive /a/source/static/style/$mode  /a/local/publish/$mode/static/style
+cp --recursive /a/source/static/style        /a/local/publish/$mode/static
+cp --recursive /a/source/static/vend         /a/local/publish/$mode/static/vend
+# mkdir --parents                              /a/local/publish/$mode/static/vend/$mode
+# cp --recursive /a/source/static/vend/common  /a/local/publish/$mode/static/vend/common
+# cp --recursive /a/source/static/vend/$mode   /a/local/publish/$mode/static/vend/$mode
 
-cd /a/source/$mode
-
-[[ $mode == "bot"   ]] && butler push /a/source/bot   "belimoth/clay-bot:html5"
-[[ $mode == "color" ]] && butler push /a/source/color "belimoth/clay-color:html5"
-[[ $mode == "font"  ]] && butler push /a/source/font  "belimoth/clay-font:html5"
-[[ $mode == "model" ]] && butler push /a/source/model "belimoth/clay-model:html5"
-[[ $mode == "nes"   ]] && butler push /a/source/nes   "belimoth/clay-nes:html5"
-[[ $mode == "paint" ]] && butler push /a/source/paint "belimoth/clay-paint:html5"
-[[ $mode == "pfx"   ]] && butler push /a/source/pfx   "belimoth/clay-pfx:html5"
-[[ $mode == "sfx"   ]] && butler push /a/source/sfx   "belimoth/clay-sfx:html5"
-[[ $mode == "vfx"   ]] && butler push /a/source/vfx   "belimoth/clay-vfx:html5"
-[[ $mode == "world" ]] && butler push /a/source/world "belimoth/clay-world:html5"
+[[ $mode == "bot"   ]] && butler push /a/local/publish/bot   "belimoth/clay-bot:html5"
+[[ $mode == "color" ]] && butler push /a/local/publish/color "belimoth/clay-color:html5"
+[[ $mode == "font"  ]] && butler push /a/local/publish/font  "belimoth/clay-font:html5"
+[[ $mode == "model" ]] && butler push /a/local/publish/model "belimoth/clay-model:html5"
+[[ $mode == "nes"   ]] && butler push /a/local/publish/nes   "belimoth/clay-nes:html5"
+[[ $mode == "paint" ]] && butler push /a/local/publish/paint "belimoth/clay-paint:html5"
+[[ $mode == "pfx"   ]] && butler push /a/local/publish/pfx   "belimoth/clay-pfx:html5"
+[[ $mode == "sfx"   ]] && butler push /a/local/publish/sfx   "belimoth/clay-sfx:html5"
+[[ $mode == "vfx"   ]] && butler push /a/local/publish/vfx   "belimoth/clay-vfx:html5"
+[[ $mode == "world" ]] && butler push /a/local/publish/world "belimoth/clay-world:html5"
