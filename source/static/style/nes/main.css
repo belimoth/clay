@@ -40,7 +40,7 @@ ul#roms > li > a::before {
 dl {
     display: block;
     width: 256px;
-    border: 1px solid;
+    border: 1px solid currentColor;
 }
 
 
@@ -118,13 +118,12 @@ body.fullscreen, body.focus main {
 }
 
 body.focus main h,
-body.focus main monitor  {
+body.focus main tray {
     display: none;
 }
 
-body.focus top,
-body.fullscreen top {
-    display: none;
+body.focus top {
+    /* display: none; */
 }
 
 select {
@@ -184,13 +183,13 @@ canvas#nts + canvas#chr {
 ol {
     display: flex;
     line-height: 32px;
-    border-bottom: 1px solid
+    border-bottom: 1px solid currentColor;
     height: 32px;
 
 }
 
 ol > li {
-    border: 0 solid
+    border: 0 solid currentColor;
     border-right-width: 1px;
     margin-bottom: -1px;
     height: 32px;
@@ -255,11 +254,6 @@ panel {
     display: block;
 }
 
-panel {
-    border-top: 1px solid
-    /* padding: 0 8px; */
-}
-
 monitor {
     margin-top: 8px;
 }
@@ -269,7 +263,7 @@ top > img {
     top: 0;
     left: 0;
     height: 32px;
-    border-bottom: 1px solid;
+    border-bottom: 1px solid currentColor;
 }
 
 top {
@@ -326,9 +320,7 @@ input[type=checkbox], p>b>input[type=checkbox] {
 
 input[type=checkbox] {
     -webkit-appearance: none;
-    border: 1px solid #7092BE;
 }
-
 
 input[type=checkbox], p.param-seed>b>input[type=checkbox] {
     width: 16px;
@@ -339,7 +331,6 @@ input[type=checkbox], p.param-seed>b>input[type=checkbox] {
 
 input[type=checkbox] {
     -webkit-appearance: none;
-    border: 1px solid #7092BE;
 }
 
 button {
@@ -397,9 +388,16 @@ page > p {
 }
 
 label[disabled] {
-    color: #AAA;
     pointer-events: none;
 }
+
+input[type=checkbox] {
+    position: relative;
+    top: 2px;
+    height: 14px;
+    width: 14px;
+}
+
 
 
 
@@ -424,10 +422,6 @@ ul#rom > li > a::before {
 
 
 
-
-
-}
-
 pre.code {
     overflow-y:scroll;
 }
@@ -450,10 +444,6 @@ page > table {
     flex-grow: 1;
     flex-shrink: 1;
     min-height: 0;
-    overflow-y: scroll;
-}
-
-page > div {
     overflow-y: scroll;
 }
 
@@ -489,7 +479,7 @@ ul#rom > li > a {
 
 table#code {
     font-family: "Consolas", "Courier New", Courier, monospace;
-    width: 100%;
+    /* width: 100%; */
 }
 
 
@@ -499,8 +489,7 @@ td {
 
 
 tr {
-    display: block;
-    width: 100%;
+    /* width: 100%; */
 }
 
 
@@ -519,6 +508,177 @@ ul.menu-list > li > ul > li > label {
 }
 
 ul.menu-list > li > ul {
-    border: 1px solid;
+    border: 1px solid currentColor;
     border-top-width: 0;
+}
+
+
+page > h > a {
+    margin-left: -8px;
+}
+
+
+main > panel > page:not([active]) {
+    display: none;
+}
+
+tray {
+    display: block;
+    border-top: 1px solid #FFF;
+}
+
+input.cpu-flag {
+    width: 32px;
+    height: 32px;
+    flex-grow: 1;
+    margin-right:-1px;
+    border-color: currentColor;
+    padding-left: 8px;
+}
+
+input.cpu-flag:checked {
+    background: #FFF;
+}
+
+p.cpu-flag {
+    display:flex;
+    padding: 0;
+    padding-right:8px;
+}
+
+dl.cpu {
+    display:flex;
+    margin-top: 8px;
+    margin-bottom: -1px;
+    height: 32px;
+    line-height: 30px;
+}
+
+dl.cpu > dd,
+dl.cpu > dt {
+    flex-grow: 1;
+    display: block;
+    flex-basis: 0;
+    min-width:0;
+}
+
+dl.cpu > dt {
+    border-left: 1px solid currentColor;
+}
+
+input.cpu-flag::before {
+    content: attr( data-label );
+    display: block;
+}
+
+dd > a {
+    line-height: 30px;
+    margin-left: -8px;
+    display: block;
+}
+
+main > page {
+    padding: 0;
+    height: 960px;
+}
+
+body.focus top {
+    display: none;
+}
+
+body.focus main {
+    grid-area: 1 / 1 / 3 / 4;
+}
+
+
+dl.cpu,
+p.cpu-flag {
+   width: 480px;
+}
+
+p.cpu-flag {
+    padding-right: 0;
+    margin-bottom: 2px;
+}
+
+p.cpu-flag > input.cpu-flag:last-child {
+    margin-right: 0
+}
+
+dl.cpu > dd > a {
+    padding: 0 8px;
+    margin-left: -16px;
+}
+
+
+
+
+
+page#page-main-display {
+    padding: 4px;
+}
+
+main > page {
+    height: calc( 960px + 4px * 2 );
+}
+
+
+
+
+
+
+
+
+
+menu dl:empty::before {
+    content: "None";
+    display: block;
+    padding-left: 8px;
+}
+
+menu dl {
+    display: block;
+    line-height: 32px;
+}
+
+
+table#code td {
+    padding: 0 4px;
+}
+
+
+page > div {
+    overflow-y: scroll;
+     position: relative;
+}
+
+table#code {
+
+}
+
+table#code thead tr {
+    position: sticky;
+    top: -30px;
+    margin-top: -2px;
+    background: #000;
+    line-height: 32px;
+    border-top: 2px solid #000;
+    height: 34px;
+    outline: 2px solid #000;
+}
+
+table#code thead tr th {
+    border-bottom: 1px solid #FFF;
+}
+
+page#page-main-code div {
+    padding-top: 32px;
+}
+
+table#code {
+    margin-top: -32px;
+}
+
+table#code td a {
+    line-height: inherit;
 }

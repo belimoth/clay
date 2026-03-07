@@ -5,21 +5,6 @@ html {
 }
 
 
-
-div#drop {
-    border-color: #444;
-}
-
-div#drop.drag-over {
-    border-color: #666;
-}
-
-
-dl {
-    border-color: #FFF;
-}
-
-
 button, a {
     color: #F6E;
 }
@@ -47,6 +32,7 @@ option {
     background: #000;
     color: #FFF;
 }
+
 ol, ol > li {
     border-color: #FFF;
 }
@@ -68,7 +54,7 @@ panel {
 
 
 
-ol#side-tab > li > a:hover {
+/* ol#side-tab > li > a:hover {
     background: none;
     color: #F6E;
 }
@@ -76,15 +62,35 @@ ol#side-tab > li > a:hover {
 ol#side-tab > li > a:hover:active {
     background: none;
     color: #F6E;
+} */
+
+
+
+
+
+
+
+
+
+
 
 
 td:first-child {
-    color: #888;
+
 }
 
 tr.nes-header {
-    background: #660;
+
 }
+
+
+
+
+
+
+
+
+
 
 
 ul.menu-list > li > ul {
@@ -111,4 +117,44 @@ a:hover:active {
 ul.menu-list > li.active > a {
     background: #FFF;
     color: #000;
+}
+
+
+
+input[type=checkbox] {
+    border: 1px solid currentcolor;
+}
+
+input[type=checkbox]:checked {
+    background: currentColor;
+}
+
+
+label[disabled] {
+    color: #666;
+}
+
+label:not([disabled]):hover {
+    background: #FFF;
+    color: #000;
+}
+
+label:not([disabled]):hover > input:checked {
+    color: #FFF;
+}
+
+
+
+
+
+
+
+input.cpu-flag::before {
+    content: none;
+}
+
+input.cpu-flag:checked {
+    background: currentColor;
+    color: #000;
+    border-color: #FFF;
 }

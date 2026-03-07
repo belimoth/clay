@@ -75,7 +75,8 @@ side {
     grid-template-rows: 32px 1fr;
 }
 
-page > div {
-    margin: 0 -8px;
-    padding-left: 8px;
+
+
+menu, side {
+    border-width: 0;
 }

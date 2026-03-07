@@ -35,8 +35,6 @@ document.getElementById( "a-rom-edit-upload" ).addEventListener( "click", async 
 		let handle = await window.showDirectoryPicker({ mode: "readwrite", startIn: "desktop" });
 
 		for await ( let el of handle.values() ) {
-			console.dir( el );
-
 			if ( el.kind == "file" ) {
 				let file = await el.getFile();
 
@@ -150,3 +148,5 @@ function tab_list( el ) {
 }
 
 new tab_list( document.getElementById( "side-tab" ) );
+new tab_list( document.getElementById( "main-tab" ) );
+new tab_list( document.getElementById( "tray-tab" ) );

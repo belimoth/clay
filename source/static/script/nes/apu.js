@@ -109,22 +109,22 @@ keys[ button_to_key[ BUTTON_DOWN   ] ] = 0;
 keys[ button_to_key[ BUTTON_LEFT   ] ] = 0;
 keys[ button_to_key[ BUTTON_RIGHT  ] ] = 0;
 
-// TODO prevent impossible key states ( up + down etc)
+// TODO prevent impossible key states (up + down etc)
 
-window.onkeyup   = function( event ) {
+window.onkeyup = function( event ) {
 	keys[ event.keyCode ] = 0;
 
 	switch ( event.keyCode ) {
-		case button_to_key[ BUTTON_A      ] :
-		case button_to_key[ BUTTON_B      ] :
-		case button_to_key[ BUTTON_SELECT ] :
-		case button_to_key[ BUTTON_START  ] :
-		case button_to_key[ BUTTON_UP     ] :
-		case button_to_key[ BUTTON_DOWN   ] :
-		case button_to_key[ BUTTON_LEFT   ] :
-		case button_to_key[ BUTTON_RIGHT  ] :
-			event.preventDefault();
-			break;
+		case button_to_key[ BUTTON_A      ]:
+		case button_to_key[ BUTTON_B      ]:
+		case button_to_key[ BUTTON_SELECT ]:
+		case button_to_key[ BUTTON_START  ]:
+		case button_to_key[ BUTTON_UP     ]:
+		case button_to_key[ BUTTON_DOWN   ]:
+		case button_to_key[ BUTTON_LEFT   ]:
+		case button_to_key[ BUTTON_RIGHT  ]:
+		event.preventDefault();
+		break;
 	}
 };
 
@@ -132,16 +132,16 @@ window.onkeydown = function( event ) {
 	keys[ event.keyCode ] = 1;
 
 	switch ( event.keyCode ) {
-		case button_to_key[ BUTTON_A      ] :
-		case button_to_key[ BUTTON_B      ] :
-		case button_to_key[ BUTTON_SELECT ] :
-		case button_to_key[ BUTTON_START  ] :
-		case button_to_key[ BUTTON_UP     ] :
-		case button_to_key[ BUTTON_DOWN   ] :
-		case button_to_key[ BUTTON_LEFT   ] :
-		case button_to_key[ BUTTON_RIGHT  ] :
-			event.preventDefault();
-			break;
+		case button_to_key[ BUTTON_A      ]:
+		case button_to_key[ BUTTON_B      ]:
+		case button_to_key[ BUTTON_SELECT ]:
+		case button_to_key[ BUTTON_START  ]:
+		case button_to_key[ BUTTON_UP     ]:
+		case button_to_key[ BUTTON_DOWN   ]:
+		case button_to_key[ BUTTON_LEFT   ]:
+		case button_to_key[ BUTTON_RIGHT  ]:
+		event.preventDefault();
+		break;
 	}
 };
 
@@ -556,28 +556,27 @@ export function apu() {
 	}
 
 	this.bus_write = function( address, value = null ) {
-		var channel = 1;
-
 		switch ( address )  {
 			case 0x4000:
 			case 0x4001:
 			case 0x4002:
 			case 0x4003:
-				this.channels[ 0 ].bus_write( address, value );
-				break;
+			this.channels[ 0 ].bus_write( address, value );
+			break;
+
 			case 0x4004:
 			case 0x4005:
 			case 0x4006:
 			case 0x4007:
-				this.channels[ 1 ].bus_write( address, value );
-				break;
+			this.channels[ 1 ].bus_write( address, value );
+			break;
 
 			case 0x4008:
 			case 0x4009:
 			case 0x400A:
 			case 0x400B:
-				this.channels[ 2 ].bus_write( address, value );
-				break;
+			this.channels[ 2 ].bus_write( address, value );
+			break;
 
 			case 0x400C: break;
 			// 400D
@@ -590,33 +589,30 @@ export function apu() {
 			case 0x4014: break;
 
 			case 0x4015:
-				// TODO "The triangle's linear counter works differently, and does silence the channel when it reaches zero.""
-				this.channels[ 0 ].length_counter.set_enabled( ( value >> 0 ) & 1 );
-				this.channels[ 1 ].length_counter.set_enabled( ( value >> 1 ) & 1 );
-				this.channels[ 2 ].length_counter.set_enabled( ( value >> 2 ) & 1 );
-				// this.channels[ 3 ].length_counter.set_enabled( ( value >> 3 ) & 1 );
-
-				break;
+			// TODO "The triangle's linear counter works differently, and does silence the channel when it reaches zero.""
+			this.channels[ 0 ].length_counter.set_enabled( ( value >> 0 ) & 1 );
+			this.channels[ 1 ].length_counter.set_enabled( ( value >> 1 ) & 1 );
+			this.channels[ 2 ].length_counter.set_enabled( ( value >> 2 ) & 1 );
+			// this.channels[ 3 ].length_counter.set_enabled( ( value >> 3 ) & 1 );
+			break;
 
 			case 0x4016:
-				value = value & 0b111;
+			value = value & 0b111;
 
-				if ( this.strobe == 1 && value == 0 ) {
-					update_pad();
-					this.pad_i = 0;
-				}
+			if ( this.strobe == 1 && value == 0 ) {
+				update_pad();
+				this.pad_i = 0;
+			}
 
-				this.strobe = value;
-
-				break;
+			this.strobe = value;
+			break;
 
 			case 0x4017:
-				// TODO "Writing to $4017 with bit 7 set ($80) will immediately clock all of its controlled units at the beginning of the 5-step sequence; with bit 7 clear, only the sequence is reset without clocking any of its units."
-				this.frame_counter.mode = ( value >> 7 ) & 1;
-				this.frame_counter.i    = 0;
-				this.irq_inhibit        = ( value >> 6 ) & 1;
-
-				break;
+			// TODO "Writing to $4017 with bit 7 set ($80) will immediately clock all of its controlled units at the beginning of the 5-step sequence; with bit 7 clear, only the sequence is reset without clocking any of its units."
+			this.frame_counter.mode = ( value >> 7 ) & 1;
+			this.frame_counter.i    = 0;
+			this.irq_inhibit        = ( value >> 6 ) & 1;
+			break;
 		}
 
 		return 0;

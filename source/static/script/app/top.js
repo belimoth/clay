@@ -95,6 +95,12 @@ document.addEventListener( "webkitfullscreenchange", app_window_on_fullscreen );
 document.addEventListener( "mozfullscreenchange",    app_window_on_fullscreen );
 document.addEventListener( "MSFullscreenChange",     app_window_on_fullscreen );
 
+document.addEventListener( "keyup", function( event ) {
+	if ( event.key == "Escape" ) {
+		document.body.classList.remove( "focus" );
+	}
+})
+
 //
 
 function app_window_check_fullscreen() {

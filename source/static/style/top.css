@@ -6,10 +6,6 @@ top {
 	height: 32px;
 }
 
-body.window-full top {
-	display: none;
-}
-
 /*  */
 
 ul.menu-list {

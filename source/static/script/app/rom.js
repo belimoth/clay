@@ -17,11 +17,11 @@ export function rom_draw() {
 		el_a.dataset.region = "";
 
 		try {
-			app.nes.load_rom( el );
+			nes.load( el );
 			el_a.dataset.mapper = app.nes.cart.rom.mapper;
 			el_a.dataset.hash   = app.nes.cart.rom.hash;
 		} catch( error ) {
-
+			console.warn( error );
 		}
 
 		el_a.addEventListener( "click", function( event ) {
@@ -31,6 +31,7 @@ export function rom_draw() {
 			if ( app.audio && app.audio.context ) app.audio.context.close();
 			delete( app.nes );
 
+			app.rom_name = el;
 			nes.init();
 			app.nes.cpu.start();
 			nes.load( el );

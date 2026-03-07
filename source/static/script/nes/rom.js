@@ -71,7 +71,7 @@ function rom_init( rom_buffer ) {
 }
 
 function rom_info_draw() {
-	var el = document.getElementById( "dl-rom-info" );
+	var el = document.getElementById( "rom-info" );
 
 	el.innerHTML = "";
 

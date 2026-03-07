@@ -40,19 +40,23 @@
 
 		<li><a>View</a><ul>
 			<li>Main
-			<li><label><input type=checkbox checked>Playback </label>
+			<li><label><input type=checkbox checked>Code</label>
+			<li><label disabled><input type=checkbox checked disabled>Display</label>
+			<li><label><input type=checkbox checked>Learn</label>
 			<li>Side
-			<li><label><input type=checkbox checked>Code     </label>
-			<li><label><input type=checkbox checked>GFX      </label>
-			<li><label><input type=checkbox checked>SFX      </label>
+			<li><label><input type=checkbox checked>GFX</label>
+			<li><label><input type=checkbox checked>SFX</label>
 			<li>Tray
-			<li><label><input type=checkbox checked>FPS     </label>
+			<li><label><input type=checkbox checked>CPU</label>
+			<li><label><input type=checkbox checked>FPS</label>
+			<li><label><input type=checkbox checked>Pad</label>
 			<li><label><input type=checkbox checked>Timeline</label>
 
 		</ul>
 
 		<li><a>Help</a><ul>
-			<li><a>About</a>
+			<li><a id=a-help-about>About</a>
+
 		</ul>
 	</ul>
 
@@ -104,53 +108,92 @@
 
 	<page id=page-rom-info>
 		<h><a id=a-rom-info-back>ROM</a><t>/ ROM Name</t></h>
-		<dl id=dl-rom-info></dl>
+		<dl id=rom-info></dl>
+		<h>CDL</h>
+		<dl id=cdl-info></dl>
 	</page>
 </menu>
 
 <main>
-	<h>
-		<t>Display</t>
-		<a>Pause</a>
-		<label>Playback speed<select>
-			<option>1/4</option>
-			<option>1/3</option>
-			<option>1/2</option>
-			<option selected>1/1</option>
-		</select></label>
-	</h>
+	<ol id=main-tab>
+		<li><a>Code</a>
+		<li active><a>Display</a>
+		<li><a>Learn</a>
+		<li><a>Close</a>
+	</ol>
 
-	<display id=frame>
-		<canvas id=display          width=256 height=240></canvas>
-		<canvas style=display:none; id=layer-sprites-bg width=256 height=240></canvas>
-		<canvas style=display:none; id=layer-tiles      width=256 height=240></canvas>
-		<canvas style=display:none; id=layer-sprites-fg width=256 height=240></canvas>
-	</display>
+	<page id=page-main-code>
+		<div><table id=code></table></div>
+	</page>
 
-	<panel>
-		<ol>
-			<li active><a id=fps>FPS</a>
+	<page active id=page-main-display>
+		<!-- <h>
+			<a>Pause</a>
+			<label>Playback speed<select>
+				<option>1/4</option>
+				<option>1/3</option>
+				<option>1/2</option>
+				<option selected>1/1</option>
+			</select></label>
+		</h> -->
+
+		<display id=frame>
+			<canvas id=display          width=256 height=240></canvas>
+			<canvas style=display:none; id=layer-sprites-bg width=256 height=240></canvas>
+			<canvas style=display:none; id=layer-tiles      width=256 height=240></canvas>
+			<canvas style=display:none; id=layer-sprites-fg width=256 height=240></canvas>
+		</display>
+	</page>
+
+	<page>
+
+	</page>
+
+	<tray>
+		<ol id=tray-tab>
+			<li active><a>CPU</a>
+			<li><a id=fps>FPS</a>
 			<li><a>Timeline</a>
+			<li><a>Pad</a>
 			<li><a>Close</a>
 		</ol>
-		<monitor id=monitor><canvas id=monitor-fps width=1024 height=256></canvas></monitor>
-	</panel>
+
+		<page active>
+			<p class=cpu-flag>
+				<dl class=cpu>
+					<dt>PC<dd><a>0x0000</a>
+					<dt>S <dd>0xFD
+					<dt>A <dd>0x00
+					<dt>X <dd>0x00
+					<dt>Y <dd>0x00
+
+				</dl>
+
+				<input type=checkbox class=cpu-flag data-label=C>
+				<input type=checkbox class=cpu-flag data-label=Z>
+				<input type=checkbox class=cpu-flag data-label=I>
+				<!-- <input type=checkbox class=cpu-flag data-label=D> -->
+				<!-- <input type=checkbox class=cpu-flag data-label=B> -->
+				<input type=checkbox class=cpu-flag data-label=V checked>
+				<input type=checkbox class=cpu-flag data-label=N checked>
+			</p>
+		</page>
+
+		<page><monitor id=monitor><canvas id=monitor-fps width=1024 height=256></canvas></monitor></page>
+		<page></page>
+		<page></page>
+
+	</tray>
 </main>
 
 <side>
 	<ol id=side-tab>
-		<li active><a>Code</a>
-		<li><a>GFX</a>
+		<li active><a>GFX</a>
 		<li><a>SFX</a>
 		<li><a id=a-side-close>Close</a>
 	</ol>
 
 	<page active>
-		<h>Code</h>
-		<div><table id=code></table></div>
-	</page>
-
-	<page>
 		<h>NTS</h>
 		<canvas id=nts width=512 height=480></canvas>
 		<canvas id=chr width=1024 height=256></canvas>
@@ -159,7 +202,7 @@
 	</page>
 
 	<page>
-		<h>SFX</h>
+		<h>APU</h>
 	</page>
 </side>
 

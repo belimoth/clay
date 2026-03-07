@@ -81,7 +81,7 @@ const INSTRUCTION_TYA = i; i += 1;
 
 // window.hist = new Uint32Array( 0xff );
 
-function get_instruction( byte ) {
+export function get_instruction( byte ) {
 	var instruction = null;
 	var mode = null;
 
@@ -308,16 +308,16 @@ export function cpu() {
 
     this.instruction = 0;
 
+    this.get_2 = function( i ) {
+        var lo = nes.bus_read( i );
+        var hi = nes.bus_read( i + 1 ) << 8;
+        return lo | hi;
+    }
+
     this.step = function() {
         var pc_previous = this.pc;
 
         var self = this;
-
-        function get_2( i ) {
-            var lo = nes.bus_read( i );
-            var hi = nes.bus_read( i + 1 ) << 8;
-            return lo | hi;
-        }
 
         function update_nz() {
             self.p_z = value == 0 ? 1 : 0;
@@ -385,20 +385,22 @@ export function cpu() {
         if ( this.interrupt_pending != 0 ) {
             switch( this.interrupt_pending ) {
                 case INTERRUPT_NMI:
-                    push_pc();
-                    push_flags();
-                    this.pc = get_2( 0xfffa );
-                    break;
+                push_pc();
+                push_flags();
+                this.pc = this.get_2( 0xfffa );
+                break;
+
                 case INTERRUPT_RESET:
-                    push_pc();
-                    push_flags();
-                    this.pc = get_2( 0xfffc );
-                    break;
+                push_pc();
+                push_flags();
+                this.pc = this.get_2( 0xfffc );
+                break;
+
                 case INTERRUPT_IRQ:
-                    push_pc();
-                    push_flags();
-                    this.pc = get_2( 0xfffe );
-                    break;
+                push_pc();
+                push_flags();
+                this.pc = this.get_2( 0xfffe );
+                break;
             }
 
             this.interrupt_pending = 0;
@@ -419,81 +421,91 @@ export function cpu() {
 
         switch ( mode ) {
             case MODE_ACC :
-                value = this.a;
-                break;
+            value = this.a;
+            break;
+
             case MODE_IMM :
-                value = nes.bus_read( this.pc + 1 );
-                break;
+            value = nes.bus_read( this.pc + 1 );
+            break;
+
             case MODE_ZPA :
-                address = nes.bus_read( this.pc + 1 );
-                break;
+            address = nes.bus_read( this.pc + 1 );
+            break;
             case MODE_ZPX :
-                address = nes.bus_read( this.pc + 1 );
-                // temp = address;
-                address = ( address + this.x ) & 0x00ff;
-                break;
+            address = nes.bus_read( this.pc + 1 );
+            // temp = address;
+            address = ( address + this.x ) & 0x00ff;
+            break;
+
             case MODE_ZPY :
-                address = nes.bus_read( this.pc + 1 );
-                // temp = address;
-                address = ( address + this.y ) & 0x00ff;
-                break;
+            address = nes.bus_read( this.pc + 1 );
+            // temp = address;
+            address = ( address + this.y ) & 0x00ff;
+            break;
+
             case MODE_REL :
-                var d = nes.bus_read( this.pc + 1 );
-                var e = 2;
+            var d = nes.bus_read( this.pc + 1 );
+            var e = 2;
 
-                if ( d >> 7 == 1 ) {
-                    d = ~ d;
-                    d = d & 0xff;
-                    d = d * -1;
-                    d = d + 1;
-                    d = d - 2;
-                }
+            if ( d >> 7 == 1 ) {
+                d = ~ d;
+                d = d & 0xff;
+                d = d * -1;
+                d = d + 1;
+                d = d - 2;
+            }
 
-                address = this.pc + d;
-                break;
+            address = this.pc + d;
+            break;
+
             case MODE_ABS :
-                address = get_2( this.pc + 1 );
-                break;
+            address = this.get_2( this.pc + 1 );
+            break;
+
             case MODE_ABX :
-                temp = get_2( this.pc + 1 );
-                address = ( temp + this.x ) & 0xffff;
-                if ( ( temp & 0xFF00 ) != ( address & 0xFF00 ) ) { paged = 1; }
-                break;
+            temp = this.get_2( this.pc + 1 );
+            address = ( temp + this.x ) & 0xffff;
+            if ( ( temp & 0xFF00 ) != ( address & 0xFF00 ) ) { paged = 1; }
+            break;
+
             case MODE_ABY :
-                temp = address = get_2( this.pc + 1 );
-                address = ( temp + this.y ) & 0xffff;
-                if ( ( temp & 0xFF00 ) != ( address & 0xFF00 ) ) { paged = 1; }
-                break;
+            temp = address = this.get_2( this.pc + 1 );
+            address = ( temp + this.y ) & 0xffff;
+            if ( ( temp & 0xFF00 ) != ( address & 0xFF00 ) ) { paged = 1; }
+            break;
+
             case MODE_IND :
-                temp = address = get_2( this.pc + 1 );
+            temp = address = this.get_2( this.pc + 1 );
 
-                function get_2_temp( i, mask = 0xffff ) {
-                    var page = i & 0xFF00;
-                    var j = i + 1;
-                    if ( j == page + 0x0100 ) { j = page; }
-                    var lo = nes.bus_read( j & mask ) << 8;
-                    var hi = nes.bus_read( i & mask );
-                    return lo | hi;
-                }
+            function get_2_temp( i, mask = 0xffff ) {
+                var page = i & 0xFF00;
+                var j = i + 1;
+                if ( j == page + 0x0100 ) { j = page; }
+                var lo = nes.bus_read( j & mask ) << 8;
+                var hi = nes.bus_read( i & mask );
+                return lo | hi;
+            }
 
-                address = get_2_temp( temp );
-                break;
+            address = get_2_temp( temp );
+            break;
+
             case MODE_IZX :
-                temp = nes.bus_read( this.pc + 1 );
-                temp_2  = ( temp + this.x ) & 0x00ff;
+            temp = nes.bus_read( this.pc + 1 );
+            temp_2  = ( temp + this.x ) & 0x00ff;
 
-                address = get_2_temp( temp_2, 0x00ff );
-                break;
+            address = get_2_temp( temp_2, 0x00ff );
+            break;
+
             case MODE_IZY :
-                temp = nes.bus_read( this.pc + 1 );
-                if ( temp == 0xff ) { paged += 1; }
+            temp = nes.bus_read( this.pc + 1 );
+            if ( temp == 0xff ) { paged += 1; }
 
-                temp_2 = get_2_temp( temp, 0x00ff );
-                temp_3 = ( temp_2 + this.y );
-                address = temp_3 & 0xffff
+            temp_2 = get_2_temp( temp, 0x00ff );
+            temp_3 = ( temp_2 + this.y );
+            address = temp_3 & 0xffff
 
-                if ( address != temp_3 ) { paged += 1; }
-                break;
+            if ( address != temp_3 ) { paged += 1; }
+            break;
         }
 
         function cost_0() {
