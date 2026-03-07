@@ -527,3 +527,497 @@ export function byte_to_asm( byte) {
 
 	return [ code_to_string( code ), mode_to_string( mode ), size ];
 }
+
+
+function code_step( pc, byte ) {
+		function update_nz() {
+			self.p_z = value == 0 ? 1 : 0;
+			self.p_n = ( value >> 7 ) & 1;
+		}
+
+		function stack_pull() {
+			self.s = ( self.s + 1 ) & 0xff;
+			var temp = nes.bus_read( 0x0100 + self.s );
+
+			return temp;
+		}
+
+		function stack_push( value ) {
+			nes.bus_write( 0x0100 + self.s, value );
+			self.s = ( self.s - 1 ) & 0xff;
+		}
+
+		// TODO rename push_status
+
+		function pull_flags() {
+			var temp = stack_pull();
+			self.p_c = ( temp >> 0 ) & 1;
+			self.p_z = ( temp >> 1 ) & 1;
+			self.p_i = ( temp >> 2 ) & 1;
+			self.p_d = ( temp >> 3 ) & 1;
+			self.p_v = ( temp >> 6 ) & 1;
+			self.p_n = ( temp >> 7 ) & 1;
+		}
+
+		function pack_flags( b, fill = 1 ) {
+			var temp = 0;
+			temp = temp | ( self.p_c << 0 );
+			temp = temp | ( self.p_z << 1 );
+			temp = temp | ( self.p_i << 2 );
+			temp = temp | ( self.p_d << 3 );
+			temp = temp | (        b << 4 );
+			temp = temp | (     fill << 5 );
+			temp = temp | ( self.p_v << 6 );
+			temp = temp | ( self.p_n << 7 );
+			return temp;
+		}
+
+		function push_flags( b ) {
+			var temp = pack_flags( b );
+			stack_push( temp );
+		}
+
+		function pull_pc( size = 1 ) {
+			var lo = stack_pull();
+			var hi = stack_pull() << 8;
+			self.pc = ( lo | hi ) - size;
+		}
+
+		function push_pc( size = 1 ) {
+			var address = self.pc + size - 1;
+
+			var lo = ( address >> 0 ) & 0xff;
+			var hi = ( address >> 8 ) & 0xff;
+
+			stack_push( hi );
+			stack_push( lo );
+		}
+
+		if ( this.interrupt_pending != 0 ) {
+			switch( this.interrupt_pending ) {
+				case INTERRUPT_NMI:
+				push_pc();
+				push_flags();
+				this.pc = this.get_2( 0xfffa );
+				break;
+
+				case INTERRUPT_RESET:
+				push_pc();
+				push_flags();
+				this.pc = this.get_2( 0xfffc );
+				break;
+
+				case INTERRUPT_IRQ:
+				push_pc();
+				push_flags();
+				this.pc = this.get_2( 0xfffe );
+				break;
+			}
+
+			this.interrupt_pending = 0;
+
+			return;
+		}
+
+		var instruction;
+		var mode;
+		var value, address, cost, size;
+		var paged = 0; // TODO
+
+		var byte = nes.bus_read( this.pc );
+		[ instruction, mode ] = get_instruction( byte );
+		this.instruction = instruction;
+
+		var temp, temp_2, temp_3;
+
+		switch ( mode ) {
+			case MODE_ACC :
+			value = this.a;
+			break;
+
+			case MODE_IMM :
+			value = nes.bus_read( this.pc + 1 );
+			break;
+
+			case MODE_ZPA :
+			address = nes.bus_read( this.pc + 1 );
+			break;
+			case MODE_ZPX :
+			address = nes.bus_read( this.pc + 1 );
+			// temp = address;
+			address = ( address + this.x ) & 0x00ff;
+			break;
+
+			case MODE_ZPY :
+			address = nes.bus_read( this.pc + 1 );
+			// temp = address;
+			address = ( address + this.y ) & 0x00ff;
+			break;
+
+			case MODE_REL :
+			var d = nes.bus_read( this.pc + 1 );
+			var e = 2;
+
+			if ( d >> 7 == 1 ) {
+				d = ~ d;
+				d = d & 0xff;
+				d = d * -1;
+				d = d + 1;
+				d = d - 2;
+			}
+
+			address = this.pc + d;
+			break;
+
+			case MODE_ABS :
+			address = this.get_2( this.pc + 1 );
+			break;
+
+			case MODE_ABX :
+			temp = this.get_2( this.pc + 1 );
+			address = ( temp + this.x ) & 0xffff;
+			if ( ( temp & 0xFF00 ) != ( address & 0xFF00 ) ) { paged = 1; }
+			break;
+
+			case MODE_ABY :
+			temp = address = this.get_2( this.pc + 1 );
+			address = ( temp + this.y ) & 0xffff;
+			if ( ( temp & 0xFF00 ) != ( address & 0xFF00 ) ) { paged = 1; }
+			break;
+
+			case MODE_IND :
+			temp = address = this.get_2( this.pc + 1 );
+
+			function get_2_temp( i, mask = 0xffff ) {
+				var page = i & 0xFF00;
+				var j = i + 1;
+				if ( j == page + 0x0100 ) { j = page; }
+				var lo = nes.bus_read( j & mask ) << 8;
+				var hi = nes.bus_read( i & mask );
+				return lo | hi;
+			}
+
+			address = get_2_temp( temp );
+			break;
+
+			case MODE_IZX :
+			temp = nes.bus_read( this.pc + 1 );
+			temp_2  = ( temp + this.x ) & 0x00ff;
+
+			address = get_2_temp( temp_2, 0x00ff );
+			break;
+
+			case MODE_IZY :
+			temp = nes.bus_read( this.pc + 1 );
+			if ( temp == 0xff ) { paged += 1; }
+
+			temp_2 = get_2_temp( temp, 0x00ff );
+			temp_3 = ( temp_2 + this.y );
+			address = temp_3 & 0xffff
+
+			if ( address != temp_3 ) { paged += 1; }
+			break;
+		}
+
+		function cost_0() {
+			switch ( mode ) {
+				case MODE_ACC : size = 1; cost = 2;         break;
+				case MODE_IMM : size = 2; cost = 2;         break;
+				case MODE_ZPA : size = 2; cost = 3;         break;
+				case MODE_ZPX : size = 2; cost = 4;         break;
+				case MODE_ZPY : size = 2; cost = 4;         break;
+				case MODE_ABS : size = 3; cost = 4;         break;
+				case MODE_ABX : size = 3; cost = 4 + paged; break;
+				case MODE_ABY : size = 3; cost = 4 + paged; break;
+				case MODE_IZX : size = 2; cost = 6;         break;
+				case MODE_IZY : size = 2; cost = 5 + paged; break;
+			}
+		}
+
+		function cost_1() {
+			paged = 1;
+			cost_0();
+		}
+
+		function cost_2() {
+			paged = 1;
+			cost_0();
+			cost = cost + 2;
+			if ( mode == MODE_ACC ) { cost = 2; }
+		}
+
+		function cost_5() {
+			size = 3;
+
+			switch ( mode ) {
+				case MODE_ABS : cost = 3; break;
+				case MODE_IND : cost = 5; break;
+			}
+		}
+
+		function branch( condition ) {
+			cost = 2;
+			size = 2;
+
+			if ( condition ) {
+				cost = cost + 1;
+				if ( self.pc & 0xff00 != address & 0xff00 ) { cost = cost + 2; }
+				self.pc = address;
+			}
+		}
+
+		switch ( instruction ) {
+			case INSTRUCTION_LDA: if ( value == undefined ) { value = nes.bus_read( address ); } this.a = value; update_nz(); cost_0(); break;
+			case INSTRUCTION_LDX: if ( value == undefined ) { value = nes.bus_read( address ); } this.x = value; update_nz(); cost_0(); break;
+			case INSTRUCTION_LDY: if ( value == undefined ) { value = nes.bus_read( address ); } this.y = value; update_nz(); cost_0(); break;
+
+			case INSTRUCTION_STA: nes.bus_write( address, this.a ); cost_1(); break;
+			case INSTRUCTION_STX: nes.bus_write( address, this.x ); cost_1(); break;
+			case INSTRUCTION_STY: nes.bus_write( address, this.y ); cost_1(); break;
+
+			case INSTRUCTION_TAX: value = this.a; this.x = value; update_nz(); size = 1; cost = 2; break;
+			case INSTRUCTION_TAY: value = this.a; this.y = value; update_nz(); size = 1; cost = 2; break;
+			case INSTRUCTION_TXA: value = this.x; this.a = value; update_nz(); size = 1; cost = 2; break;
+			case INSTRUCTION_TYA: value = this.y; this.a = value; update_nz(); size = 1; cost = 2; break;
+
+			case INSTRUCTION_TSX: value = this.s      ; this.x = value; update_nz(); size = 1; cost = 2; break;
+			case INSTRUCTION_TXS: value = this.x      ; this.s = value;              size = 1; cost = 2; break;
+			case INSTRUCTION_PLA: value = stack_pull(); this.a = value; update_nz(); size = 1; cost = 4; break;
+			case INSTRUCTION_PHA: stack_push( this.a ); value = this.a;              size = 1; cost = 3; break;
+			case INSTRUCTION_PLP: pull_flags();                                      size = 1; cost = 4; break;
+			case INSTRUCTION_PHP: push_flags( 1 );                                   size = 1; cost = 3; break;
+
+			case INSTRUCTION_AND: if ( value == undefined ) { value = nes.bus_read( address ); } value = this.a & value; this.a = value; update_nz(); cost_0(); break;
+			case INSTRUCTION_EOR: if ( value == undefined ) { value = nes.bus_read( address ); } value = this.a ^ value; this.a = value; update_nz(); cost_0(); break;
+			case INSTRUCTION_ORA: if ( value == undefined ) { value = nes.bus_read( address ); } value = this.a | value; this.a = value; update_nz(); cost_0(); break;
+
+			case INSTRUCTION_BIT:
+			if ( value == undefined ) { value = nes.bus_read( address ); }
+			temp = value;
+			value = this.a & value;
+			update_nz();
+			this.p_v = ( temp >> 6 ) & 1;
+			this.p_n = ( temp >> 7 ) & 1;
+			cost_0();
+			break;
+
+			case INSTRUCTION_SBC:
+			if ( value == undefined ) { value = nes.bus_read( address ); }
+			value = ( ~ value ) & 0xff;
+			case INSTRUCTION_ADC :
+			if ( value == undefined ) { value = nes.bus_read( address ); }
+			temp = value;
+			value = this.a + value + this.p_c;
+			this.p_c = value > 0xff ? 1 : 0;
+			value = value & 0xff;
+			this.p_v = ( this.a & 0x80 ) == ( temp & 0x80 ) && ( this.a & 0x80 ) != ( value & 0x80 ) ? 1 : 0;
+			this.a = value;
+			update_nz();
+			cost_0();
+			break;
+
+			case INSTRUCTION_CMP:
+			if ( value == undefined ) { value = nes.bus_read( address ); }
+			value = this.a - value;
+			this.p_c = value >= 0 ? 1 : 0;
+			update_nz();
+			cost_0();
+			break;
+
+			case INSTRUCTION_CPX:
+			if ( value == undefined ) { value = nes.bus_read( address ); }
+			value = this.x - value;
+			this.p_c = value >= 0 ? 1 : 0;
+			update_nz();
+			cost_0();
+			break;
+
+			case INSTRUCTION_CPY:
+			if ( value == undefined ) { value = nes.bus_read( address ); }
+			value = this.y - value;
+			this.p_c = value >= 0 ? 1 : 0;
+			update_nz();
+			cost_0();
+			break;
+
+			case INSTRUCTION_INC:
+			if ( value == undefined ) { value = nes.bus_read( address ); }
+			value = ( value + 1 ) & 0xff;
+			nes.bus_write( address, value );
+			update_nz();
+			cost_2();
+			break;
+
+			case INSTRUCTION_INX:
+			if ( value == undefined ) { value = nes.bus_read( address ); }
+			value = ( this.x + 1 ) & 0xff;
+			this.x = value;
+			update_nz();
+			size = 1;
+			cost = 2;
+			break;
+
+			case INSTRUCTION_INY:
+			if ( value == undefined ) { value = nes.bus_read( address ); }
+			value = ( this.y + 1 ) & 0xff;
+			this.y = value;
+			update_nz();
+			size = 1;
+			cost = 2;
+			break;
+
+			case INSTRUCTION_DEC:
+			if ( value == undefined ) { value = nes.bus_read( address ); }
+			value = value - 1;
+			nes.bus_write( address, value );
+			update_nz();
+			cost_2();
+			break;
+
+			case INSTRUCTION_DEX:
+			if ( value == undefined ) { value = nes.bus_read( address ); }
+			value = ( this.x - 1 ) & 0xff;
+			this.x = value;
+			update_nz();
+			size = 1;
+			cost = 2;
+			break;
+
+			case INSTRUCTION_DEY:
+			if ( value == undefined ) { value = nes.bus_read( address ); }
+			value = ( this.y - 1 ) & 0xff;
+			this.y = value;
+			update_nz();
+			size = 1;
+			cost = 2;
+			break;
+
+			case INSTRUCTION_ASL :
+			if ( value == undefined ) { value = nes.bus_read( address ); }
+			this.p_c = ( value & 0b10000000 ) >> 7;
+			value = ( value << 1 ) & 0xff;
+
+			if ( mode == MODE_ACC ) {
+				this.a = value;
+			} else {
+				nes.bus_write( address, value );
+			}
+
+			update_nz();
+			cost_2();
+			break;
+
+			case INSTRUCTION_LSR:
+			if ( value == undefined ) { value = nes.bus_read( address ); }
+			this.p_c = ( value & 0b00000001 );
+			value = ( value >> 1 );
+
+			if ( mode == MODE_ACC ) {
+				this.a = value;
+			} else {
+				nes.bus_write( address, value );
+			}
+
+			update_nz();
+			cost_2();
+			break;
+
+			case INSTRUCTION_ROL:
+			if ( value == undefined ) { value = nes.bus_read( address ); }
+			temp = this.p_c;
+			this.p_c = ( value & 0b10000000 ) >> 7;
+			value = ( value << 1 ) | temp;
+			value = value & 0xff;
+
+			if ( mode == MODE_ACC ) {
+				this.a = value;
+			} else {
+				nes.bus_write( address, value );
+			}
+
+			update_nz();
+			cost_2();
+			break;
+
+			case INSTRUCTION_ROR:
+			if ( value == undefined ) { value = nes.bus_read( address ); }
+			temp = this.p_c;
+			this.p_c = ( value & 0b00000001 );
+			value = ( value >> 1 ) | ( temp << 7 );
+
+			if ( mode == MODE_ACC ) {
+				this.a = value;
+			} else {
+				nes.bus_write( address, value );
+			}
+
+			update_nz();
+			cost_2();
+			break;
+
+			case INSTRUCTION_JMP:
+			this.pc = address - 3;
+			size = 3;
+			cost_5();
+			break;
+
+			case INSTRUCTION_JSR:
+			size = 3;
+			push_pc( size )
+			this.pc = address - 3;
+			cost = 6;
+			break;
+
+			case INSTRUCTION_RTS:
+			size = 1;
+			this.pc = ( ( stack_pull() ) | stack_pull() << 8 ) + 1 - size;
+			cost = 6;
+			break;
+
+			case INSTRUCTION_BCC: branch( this.p_c == 0 ); break;
+			case INSTRUCTION_BCS: branch( this.p_c == 1 ); break;
+			case INSTRUCTION_BEQ: branch( this.p_z == 1 ); break;
+			case INSTRUCTION_BMI: branch( this.p_n == 1 ); break;
+			case INSTRUCTION_BNE: branch( this.p_z == 0 ); break;
+			case INSTRUCTION_BPL: branch( this.p_n == 0 ); break;
+			case INSTRUCTION_BVC: branch( this.p_v == 0 ); break;
+			case INSTRUCTION_BVS: branch( this.p_v == 1 ); break;
+
+			case INSTRUCTION_CLC: this.p_c = 0; size = 1; cost = 2; break;
+			case INSTRUCTION_CLD: this.p_d = 0; size = 1; cost = 2; break;
+			case INSTRUCTION_CLI: this.p_i = 0; size = 1; cost = 2; break;
+			case INSTRUCTION_CLV: this.p_v = 0; size = 1; cost = 2; break;
+			case INSTRUCTION_SEC: this.p_c = 1; size = 1; cost = 2; break;
+			case INSTRUCTION_SED: this.p_d = 1; size = 1; cost = 2; break;
+			case INSTRUCTION_SEI: this.p_i = 1; size = 1; cost = 2; break;
+
+			// TODO verify;
+			// TODO maybe combine with irq_pending value
+			case INSTRUCTION_BRK:
+			this.interrupt_pending = INTERRUPT_IRQ;
+			this.p_b = 1;
+			size = 1;
+			cost = 7;
+			break;
+
+			case INSTRUCTION_NOP: size = 1; cost = 2; break;
+
+			case INSTRUCTION_RTI:
+			pull_flags();
+			size = 1;
+			pull_pc( size );
+			cost = 6;
+			break;
+		}
+
+
+		// var [ ppu_x, ppu_y ] = app.nes.ppu.get_xy();
+
+		// this.log = this.log + hex(pc_previous, 4 ) + " ";
+		// this.log = this.log + text_for_instruction( instruction ) + " ";
+		// this.log = this.log + "PPU:" + ( ppu_x + "" ).padStart( 3, " ") + "," + ( ppu_y + "" ).padStart( 3, " " ) + " ";
+		// this.log = this.log + "CYC:" + this.cycles + "\n";
+
+		this.pc = this.pc + size;
+		this.cycles += cost;
+	}

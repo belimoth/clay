@@ -1,5 +1,7 @@
 "use strict";
 
+import { rom_draw } from "./rom.js";
+
 var el_drop = document.getElementById( "drop" );
 
 el_drop.ondragenter = function( event ) {

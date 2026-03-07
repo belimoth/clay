@@ -1,6 +1,6 @@
 "use strict";
 
-import { default as nes } from "/static/script/nes/nes.js"
+import { default as nes } from "./nes.js"
 
 const INTERRUPT_NONE  = 0;
 const INTERRUPT_IRQ   = 1;
@@ -556,31 +556,31 @@ export function cpu() {
         }
 
         switch ( instruction ) {
-            case INSTRUCTION_LDA : if ( value == undefined ) { value = nes.bus_read( address ); } this.a = value; update_nz(); cost_0(); break;
-            case INSTRUCTION_LDX : if ( value == undefined ) { value = nes.bus_read( address ); } this.x = value; update_nz(); cost_0(); break;
-            case INSTRUCTION_LDY : if ( value == undefined ) { value = nes.bus_read( address ); } this.y = value; update_nz(); cost_0(); break;
+            case INSTRUCTION_LDA: if ( value == undefined ) { value = nes.bus_read( address ); } this.a = value; update_nz(); cost_0(); break;
+            case INSTRUCTION_LDX: if ( value == undefined ) { value = nes.bus_read( address ); } this.x = value; update_nz(); cost_0(); break;
+            case INSTRUCTION_LDY: if ( value == undefined ) { value = nes.bus_read( address ); } this.y = value; update_nz(); cost_0(); break;
 
-            case INSTRUCTION_STA : nes.bus_write( address, this.a ); cost_1(); break;
-            case INSTRUCTION_STX : nes.bus_write( address, this.x ); cost_1(); break;
-            case INSTRUCTION_STY : nes.bus_write( address, this.y ); cost_1(); break;
+            case INSTRUCTION_STA: nes.bus_write( address, this.a ); cost_1(); break;
+            case INSTRUCTION_STX: nes.bus_write( address, this.x ); cost_1(); break;
+            case INSTRUCTION_STY: nes.bus_write( address, this.y ); cost_1(); break;
 
-            case INSTRUCTION_TAX : value = this.a; this.x = value; update_nz(); size = 1; cost = 2; break;
-            case INSTRUCTION_TAY : value = this.a; this.y = value; update_nz(); size = 1; cost = 2; break;
-            case INSTRUCTION_TXA : value = this.x; this.a = value; update_nz(); size = 1; cost = 2; break;
-            case INSTRUCTION_TYA : value = this.y; this.a = value; update_nz(); size = 1; cost = 2; break;
+            case INSTRUCTION_TAX: value = this.a; this.x = value; update_nz(); size = 1; cost = 2; break;
+            case INSTRUCTION_TAY: value = this.a; this.y = value; update_nz(); size = 1; cost = 2; break;
+            case INSTRUCTION_TXA: value = this.x; this.a = value; update_nz(); size = 1; cost = 2; break;
+            case INSTRUCTION_TYA: value = this.y; this.a = value; update_nz(); size = 1; cost = 2; break;
 
-            case INSTRUCTION_TSX : value = this.s      ; this.x = value; update_nz(); size = 1; cost = 2; break;
-            case INSTRUCTION_TXS : value = this.x      ; this.s = value;              size = 1; cost = 2; break;
-            case INSTRUCTION_PLA : value = stack_pull(); this.a = value; update_nz(); size = 1; cost = 4; break;
-            case INSTRUCTION_PHA : stack_push( this.a ); value = this.a;              size = 1; cost = 3; break;
-            case INSTRUCTION_PLP : pull_flags();                                      size = 1; cost = 4; break;
-            case INSTRUCTION_PHP : push_flags( 1 );                                   size = 1; cost = 3; break;
+            case INSTRUCTION_TSX: value = this.s      ; this.x = value; update_nz(); size = 1; cost = 2; break;
+            case INSTRUCTION_TXS: value = this.x      ; this.s = value;              size = 1; cost = 2; break;
+            case INSTRUCTION_PLA: value = stack_pull(); this.a = value; update_nz(); size = 1; cost = 4; break;
+            case INSTRUCTION_PHA: stack_push( this.a ); value = this.a;              size = 1; cost = 3; break;
+            case INSTRUCTION_PLP: pull_flags();                                      size = 1; cost = 4; break;
+            case INSTRUCTION_PHP: push_flags( 1 );                                   size = 1; cost = 3; break;
 
-            case INSTRUCTION_AND : if ( value == undefined ) { value = nes.bus_read( address ); } value = this.a & value; this.a = value; update_nz(); cost_0(); break;
-            case INSTRUCTION_EOR : if ( value == undefined ) { value = nes.bus_read( address ); } value = this.a ^ value; this.a = value; update_nz(); cost_0(); break;
-            case INSTRUCTION_ORA : if ( value == undefined ) { value = nes.bus_read( address ); } value = this.a | value; this.a = value; update_nz(); cost_0(); break;
+            case INSTRUCTION_AND: if ( value == undefined ) { value = nes.bus_read( address ); } value = this.a & value; this.a = value; update_nz(); cost_0(); break;
+            case INSTRUCTION_EOR: if ( value == undefined ) { value = nes.bus_read( address ); } value = this.a ^ value; this.a = value; update_nz(); cost_0(); break;
+            case INSTRUCTION_ORA: if ( value == undefined ) { value = nes.bus_read( address ); } value = this.a | value; this.a = value; update_nz(); cost_0(); break;
 
-            case INSTRUCTION_BIT :
+            case INSTRUCTION_BIT:
             if ( value == undefined ) { value = nes.bus_read( address ); }
             temp = value;
             value = this.a & value;
@@ -590,7 +590,7 @@ export function cpu() {
             cost_0();
             break;
 
-            case INSTRUCTION_SBC :
+            case INSTRUCTION_SBC:
             if ( value == undefined ) { value = nes.bus_read( address ); }
             value = ( ~ value ) & 0xff;
             case INSTRUCTION_ADC :
@@ -605,7 +605,7 @@ export function cpu() {
             cost_0();
             break;
 
-            case INSTRUCTION_CMP :
+            case INSTRUCTION_CMP:
             if ( value == undefined ) { value = nes.bus_read( address ); }
             value = this.a - value;
             this.p_c = value >= 0 ? 1 : 0;
@@ -613,7 +613,7 @@ export function cpu() {
             cost_0();
             break;
 
-            case INSTRUCTION_CPX :
+            case INSTRUCTION_CPX:
             if ( value == undefined ) { value = nes.bus_read( address ); }
             value = this.x - value;
             this.p_c = value >= 0 ? 1 : 0;
@@ -621,7 +621,7 @@ export function cpu() {
             cost_0();
             break;
 
-            case INSTRUCTION_CPY :
+            case INSTRUCTION_CPY:
             if ( value == undefined ) { value = nes.bus_read( address ); }
             value = this.y - value;
             this.p_c = value >= 0 ? 1 : 0;
@@ -629,7 +629,7 @@ export function cpu() {
             cost_0();
             break;
 
-            case INSTRUCTION_INC :
+            case INSTRUCTION_INC:
             if ( value == undefined ) { value = nes.bus_read( address ); }
             value = ( value + 1 ) & 0xff;
             nes.bus_write( address, value );
@@ -637,7 +637,7 @@ export function cpu() {
             cost_2();
             break;
 
-            case INSTRUCTION_INX :
+            case INSTRUCTION_INX:
             if ( value == undefined ) { value = nes.bus_read( address ); }
             value = ( this.x + 1 ) & 0xff;
             this.x = value;
@@ -646,7 +646,7 @@ export function cpu() {
             cost = 2;
             break;
 
-            case INSTRUCTION_INY :
+            case INSTRUCTION_INY:
             if ( value == undefined ) { value = nes.bus_read( address ); }
             value = ( this.y + 1 ) & 0xff;
             this.y = value;
@@ -655,7 +655,7 @@ export function cpu() {
             cost = 2;
             break;
 
-            case INSTRUCTION_DEC :
+            case INSTRUCTION_DEC:
             if ( value == undefined ) { value = nes.bus_read( address ); }
             value = value - 1;
             nes.bus_write( address, value );
@@ -663,7 +663,7 @@ export function cpu() {
             cost_2();
             break;
 
-            case INSTRUCTION_DEX :
+            case INSTRUCTION_DEX:
             if ( value == undefined ) { value = nes.bus_read( address ); }
             value = ( this.x - 1 ) & 0xff;
             this.x = value;
@@ -672,7 +672,7 @@ export function cpu() {
             cost = 2;
             break;
 
-            case INSTRUCTION_DEY :
+            case INSTRUCTION_DEY:
             if ( value == undefined ) { value = nes.bus_read( address ); }
             value = ( this.y - 1 ) & 0xff;
             this.y = value;
@@ -696,7 +696,7 @@ export function cpu() {
             cost_2();
             break;
 
-            case INSTRUCTION_LSR :
+            case INSTRUCTION_LSR:
             if ( value == undefined ) { value = nes.bus_read( address ); }
             this.p_c = ( value & 0b00000001 );
             value = ( value >> 1 );
@@ -711,7 +711,7 @@ export function cpu() {
             cost_2();
             break;
 
-            case INSTRUCTION_ROL :
+            case INSTRUCTION_ROL:
             if ( value == undefined ) { value = nes.bus_read( address ); }
             temp = this.p_c;
             this.p_c = ( value & 0b10000000 ) >> 7;
@@ -728,7 +728,7 @@ export function cpu() {
             cost_2();
             break;
 
-            case INSTRUCTION_ROR :
+            case INSTRUCTION_ROR:
             if ( value == undefined ) { value = nes.bus_read( address ); }
             temp = this.p_c;
             this.p_c = ( value & 0b00000001 );
@@ -744,54 +744,54 @@ export function cpu() {
             cost_2();
             break;
 
-            case INSTRUCTION_JMP :
+            case INSTRUCTION_JMP:
             this.pc = address - 3;
             size = 3;
             cost_5();
             break;
 
-            case INSTRUCTION_JSR :
+            case INSTRUCTION_JSR:
             size = 3;
             push_pc( size )
             this.pc = address - 3;
             cost = 6;
             break;
 
-            case INSTRUCTION_RTS :
+            case INSTRUCTION_RTS:
             size = 1;
             this.pc = ( ( stack_pull() ) | stack_pull() << 8 ) + 1 - size;
             cost = 6;
             break;
 
-            case INSTRUCTION_BCC : branch( this.p_c == 0 ); break;
-            case INSTRUCTION_BCS : branch( this.p_c == 1 ); break;
-            case INSTRUCTION_BEQ : branch( this.p_z == 1 ); break;
-            case INSTRUCTION_BMI : branch( this.p_n == 1 ); break;
-            case INSTRUCTION_BNE : branch( this.p_z == 0 ); break;
-            case INSTRUCTION_BPL : branch( this.p_n == 0 ); break;
-            case INSTRUCTION_BVC : branch( this.p_v == 0 ); break;
-            case INSTRUCTION_BVS : branch( this.p_v == 1 ); break;
+            case INSTRUCTION_BCC: branch( this.p_c == 0 ); break;
+            case INSTRUCTION_BCS: branch( this.p_c == 1 ); break;
+            case INSTRUCTION_BEQ: branch( this.p_z == 1 ); break;
+            case INSTRUCTION_BMI: branch( this.p_n == 1 ); break;
+            case INSTRUCTION_BNE: branch( this.p_z == 0 ); break;
+            case INSTRUCTION_BPL: branch( this.p_n == 0 ); break;
+            case INSTRUCTION_BVC: branch( this.p_v == 0 ); break;
+            case INSTRUCTION_BVS: branch( this.p_v == 1 ); break;
 
-            case INSTRUCTION_CLC : this.p_c = 0; size = 1; cost = 2; break;
-            case INSTRUCTION_CLD : this.p_d = 0; size = 1; cost = 2; break;
-            case INSTRUCTION_CLI  :this.p_i = 0; size = 1; cost = 2; break;
-            case INSTRUCTION_CLV : this.p_v = 0; size = 1; cost = 2; break;
-            case INSTRUCTION_SEC : this.p_c = 1; size = 1; cost = 2; break;
-            case INSTRUCTION_SED : this.p_d = 1; size = 1; cost = 2; break;
-            case INSTRUCTION_SEI : this.p_i = 1; size = 1; cost = 2; break;
+            case INSTRUCTION_CLC: this.p_c = 0; size = 1; cost = 2; break;
+            case INSTRUCTION_CLD: this.p_d = 0; size = 1; cost = 2; break;
+            case INSTRUCTION_CLI: this.p_i = 0; size = 1; cost = 2; break;
+            case INSTRUCTION_CLV: this.p_v = 0; size = 1; cost = 2; break;
+            case INSTRUCTION_SEC: this.p_c = 1; size = 1; cost = 2; break;
+            case INSTRUCTION_SED: this.p_d = 1; size = 1; cost = 2; break;
+            case INSTRUCTION_SEI: this.p_i = 1; size = 1; cost = 2; break;
 
             // TODO verify;
             // TODO maybe combine with irq_pending value
-            case INSTRUCTION_BRK :
+            case INSTRUCTION_BRK:
             this.interrupt_pending = INTERRUPT_IRQ;
             this.p_b = 1;
             size = 1;
             cost = 7;
             break;
 
-            case INSTRUCTION_NOP : size = 1; cost = 2; break;
+            case INSTRUCTION_NOP: size = 1; cost = 2; break;
 
-            case INSTRUCTION_RTI :
+            case INSTRUCTION_RTI:
             pull_flags();
             size = 1;
             pull_pc( size );

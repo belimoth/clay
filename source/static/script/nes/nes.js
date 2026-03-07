@@ -3,16 +3,16 @@ const INTERRUPT_IRQ   = 1;
 const INTERRUPT_NMI   = 2;
 const INTERRUPT_RESET = 3;
 
-import { cpu   } from "/static/script/nes/cpu.js";
-import { ppu   } from "/static/script/nes/ppu.js";
-import { apu   } from "/static/script/nes/apu.js";
-import { default as cart } from "/static/script/nes/cart.js";
-import { default as rom  } from "/static/script/nes/rom.js";
-import { audio } from "/static/script/nes/audio.js";
+import { cpu }             from "./cpu.js";
+import { ppu }             from "./ppu.js";
+import { apu }             from "./apu.js";
+import { default as cart } from "./cart.js";
+import { default as rom  } from "./rom.js";
+import { audio }           from "./audio.js";
 
-import { update_pads           } from "/static/script/nes/apu.js";
-import { render_crt            } from "/static/script/nes/render.js";
-import { hex, base64_to_buffer } from "/static/script/nes/util.js";
+import { update_pads           } from "./apu.js";
+import { render_crt            } from "./render.js";
+import { hex, base64_to_buffer } from "./util.js";
 
 function nes_init() {
 	app.nes = {};
@@ -112,9 +112,9 @@ function nes_load( key ) {
 		return ( nes_bus_read( i + 1 ) << 8 ) | nes_bus_read( i );
 	}
 
-	var vector_nmi   = get_2( 0xfffa );
-	var vector_reset = get_2( 0xfffc );
-	var vector_brk   = get_2( 0xfffe );
+	var vector_nmi   = get_2( 0xFFFA );
+	var vector_reset = get_2( 0xFFFC );
+	var vector_brk   = get_2( 0xFFFE );
 
 	// console.log( "nmi: "   + hex( vector_nmi  , 4 ) );
 	// console.log( "reset: " + hex( vector_reset, 4 ) );
@@ -122,6 +122,7 @@ function nes_load( key ) {
 
 	app.nes.cpu.start();
 	app.nes.cpu.pc = vector_reset;
+
 }
 
 function nes_step() {

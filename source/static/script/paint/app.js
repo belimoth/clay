@@ -1,12 +1,12 @@
 "use strict";
 
-import { tool_all }                 from "/static/script/paint/main/tool.js";
-import { palette }                  from "/static/script/paint/main/ui/palette.js";
-import { canvas, screen_to_canvas } from "/static/script/paint/main/ui.js";
-import { layer }                    from "/static/script/paint/main/ui/layer.js";
-import { storage }                  from "/static/script/paint/session.js";
+import { tool_all }                 from "static/script/paint/main/tool.js";
+import { palette }                  from "static/script/paint/main/ui/palette.js";
+import { canvas, screen_to_canvas } from "static/script/paint/main/ui.js";
+import { layer }                    from "static/script/paint/main/ui/layer.js";
+import { storage }                  from "static/script/paint/session.js";
 
-import "/static/script/app/top.js"
+import "../app/top.js"
 
 //
 

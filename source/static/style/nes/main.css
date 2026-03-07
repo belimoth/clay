@@ -1,10 +1,10 @@
-@import "/static/style/reset.css";
-@import "/static/style/nes/overlay.css";
-@import "/static/style/nes/canvas.css";
-@import "/static/style/top.css";
+@import "../reset.css";
+@import "overlay.css";
+@import "canvas.css";
+@import "../top.css";
 
-@import "/static/style/nes/layout.css";
-@import "/static/style/nes/theme.css";
+@import "layout.css";
+@import "theme.css";
 
 
 
@@ -681,4 +681,25 @@ table#code {
 
 table#code td a {
     line-height: inherit;
+}
+
+
+
+
+div#drop {
+    overflow: hidden;
+    margin-right: 8px;
+    margin-bottom: 12px;
+}
+
+
+ul#rom:not(:empty) + div#drop {
+    display: none;
+}
+
+div#drop::before {
+    content: "Drag and drop ROM file here";
+    display: block;
+    line-height: 50px;
+    text-align: center;
 }

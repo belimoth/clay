@@ -1,7 +1,7 @@
 "use strict";
 
-import { code_draw } from "/static/script/app/code.js";
-import { default as nes } from "/static/script/nes/nes.js";
+import { code_draw } from "./code.js";
+import { default as nes } from "../nes/nes.js";
 
 export function rom_draw() {
 	var el_rom = document.getElementById( "rom" );

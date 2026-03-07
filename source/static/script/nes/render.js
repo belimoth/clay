@@ -4,7 +4,7 @@ const SCALE = 4;
 
 const RENDER_TEST = false;
 
-import { nes_palette } from "/static/script/nes/palette.js";
+import { nes_palette } from "./palette.js";
 
 function get_context_for_canvas( canvas, options = null ) {
     var context = canvas.getContext( "2d", options );

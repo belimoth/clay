@@ -1,9 +1,9 @@
 "use strict";
 
-import "/static/script/app/top.js";
-import "/static/script/app/drop.js";
+import "../app/top.js";
+import "../app/drop.js";
 
-import { rom_init, rom_draw } from "/static/script/app/rom.js";
+import { rom_init, rom_draw } from "../app/rom.js";
 
 if ( window.Worker ) {
 	var worker = new Worker( "worker.js" );
@@ -16,8 +16,8 @@ window.onblur = function( event ) {
 
 };
 
-import "/static/script/app.js";
-import { default as nes } from "/static/script/nes/nes.js";
+import "../app.js";
+import { default as nes } from "./nes.js";
 
 nes.init();
 rom_init();

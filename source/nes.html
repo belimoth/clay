@@ -6,18 +6,18 @@
 <title>Clay NES</title>
 <meta name=apple-mobile-web-app-title content="Clay NES">
 
-<link rel=icon type=image/png sizes=96x96 href=/static/favicon/favicon-96x96.png >
-<link rel=icon type=image/svg+xml         href=/static/favicon/favicon.svg>
-<link rel=shortcut icon                   href=/static/favicon/favicon.ico>
-<link rel=apple-touch-icon sizes=180x180  href=/static/favicon/apple-touch-icon.png>
-<link rel="manifest"                      href=/static/favicon/site.webmanifest>
+<link rel=icon type=image/png sizes=96x96 href=static/favicon/favicon-96x96.png >
+<link rel=icon type=image/svg+xml         href=static/favicon/favicon.svg>
+<link rel=shortcut icon                   href=static/favicon/favicon.ico>
+<link rel=apple-touch-icon sizes=180x180  href=static/favicon/apple-touch-icon.png>
+<link rel="manifest"                      href=static/favicon/site.webmanifest>
 
-<link rel=stylesheet href=/static/style/reset.css>
-<link rel=stylesheet href=/static/style/nes/main.css>
+<link rel=stylesheet href=static/style/reset.css>
+<link rel=stylesheet href=static/style/nes/main.css>
 <body>
 
 <top>
-	<img src=/static/image/subhelion_app.png>
+	<img src=static/image/subhelion_app.png>
 	<t>Clay NES</t>
 
 	<ul class=menu-list>
@@ -80,6 +80,9 @@
 		</h>
 
 		<ul id=rom></ul>
+
+		<div id=drop></div>
+
 	</page>
 
 	<page id=page-rom-edit>
@@ -151,35 +154,13 @@
 
 	<tray>
 		<ol id=tray-tab>
-			<li active><a>CPU</a>
-			<li><a id=fps>FPS</a>
+			<li active><a id=fps>FPS</a>
 			<li><a>Timeline</a>
 			<li><a>Pad</a>
 			<li><a>Close</a>
 		</ol>
 
-		<page active>
-			<p class=cpu-flag>
-				<dl class=cpu>
-					<dt>PC<dd><a>0x0000</a>
-					<dt>S <dd>0xFD
-					<dt>A <dd>0x00
-					<dt>X <dd>0x00
-					<dt>Y <dd>0x00
-
-				</dl>
-
-				<input type=checkbox class=cpu-flag data-label=C>
-				<input type=checkbox class=cpu-flag data-label=Z>
-				<input type=checkbox class=cpu-flag data-label=I>
-				<!-- <input type=checkbox class=cpu-flag data-label=D> -->
-				<!-- <input type=checkbox class=cpu-flag data-label=B> -->
-				<input type=checkbox class=cpu-flag data-label=V checked>
-				<input type=checkbox class=cpu-flag data-label=N checked>
-			</p>
-		</page>
-
-		<page><monitor id=monitor><canvas id=monitor-fps width=1024 height=256></canvas></monitor></page>
+		<page active><monitor id=monitor><canvas id=monitor-fps width=1024 height=256></canvas></monitor></page>
 		<page></page>
 		<page></page>
 
@@ -208,7 +189,7 @@
 
 <!-- <overlay></overlay> -->
 
-<script src=/static/vend/bliss.min.js></script>
-<script src=/static/vend/spark-md5.min.js></script>
+<script src=static/vend/bliss.min.js></script>
+<script src=static/vend/spark-md5.min.js></script>
 
-<script type=module src=/static/script/nes/main.js></script>
+<script type=module src=static/script/nes/main.js></script>

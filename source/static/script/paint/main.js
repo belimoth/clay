@@ -1,21 +1,21 @@
 "use strict";
 
-import "/static/script/paint/reset.js"
-import "/static/script/paint/color.js"
+import "static/script/paint/reset.js"
+import "static/script/paint/color.js"
 
-import "/static/script/paint/main/ui.js"
-import "/static/script/paint/main/tool.js"
+import "static/script/paint/main/ui.js"
+import "static/script/paint/main/tool.js"
 
-import "/static/script/paint/main/ui/scrubber.js"
-import "/static/script/paint/main/ui/tool.js"
-import "/static/script/paint/main/ui/layout.js"
-import "/static/script/paint/main/ui/palette.js"
-import "/static/script/paint/main/ui/layer.js"
-import "/static/script/paint/main/ui/history.js"
+import "static/script/paint/main/ui/scrubber.js"
+import "static/script/paint/main/ui/tool.js"
+import "static/script/paint/main/ui/layout.js"
+import "static/script/paint/main/ui/palette.js"
+import "static/script/paint/main/ui/layer.js"
+import "static/script/paint/main/ui/history.js"
 
-import "/static/script/paint/app.js"
-import "/static/script/paint/wip.js"
-import "/static/script/paint/session.js"
+import "static/script/paint/app.js"
+import "static/script/paint/wip.js"
+import "static/script/paint/session.js"
 
 import { app, app_draw } from "./app.js";
 import { update_layer_mode } from "./main/ui/layout.js";

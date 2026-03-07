@@ -1,25 +1,25 @@
-@import "/static/style/reset.css";
-@import "/static/style/paint/icon_hack.css";
+@import "static/style/reset.css";
+@import "static/style/paint/icon_hack.css";
 
-@import "/static/style/layout.css";
-@import "/static/style/paint/canvas.css";
+@import "static/style/layout.css";
+@import "static/style/paint/canvas.css";
 
-@import "/static/style/paint/list_tool.css";
-@import "/static/style/paint/list_layer.css";
-@import "/static/style/paint/list_tab.css";
+@import "static/style/paint/list_tool.css";
+@import "static/style/paint/list_layer.css";
+@import "static/style/paint/list_tab.css";
 
-@import "/static/style/paint/scrubber.css";
-@import "/static/style/paint/panel.css";
-@import "/static/style/paint/scrollbar.css";
+@import "static/style/paint/scrubber.css";
+@import "static/style/paint/panel.css";
+@import "static/style/paint/scrollbar.css";
 
-@import "/static/style/paint/palette.css";
-@import "/static/style/top.css";
+@import "static/style/paint/palette.css";
+@import "static/style/top.css";
 
-@import "/static/style/paint/theme.css";
+@import "static/style/paint/theme.css";
 
-@import "/static/style/paint/list_history.css";
+@import "static/style/paint/list_history.css";
 
-@import "/static/style/paint/wip.css";
+@import "static/style/paint/wip.css";
 
 
 top > t {

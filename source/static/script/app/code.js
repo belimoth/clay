@@ -1,10 +1,10 @@
 "use strict";
-import {byte_to_asm } from "/static/script/nes/6502.js";
+import {byte_to_asm } from "../nes/6502.js";
 
 export async function code_draw() {
 	let cdl_data = {};
 
-	let response = await fetch( "/static/data/" + app.rom_name.replace( ".nes", ".cdl" ) );
+	let response = await fetch( "static/data/nes/" + app.rom_name.replace( ".nes", ".cdl" ) );
 
 	if ( response.ok ) {
 		let blob = await response.blob();
@@ -13,7 +13,7 @@ export async function code_draw() {
 
 	let text = "";
 
-	text = "<thead><th>#<th>Data<th>CDL<th>Label<th colspan=2>Op/Mode<th>A<th>X<th>Y<th>Description<tbody>";
+	text = "<thead><th>#<th>Data<th>CDL<th>Label<th colspan=2>Op/Mode<th>A<th>X<th>Y><th>CZIVN<th>Description<th>Stack<tbody>";
 
 	// let at_nmi   = app.nes.cpu.get_2( 0xFFFA );
 	// let at_reset = app.nes.cpu.get_2( 0xFFFC );
@@ -88,12 +88,16 @@ export async function code_draw() {
 			let a = "";
 			let x = "";
 			let y = "";
+			let czivn = "";
+			let stack = "";
 
 			if ( cdl_data ) {
 				if ( cdl_data[i] & 0b00000001 ) {
 					a = "--";
 					x = "--";
 					y = "--";
+					stack = "--";
+					czivn = "-----"
 				}
 			}
 
@@ -103,7 +107,9 @@ export async function code_draw() {
 				"<td>" + mode +
 				"<td>" + a +
 				"<td>" + x +
-				"<td>" + y;
+				"<td>" + y +
+				"<td>" + czivn +
+				"<td>" + stack;
 		}
 	}
 

@@ -1,13 +1,13 @@
 "use strict";
 
-import { ppu_vram    } from "/static/script/nes/ppu/vram.js";
-import { ppu_oam     } from "/static/script/nes/ppu/oam.js";
-import { ppu_control } from "/static/script/nes/ppu/control.js";
-import { ppu_mask    } from "/static/script/nes/ppu/mask.js";
-import { ppu_status  } from "/static/script/nes/ppu/status.js";
-import { ppu_scroll  } from "/static/script/nes/ppu/scroll.js";
-import { ppu_data    } from "/static/script/nes/ppu/data.js";
-import { ppu_bus     } from "/static/script/nes/ppu/bus.js";
+import { ppu_vram    } from "./ppu/vram.js";
+import { ppu_oam     } from "./ppu/oam.js";
+import { ppu_control } from "./ppu/control.js";
+import { ppu_mask    } from "./ppu/mask.js";
+import { ppu_status  } from "./ppu/status.js";
+import { ppu_scroll  } from "./ppu/scroll.js";
+import { ppu_data    } from "./ppu/data.js";
+import { ppu_bus     } from "./ppu/bus.js";
 
 export function ppu() {
     this.latch = 0;
