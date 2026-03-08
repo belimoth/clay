@@ -13,7 +13,7 @@ export async function code_draw() {
 
 	let text = "";
 
-	text = "<thead><th>#<th>Data<th>CDL<th>Label<th colspan=2>Op/Mode<th>A<th>X<th>Y><th>CZIVN<th>Description<th>Stack<tbody>";
+	text = "<thead><th>#<th>Data<th>CDL<th>Label<th colspan=2>Op/Mode<th>A<th>X<th>Y<th>CZIVN<th>Description<th>Stack<tbody>";
 
 	// let at_nmi   = app.nes.cpu.get_2( 0xFFFA );
 	// let at_reset = app.nes.cpu.get_2( 0xFFFC );
@@ -89,6 +89,7 @@ export async function code_draw() {
 			let x = "";
 			let y = "";
 			let czivn = "";
+			let fact  = "";
 			let stack = "";
 
 			if ( cdl_data ) {
@@ -109,6 +110,7 @@ export async function code_draw() {
 				"<td>" + x +
 				"<td>" + y +
 				"<td>" + czivn +
+				"<td>" + fact +
 				"<td>" + stack;
 		}
 	}

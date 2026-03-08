@@ -529,7 +529,20 @@ export function byte_to_asm( byte) {
 }
 
 
-function code_step( pc, byte ) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+export function code_step( pc, byte ) {
 		function update_nz() {
 			self.p_z = value == 0 ? 1 : 0;
 			self.p_n = ( value >> 7 ) & 1;
@@ -591,32 +604,6 @@ function code_step( pc, byte ) {
 
 			stack_push( hi );
 			stack_push( lo );
-		}
-
-		if ( this.interrupt_pending != 0 ) {
-			switch( this.interrupt_pending ) {
-				case INTERRUPT_NMI:
-				push_pc();
-				push_flags();
-				this.pc = this.get_2( 0xfffa );
-				break;
-
-				case INTERRUPT_RESET:
-				push_pc();
-				push_flags();
-				this.pc = this.get_2( 0xfffc );
-				break;
-
-				case INTERRUPT_IRQ:
-				push_pc();
-				push_flags();
-				this.pc = this.get_2( 0xfffe );
-				break;
-			}
-
-			this.interrupt_pending = 0;
-
-			return;
 		}
 
 		var instruction;
@@ -1009,14 +996,6 @@ function code_step( pc, byte ) {
 			cost = 6;
 			break;
 		}
-
-
-		// var [ ppu_x, ppu_y ] = app.nes.ppu.get_xy();
-
-		// this.log = this.log + hex(pc_previous, 4 ) + " ";
-		// this.log = this.log + text_for_instruction( instruction ) + " ";
-		// this.log = this.log + "PPU:" + ( ppu_x + "" ).padStart( 3, " ") + "," + ( ppu_y + "" ).padStart( 3, " " ) + " ";
-		// this.log = this.log + "CYC:" + this.cycles + "\n";
 
 		this.pc = this.pc + size;
 		this.cycles += cost;
