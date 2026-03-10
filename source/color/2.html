@@ -14,18 +14,18 @@
 <link rel=stylesheet href=/static/style/column.css>
 <body>
 
-<div class=main>
-	<div class=column>
-		<div id=panel-list-palette class="panel active">
-			<div class=column-header>Import</div>
+<main>
+	<column>
+		<panel id=panel-list-palette class=active>
+			<column-header>Import</div>
 
-			<div class=panel-body>
+			<panel-body>
 				<ul id=import class=list-palette></ul>
-			</div>
-		</div>
+			</panel-body>
+		</panel>
 
-		<div id=panel-palette class=panel>
-			<div class=column-header><a id=a-back>Import</a> / </div>
+		<panel id=panel-palette>
+			<column-header><a id=a-back>Import</a> / </div>
 
 			<form hidden>
 				<p><label for=input-seed>Seed</label><input id=input-seed type=text value=waugh>
@@ -34,15 +34,15 @@
 			</form>
 
 			<div id=palette class=palette></div>
-		</div>
-	</div>
+		</panel>
+	</column>
 
-	<div class=column>
+	<column>
 		<div id=hue-direct class=hue></div>
 		<div id=xy class=picker></div>
-	</div>
+	</column>
 
-	<div class=column style=width:532px;>
+	<column style=width:532px;>
 		<canvas id=spectrum width=512, height=256></canvas>
 
 		<div style=width:256px;>
@@ -63,8 +63,8 @@
 			<div class=key data-key=shift></div>
 			<div class=key data-key=ctrl></div>
 		</div>
-	</div>
-</div>
+	</column>
+</main>
 
 <div id=offscreen hidden></div>
 

@@ -5,17 +5,17 @@
 <meta name=viewport content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
 <title>pickles/color/mixing-2</title>
 <!-- <link rel=stylesheet href=glyphicons/css/glyphicons.css> -->
-<link rel=stylesheet href=source/s>
-<link rel=stylesheet href=source/static/style/2/style.css>
+<link rel=stylesheet href=static/style/2/reset.css>
+<link rel=stylesheet href=static/style/2/style.css>
 
-<link rel=stylesheet href=/static/style/form.css>
-<link rel=stylesheet href=/static/style/main.css>
-<link rel=stylesheet href=/static/style/list-palette.css>
-<link rel=stylesheet href=/static/style/swatch.css>
-<link rel=stylesheet href=/static/style/column.css>
+<link rel=stylesheet href=static/style/form.css>
+<link rel=stylesheet href=static/style/main.css>
+<link rel=stylesheet href=static/style/list-palette.css>
+<link rel=stylesheet href=static/style/swatch.css>
+<link rel=stylesheet href=static/style/column.css>
 
-<link rel=stylesheet href=/static/style/5/reset.css>
-<link rel=stylesheet href=/static/style/5/style.css>
+<link rel=stylesheet href=static/style/5/reset.css>
+<link rel=stylesheet href=static/style/5/style.css>
 
 <style id=loading>main{opacity:0.0;}</style>
 <style>main{transition:opacity 0.2s linear;}</style>
@@ -23,22 +23,19 @@
 <body>
 
 <main id=main>
-	<div class=column style=width:293px;>
-		<div class=column-header><a>Edit</a><span> / Extract</span><a style="position:absoulte;right:0;">Cancel</a></div>
+	<column style=width:293px;>
+		<column-header><a>Edit</a><span> / Extract</span><a style="position:absoulte;right:0;">Cancel</a></column-header>
 		<form><input id=upload type=file accept=image/png></form>
-	</div>
+	</column>
 
-	<div class=column style=width:293px;>
-		<div id=panel-list-palette class="panel active">
-			<div class=column-header><a>Edit</a><span> / Import</span><a style="position:absoulte;right:0;">Cancel</a></div>
+	<column style=width:293px;>
+		<panel id=panel-list-palette class=active>
+			<column-header><a>Edit</a><span> / Import</span><a style="position:absoulte;right:0;">Cancel</a></column-header>
+			<panel-body><ul id=import class=list-palette></ul></panel-body>
+		</panel>
 
-			<div class=panel-body>
-				<ul id=import class=list-palette></ul>
-			</div>
-		</div>
-
-		<div id=panel-palette class=panel>
-			<div class=column-header><a>Edit</a> / <a id=a-back>Import</a><span> / </span><a style="position:absoulte;right:0;">Cancel</a></div>
+		<panel id=panel-palette>
+			<column-header><a>Edit</a> / <a id=a-back>Import</a><span> / </span><a style="position:absoulte;right:0;">Cancel</a></column-header>
 
 			<form hidden>
 				<p><label for=input-seed>Seed</label><input id=input-seed type=text value=waugh>
@@ -48,15 +45,15 @@
 
 			<!-- <div id=palette class=palette></div> -->
 			<ul id=palette></ul>
-		</div>
-	</div>
+		</panel>
+	</column>
 
-	<div class=column style=width:293px;>
-		<div class=column-header><a>Edit</a><span> / Random</span><a style="position:absoulte;right:0;">Cancel</a></div>
-	</div>
+	<column style=width:293px;>
+		<column-header><a>Edit</a><span> / Random</span><a style="position:absoulte;right:0;">Cancel</a></column-header>
+	</column>
 
-	<div class=column>
-		<div class=column-header><span>Analyze</span><a style="position:absoulte;right:0;">Close</a></div>
+	<column>
+		<column-header><span>Analyze</span><a style="position:absoulte;right:0;">Close</a></column-header>
 		<canvas id=spectrum width=256 height=256></canvas>
 
 		<div style=width:256px;>
@@ -64,13 +61,14 @@
 			<div id=hue-squash class=hue></div>
 			<div id=hue-sat class=hue></div>
 
-			<div class=column-header>Basis image</div>
+			<column-header>Basis image</div>
+
 			<form>
 				<label for=radio-none><input id=radio-none type=radio name=distance value=0>None</label>
 			</form>
 
+			<column-header>Distance function</column-header>
 
-			<div class=column-header>Distance function</div>
 			<form>
 				<label for=radio-none><input id=radio-none type=radio name=distance value=0>None</label>
 				<label for=radio-rgb0><input id=radio-rgb0 type=radio name=distance value=1>R + G + B</label>
@@ -84,10 +82,10 @@
 			<div class=key data-key=shift></div>
 			<div class=key data-key=ctrl></div>
 		</div>
-	</div>
+	</column>
 
-	<div class=column>
-		<div class=column-header><span>Swatch</span><a style="position:absoulte;right:0;">Close</a></div>
+	<column>
+		<column-header><span>Swatch</span><a style="position:absoulte;right:0;">Close</a></column-header>
 
 		<div id=swatch-0 class=swatch></div>
 
@@ -111,7 +109,7 @@
 		<div id=hue-direct class=hue style="margin-bottom:8px;"></div>
 		<div id=xy class=picker></div>
 
-	</div>
+	</column>
 </main>
 
 <div id=offscreen hidden></div>
