@@ -15,7 +15,7 @@ ul.tab-list {
 	z-index: 1;
 }
 
-main.layer-full > div.column-right > ul.tab-list {
+main.layer-full > side > ul.tab-list {
 	display: flex;
 }
 

@@ -15,15 +15,15 @@ export function canvas( el ) {
 	this.el_canvas.style.top  = padding + "px";
 	this.el_canvas.style.left = padding + "px";
 
-	const m = 4;
+	this.m = 4;
 
 	this.resize = function() {
 		this.x = this.el_canvas.getBoundingClientRect().left;
 		this.y = this.el_canvas.getBoundingClientRect().top;
 
 		this.scale = Math.max( 1, Math.min(
-			Math.floor( ( el.offsetWidth  - padding * 2 ) / app.file.width  / m ) * m,
-			Math.floor( ( el.offsetHeight - padding * 2 ) / app.file.height / m ) * m,
+			Math.floor( ( el.offsetWidth  - padding * 2 ) / app.file.width  / this.m ) * this.m,
+			Math.floor( ( el.offsetHeight - padding * 2 ) / app.file.height / this.m ) * this.m,
 		));
 
 		var width  = app.file.width  * this.scale;
@@ -47,3 +47,10 @@ export function screen_to_canvas( p ) {
 		y : Math.floor( p.y * window.devicePixelRatio / s ),
 	};
 }
+
+
+document.getElementById( "a-zoom-inc" ).addEventListener( function ( event ) {
+	app.ui.canvas.m = app.ui.canvas.m + 1;
+	console.log( app.ui.canvas.m );
+	app.ui.canvas.resize();
+});

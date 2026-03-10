@@ -1,27 +1,68 @@
-@import "static/style/reset.css";
-@import "static/style/paint/icon_hack.css";
+@import "../reset.css";
+@import "./icon_hack.css";
 
-@import "static/style/layout.css";
-@import "static/style/paint/canvas.css";
+@import "../layout.css";
+@import "./canvas.css";
 
-@import "static/style/paint/list_tool.css";
-@import "static/style/paint/list_layer.css";
-@import "static/style/paint/list_tab.css";
+@import "./list_tool.css";
+@import "./list_layer.css";
+@import "./list_tab.css";
 
-@import "static/style/paint/scrubber.css";
-@import "static/style/paint/panel.css";
-@import "static/style/paint/scrollbar.css";
+@import "./scrubber.css";
+@import "./panel.css";
+@import "./scrollbar.css";
 
-@import "static/style/paint/palette.css";
-@import "static/style/top.css";
+@import "./palette.css";
+@import "../top.css";
 
-@import "static/style/paint/theme.css";
+@import "./theme.css";
 
-@import "static/style/paint/list_history.css";
+@import "./list_history.css";
 
-@import "static/style/paint/wip.css";
+@import "./wip.css";
 
 
 top > t {
 	padding: 0 8px;
+}
+
+
+a {
+    padding: 0 8px;
+}
+
+panel-header {
+	padding: 0 8px;
+
+	height: 32px;
+	line-height: 32px;
+}
+
+menu,
+side {
+	background: #FFF;
+}
+
+
+menu {
+	width: 240px;
+}
+
+body {
+    grid-template-columns: 240px 1fr 240px;
+    grid-template-rows: 32px 1fr;
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+}
+
+main > panel-body {
+	flex-grow: 1;
+	overflow: scroll;
+}
+
+panel-header {
+	padding: 0;
 }

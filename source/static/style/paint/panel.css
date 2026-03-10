@@ -7,8 +7,8 @@ panel-header {
 	padding-right: 0;
 	padding: 0;
 
-	height: 42px;
-	line-height: 40px;
+	height: 32px;
+	line-height: 30px;
 
 	border: 0 solid #666;
 	border-width: 1px 0;
@@ -20,27 +20,8 @@ panel-header > div:first-child {
 	padding: 0 16px;
 }
 
-panel-header > a {
-	width: 47px;
-	height: 40px;
-	line-height: 40px;
-	text-align: center;
-}
-
-panel-header > a > div.a-inner {
-	pointer-events: none;
-
-	padding-left: 2px;
-	padding-top: 2.5px;
-
-	height: 40px;
-
-	opacity: 0.9;
-}
-
-panel-header > a:not( [disabled] ).hover > div.a-inner,
-panel-header > a:not( [disabled] ):not( .mute ):hover  > div.a-inner,
-panel-header > a:not( [disabled] ):not( .mute ):active > div.a-inner {
+panel-header > a:not( [disabled] ):not( .mute ):hover,
+panel-header > a:not( [disabled] ):not( .mute ):active {
 	background: #000;
 	color: #FFF;
 
@@ -51,15 +32,21 @@ panel-header > a[disabled]:hover > div.a-inner {
 	/* background: #F2F2F2; */
 }
 
-panel-header > a:not( [disabled] ):not( .mute ):active > div.a-inner {
+panel-header > a:not( [disabled] ):not( .mute ):active {
 	transform: scale( 0.95 );
 }
 
-panel-header > a.mute:not(.hover) > div.a-inner {
+panel-header > a.mute:not(.hover) {
 	background: #FFF;
 	color: #444;
 }
 
 panel-header > a > div.a-inner > span {
 	font-size: 20px;
+}
+
+
+panel-header > a {
+	padding: 0 8px;
+	line-height: 30px;
 }

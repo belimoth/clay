@@ -139,5 +139,6 @@ export function palette( el ) {
 		i = ( i + Math.sign( event.deltaY ) + select.length ) % select.length;
 		palette.set_active( select[i] );
 		if ( isSolo ) { palette.set_select([ select[i] ]); }
+		app.toRepaint = true;
 	});
 }

@@ -10,7 +10,7 @@ history_el.addEventListener( "mouseover", function( event ) {
 		var i = history_el.children.length - Array.from( history_el.children ).indexOf( event.target.closest( "li" ) ) - 1;
 		app.history_item = app.file.history.filter( el => el.i == i )[0];
 		$$( "panel.panel-tools > ul.tool-list > li" )[ app.history_item.tool_index  ].classList.add( "hover" );
-		$$( "panel.column-right ul.layer-list > li" )[ app.history_item.layer_index ].classList.add( "hover" );
+		$$( "side ul.layer-list > li" )[ app.history_item.layer_index ].classList.add( "hover" );
 
 		app.toRepaint = true;
 	} else {

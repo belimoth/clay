@@ -21,17 +21,17 @@ canvas.thumb {
 	float: left;
 }
 
-main.layer-full > div.column-right > panel-body > ul.layer-list {
+main.layer-full > side > panel-body > ul.layer-list {
 	position: absolute;
 	overflow-y: hidden;
 }
 
-main.layer-full > div.column-right > panel-body  > ul.layer-list.active {
+main.layer-full > side > panel-body  > ul.layer-list.active {
 	width: calc( 100% - 12px );
 	height: 100%;
 }
 
-main.layer-full > div.column-right > panel-body  > ul.layer-list:not( .active ) {
+main.layer-full > side > panel-body  > ul.layer-list:not( .active ) {
 	opacity: 0;
 }
 
@@ -86,12 +86,12 @@ ul.layer-list > li > a:active {
 	z-index: 1;
 }
 
-main.layer-focus > div.column-right > panel-body  > ul.layer-list:not( .active ) {
+main.layer-focus > side > panel-body  > ul.layer-list:not( .active ) {
 	opacity: 0.0;
 }
 
-main.layer-full  > div.column-right > panel-body  > ul.layer-list > li.h,
-main.layer-focus > div.column-right > panel-body  > ul.layer-list > li.h {
+main.layer-full  > side > panel-body  > ul.layer-list > li.h,
+main.layer-focus > side > panel-body  > ul.layer-list > li.h {
 	opacity: 0.0;
 }
 
@@ -251,7 +251,7 @@ ul.layer-list > li > a > canvas.thumb {
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-div.column-right ul.layer-list {
+side ul.layer-list {
 	/* padding: 2px; */
 	padding-top: 5px;
 
@@ -261,7 +261,7 @@ div.column-right ul.layer-list {
 	padding-top: 3px;
 }
 
-div.column-right div.box {
+side div.box {
 	width: 219px;
 	box-shadow: none;
 }
@@ -273,7 +273,7 @@ ul.layer-list > li.active::before {
 	width: 8px;
 }
 
-div.column-right ul.layer-list > li {
+side ul.layer-list > li {
 	margin-top: 0;
 }
 

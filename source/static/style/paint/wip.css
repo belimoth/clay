@@ -34,7 +34,7 @@ panel.panel-canvas > panel-body {
 	height: calc( 100% - 42px );
 }
 
-main.layer-full > div.column-right > panel-body > panel-header {
+main.layer-full > side > panel-body > panel-header {
 	display: none;
 }
 
@@ -102,11 +102,11 @@ panel.panel-canvas > panel-header {
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-main.layer-full > div.column-right > panel-body > panel {
+main.layer-full > side > panel-body > panel {
 	overflow: visible;
 }
 
-main.layer-full > div.column-right > panel-body > panel:not( .active ) {
+main.layer-full > side > panel-body > panel:not( .active ) {
 	display: none;
 }
 
@@ -120,11 +120,11 @@ panel-body > panel {
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-main.layer-full > div.column-right {
+main.layer-full > side {
 	overflow: visible;
 }
 
-main.layer-full > div.column-right > panel-body {
+main.layer-full > side > panel-body {
 	overflow-y: scroll;
 	overflow-x: hidden;
 }
@@ -219,7 +219,7 @@ main.layer-full panel.panel-menu {
 	/* opacity: 0.0; */
 }
 
-main.layer-full div.column-right {
+main.layer-full side {
 	display: none;
 }
 
@@ -389,11 +389,11 @@ panel-body > panel.panel-layer > panel-body {
 	overflow-y: scroll;
 }
 
-div.column-right div.box {
+side div.box {
     width: 216px;
 }
 
-div.column-right > panel-body {
+side > panel-body {
     margin-top: 0;
 }
 
@@ -402,11 +402,6 @@ main.layer-focus ul.layer-list > li:not( .selected ) {
 }
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-body {
-	display: flex;
-	flex-direction: column;
-}
 
 body.app-overlay-show main {
 	pointer-events: none;
@@ -437,11 +432,11 @@ main.layer-full panel.panel-full {
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-div.column-right div.box {
+side div.box {
 	display: none;
 }
 
-div.column-right ul.layer-list {
+side ul.layer-list {
 	padding-left: 16px;
 	padding-right: 0;
 }
