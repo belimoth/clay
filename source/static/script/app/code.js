@@ -2,14 +2,14 @@
 import {byte_to_asm } from "../nes/6502.js";
 
 export async function code_draw() {
-	let cdl_data = {};
+	let cdl_data = null;
 
 	let response = await fetch( "static/data/nes/" + app.rom_name.replace( ".nes", ".cdl" ) );
 
 	if ( response.ok ) {
 		let blob = await response.blob();
 		cdl_data = new Uint8Array( await blob.arrayBuffer() );
-	}
+	} else return;
 
 	let text = "";
 
@@ -23,10 +23,6 @@ export async function code_draw() {
 	let at_reset = app.nes.cpu.get_2( 0xFFFC ) - 0xC000;
 	let at_irq   = app.nes.cpu.get_2( 0xFFFE ) - 0xC000;
 
-	console.log( at_nmi  .toString( 16 ).toUpperCase().padStart( 4, "0 " ) );
-	console.log( at_reset.toString( 16 ).toUpperCase().padStart( 4, "0 " ) );
-	console.log( at_irq  .toString( 16 ).toUpperCase().padStart( 4, "0 " ) );
-
 	let span = 0;
 
 	// prg
@@ -35,51 +31,43 @@ export async function code_draw() {
 		if ( span > 1 ) {
 			span -= 1;
 		} else {
-			let el = app.nes.cart.rom_data[ i ];
+			let el = app.nes.cart.rom_data[i];
 
 			let el_class= "";
-			let fact    = "";
+
+			let cdl = cdl_data[i].toString(2).padStart( 8, "0" );
 
 			text +=
-			"<tr class=" + el_class + ">" +
-			"<td>" + i.toString(16).toUpperCase().padStart( 4, "0" ) +
-			"<td>0x" + el.toString(16).toUpperCase().padStart( 2, "0" );
+				"<tr class=" + el_class + ">" +
+				"<td>" + i.toString(16).toUpperCase().padStart( 4, "0" ) +
+				"<td>" + cdl +
+				"<td>" + el.toString(16).toUpperCase().padStart( 2, "0" );
 
 			let at      = "";
 			let size = 1;
 
-			let cdl   = "";
-			let cdl_b = "";
+
 
 			let code = "";
 			let mode = "";
 
-			if ( cdl_data ) {
-				cdl = "0x" + cdl_data[i].toString(16).toUpperCase().padStart( 2, "0" );
-				cdl_b = "0b" + cdl_data[i].toString(2).padStart( 8, "0" );
 
-				if ( cdl_data[i] & 0b00000001 ) {
-					[ code, mode, size ] = byte_to_asm( el );
-					span = size;
-				}
+
+			if ( cdl_data[i] & 0b00000001 ) {
+				[ code, mode, size ] = byte_to_asm( el );
+				span = size;
 			}
 
 			if ( size > 1 ) {
 				for ( let j = 1; j < size; j++ ) {
 					let el_next = app.nes.cart.rom_data[ i + j ];
-					text  += " 0x" + el_next.toString(16).toUpperCase().padStart( 2, "0" );
+					text  += " " + el_next.toString(16).toUpperCase().padStart( 2, "0" );
 				}
 			}
-
-			text +=
-				// "<td class=cdl>" + cdl +
-				"<td> " + cdl_b;
 
 			if ( i == at_nmi   ) at = "<a id=nmi>NMI</a>";
 			if ( i == at_reset ) at = "<a id=reset>Reset</a>";
 			if ( i == at_irq   ) at = "<a id=irq>IRQ</a>";
-
-			console.log( ( ( 0xFFFA - 0x8000 ) & ( app.nes.cart.rom.prg_size - 1 ) ).toString(16).toUpperCase()  );
 
 			if ( i == ( ( 0xFFFA - 0x8000 ) & ( app.nes.cart.rom.prg_size - 1 ) ) ) at = "<a href=#nmi>#NMI</a>"
 			if ( i == ( ( 0xFFFC - 0x8000 ) & ( app.nes.cart.rom.prg_size - 1 ) ) ) at = "<a href=#reset>#Reset</a>"
@@ -92,14 +80,21 @@ export async function code_draw() {
 			let fact  = "";
 			let stack = "";
 
-			if ( cdl_data ) {
-				if ( cdl_data[i] & 0b00000001 ) {
-					a = "--";
-					x = "--";
-					y = "--";
-					stack = "--";
-					czivn = "-----"
+			if ( cdl_data[i] & 0b00000001 ) {
+				a = "--";
+				x = "--";
+				y = "--";
+				stack = "--";
+				czivn = "-----"
+			} else {
+				let j = 1;
+
+				while( cdl_data[ i + j ] == cdl_data[i] && j < 16 ) {
+					text += " " + app.nes.cart.rom_data[ i + j ].toString(16).toUpperCase().padStart( 2, "00" );
+					j++;
 				}
+
+				i = i + j - 1;
 			}
 
 			text +=
