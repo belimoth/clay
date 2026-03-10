@@ -1,10 +1,10 @@
 "use strict";
 
-import { tool_all }                 from "static/script/paint/main/tool.js";
-import { palette }                  from "static/script/paint/main/ui/palette.js";
-import { canvas, screen_to_canvas } from "static/script/paint/main/ui.js";
-import { layer }                    from "static/script/paint/main/ui/layer.js";
-import { storage }                  from "static/script/paint/session.js";
+import { tool_all }                 from "./main/tool.js";
+import { palette }                  from "./main/ui/palette.js";
+import { canvas, screen_to_canvas } from "./main/ui.js";
+import { layer }                    from "./main/ui/layer.js";
+import { storage }                  from "./session.js";
 
 import "../app/top.js"
 
@@ -226,7 +226,7 @@ var firstRender = true;
 var context;
 
 export function app_draw() {
-	if ( waitingOn > 0 ) { console.log( "waiting" ); return; }
+	if ( waitingOn > 0 ) { return; }
 
 	var w = app.file.width;
 	var h = app.file.height;

@@ -1,27 +1,27 @@
 "use strict";
 
-import "static/script/paint/reset.js"
-import "static/script/paint/color.js"
+import "./reset.js"
+import "./color.js"
 
-import "static/script/paint/main/ui.js"
-import "static/script/paint/main/tool.js"
+import "./main/ui.js"
+import "./main/tool.js"
 
-import "static/script/paint/main/ui/scrubber.js"
-import "static/script/paint/main/ui/tool.js"
-import "static/script/paint/main/ui/layout.js"
-import "static/script/paint/main/ui/palette.js"
-import "static/script/paint/main/ui/layer.js"
-import "static/script/paint/main/ui/history.js"
+import "./main/ui/scrubber.js"
+import "./main/ui/tool.js"
+import "./main/ui/layout.js"
+import "./main/ui/palette.js"
+import "./main/ui/layer.js"
+import "./main/ui/history.js"
 
-import "static/script/paint/app.js"
-import "static/script/paint/wip.js"
-import "static/script/paint/session.js"
+import "./app.js"
+import "./wip.js"
+import "./session.js"
 
-import { app, app_draw } from "./app.js";
+import { app, app_draw }     from "./app.js";
 import { update_layer_mode } from "./main/ui/layout.js";
-import { update_tool_mode } from "./main/ui/layout.js";
-import { tool_init } from "./main/ui/tool.js";
-import { time_format } from "./time.js"
+import { update_tool_mode }  from "./main/ui/layout.js";
+import { tool_init }         from "./main/ui/tool.js";
+import { time_format }       from "./time.js"
 
 
 const fps = 60;

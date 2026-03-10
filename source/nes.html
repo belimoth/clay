@@ -112,7 +112,7 @@
 	<page id=page-rom-info>
 		<h><a id=a-rom-info-back>ROM</a><t>/ ROM Name</t></h>
 		<dl id=rom-info></dl>
-		<h>CDL</h>
+		<h><t>CDL</t><a>Download</a></h>
 		<dl id=cdl-info></dl>
 	</page>
 </menu>
@@ -148,9 +148,295 @@
 		</display>
 	</page>
 
-	<page>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<page id=page-main-learn>
+		<h>NES Motherboard Overview</h>
+		<div class=board-view>
+			<svg id=board-view viewbox=0,0,15,15 preserveAspectRatio=xMinYMin>
+				<defs>
+					<marker id=arrow-end markerWidth=7 markerHeight=7 refX=1 refY=1.5 orient=auto markerUnits=strokeWidth>
+						<path d=M0,0,L0,3,L2,1.5z />
+					</marker>
+
+					<marker id=arrow-start markerWidth=7 markerHeight=7 refX=1 refY=1.5 orient=auto markerUnits=strokeWidth>
+						<path d=M2,0,L2,3,L0,1.5z />
+					</marker>
+				</defs>
+
+				<rect id=box-apu       x=3  y=10 width=4  height=2  />
+				<rect id=box-oam       x=8  y=10 width=4  height=2  />
+				<rect id=box-cpu       x=1  y=7  width=6  height=2  />
+				<rect id=box-ppu       x=8  y=7  width=6  height=2  />
+				<rect id=box-wram      x=3  y=4  width=4  height=2  />
+				<rect id=box-vram      x=8  y=4  width=4  height=2  />
+				<rect id=box-cartridge x=1  y=1  width=13 height=2  />
+
+				<text id=label-input     x=2   y=14>Input    </text>
+				<text id=label-audio     x=5   y=14>Audio    </text>
+				<text id=label-video     x=13  y=14>Video    </text>
+				<text id=label-apu       x=5   y=11>APU      </text>
+				<text id=label-oam       x=10  y=11>OAM      </text>
+				<text id=label-cpu       x=4   y=8 >CPU      </text>
+				<text id=label-ppu       x=11  y=8 >PPU      </text>
+				<text id=label-wram      x=5   y=5 >WRAM     </text>
+				<text id=label-vram      x=10  y=5 >VRAM     </text>
+				<text id=label-cartridge x=7.5 y=2 >Cartridge</text>
+
+				<line id=wire-vram-to-cartridge x1=10 y1=4  x2=10 y2=3  />
+				<line id=wire-ppu-to-cartridge  x1=13 y1=7  x2=13 y2=3  />
+				<line id=wire-cpu-to-cartridge  x1=2  y1=7  x2=2  y2=3  />
+				<line id=wire-ppu-to-vram       x1=10 y1=7  x2=10 y2=6  />
+				<line id=wire-cpu-to-wram       x1=5  y1=6  x2=5  y2=7  />
+				<line id=wire-cpu-to-ppu        x1=7  y1=8  x2=8  y2=8  />
+				<line id=wire-ppu-to-oam        x1=10 y1=10 x2=10 y2=9  />
+				<line id=wire-cpu-to-apu        x1=5  y1=10 x2=5  y2=9  />
+				<line id=wire-ppu-to-video      x1=13 y1=13 x2=13 y2=9  />
+				<line id=wire-apu-to-audio      x1=5  y1=13 x2=5  y2=12 />
+				<line id=wire-cpu-to-input      x1=2  y1=13 x2=2  y2=9  />
+			</svg>
+
+			<div>
+				<ul>
+					<li id=a-stage-1 class=stage-1>The CPU reads code and data from the cartridge
+					<li id=a-stage-2 class=stage-2>The CPU reads button input from attached gamepads
+					<li id=a-stage-3 class=stage-3>The CPU writes and reads variables to and from WRAM
+					<li id=a-stage-4 class=stage-4>The CPU writes sound &amp; music data to the APU
+					<li id=a-stage-5 class=stage-5>The CPU writes sprite data to OAM, via the PPU
+					<li id=a-stage-6 class=stage-6>The CPU writes background data to VRAM, via the PPU
+					<li id=a-stage-7 class=stage-7>The PPU reads sprite data from OAM
+					<li id=a-stage-8 class=stage-8>The PPU reads background data from VRAM
+					<li id=a-stage-9 class=stage-9>The PPU reads graphics data from the cartridge
+					<li id=a-stage-A class=stage-A>The PPU renders video output
+					<li id=a-stage-B class=stage-B>The APU renders audio output
+				</ul>
+			</div>
+		</div>
+
+<script>
+var board = document.getElementById( "board-view" ).parentElement;
+var stage;
+
+function setStage( value ) {
+	stage = parseInt( value );
+
+	board.classList.remove( "stage-0" );
+	board.classList.remove( "stage-1" );
+	board.classList.remove( "stage-2" );
+	board.classList.remove( "stage-3" );
+	board.classList.remove( "stage-4" );
+	board.classList.remove( "stage-5" );
+	board.classList.remove( "stage-6" );
+	board.classList.remove( "stage-7" );
+	board.classList.remove( "stage-8" );
+	board.classList.remove( "stage-9" );
+	board.classList.remove( "stage-A" );
+	board.classList.remove( "stage-B" );
+	board.classList.add( "stage-" + value.toString(16).toUpperCase() );
+}
+
+setStage( 1 );
+
+document.getElementById( "a-stage-1" ).addEventListener( "click", function( event ) { setStage( 0x1 ) });
+document.getElementById( "a-stage-2" ).addEventListener( "click", function( event ) { setStage( 0x2 ) });
+document.getElementById( "a-stage-3" ).addEventListener( "click", function( event ) { setStage( 0x3 ) });
+document.getElementById( "a-stage-4" ).addEventListener( "click", function( event ) { setStage( 0x4 ) });
+document.getElementById( "a-stage-5" ).addEventListener( "click", function( event ) { setStage( 0x5 ) });
+document.getElementById( "a-stage-6" ).addEventListener( "click", function( event ) { setStage( 0x6 ) });
+document.getElementById( "a-stage-7" ).addEventListener( "click", function( event ) { setStage( 0x7 ) });
+document.getElementById( "a-stage-8" ).addEventListener( "click", function( event ) { setStage( 0x8 ) });
+document.getElementById( "a-stage-9" ).addEventListener( "click", function( event ) { setStage( 0x9 ) });
+document.getElementById( "a-stage-A" ).addEventListener( "click", function( event ) { setStage( 0xA ) });
+document.getElementById( "a-stage-B" ).addEventListener( "click", function( event ) { setStage( 0xB ) });
+
+</script>
+
+
+		<h>CPU Memory Map</h>
+
+		<table>
+			<tr><td>0000 - 07FF<td>WRAM
+			<tr><td>0800 - 1FFF<td>Mirror #0000 - #07FF
+			<tr><td>2000 - 2007<td>PPU registers
+			<tr><td>2008 - 3FFF<td>Mirror #2000 - #2007
+			<tr><td>4000 - 401F<td>APU and input registers
+			<tr><td>4020 - FFFF<td>Cartridge
+		</table>
+
+
+		<h>PPU registers</h>
+
+		<table>
+			<tr><td rowspan=7>2000<td rowspan=7>Control     <td rowspan=7>W <td rowspan=7>0123 4566<td> 0 - NMI enable
+																							   <tr><td> 1 - PPU master/slave
+																							   <tr><td> 2 - sprite height
+																							   <tr><td> 3 - background tile select
+																							   <tr><td> 4 - sprite tile select
+																							   <tr><td> 5 - increment mode
+																							   <tr><td> 6 - nametable select / X and Y scroll bit 8
+			<tr><td rowspan=8>2001<td rowspan=8>Mask        <td rowspan=8>W <td rowspan=8>0123 4567<td>0 - Emphasize Blue
+																							   <tr><td>1 - Emphasize Green (NTSC)/Red (PAL)
+																							   <tr><td>2 - Emphasize Red (NTSC)/Green (PAL)
+																							   <tr><td>3 - Sprite enable
+																							   <tr><td>4 - Background enable
+																							   <tr><td>5 - sprite left column enable (M)
+																							   <tr><td>6 - background left column enable (m)
+																							   <tr><td>7 - greyscale
+			<tr><td rowspan=4>2002<td rowspan=4>Status      <td rowspan=4>R <td rowspan=4>012- ----<td>0 - Vblank
+																							   <tr><td>1 - Sprite 0 hit
+																							   <tr><td>2 - Sprite overflow
+																							   <tr><td>Read resets write for #2005 and #2006
+			<tr><td rowspan=1>2003<td rowspan=1>OAM Address <td rowspan=1>W <td rowspan=1>0000 0000<td>0 - Address
+			<tr><td rowspan=1>2004<td rowspan=1>OAM Data    <td rowspan=1>RW<td rowspan=1>0000 0000<td>0 - Data
+			<tr><td rowspan=2>2005<td rowspan=2>Scroll      <td rowspan=2>WW<td rowspan=1>0000 0000<td>0 - X Scroll bits 0-7
+																		<tr><td rowspan=1>1111 1111<td>1 - Y Scroll bits 0-7
+			<tr><td rowspan=2>2006<td rowspan=2>VRAM Address<td rowspan=2>WW<td rowspan=1>--00 0000<td>0 - Address hi
+																		<tr><td rowspan=1>1111 1111<td>1 - Address lo
+			<tr><td rowspan=1>2007<td rowspan=1>VRAM Data   <td rowspan=1>RW<td rowspan=1>0000 0000<td>0 - Data
+			<tr><td rowspan=1>4014<td rowspan=1>OAM DMA     <td rowspan=1>W <td rowspan=1>0000 0000<td>0 - OAM DMA address hi
+		</table>
+
+		<h>APU registers</h>
+
+		<table>
+			<tr><td rowspan=4>4000<td rowspan=4>W <td rowspan=4>0012 3333<td>0 - Pulse channel 1 duty
+																	 <tr><td>1 - Pulse channel 1 loop / length counter halt
+																	 <tr><td>2 - Pulse channel 1 volume / envelope mode
+																	 <tr><td>3 - Pulse channel 1 volume / envelope value
+			<tr><td rowspan=4>4001<td rowspan=4>W <td rowspan=4>0111 2333<td>0 - Pulse channel 1 Sweep enabled
+																	 <tr><td>1 - Pulse channel 1 Sweep period
+																	 <tr><td>2 - Pulse channel 1 Sweep negate
+																	 <tr><td>3 - Pulse channel 1 Sweep shift
+			<tr><td rowspan=1>4002<td rowspan=1>W <td rowspan=1>0000 0000<td>0 - Pulse channel 1 Timer lo
+			<tr><td rowspan=2>4003<td rowspan=2>W <td rowspan=2>0000 0111<td>0 - Pulse channel 1 Length counter load
+																	 <tr><td>1 - Pulse channel 1 Timer hi
+			<tr><td rowspan=4>4004<td rowspan=4>W <td rowspan=4>0012 3333<td>0 - Pulse channel 2 duty
+																	 <tr><td>1 - Pulse channel 2 loop / length counter halt
+																	 <tr><td>2 - Pulse channel 2 volume / envelope mode
+																	 <tr><td>3 - Pulse channel 2 volume / envelope value
+			<tr><td rowspan=4>4005<td rowspan=4>W <td rowspan=4>0111 2333<td>0 - Pulse channel 2 sweep enabled
+													                 <tr><td>1 - Pulse channel 2 sweep period
+													                 <tr><td>2 - Pulse channel 2 sweep negate
+													                 <tr><td>3 - Pulse channel 2 sweep shift
+			<tr><td rowspan=1>4006<td rowspan=1>W <td rowspan=1>0000 0000<td>0 - Pulse channel 2 timer lo
+			<tr><td rowspan=2>4007<td rowspan=2>W <td rowspan=2>0000 0111<td>0 - Pulse channel 2 length counter load
+													                 <tr><td>1 - Pulse channel 2 timer hi
+			<tr><td rowspan=2>4008<td rowspan=2>W <td rowspan=2>0111 1111<td>0 - Triangle channel linear counter control / length counter halt
+													                 <tr><td>1 - Triangle channel linear counter load
+			<tr><td rowspan=1>4009<td rowspan=1>W <td rowspan=1>---- ----<td>Unused
+			<tr><td rowspan=1>400A<td rowspan=1>W <td rowspan=1>0000 0000<td>0 - Triangle channel timer lo
+			<tr><td rowspan=3>400B<td rowspan=3>W <td rowspan=3>0000 0111<td>0 - Triangle channel length counter load
+													                 <tr><td>1 - Triangle channel timer hi
+													                 <tr><td>Write sets linear counter load flag
+			<tr><td rowspan=3>400C<td rowspan=3>W <td rowspan=3>--01 2222<td>0 - Noise channel loop / length counter halt
+													                 <tr><td>1 - Noise channel volume / envelope mode
+													                 <tr><td>2 - Noise channel volume / envelope value
+			<tr><td rowspan=1>400D<td rowspan=1>W <td rowspan=1>---- ----<td>Unused
+			<tr><td rowspan=2>400E<td rowspan=2>W <td rowspan=2>0--- 1111<td>0 - Noise channel mode
+													                 <tr><td>1 - Noise channel period
+			<tr><td rowspan=1>400F<td rowspan=1>W <td rowspan=1>0000 0---<td>0 - Noise channel length counter load
+			<tr><td rowspan=3>4010<td rowspan=3>W <td rowspan=3>01-- 2222<td>0 - DMC channel IRQ enable
+				                                                     <tr><td>1 - DMC channel loop
+				                                                     <tr><td>2 - DMC channel frequency
+			<tr><td rowspan=1>4011<td rowspan=1>W <td rowspan=1>-000 0000<td>0 - DMC channel load counter
+			<tr><td rowspan=1>4012<td rowspan=1>W <td rowspan=1>0000 0000<td>0 - DMC channel sample address
+			<tr><td rowspan=1>4013<td rowspan=1>W <td rowspan=1>0000 0000<td>0 - DMC channel sample length
+			<tr><td rowspan=5>4015<td rowspan=5>R <td rowspan=5>---0 1234<td>0 - Enable DMC (D),
+																		 <tr><td>1 - Noise channel enable
+																	 <tr><td>2 - Triangle channel enable
+																	 <tr><td>3 - Pulse channel 2 enable
+																	 <tr><td>4 - Pulse channel 1 enable
+			<tr><td rowspan=7>4015<td rowspan=7>W <td rowspan=7>01-2 3456<td>0 - DMC channel interrupt
+																	 <tr><td>1 - Frame interrupt
+																	 <tr><td>2 - DMC channel active
+																	 <tr><td>3 - Noise channel length counter check
+																	 <tr><td>4 - Triangle channel length counter check
+																	 <tr><td>5 - Pulse channel 2 length counter check
+																	 <tr><td>6 - Pulse channel 1 length counter check
+
+			<tr><td rowspan=1>4017<td rowspan=1><td>Frame counter
+		</table>
+
+		<h>Input registers</h>
+
+		<table>
+			<tr><td>4016<td>R<td>Gamepad 1 data
+			<tr><td>4016<td>W<td>Gamepad strobe
+			<tr><td>4017<td>
+		</table>
 	</page>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	<tray>
 		<ol id=tray-tab>

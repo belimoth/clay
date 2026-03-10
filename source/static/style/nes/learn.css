@@ -1,0 +1,367 @@
+.board-view svg {
+	width: 481px;
+	height: 481px;
+	padding: 0.5px;
+}
+
+@media (max-width: 767px) {
+	.board-view svg {
+		width: calc(100vw - 32px);
+		height: calc(100vw - 32px);
+	}
+}
+
+.board-view svg>rect {
+	fill: #000;
+	stroke: #FFF;
+	stroke-width: calc(1px / 32);
+}
+
+.board-view svg text {
+	fill: #FFF;
+	font-size: 0.5px;
+	height: 1px;
+	dominant-baseline: middle;
+	text-anchor: middle;
+}
+
+@media (max-width: 767px) {
+	.board-view svg text {
+		font-size: 0.75px;
+	}
+}
+
+.board-view svg line {
+	stroke: #BBB;
+	stroke-width: 0.25;
+}
+
+#arrow-end,
+#arrow-start {
+	fill: #0AC;
+}
+
+.stage-1 #box-cpu, .stage-1 #box-cartridge,
+.stage-2 #box-cpu,
+.stage-3 #box-cpu, .stage-3 #box-wram,
+.stage-4 #box-cpu, .stage-4 #box-apu,
+.stage-5 #box-cpu, .stage-5 #box-ppu, .stage-5 #box-oam,
+.stage-6 #box-cpu, .stage-6 #box-ppu, .stage-6 #box-vram,
+.stage-7 #box-ppu, .stage-7 #box-oam,
+.stage-8 #box-ppu, .stage-8 #box-vram, .stage-8 #box-cartridge,
+.stage-9 #box-ppu, .stage-9 #box-cartridge,
+.stage-A #box-ppu,
+.stage-B #box-apu {
+	stroke: #0AC;
+}
+
+
+
+
+
+
+.stage-7 #wire-ppu-to-oam
+.stage-8 #wire-ppu-to-vram,
+
+.stage-9 #wire-ppu-to-cartridge,
+.stage-A #wire-apu-to-audio,
+ {
+
+}
+
+
+.stage-2 #wire-cpu-to-input,
+.stage-3 #wire-cpu-to-wram,
+.stage-5 #wire-cpu-to-ppu,
+.stage-6 #wire-cpu-to-ppu,
+.stage-6 #wire-ppu-to-vram,
+.stage-7 #wire-ppu-to-oam,
+null {
+	stroke: #0AC;
+	marker-end: url(#arrow-end);
+}
+
+.stage-1 #wire-cpu-to-cartridge,
+.stage-4 #wire-cpu-to-apu,
+.stage-3 #wire-cpu-to-wram,
+.stage-5 #wire-ppu-to-oam,
+.stage-8 #wire-vram-to-cartridge,
+.stage-8 #wire-ppu-to-vram,
+.stage-9 #wire-ppu-to-cartridge,
+.stage-A #wire-ppu-to-video,
+.stage-B #wire-apu-to-audio,
+null {
+	stroke: #0AC;
+	marker-start: url(#arrow-start);
+}
+
+.stage-0 li.stage-0,
+.stage-1 li.stage-1,
+.stage-2 li.stage-2,
+.stage-3 li.stage-3,
+.stage-4 li.stage-4,
+.stage-5 li.stage-5,
+.stage-6 li.stage-6,
+.stage-7 li.stage-7,
+.stage-8 li.stage-8,
+.stage-9 li.stage-9,
+.stage-A li.stage-A,
+.stage-B li.stage-B {
+	color: #0AC;
+}
+
+svg.board-view {
+	border:
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+div.board-view {
+	display: flex;
+	margin-top: 40px;
+}
+
+@media (max-width: 767px) {
+	div.board-view {
+		flex-direction: column;
+		margin-top: 16px;
+	}
+}
+
+.board-view>div {
+	position: relative;
+	flex-grow: 1;
+	margin-left: -1px;
+	border: 1px solid #444;
+	padding: 32px;
+}
+
+@media (max-width: 767px) {
+	.board-view>div {
+		margin: 0;
+		margin-top: -1px;
+		height: calc(50vw - 16px);
+		padding: 16px;
+		font-size: 14px;
+	}
+}
+
+.board-view>div>form {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	display: flex;
+	height: 40px;
+	line-height: 40px;
+	width: calc(100% + 1px);
+	margin-bottom: 0;
+	color: #0AC;
+	margin-bottom: -1px;
+	background: #FFF;
+}
+
+.board-view>div>form>label,
+.board-view>div>form>button {
+	height: 100%;
+	border: 1px solid #444;
+	margin-left: -1px;
+}
+
+.board-view>div>form>input:not(:checked)+label:not(:disabled):focus,
+.board-view>div>form>input:not(:checked)+label:not(:disabled):active,
+.board-view>div>form>button:not(:disabled):focus,
+.board-view>div>form>button:not(:disabled):active {
+	position: relative;
+	z-index: 3;
+	background: #CCEEF5;
+	border-color: #0AC;
+	outline: 2px solid #FFF;
+}
+
+@media (min-width: 768px) {
+
+	.board-view>div>form>input:not(:checked)+label:not(:disabled):hover,
+	.board-view>div>form>button:not(:disabled):hover {
+		position: relative;
+		z-index: 3;
+		background: #CCEEF5;
+		border-color: #0AC;
+		outline: 2px solid #FFF;
+	}
+}
+
+.board-view>div>form>label {
+	flex-basis: 100%;
+	border-color: #444 transparent;
+}
+
+.board-view>div>form>button {
+	flex-basis: 200%;
+}
+
+.board-view>div>form>button[disabled] {
+	color: #AAA;
+	pointer-events: none;
+	background: transparent;
+}
+
+@media (max-width: 767px) {
+	.board-view>div>form>button:first-of-type {
+		border-right-color: transparent;
+	}
+
+	.board-view>div>form>button:last-of-type {
+		border-left-color: transparent;
+	}
+}
+
+
+input[type=radio] {
+	display: none;
+}
+
+.board-view>div>form>label {
+	position: relative;
+	text-align: center;
+	line-height: 38px;
+}
+
+@media (max-width: 767px) {
+	.board-view>div>form>label {
+		display: none;
+	}
+}
+
+.board-view>div>form>label::before {
+	content: "";
+	display: block;
+	height: 24px;
+	position: absolute;
+	width: calc(100% + 2px);
+	top: 8px;
+	left: -1px;
+	border: 0 solid #0AC;
+	border-width: 0 1px;
+}
+
+@media (max-width: 767px) {
+	.board-view>div>form>label::before {
+		border-left-color: #444;
+		border-right-color: #444;
+	}
+}
+
+@media (min-width: 768px) {
+	.board-view>div>form>label:first-of-type::before {
+		border-left-color: transparent;
+	}
+
+	.board-view>div>form>label:last-of-type::before {
+		border-right-color: transparent;
+	}
+}
+
+.board-view>div>form>input:checked+label {
+	pointer-events: none;
+}
+
+@media (min-width: 768px) {
+	.board-view>div>form>input:checked+label {
+		color: #FFF;
+		background: #0AC;
+		border-color: #0AC;
+		z-index: 2;
+		outline: 2px solid #FFF;
+	}
+}
+
+@media (max-width: 767px) {
+	.board-view>div>form>input:checked+label {
+		display: block;
+		font-family: monospace;
+	}
+
+	.board-view>div>form>input:checked+label::after {
+		content: "/6";
+	}
+}
+
+/*# sourceMappingURL=../static/styles/board-view.scss.css.map */
+
+
+
+
+div.board-view {
+	margin-top: 0;
+}
+
+
+div.board-view a:hover,
+div.board-view a:active {
+	background: none;
+	color: #FFF;
+	transform: none;
+}
+
+
+div.board-view li {
+	cursor: pointer;
+}
+
+div.board-view {
+	overflow: hidden;
+}
+
+page#page-main-learn table {
+	margin: 0 8px;
+	border: 1px solid currentColor;
+}
+
+page#page-main-learn table td {
+	line-height: 18px;
+}
+
+tr::after {
+	/* content: "";
+	display: table-cell;
+	width: 50%; */
+}
+
+page#page-main-learn[active] {
+	display: block;
+}
+
+table {
+	border-collapse: collapse;
+
+}
+
+table  td {
+	text-wrap: nowrap;
+	padding: 0 8px;
+}
+
+page#page-main-learn table tr td  {
+	border: 0 solid currentColor;
+	border-width: 1px 0;
+}

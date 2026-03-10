@@ -3,7 +3,7 @@
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-document.getElementById( "column-right" ).addEventListener( "wheel", function( event ) {
+document.getElementById( "side" ).addEventListener( "wheel", function( event ) {
 	// todo only capture if there is overflow(active scrollbar) maybe
 	event.stopPropagation();
 });

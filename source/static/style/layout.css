@@ -1,37 +1,16 @@
 top {
 	display: flex;
-	height: 36px;
-	line-height: 36px;
-	padding-right: 16px;
+	padding: 0 16px;
 }
 
 top > div.spacer {
 	flex-grow: 1;
 }
 
-top {
-	padding: 0 16px;
-}
-
 
 main {
-	position: relative;
-
-	width: 100vw;
-	height: calc( 100vh - 36px );
-
 	border-top: 1px solid #666;
-
 	overflow: hidden;
-}
-
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-main > * {
-	position: absolute;
-	height: 100%;
-	top: 0;
 }
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
@@ -72,7 +51,7 @@ main.layer-full > panel.panel-canvas {
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-main.layer-full > div.column-right {
+main.layer-full > side {
 	left: calc( 48px + 155px );
 	border-left: 0;
 	overflow-y: scroll;
@@ -80,13 +59,13 @@ main.layer-full > div.column-right {
 
 
 
-div.column-right > panel-body > panel {
+side > panel-body > panel {
 	transform: translateX( 0 );
 	transition: transform 0.2s ease, width 0.2s ease;
 }
 
 
-main.layer-full > div.column-right > panel-body > panel {
+main.layer-full > side > panel-body > panel {
 	margin-left: 24px;
 	transform: translateX( -24px );
 	transition: transform 0.2s ease-out 0.0s;
@@ -95,7 +74,7 @@ main.layer-full > div.column-right > panel-body > panel {
 	overflow: hidden;
 }
 
-div.column-right > ul.tab-list {
+side > ul.tab-list {
 	margin-left: 0;
 	display: flex;
 	opacity: 0.0;
@@ -114,45 +93,45 @@ ul.tab-list > li > a {
 	/* margin-right: -1px; */
 }
 
-main.layer-full > div.column-right > ul.tab-list {
+main.layer-full > side > ul.tab-list {
 	opacity: 1.0;
 	transform: translateX( 0px );
 	transition: transform 0.2s ease-out 0.0s;
 	pointer-events: auto;
 }
 
-div.column-right > ul.tab-list > li.spacer ~ li {
+side > ul.tab-list > li.spacer ~ li {
 	transform: translateX( -24px );
 }
 
-main.layer-full > div.column-right > ul.tab-list > li.spacer ~ li {
+main.layer-full > side > ul.tab-list > li.spacer ~ li {
 	transform: translateX( 0 );
 	transition: transform 0.2s ease-out 0.0s;
 }
 
-div.column-right {
+side {
 	/* background: #FFF; */
 	background: rgba( 255, 255, 255, 0.8 );
 }
 
 
-div.column-right > panel-body {
+side > panel-body {
 	margin-top: -41px;
 }
 
-main.layer-full > div.column-right > panel-body {
+main.layer-full > side > panel-body {
 	margin-top: 0;
 }
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-main.layer-focus > div.column-right {
+body.focus side {
 	left: calc( 100vw - 48px );
 }
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-div.column-right {
+side {
 	width: calc( 100vw );
 	width: calc( 100vw - 155px - 48px );
 	overflow: hidden;
@@ -160,17 +139,13 @@ div.column-right {
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-panel-body {
-	height: 100%;
-}
-
-main.layer-full > div.column-right > panel-body {
+main.layer-full > side > panel-body {
 	margin-right: -24px;
 }
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-div.column-right {
+side {
 	display: block;
 }
 
@@ -232,28 +207,28 @@ main.layer-normal > panel.panel-canvas {
 
 }
 
-main.layer-full > div.column-right {
+main.layer-full > side {
     left: 240px;
 	width: calc( 100vw - 240px );
 }
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-div.column-right {
+side {
 	left: calc( 100vw - 240px );
 	width: 240px;
 
 	border-left: 1px solid #666;
 }
 
-div.column-right {
+side {
 	display: flex;
 	flex-direction: column;
 }
 
-/* main.layer-full > div.column-right, */
-main.layer-full > div.column-right > panel-body,
-main.layer-full > div.column-right > panel-body > panel {
+/* main.layer-full > side, */
+main.layer-full > side > panel-body,
+main.layer-full > side > panel-body > panel {
 	width: 100%;
 }
 
@@ -265,6 +240,129 @@ panel.panel-menu > panel-body > panel {
 	overflow: hidden;
 }
 
-main.layer-focus > div.column-right > panel-body > panel-header > div:first-child {
+body.focus side > panel-body > panel-header {
 	display: none;
+}
+
+
+side {
+	display: flex;
+	flex-direction: column;
+}
+
+side > panel-body > panel {
+	flex-grow: 1;
+}
+
+
+
+
+side > *
+side > * > * {
+	display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+body {
+    overflow: hidden;
+}
+
+top {
+    height: 32px;
+    border-bottom: 1px solid currentColor;
+    display: flex;
+}
+
+menu, side, main {
+    border: 0 solid currentColor;
+    border-width: 0 1px;
+}
+
+main {
+    overflow: hidden;
+    min-width: 1024px;
+}
+
+menu > page,
+side > page,
+column > page {
+    /* margin: 0 -8px; */
+    /* padding: 0 8px; */
+}
+
+menu > page > ul#rom {
+    /* margin: 0 -8px; */
+    overflow-y:scroll;
+
+}
+
+side {
+    min-width: 530px;
+    max-width: 530px;
+}
+
+side {
+    overflow: hidden;
+}
+
+
+h {
+	padding-left: 8px;
+}
+
+
+
+
+
+
+body {
+    display: grid;
+}
+
+body {
+	width: 100%;
+
+    display: grid;
+    grid-template-columns: 340px 1fr 530px;
+    grid-template-rows: 32px 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+top  { grid-area: 1 / 1 / 2 / 6; }
+menu { grid-area: 2 / 1 / 3 / 2; }
+main { grid-area: 2 / 2 / 3 / 3; }
+side { grid-area: 2 / 3 / 3 / 4; }
+
+side {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 32px 1fr;
+}
+
+menu, side {
+    border-width: 0;
 }

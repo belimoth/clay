@@ -371,7 +371,7 @@ export function apu() {
 		this.frequency = ( 1789773 / 16 ) / this.period_target;
 
 		if ( this.frequency != this.frequency_previous ) {
-			wave_node.frequency.value = this.frequency;
+			wave_node.frequency.value = Math.min( Math.max( this.frequency, -24000 ), 24000 );
 		}
 
 		if ( this.duty != this.duty_previous ) {

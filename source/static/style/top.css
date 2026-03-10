@@ -89,3 +89,15 @@ top > img {
 top {
 	z-index: 100;
 }
+
+/* traffic */
+
+traffic {
+    flex-grow: 1;
+    display: flex;
+}
+
+traffic::before {
+    content: "";
+    flex-grow: 1;
+}

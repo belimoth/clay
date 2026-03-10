@@ -3,9 +3,10 @@
 @import "canvas.css";
 @import "../top.css";
 
-@import "layout.css";
+@import "../layout.css";
 @import "theme.css";
 
+@import "learn.css";
 
 
 div#drop {
@@ -117,7 +118,6 @@ body.fullscreen, body.focus main {
     border: 0;
 }
 
-body.focus main h,
 body.focus main tray {
     display: none;
 }
@@ -402,15 +402,7 @@ input[type=checkbox] {
 
 
 
-traffic {
-    flex-grow: 1;
-    display: flex;
-}
 
-traffic::before {
-    content: "";
-    flex-grow: 1;
-}
 
 ul#rom > li > a::before {
     content: attr( data-label );
@@ -702,4 +694,58 @@ div#drop::before {
     display: block;
     line-height: 50px;
     text-align: center;
+}
+
+
+
+
+main > page > h {
+    padding-left: 8px;
+}
+
+page#page-main-learn {
+    overflow-y: scroll;
+}
+
+
+page#page-main-code > div {
+    flex-grow: 1;
+}
+
+dl {
+    width: calc( 100% - 8px );
+    border: none;
+}
+
+menu > page > h:not(:first-child) {
+    border-top: 1px solid currentColor;
+    margin-left: -8px;
+    padding-left: 8px;
+}
+
+dl > dt {
+    padding: 0;
+}
+
+
+body.focus > main > page {
+    height: calc(100% - 32px);
+}
+
+
+page#page-main-learn table {
+    font-family: 'Consolas', 'Courier New', Courier, monospace;
+}
+
+table td {
+    vertical-align: top;
+}
+
+
+page#page-main-code {
+    -webkit-user-select: text; user-select: text;
+}
+
+page#page-main-code table {
+    border-collapse: separate;
 }
