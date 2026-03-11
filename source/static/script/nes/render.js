@@ -42,6 +42,8 @@ var [ canvas_tiles , context_tiles  ] = get_context_for_id( "layer-tiles"      )
 var [ canvas_display, context_display ] = get_context_for_id( "display" );
 var [ canvas_chr_total, context_chr_total ] = get_context_for_id( "chr-total" );
 
+var [ canvas_oam, context_oam ] = get_context_for_id( "oam" );
+
 function render_chr() {
     var canvas  = canvas_chr;
     var context = context_chr;
@@ -378,6 +380,13 @@ export function render_crt() {
     context_display.drawImage( canvas_spr_bg, 0, 0 );
     context_display.drawImage( canvas_tiles,  0, 0 );
     context_display.drawImage( canvas_spr_fg, 0, 0 );
+
+    //
+
+    context_oam.clearRect( 0, 0, 256, 240 );
+    context_oam.drawImage( canvas_spr_bg, 0, 0 )
+    context_oam.drawImage( canvas_spr_fg, 0, 0 )
+
 
     //
 

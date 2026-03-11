@@ -5,7 +5,6 @@ ul.tool-list > li > a {
 	position: relative;
 	height: 40px;
 	line-height: 40px;
-	padding-left: 48px;
 	border-left: 4px solid transparent;
 }
 
@@ -17,7 +16,7 @@ ul.tool-list > li > a:hover {
 	background: #F2F2F2;
 }
 
-ul.tool-list > li.selected > a {
+ul.tool-list > li.active > a {
 	border-left-color: #F6E;
     background: #F2F2F2;
     color: #F6E;
@@ -36,7 +35,7 @@ ul.tool-list > li > a:not( [disabled] ):active {
 /* 0.2.3 */
 /* 0.3.3 */
 
-ul.tool-list > li.selected > a,
+ul.tool-list > li.active > a,
 ul.tool-list > li > a:not( [disabled] ):active {
 	background: #FFD1FA;
 	color: #000;
@@ -56,12 +55,12 @@ ul.tool-list > li > a[disabled] {
 
 /* TODO move .active to <a> */
 
-ul.tool-list > li:not( .selected )        > a:not( [disabled] ):active,
+ul.tool-list > li:not( .active )        > a:not( [disabled] ):active,
 ul.tool-list > li.active                  > a:not( [disabled] ) {
 	transform: scale( 0.98 );
 }
 
-ul.tool-list > li:not( .selected ) > a:not( [disabled] ):hover {
+ul.tool-list > li:not( .active ) > a:not( [disabled] ):hover {
 	background: #FFE8FC;
 }
 
@@ -80,12 +79,12 @@ main.tools-focus panel.panel-menu ul.tool-list > li > a {
 
 /* 0.5.3 */
 
-ul.tool-list > li:not( .selected ) > a:not( [disabled] ):hover:active {
+ul.tool-list > li:not( .active ) > a:not( [disabled] ):hover:active {
 	background: #FFD1FA;
 	color: #000;
 }
 
-ul.tool-list.mute > li:not( .selected ) > a:hover:not( :active ) {
+ul.tool-list.mute > li:not( .active ) > a:hover:not( :active ) {
 	background: #FFF;
 }
 
@@ -99,15 +98,6 @@ main.tools-focus panel.panel-menu ul.tool-list > li        > a:not( [disabled] )
 main.tools-focus panel.panel-menu ul.tool-list > li.active > a:not( [disabled] ) {
 	transform: scale( 0.95 );
 }
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-
-
-
-
-
-
 
 
 
@@ -140,15 +130,22 @@ ul.tool-list > li > a[data-label]::after {
 	/* right: 16px; */
 	/* bottom: 2px; */
 	/* font-size: 8px; */
-	float: right;
 	text-align: center;
 	/* font-weight: 500; */
 	/* opacity: 0.5; */
+	padding-left: 8px;
 
 	text-transform: uppercase;
 }
 
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+ul.tool-list > li > a[data-label]::after {
+	display: none;
+}
+
+
+
+
+
 
 ul.tool-list > li {
 	border: 0 solid transparent;
@@ -159,7 +156,10 @@ ul.tool-list > li.first {
 	border-top-color: #444;
 }
 
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+
+
+
 
 main.layer-full > div.menu > ul.tool-list {
 	opacity: 0.0;
@@ -169,43 +169,15 @@ main.layer-full > div.menu > ul.tool-list {
 
 ul.tool-list {
 	border-bottom: 1px solid #666;
+	text-wrap: nowrap;
+	text-align: center;
 }
 
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-ul.tool-list > li > a > span[class^="icon-"] {
-	position: absolute;
-	left: 0px;
-}
 
-ul.tool-list > li > a > span.icon-plus,
-ul.tool-list > li > a > span.icon-plus + span {
-	padding: 0;
-	position: absolute;
-}
 
-ul.tool-list > li > a > span.icon-plus {
-	font-size: 16px;
-	width: 16px;
 
-	top: 6px;
-	left: 4px;
-}
 
-ul.tool-list > li > a > span.icon-plus + span {
-	font-size: 20px;
-	width: 20px;
-
-	top: 12px;
-	left: 16px;
-}
-
-ul.tool-list > li > a > span.icon-plus::before,
-ul.tool-list > li > a > span.icon-plus + span::before {
-	padding: 0;
-}
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 main.tools-focus panel.panel-menu > panel-body {
 	width: 47px;
@@ -216,26 +188,26 @@ ul.tool-list:last-of-type {
 	border-bottom-color: transparent;
 }
 
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-ul.tool-list > li > a > span.icon-pencil + span.icon-eyedropper::before {
-	padding: 0;
-}
 
-ul.tool-list > li > a > span.icon-pencil + span.icon-eyedropper {
-	width: 16px;
-	height: 16px;
-	font-size: 14px;
-	left: 22px;
-	top: 18px;
-}
 
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
 
 ul.tool-list {
 	padding: 1px 0;
 }
 
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+
+
+
+
+ul.tool-list {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+ul.tool-list > li {
+	min-width: 0;
+}

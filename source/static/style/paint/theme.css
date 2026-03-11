@@ -57,7 +57,7 @@ li.b {
 	color: #C00;
 }
 
-panel.panel-canvas > panel-header {
+panel.panel-canvas > h {
     border-color: #666;
 }
 
@@ -90,7 +90,7 @@ main > * {
 	background: #FFF;
 }
 
-main.mute-active ul > li.active > a {
+body.mute-active ul > li.active > a {
 	background: #FFF;
 	color: #444;
 }

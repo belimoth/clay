@@ -59,7 +59,7 @@ ul.layer-list {
 }
 
 ul.layer-list {
-	width: 240px;
+	width: 260px;
 	/* overflow-x: hidden;
 	overflow-y: scroll; */
 }
@@ -86,7 +86,7 @@ ul.layer-list > li > a:active {
 	z-index: 1;
 }
 
-main.layer-focus > side > panel-body  > ul.layer-list:not( .active ) {
+body.focus ul.layer-list:not( .active ) {
 	opacity: 0.0;
 }
 
@@ -115,7 +115,7 @@ ul.layer-list > li > a {
 }
 
 ul.layer-list > li > a:first-child {
-	/* width: 240px; */
+	/* width: 260px; */
 	flex-grow: 1;
 }
 

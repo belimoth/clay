@@ -27,7 +27,7 @@ panel.panel-menu {
 }
 
 panel.panel-menu {
-	width: 240px;
+	width: 260px;
 }
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
@@ -37,9 +37,8 @@ panel.panel-canvas {
 	overflow: hidden;
 }
 
-main.layer-full   > panel.panel-canvas,
-main.layer-normal > panel.panel-canvas { width: calc( 100vw - 155px - 48px - 240px ); }
-main.layer-focus  > panel.panel-canvas { width: calc( 100vw - 240px -  48px        ); }
+main.layer-normal > panel.panel-canvas { width: calc( 100vw - 155px - 48px - 260px ); }
+main.layer-focus  > panel.panel-canvas { width: calc( 100vw - 260px - 48px         ); }
 main.layer-hidden > panel.panel-canvas { width: calc( 100vw - 155px - 48px -   0px ); }
 
 main.layer-full > panel.panel-canvas {
@@ -109,12 +108,6 @@ main.layer-full > side > ul.tab-list > li.spacer ~ li {
 	transition: transform 0.2s ease-out 0.0s;
 }
 
-side {
-	/* background: #FFF; */
-	background: rgba( 255, 255, 255, 0.8 );
-}
-
-
 side > panel-body {
 	margin-top: -41px;
 }
@@ -155,7 +148,7 @@ panel-body {
 }
 
 div.history {
-	width: 240px;
+	width: 260px;
 	flex-grow: 1;
 	display: flex;
 }
@@ -169,7 +162,7 @@ div.history > ul.layer-list {
 panel-body > panel {
 	border-top: 1px solid #666;
 	margin-top: -1px;
-	width: 240px;
+	width: 260px;
 	height: 50%;
 	flex-grow: 1;
 
@@ -197,26 +190,26 @@ panel.panel-history > ul {
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 panel.panel-canvas {
-	left: 240px;
+	left: 260px;
 }
 
 main.layer-full   > panel.panel-canvas,
 main.layer-normal > panel.panel-canvas {
-	width: calc( 100vw - 240px - 240px );
-    left: 240px;
+	width: calc( 100vw - 260px - 260px );
+    left: 260px;
 
 }
 
 main.layer-full > side {
-    left: 240px;
-	width: calc( 100vw - 240px );
+    left: 260px;
+	width: calc( 100vw - 260px );
 }
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 side {
-	left: calc( 100vw - 240px );
-	width: 240px;
+	left: calc( 100vw - 260px );
+	width: 260px;
 
 	border-left: 1px solid #666;
 }
@@ -240,7 +233,7 @@ panel.panel-menu > panel-body > panel {
 	overflow: hidden;
 }
 
-body.focus side > panel-body > panel-header {
+body.focus side > panel-body > h {
 	display: none;
 }
 
@@ -320,8 +313,8 @@ menu > page > ul#rom {
 }
 
 side {
-    min-width: 530px;
-    max-width: 530px;
+    min-width: 516px;
+    max-width: 516px;
 }
 
 side {
@@ -346,7 +339,7 @@ body {
 	width: 100%;
 
     display: grid;
-    grid-template-columns: 340px 1fr 530px;
+    grid-template-columns: 260px 1fr 260px;
     grid-template-rows: 32px 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;

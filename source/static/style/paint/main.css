@@ -31,7 +31,7 @@ a {
     padding: 0 8px;
 }
 
-panel-header {
+h {
 	padding: 0 8px;
 
 	height: 32px;
@@ -45,11 +45,11 @@ side {
 
 
 menu {
-	width: 240px;
+	width: 260px;
 }
 
 body {
-    grid-template-columns: 240px 1fr 240px;
+    grid-template-columns: 260px 1fr 260px;
     grid-template-rows: 32px 1fr;
 }
 
@@ -63,6 +63,92 @@ main > panel-body {
 	overflow: scroll;
 }
 
-panel-header {
+h {
 	padding: 0;
+}
+
+
+
+
+menu > page:not(:first-child) {
+	border-top: 1px solid currentColor;
+}
+
+menu > page {
+	display: block;
+}
+
+h {
+	display: block;
+	line-height: 32px;
+}
+
+
+side {
+	display: flex;
+	flex-direction: column;
+}
+
+li {
+	position: relative;
+}
+
+
+li > a[data-label]::after {
+	content: "(" attr( data-label ) ")";
+	position: absolute;
+	right: 0;
+	line-height: inherit;
+	padding-right: 8px;
+	top: 0;
+}
+
+h {
+	display: flex;
+	max-width: 260px;
+}
+
+h[data-label]::after {
+	content: "(" attr( data-label ) ")";
+	padding-right: 8px;
+	text-align: right;
+	flex-grow: 1;
+	min-width: 0;
+}
+
+
+
+
+
+
+
+
+
+
+body.focus {
+	grid-template-columns: 40px 1fr 40px;
+	grid-template-rows: 1fr;
+}
+
+body.focus top {
+	display: none;
+}
+
+
+body.focus menu h {
+	display: none;
+}
+
+body.focus menu ul.tool-list {
+	display: flex;
+	flex-direction: column;
+}
+
+body.focus menu ul.tool-list > li > a[data-label]::before {
+	content: attr( data-label );
+	display: block;
+}
+
+body {
+	-webkit-user-select: none; user-select: none;
 }

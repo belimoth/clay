@@ -1,23 +1,18 @@
 "use strict";
 
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-document.getElementById( "side" ).addEventListener( "wheel", function( event ) {
-	// todo only capture if there is overflow(active scrollbar) maybe
-	event.stopPropagation();
-});
+import { app} from "./app.js"
 
 // TODO similar for canvas
 
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+document.getElementById( "menu" ).addEventListener( "wheel", function( event ) {
+	// todo only capture if there is overflow(active scrollbar) maybe
+	event.stopPropagation();
+});
 
 document.getElementById( "a-export" ).addEventListener( "click", function( event ) {
 	document.getElementById( "download" ).href = app.context.render.canvas.toDataURL( "image/png" ).replace( "image/png", "application/octet-stream" );
 	document.getElementById( "download" ).click();
 });
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 function replay() {
 	app.toRewind = true;

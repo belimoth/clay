@@ -87,10 +87,10 @@ function rom_info_draw() {
 	add_fact( "NES 2.0",   [ "no", "yes" ][ app.nes.rom.is_nes_2 ] );
 	add_fact( "PRG size",  ( app.nes.rom.prg_banks * 16 + "" ).padStart( 2, " " ) + " KiB" );
 	add_fact( "CHR size",  ( app.nes.rom.chr_banks *  8 + "" ).padStart( 2, " " ) + " KiB" );
-	add_fact( "PRG RAM",   app.nes.rom.prg_ram_size   + " bytes" );
-	add_fact( "PRG NVRAM", app.nes.rom.prg_nvram_size + " bytes" );
-	add_fact( "CHR RAM",   app.nes.rom.chr_ram_size   + " bytes" );
-	add_fact( "CHR NVRAM", app.nes.rom.chr_nvram_size + " bytes" );
+	add_fact( "PRG RAM",   app.nes.rom.prg_ram_size   + " B" );
+	add_fact( "PRG NVRAM", app.nes.rom.prg_nvram_size + " B" );
+	add_fact( "CHR RAM",   app.nes.rom.chr_ram_size   + " B" );
+	add_fact( "CHR NVRAM", app.nes.rom.chr_nvram_size + " B" );
 	add_fact( "Mirroring", mirror_names[ app.nes.rom.mirroring ] );
 	add_fact( "Battery",   [ "no", "yes" ][ app.nes.rom.has_battery ] );
 	add_fact( "Trainer",   [ "no", "yes" ][ app.nes.rom.has_trainer ] );

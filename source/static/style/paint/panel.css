@@ -1,4 +1,4 @@
-panel-header {
+h {
 	flex-shrink: 0;
 	display: flex;
 
@@ -15,38 +15,38 @@ panel-header {
 	border-color: transparent;
 }
 
-panel-header > div:first-child {
+h > div:first-child {
 	flex-grow: 1;
 	padding: 0 16px;
 }
 
-panel-header > a:not( [disabled] ):not( .mute ):hover,
-panel-header > a:not( [disabled] ):not( .mute ):active {
+h > a:not( [disabled] ):not( .mute ):hover,
+h > a:not( [disabled] ):not( .mute ):active {
 	background: #000;
 	color: #FFF;
 
 	opacity: 1.0;
 }
 
-panel-header > a[disabled]:hover > div.a-inner {
+h > a[disabled]:hover > div.a-inner {
 	/* background: #F2F2F2; */
 }
 
-panel-header > a:not( [disabled] ):not( .mute ):active {
+h > a:not( [disabled] ):not( .mute ):active {
 	transform: scale( 0.95 );
 }
 
-panel-header > a.mute:not(.hover) {
+h > a.mute:not(.hover) {
 	background: #FFF;
 	color: #444;
 }
 
-panel-header > a > div.a-inner > span {
+h > a > div.a-inner > span {
 	font-size: 20px;
 }
 
 
-panel-header > a {
+h > a {
 	padding: 0 8px;
 	line-height: 30px;
 }

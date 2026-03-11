@@ -99,3 +99,13 @@ app.tool_mode_index = app.storage.get( "app.mode.tool" ) || 2;
 update_tool_mode();
 
 tool_init();
+
+async function get_keyboard_layout() {
+	let map = await navigator.keyboard.getLayoutMap();
+
+	map.forEach( function( el, i ) {
+
+	});
+}
+
+get_keyboard_layout();

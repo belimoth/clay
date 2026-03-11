@@ -34,7 +34,7 @@ panel.panel-canvas > panel-body {
 	height: calc( 100% - 42px );
 }
 
-main.layer-full > side > panel-body > panel-header {
+main.layer-full > side > panel-body > h {
 	display: none;
 }
 
@@ -45,7 +45,7 @@ main.layer-full > side > panel-body > panel-header {
 
 
 
-panel.panel-canvas > panel-header {
+panel.panel-canvas > h {
     margin-left: 2px;
     padding-left: 14px;
     margin-right: -1px;
@@ -65,8 +65,8 @@ main.tools-focus > panel.panel-menu {
 	width: 48px;
 }
 
-main.tools-focus > panel.panel-menu > panel-body > panel-header > div:first-child,
-main.tools-focus > panel.panel-menu > panel-body > panel-header > div:first-child + a {
+main.tools-focus > panel.panel-menu > panel-body > h > div:first-child,
+main.tools-focus > panel.panel-menu > panel-body > h > div:first-child + a {
 	display: none;
 }
 
@@ -74,7 +74,7 @@ main.tools-focus > panel.panel-menu > panel-body > panel-header > div:first-chil
 
 main.tools-focus > panel.panel-canvas {
 	left: 48px;
-	width: calc( 100vw - 48px - 240px );
+	width: calc( 100vw - 48px - 260px );
 }
 
 main.tools-focus.layer-focus > panel.panel-canvas {
@@ -88,14 +88,14 @@ main.tools-focus.layer-focus > panel.panel-canvas {
 	border: 4px solid #FFF;
 }
 
-panel.panel-canvas > panel-header {
+panel.panel-canvas > h {
     margin-left: 4px;
     padding-left: 12px;
 } */
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-panel.panel-canvas > panel-header {
+panel.panel-canvas > h {
     margin-left: 0;
     padding-left: 16px;
 }
@@ -131,11 +131,11 @@ main.layer-full > side > panel-body {
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-panel-header > a[disabled] {
+h > a[disabled] {
 	color: #AAA;
 }
 
-panel-header > a.mute[disabled] > div.a-inner {
+h > a.mute[disabled] > div.a-inner {
 	color: #AAA;
 }
 
@@ -163,7 +163,7 @@ panel.panel-canvas {
 	padding-right: 0;
 }
 
-panel.panel-canvas > panel-header {
+panel.panel-canvas > h {
 	margin-right: 0;
 }
 
@@ -173,14 +173,14 @@ panel.panel-canvas > panel-body {
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-panel.panel-canvas panel-header > a > div.a-inner {
+panel.panel-canvas h > a > div.a-inner {
 	/* padding-top: 9.5px; */
 	/* padding-left: 1px; */
 	padding-left: 0;
 	padding-top: 4px;
 }
 
-panel-header > a > div.a-inner {
+h > a > div.a-inner {
 	padding-top: 4px;
 }
 
@@ -191,15 +191,15 @@ body.window-full main {
 	height: calc( 100vh + 1px );
 }
 
-panel.panel-canvas > panel-header {
+panel.panel-canvas > h {
 	padding-left: 0;
 }
 
-panel-header > a:not( :last-child ) {
+h > a:not( :last-child ) {
 	margin-right: 2px;
 }
 
-panel.panel-canvas panel-header > div:first-child {
+panel.panel-canvas h > div:first-child {
 	flex-grow: 0;
 }
 
@@ -262,7 +262,7 @@ body {
 	position: absolute;
 	left: 0;
 	top: 36px;
-	width: 240px;
+	width: 260px;
 	height: calc( 100vh - 36px );
 	background: #FFF;
 	border-top: 1px solid #666;
@@ -284,23 +284,23 @@ body.app-overlay-show > top > ul.menu-list > li:first-child > a > div.a-inner {
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 
-main.mute-active ul.layer-list > li.active::before,
-main.mute-active ul > li.active > a::before {
+body.mute-active ul.layer-list > li.active::before,
+body.mute-active ul > li.active > a::before {
 	opacity: 0.0;
 }
 
-main.mute-active ul.tool-list > li.active > a {
+body.mute-active ul.tool-list > li.active > a {
 	border-left-color: transparent;
 }
 
-main.mute-active div.box {
+body.mute-active div.box {
 	opacity: 0.0;
 }
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-main.mute-active ul.tool-list > li.hover > a,
-main.mute-active ul.layer-list > li.hover > a {
+body.mute-active ul.tool-list > li.hover > a,
+body.mute-active ul.layer-list > li.hover > a {
 	background: #FFE8FC;
 	/* background: #FFD1FA; */
 }
@@ -397,8 +397,8 @@ side > panel-body {
     margin-top: 0;
 }
 
-main.layer-focus ul.layer-list > li:not( .selected ) {
-	display: none;
+body.focus ul.layer-list > li:not( .selected ) {
+	/* display: none; */
 }
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
@@ -432,7 +432,7 @@ main.layer-full panel.panel-full {
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-side div.box {
+menu div.box {
 	display: none;
 }
 
@@ -464,4 +464,17 @@ panel.panel-full {
 
 panel.panel-full {
 	transform: translateX( 24px );
+}
+
+
+
+
+
+
+
+
+
+
+ul.layer-list > li {
+	position: relative;
 }

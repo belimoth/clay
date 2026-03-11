@@ -6,22 +6,22 @@ var history_el = document.getElementById( "history" );
 
 history_el.addEventListener( "mouseover", function( event ) {
 	if ( event.target.closest( "a" ) ) {
-		document.getElementById( "main" ).classList.add( "mute-active" );
+		document.body.classList.add( "mute-active" );
 		var i = history_el.children.length - Array.from( history_el.children ).indexOf( event.target.closest( "li" ) ) - 1;
 		app.history_item = app.file.history.filter( el => el.i == i )[0];
-		$$( "panel.panel-tools > ul.tool-list > li" )[ app.history_item.tool_index  ].classList.add( "hover" );
+		$$( "page#page-tool ul.tool-list > li" )[ app.history_item.tool_index  ].classList.add( "hover" );
 		$$( "side ul.layer-list > li" )[ app.history_item.layer_index ].classList.add( "hover" );
 
 		app.toRepaint = true;
 	} else {
-		document.getElementById( "main" ).classList.remove( "mute-active" );
+		document.body.classList.remove( "mute-active" );
 		app.history_item = null;
 		app.toRepaint = true;
 	}
 });
 
 history_el.addEventListener( "mouseleave", function( event ) {
-	document.getElementById( "main" ).classList.remove( "mute-active" );
+	document.body.classList.remove( "mute-active" );
 	app.history_item = null;
 	app.toRepaint = true;
 });

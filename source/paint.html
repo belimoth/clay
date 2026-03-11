@@ -35,12 +35,12 @@
 				<li><a disabled>Paste</a>
 				<li><a disabled>Delete</a>
 			</ul>
-		<li><a>View</a>
+		<li hidden><a>View</a>
 		<li><a disabled>Help</a>
 	</ul>
 
 	<traffic>
-		<a id=f9>Zoom to actual size (F9)</a>
+		<a id=f9 >Zoom to actual size (F9)</a>
 		<a id=f10>Zoom to fit (F10)</a>
 		<a id=f11>Fullscreen (F11)</a>
 		<a id=f12>Focus (F12)</a>
@@ -48,43 +48,45 @@
 </top>
 
 <menu id=menu class=panel-menu>
-	<panel-body>
-		<div>Tools & Palette</div>
+	<h>Layers</h>
 
-		<panel class=panel-tools>
-			<ul class=tool-list>
-				<li class=active><a><span class=icon-pen></span><b>Outline</b></a>
-				<li             ><a><span class=icon-pencil></span>Draw</a>
-				<li             ><a><span class=icon-vector-path-square></span>Draw shape</a>
-				<li             ><a><span class=icon-pencil></span><span class=icon-eyedropper></span>Adjust</a>
-			</ul>
+	<ul id=layer class=layer-list>
+		<!-- <li class=b><a><span class=icon-new></span>New layer</a> -->
 
-			<ul class=tool-list>
-				<li><a disabled class=modifier><span class=icon-plus></span><span class=icon-eyedropper></span></a>
-				<li><a disabled class=modifier><span class=icon-plus></span><span class=icon-bucket></span></a>
-				<li><a disabled class=modifier><span class=icon-plus></span><span class=icon-anchor></span></a>
-			</ul>
+		<li class=active><a data-label=Home><canvas width=32 height=32 class=thumb></canvas>3. Canvas</a>
+		<li><a><canvas width=32 height=32 class=thumb></canvas>2. Canvas</a>
+		<li class=fill><a data-label=End><canvas width=32 height=32 class=thumb></canvas>1. Fill  </a>
+	</ul>
 
-			<ul class=tool-list>
-				<li><a disabled><span class=icon-undo></span>Undo</a>
-				<li><a><span class=icon-cut></span>Cut</a>
-				<li><a><span class=icon-copy></span>Copy</a>
-				<li><a><span class=icon-paste></span>Paste</a>
-				<li><a disabled><span class=icon-redo></span>Redo</a>
-				<li><a disabled><span class=icon-erase></span>Eraser</a>
-			</ul>
-		</panel>
+	<page id=page-tool>
+		<h data-label=QWER>Tools</h>
 
-		<panel class=panel-palette>
-			<div class=palette></div>
-			<div class=hue><div class=hue-inner></div></div>
-			<div class=picker></div>
-		</panel>
-	</panel-body>
+		<ul class=tool-list>
+			<li class=active><a><b>Outline</b></a>
+			<li             ><a>Draw</a>
+			<li             ><a>Shape</a>
+			<li             ><a></span>Adjust</a>
+		</ul>
+
+		<ul class=tool-list>
+			<li><a>Pick</span></a>
+			<li><a>Fill</a>
+			<li><a>Anchor</a>
+		</ul>
+
+		<ul class=tool-list style=display:none>
+			<li><a disabled>Undo</a>
+			<li><a>Cut</a>
+			<li><a>Copy</a>
+			<li><a>Paste</a>
+			<li><a disabled>Redo</a>
+			<li><a disabled>Eraser</a>
+		</ul>
+	</page>
 </menu>
 
 <main>
-	<panel-header>
+	<h>
 		<div>Canvas — Untitled</div>
 		<div class=spacer></div>
 
@@ -93,7 +95,7 @@
 		<a id=a-zoom-inc>+</a>
 
 		<!-- <a><div class=a-inner><span class=icon-expand></div></a> -->
-	</panel-header>
+	</h>
 
 	<panel-body>
 		<div id=canvas class=canvas>
@@ -108,23 +110,19 @@
 </main>
 
 <side id=side>
-	<panel-header>Layers & History</panel-header>
+	<page id=page-palette>
+		<h data-label=Wheel>Palette</h>
+		<div class=palette></div>
+		<div class=hue><div class=hue-inner></div></div>
+		<div class=picker></div>
+	</page>
 
-	<ul id=layer class=layer-list>
-		<!-- <li class=b><a><span class=icon-new></span>New layer</a> -->
-
-		<li class=active>
-			<a><canvas width=32 height=32 class=thumb></canvas>3. Canvas</a>
-			<a><div class=a-inner><span class=icon-star-empty></span></div></a>
-		<li>
-			<a><canvas width=32 height=32 class=thumb></canvas>2. Canvas</a>
-			<a><div class=a-inner><span class=icon-star-empty></span></div></a>
-		<li class=fill>
-			<a><canvas width=32 height=32 class=thumb></canvas>1. Fill  </a>
-			<a><div class=a-inner><span class=icon-star-empty></span></div></a>
-	</ul>
+	<page id=page-swatch>
+		<h>Swatch</h>
+	</page>
 
 	<panel class=panel-history>
+		<h>History<a>Pick</a></h>
 		<panel-body>
 			<ul id=history class=history-list></ul>
 			<div id=scrubber class=scrubber-outer><div class=scrubber-inner></div></div>

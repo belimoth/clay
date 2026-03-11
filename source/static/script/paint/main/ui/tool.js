@@ -5,15 +5,15 @@ $( "ul.tool-list" )._.delegate( "click", "ul.tool-list > li > a:not( [disabled] 
 	// 	el.classList.remove( "recent" );
 	// });
 
-	$$( "ul.tool-list > li.selected" ).forEach( function( el, i ) {
+	$$( "ul.tool-list > li.active" ).forEach( function( el, i ) {
 		if ( event.target.closest( "a" ).classList.contains( "modifier" ) ) {
 			el.classList.add( "recent" );
 		}
 
-		el.classList.remove( "selected" );
+		el.classList.remove( "active" );
 	});
 
-	event.target.closest( "li" ).classList.add( "selected" );
+	event.target.closest( "li" ).classList.add( "active" );
 });
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
@@ -61,9 +61,7 @@ export function tool_init() {
 			}
 
 			$$( "ul.tool-list > li.active" ).forEach( el => el.classList.remove( "active" ) );
-			$$( "ul.tool-list > li.selected" ).forEach( el => el.classList.remove( "selected" ) );
 			el.closest( "li" ).classList.add( "active" );
-			el.closest( "li" ).classList.add( "selected" );
 		}
 	});
 
