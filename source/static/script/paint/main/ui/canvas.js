@@ -2,9 +2,9 @@
 
 import { app } from "../../main/app.js"
 
-export function ui_canvas( el ) {
-	this.el = el;
-	this.el_canvas = el.children[0];
+export function ui_canvas() {
+	this.el = document.getElementById( "canvas" );
+	this.el_canvas = this.el.children[0];
 
 	const grid = 8;
 
@@ -22,8 +22,8 @@ export function ui_canvas( el ) {
 		this.y = this.el_canvas.getBoundingClientRect().top;
 
 		this.scale = Math.max( 1, Math.min(
-			Math.floor( ( el.offsetWidth  - padding * 2 ) / app.file.width  / this.m ) * this.m,
-			Math.floor( ( el.offsetHeight - padding * 2 ) / app.file.height / this.m ) * this.m,
+			Math.floor( ( this.el.offsetWidth  - padding * 2 ) / app.file.width  / this.m ) * this.m,
+			Math.floor( ( this.el.offsetHeight - padding * 2 ) / app.file.height / this.m ) * this.m,
 		));
 
 		var width  = app.file.width  * this.scale;

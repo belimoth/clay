@@ -351,3 +351,39 @@ ul.layer-list > li {
 ul.layer-list > li > a[data-label]::after {
 	content: attr( data-label );
 }
+
+
+
+
+
+
+
+side page {
+	width: 260px;
+}
+
+menu page + page,
+side page + page {
+	border-top: 1px solid currentColor;
+}
+
+menu > page > p {
+	padding: 0 8px;
+}
+
+menu > page > p {
+	display: grid;
+	grid-template-columns: min-content auto;
+	line-height: 32px;
+}
+
+menu > page > p > label {
+	margin-right: 8px;
+}
+
+
+canvas#canvas-preview {
+	width: 256px;
+	height: 256px;
+	margin-left: 2px;
+}

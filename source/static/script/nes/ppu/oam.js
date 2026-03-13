@@ -1,5 +1,7 @@
 "use strict";
 
+import { app } from "../main/app.js";
+
 export function ppu_oam() {
     this.oam  = new Uint8Array( 0x0100 );
 

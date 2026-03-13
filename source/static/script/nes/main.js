@@ -1,5 +1,7 @@
 "use strict";
 
+import { app } from "./main/app.js";
+
 import "../app/top.js";
 import "../app/drop.js";
 

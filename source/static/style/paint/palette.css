@@ -1,22 +1,17 @@
 div.palette {
-	width: 42px;
-	/* height: 100%; */
-	/* height: 50%; */
-	display: flex;
-	flex-direction: column;
+	width: 260px;
 }
 
-div.swatch {
-	width: 100%;
-	height: 40px;
-	flex-grow: 1;
-	margin-bottom: 2px;
-
+div.palette {
+	border: 0;
+	padding: 2px;
 	position: relative;
 }
 
 div.palette {
-	border: 2px solid #FFF;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	grid-auto-rows: 32px;
 }
 
 div.swatch.active {
@@ -25,6 +20,7 @@ div.swatch.active {
 }
 
 div.swatch {
+	position: relative;
 	overflow: hidden;
 }
 
@@ -54,53 +50,6 @@ div.swatch.active::before {
 	overflow: hidden;
 }
 
-/* div.swatch.active::before {
-	background: none;
-	outline: none;
-	
-	left: 2px;
-	top: 4px;
-	font-size: 13px;
-
-	color: #F6E;
-
-	text-shadow:
-		-1px -1px 0 #FFF,
-		 0px -1px 0 #FFF,
-		 1px -1px 0 #FFF,
-		 1px  0px 0 #FFF,
-		 1px  1px 0 #FFF,
-		 0px  1px 0 #FFF,
-		-1px  1px 0 #FFF,
-		-1px  0px 0 #FFF;
-} */
-
-/* div.swatch.active::before {
-	-webkit-text-stroke: 1px #FFF;
-	font-weight: 800;
-	left: 0px;
-
-	overflow: visible;
-} */
-
-/* div.swatch.active {
-	border-color: transparent;
-	box-shadow: inset 0 0 0 1px #FFF, inset 0 0 0 3px #F6E, inset 0 0 0 4px #FFF;
-	box-shadow: inset 0 0 0 2px #F6E, inset 0 0 0 3px #FFF;
-} */
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-div.swatch {
-	width: 43px;
-	height: 30px;
-	height: 16px;
-	/* border: 2px solid #FFF; */
-	/* margin-top: -2px; */
-	/* margin-left: -2px; */
-	/* margin-bottom: 0; */
-}
-
 div.swatch::after {
 	position: absolute;
 	left: -4px;
@@ -111,20 +60,6 @@ div.swatch::after {
 	height: 16px;
 }
 
-
-div.palette {
-	border: 0;
-	padding: 2px;
-	position: relative;
-}
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-div.swatch {
-	border-width: 0 !important;
-	box-shadow: none !important;
-	margin-bottom: 1px;
-}
 
 div.swatch::before {
 	z-index: 100;

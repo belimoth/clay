@@ -1,5 +1,8 @@
 "use strict";
 
+import { app } from "./main/app.js";
+
+
 const SCALE = 4;
 
 const RENDER_TEST = false;

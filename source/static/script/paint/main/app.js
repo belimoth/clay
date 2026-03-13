@@ -1,6 +1,5 @@
 "use strict";
 
-
 export let app = {
 	mouse : null,
 	stroke  : [],

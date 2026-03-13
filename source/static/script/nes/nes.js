@@ -1,7 +1,11 @@
+"use strict";
+
 const INTERRUPT_NONE  = 0;
 const INTERRUPT_IRQ   = 1;
 const INTERRUPT_NMI   = 2;
 const INTERRUPT_RESET = 3;
+
+import { app } from "./main/app.js"
 
 import { cpu }             from "./cpu.js";
 import { ppu }             from "./ppu.js";

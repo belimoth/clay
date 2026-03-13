@@ -1,5 +1,7 @@
 "use strict";
 
+import { app } from "../main/app.js";
+
 export function ppu_bus() {
     this.bus_read = function( address, peek = false ) {
         switch( address ) {

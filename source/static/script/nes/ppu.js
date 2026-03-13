@@ -1,5 +1,7 @@
 "use strict";
 
+import { app } from "./main/app.js";
+
 import { ppu_vram    } from "./ppu/vram.js";
 import { ppu_oam     } from "./ppu/oam.js";
 import { ppu_control } from "./ppu/control.js";

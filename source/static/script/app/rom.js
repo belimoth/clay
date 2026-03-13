@@ -1,5 +1,6 @@
 "use strict";
 
+import { app } from "../nes/main/app.js"
 import { code_draw } from "./code.js";
 import { default as nes } from "../nes/nes.js";
 

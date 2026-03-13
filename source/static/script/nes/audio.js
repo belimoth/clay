@@ -1,5 +1,7 @@
 "use strict";
 
+import { app } from "./main/app.js";
+
 var audio_enabled = true;
 
 export function audio() {

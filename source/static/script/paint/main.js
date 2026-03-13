@@ -1,5 +1,7 @@
 "use strict";
 
+import { app } from "./main/app.js"
+
 import "./main/ui/canvas.js"
 import "./main/tool.js"
 
@@ -10,10 +12,7 @@ import "./main/ui/palette.js"
 import "./main/ui/layer.js"
 import "./main/ui/history.js"
 
-import "./app.js"
 import "./wip.js"
-
-import { app } from "./main/app.js"
 
 import { app_init, app_canvas_resize } from "./app.js";
 
@@ -25,7 +24,6 @@ import { tool_init }         from "./main/ui/tool.js";
 import { ui_list_layer } from "./main/ui/layer.js";
 import { ui_palette }    from "./main/ui/palette.js";
 import { storage }       from "./app/session.js";
-
 
 app.ui.palette   = new ui_palette();
 app.ui.layer     = new ui_list_layer();
