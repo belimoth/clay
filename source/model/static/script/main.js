@@ -28,7 +28,7 @@ function assignLayerElements()  {
 
 		layer[n] = {
 			canvas: canvasTemp,
-			context: initializeCanvasContext( canvasTemp ),
+			context: canvas_get_context( canvasTemp ),
 			tick: document.getElementById( "tickLayer" + n ),
 			a: document.getElementById( "aLayer" + n )
 		}
@@ -38,13 +38,13 @@ function assignLayerElements()  {
 }
 
 var canvasAbove  = document.getElementById( "canvasAbove" );
-var contextAbove = initializeCanvasContext( canvasAbove );
+var contextAbove = canvas_get_context( canvasAbove );
 
 //var canvasBelow  = document.getElementById( "canvasBelow" );
-//var contextBelow = initializeCanvasContext( canvasBelow );
+//var contextBelow = canvas_get_context( canvasBelow );
 
 var canvasGrid  = document.getElementById( "canvasGrid" );
-var contextGrid = initializeCanvasContext( canvasGrid );
+var contextGrid = canvas_get_context( canvasGrid );
 var context     = contextGrid;
 
 context.lineWidth = 2 / 12;
@@ -69,7 +69,7 @@ var canvasDisplay = document.getElementById( "canvasDisplay" );
 
 canvasDisplay.focus();
 
-function initializeCanvasContext( canvas, smooth = false ) {
+function canvas_get_context( canvas, smooth = false ) {
 	var context = canvas.getContext( "2d" );
 
 	if ( !smooth ) {
@@ -82,8 +82,8 @@ function initializeCanvasContext( canvas, smooth = false ) {
 	return context;
 }
 
-var contextRender  = initializeCanvasContext( canvasRender, true );
-var contextDisplay = initializeCanvasContext( canvasDisplay );
+var contextRender  = canvas_get_context( canvasRender, true );
+var contextDisplay = canvas_get_context( canvasDisplay );
 
 var angle = 0;
 var mouse = null;
@@ -432,13 +432,13 @@ function updateComposite() {
 
 
 var canvasPreview = document.getElementById( "canvasPreview" );
-var contextPreview = initializeCanvasContext( canvasPreview );
+var contextPreview = canvas_get_context( canvasPreview );
 
 var canvasShadow  = document.getElementById( "canvasShadow" );
-var contextShadow = initializeCanvasContext( canvasShadow );
+var contextShadow = canvas_get_context( canvasShadow );
 
 var canvasStencil  = document.getElementById( "canvasStencil" );
-var contextStencil = initializeCanvasContext( canvasStencil );
+var contextStencil = canvas_get_context( canvasStencil );
 
 function updatePreview() {
 	context = contextShadow;

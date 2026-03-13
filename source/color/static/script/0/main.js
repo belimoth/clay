@@ -8,7 +8,7 @@ spectrum_el.style.height = "195px";
 
 var image = document.getElementById( "image-test" );
 
-var context_spectrum = initializeCanvasContext( spectrum_el,true);
+var context_spectrum = canvas_get_context( spectrum_el,true);
 context_spectrum.drawImage( image, 0, 0 )
 var imageData = context_spectrum.getImageData( 0, 0, 256, 195 );
 var data = imageData.data;
@@ -250,7 +250,7 @@ var app = {};
 
 app.palette = new palette( document.getElementById( "palette" ) );
 
-function initializeCanvasContext( canvas, read = false ) {
+function canvas_get_context( canvas, read = false ) {
 	var context = canvas.getContext( "2d", { willReadFrequently: read } );
 
 	context.mozImageSmoothingEnabled    = false;
@@ -261,7 +261,7 @@ function initializeCanvasContext( canvas, read = false ) {
 	return context;
 }
 
-var context = initializeCanvasContext( document.getElementById( "hue-quantize" ) );
+var context = canvas_get_context( document.getElementById( "hue-quantize" ) );
 
 function updateQuantize() {
 	var colors = app.palette.swatches.map( function( el ) {

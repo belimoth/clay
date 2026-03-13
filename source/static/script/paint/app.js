@@ -40,7 +40,7 @@ export function wait_frame( callback ) {
 	window.requestAnimationFrame( function( time ) { window.requestAnimationFrame( callback ); });
 }
 
-function initializeCanvasContext( canvas ) {
+function canvas_get_context( canvas ) {
 	var context = canvas.getContext( "2d" );
 
 	context.webkitImageSmoothingEnabled = false;
@@ -83,43 +83,27 @@ export function save_history() {
 app.tool = tool_all.pen_outline;
 app.ui.canvas = new canvas( document.getElementById( "canvas" ) );
 
+function canvas_make() {
+	var el = document.createElement( "canvas" );
+	document.getElementById( "offscreen" ).appendChild( el );
+	el.width  = app.file.width;
+	el.height = app.file.height;
+	return el
+}
 
+var canvasRender = canvas_make();
+var canvasStroke = canvas_make();
+var canvasErase  = canvas_make();
 
-var canvasRender = document.getElementById( "canvas-render" );
-var canvasStroke = document.getElementById( "canvas-stroke" );
-var canvasErase  = document.getElementById( "canvas-erase"  );
-// var canvasLayer  = document.getElementById( "canvas-layer"  );
-
-canvasRender.width  = app.file.width;
-canvasRender.height = app.file.height;
-
-canvasStroke.width  = app.file.width;
-canvasStroke.height = app.file.height;
-
-canvasErase.width  = app.file.width;
-canvasErase.height = app.file.height;
-
-// canvasLayer.width  = app.file.width;
-// canvasLayer.height = app.file.height;
-
-app.context.render = initializeCanvasContext( canvasRender );
-app.context.stroke = initializeCanvasContext( canvasStroke );
-app.context.erase  = initializeCanvasContext( canvasErase  );
-// app.context.layer  = initializeCanvasContext( canvasLayer  );
+app.context.render = canvas_get_context( canvasRender );
+app.context.stroke = canvas_get_context( canvasStroke );
+app.context.erase  = canvas_get_context( canvasErase  );
 
 app.file.layer.forEach( function( el, i ) {
-	var canvasLayer = document.createElement( "canvas" );
+	var canvasLayer = canvas_make();
 	canvasLayer.id = "canvas-layer-" + i;
-
-	canvasLayer.width  = app.file.width;
-	canvasLayer.height = app.file.height;
-
-	document.getElementById( "offscreen" ).appendChild( canvasLayer );
-
-	app.context.layer.push( initializeCanvasContext( canvasLayer ) );
+	app.context.layer.push( canvas_get_context( canvasLayer ) );
 });
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 app.waitingOn = 0
 
@@ -145,11 +129,9 @@ function load() {
 
 load();
 
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
 export function app_canvas_resize() {
 	app.ui.canvas.resize();
-	app.context.display = initializeCanvasContext( app.ui.canvas.el_canvas );
+	app.context.display = canvas_get_context( app.ui.canvas.el_canvas );
 	app.toRepaint = true;
 }
 

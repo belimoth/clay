@@ -16,7 +16,7 @@ spectrum_el.style.height = "256px";
 
 var mode = 3;
 
-var context_spectrum = initializeCanvasContext( spectrum_el, true );
+var context_spectrum = canvas_get_context( spectrum_el, true );
 
 var imageSource = context_spectrum.getImageData( 0, 0, w, 256 );
 var rgbData = imageSource.data;
@@ -258,7 +258,7 @@ function palette( el ) {
 
 app.palette = new palette( document.getElementById( "palette" ) );
 
-function initializeCanvasContext( canvas, read = false ) {
+function canvas_get_context( canvas, read = false ) {
 	var context = canvas.getContext( "2d", { willReadFrequently: read });
 
 	context.mozImageSmoothingEnabled    = false;

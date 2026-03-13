@@ -62,7 +62,7 @@ export function ui_list_layer( el ) {
 			self.items.push( new item( el, i ) );
 		});
 
-			function initializeCanvasContext( canvas ) {
+		function canvas_get_context( canvas ) {
 			var context = canvas.getContext( "2d" );
 
 			context.webkitImageSmoothingEnabled = false;
@@ -75,7 +75,7 @@ export function ui_list_layer( el ) {
 
 		function thumb( el ){
 			this.el = el;
-			this.context = initializeCanvasContext( el );
+			this.context = canvas_get_context( el );
 
 			el.width = 64;
 			el.height = 64;
@@ -91,7 +91,6 @@ export function ui_list_layer( el ) {
 	this.draw();
 
 	this.set_active( this.items[0] );
-
 
 	this.insert = function() {
 
