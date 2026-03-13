@@ -1,6 +1,7 @@
 "use strict";
 
-import { app, app_canvas_resize } from "../../app.js"
+import { app } from "../../main/app.js"
+import { app_canvas_resize } from "../../app.js"
 
 document.getElementById( "side" ).addEventListener( "mouseout", function( event ) {
 	// $$( "side panel-header > a" ).forEach( el => el.classList.remove( "mute" ) );

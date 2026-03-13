@@ -1,6 +1,6 @@
 "use strict";
 
-import { app} from "../../app.js"
+import { app} from "../../main/app.js"
 
 var history_el = document.getElementById( "history" );
 

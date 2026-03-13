@@ -1,7 +1,5 @@
 "use strict";
 
-import "./app/reset.js"
-
 import "./main/ui/canvas.js"
 import "./main/tool.js"
 
@@ -15,7 +13,9 @@ import "./main/ui/history.js"
 import "./app.js"
 import "./wip.js"
 
-import { app, app_canvas_resize } from "./app.js";
+import { app } from "./main/app.js"
+
+import { app_init, app_canvas_resize } from "./app.js";
 
 import { app_draw }          from "./main/draw.js";
 import { update_layer_mode } from "./main/ui/layout.js";
@@ -26,12 +26,13 @@ import { ui_list_layer } from "./main/ui/layer.js";
 import { ui_palette }    from "./main/ui/palette.js";
 import { storage }       from "./app/session.js";
 
-app.storage = new storage();
 
 app.ui.palette   = new ui_palette();
 app.ui.layer     = new ui_list_layer();
 app.history_item = null;
+app.storage      = new storage();
 
+app_init();
 app_canvas_resize();
 app_draw();
 

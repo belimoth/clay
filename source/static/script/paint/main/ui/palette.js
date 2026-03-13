@@ -1,6 +1,6 @@
 "use strict";
 
-import { app }        from "../../app.js";
+import { app }        from "../../main/app.js";
 import { hex_to_rgb } from "../../app/math.js";
 
 var palette_default = [

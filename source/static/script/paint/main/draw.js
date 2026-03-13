@@ -1,6 +1,6 @@
 "use strict";
 
-import { app } from "../app.js";
+import { app } from "../main/app.js";
 import { screen_to_canvas } from "./ui/canvas.js";
 
 function score( p ) {

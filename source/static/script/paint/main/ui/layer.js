@@ -1,6 +1,6 @@
 "use strict";
 
-import { app } from "../../app.js"
+import { app } from "../../main/app.js"
 
 export function ui_list_layer( el ) {
 	this.el = document.getElementById( "layer" );
