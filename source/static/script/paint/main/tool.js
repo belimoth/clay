@@ -1,7 +1,7 @@
 "use strict";
 
 import { app, wait_frame, save_history } from "../app.js"
-import { time_format } from "../time.js"
+import { time_format } from "../app/time.js"
 
 function tool() {
 	this.handlers = {};

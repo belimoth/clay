@@ -1,7 +1,7 @@
 "use strict";
 
 import { app_draw }          from "./main/draw.js";
-import { time_format }       from "./time.js"
+import { time_format }       from "./app/time.js"
 
 import { tool_all } from "./main/tool.js";
 import { canvas }   from "./main/ui/canvas.js";
@@ -223,10 +223,5 @@ function update() {
 	}
 }
 
-window.addEventListener( "blur", function( event ) {
-	app.toPause = true;
-});
-
-window.addEventListener( "focus", function( event ) {
-	start();
-});
+window.addEventListener( "blur",  event => { app.toPause = true; });
+window.addEventListener( "focus", start );

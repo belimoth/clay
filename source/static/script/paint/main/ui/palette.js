@@ -1,7 +1,7 @@
 "use strict";
 
 import { app }        from "../../app.js";
-import { hex_to_rgb } from "../../math.js";
+import { hex_to_rgb } from "../../app/math.js";
 
 var palette_default = [
 	{ hex : "#000000", erase : false },
@@ -19,8 +19,8 @@ var palette_default = [
 	{ hex : "#FFFFFF", erase : true  },
 ];
 
-export function palette( el ) {
-	this.el = el;
+export function ui_palette() {
+	this.el = document.getElementById( "palette" );
 	this.swatch = [];
 	this.swatch_active = null;
 	this.select = [];
@@ -122,7 +122,7 @@ export function palette( el ) {
 
 	var box_el = document.createElement( "div" );
 	box_el.classList.add( "box" );
-	el.appendChild( box_el );
+	this.el.appendChild( box_el );
 
 	// for ( var i = 0; etc ) {
 
