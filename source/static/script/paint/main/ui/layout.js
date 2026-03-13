@@ -29,7 +29,7 @@ export function update_layer_mode() {
 var tool_mode_index = 2;
 
 document.getElementById( "menu" ).addEventListener( "mousemove", function( event ) {
-	$$( "panel.panel-menu panel-header > a" ).forEach( el => el.classList.remove( "mute" ) );
+	$$( "menu panel-header > a" ).forEach( el => el.classList.remove( "mute" ) );
 	// $$( "div.menu panel-header > a" ).forEach( el => el.classList.remove( "hover" ) );
 });
 

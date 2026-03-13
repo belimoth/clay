@@ -3,7 +3,7 @@
 import { tool_all }                 from "./main/tool.js";
 import { palette }                  from "./main/ui/palette.js";
 import { canvas, screen_to_canvas } from "./main/ui.js";
-import { layer }                    from "./main/ui/layer.js";
+import { ui_list_layer }            from "./main/ui/layer.js";
 import { storage }                  from "./session.js";
 
 import "../app/top.js"
@@ -92,6 +92,8 @@ export let app = {
 
 	layer_mode_index   : 1,
 	layer_active_index : 2,
+
+	thumbs : [],
 };
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
@@ -175,24 +177,6 @@ app.file.layer.forEach( function( el, i ) {
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-var thumbs = [];
-
-function thumb( el ){
-	this.el = el;
-	this.context = initializeCanvasContext( el );
-
-	el.width = 64;
-	el.height = 64;
-	el.style.width = "32px";
-	el.style.height = "32px";
-}
-
-$$( "ul.layer-list > li > a > canvas.thumb" ).forEach( function( el, i ) {
-	thumbs.unshift( new thumb( el ) );
-});
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
 var waitingOn = 0
 
 function load() {
@@ -242,7 +226,7 @@ export function app_draw() {
 		// context.drawImage( app.file.el, 0, 0 );
 
 		app.context.layer.forEach( function( el, i ) {
-			context = thumbs[i].context;
+			context = app.thumbs[i].context;
 			context.setTransform( 1, 0, 0, 1, 0, 0 );
 			context.clearRect( 0, 0, w, h );
 			context.drawImage( app.context.layer[i].canvas, 0, 0 );
@@ -397,7 +381,7 @@ export function app_draw() {
 
 	app.context.layer.forEach( function( el, i ) {
 		if ( app.layer_active_index == i ) {
-			context = thumbs[ i ].context;
+			context = app.thumbs[ i ].context;
 			context.setTransform( 1, 0, 0, 1, 0, 0 );
 			context.clearRect( 0, 0, w, h );
 
@@ -586,6 +570,6 @@ document.addEventListener( "keyup", function( event ) {
 
 app.storage = new storage();
 
-app.ui.palette = new palette( $( "div.palette" ) );
-app.ui.layer = new layer( document.getElementById( "layer" ) );
+app.ui.palette   = new palette( $( "div.palette" ) );
+app.ui.layer     = new ui_list_layer();
 app.history_item = null;

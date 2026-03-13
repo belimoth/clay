@@ -19,7 +19,7 @@ ul.list-palette > li > a:hover {
 }
 
 ul.list-palette:active > li > a:hover {
-	background: #FFD1FA;
+	background: var( --color-active );
 }
 
 ul.list-palette > li > a > div {

@@ -1,96 +1,60 @@
 top {
-	position: relative;
-	padding: 0;
-
-	line-height: 32px;
-	height: 32px;
-}
-
-/*  */
-
-ul.menu-list {
 	display: flex;
-}
-
-ul.menu-list > li {
-	width: 48px;
-	position: relative;
-}
-
-ul.menu-list > li:first-child {
-	width: 48px;
-}
-
-/*  */
-
-ul.menu-list > li > a {
-	padding: 0 12px;
-	/* padding: 0 16px; */
-}
-
-ul.menu-list > li > a {
-	display: block;
 	height: 32px;
-	line-height: 32px;
+	line-height: 31px;
+	z-index: 100;
 }
 
-ul.menu-list > li:first-child > a {
-	display: block;
-}
-
-ul.menu-list > li:first-child > a  {
-	/* padding-top: 2px; */
-	padding: 0;
-	text-align: center;
-}
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-top > ul.menu-list > li:first-child > a > div.a-inner {
+top > * {
 	height: 32px;
 }
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-
-
-ul.menu-list > li > ul {
-	position: absolute;
-	left: -1px;
-
-	width: 150px;
-	line-height: 24px;
-	line-height: 32px;
-	padding: 1px;
-
-}
-
-ul.menu-list > li:not( .active ) > ul {
-	opacity: 0.0;
-	pointer-events: none;
-}
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-ul.menu-list > li > ul > li > a {
-	padding: 0 11px;
-}
-
-top > t {
-	padding: 0 8px;
-}
-
 
 top > img {
 	flex-grow: 0;
 	width: 32px;
 }
 
-top {
-	z-index: 100;
+top > t {
+	padding: 0 8px;
 }
 
-/* traffic */
+top > ul {
+	display: flex;
+}
+
+top > ul > li {
+	position: relative;
+}
+
+top > ul > li > a {
+	padding: 0 12px;
+}
+
+top > ul > li > a {
+	display: block;
+}
+
+top > ul > li > ul {
+	position: absolute;
+	top: 31px;
+
+
+	width: 150px;
+	line-height: 32px;
+	padding: 1px;
+
+	border: 1px solid;
+
+}
+
+top > ul > li:not( .active ) > ul {
+	display: none;
+	pointer-events: none;
+}
+
+top > ul > li > ul > li > a {
+	padding: 0 11px;
+}
 
 traffic {
     flex-grow: 1;
@@ -100,4 +64,11 @@ traffic {
 traffic::before {
     content: "";
     flex-grow: 1;
+}
+
+
+
+
+top > t {
+	padding: 0 8px;
 }

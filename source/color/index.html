@@ -23,19 +23,19 @@
 <body>
 
 <main id=main>
-	<column style=width:293px;>
-		<column-header><a>Edit</a><span> / Extract</span><a style="position:absoulte;right:0;">Cancel</a></column-header>
+	<column>
+		<h><a>Edit</a><span> / Extract</span><a>Cancel</a></h>
 		<form><input id=upload type=file accept=image/png></form>
 	</column>
 
-	<column style=width:293px;>
+	<column>
 		<panel id=panel-list-palette class=active>
-			<column-header><a>Edit</a><span> / Import</span><a style="position:absoulte;right:0;">Cancel</a></column-header>
+			<h><a>Edit</a><span> / Import</span><a>Cancel</a></h>
 			<panel-body><ul id=import class=list-palette></ul></panel-body>
 		</panel>
 
 		<panel id=panel-palette>
-			<column-header><a>Edit</a> / <a id=a-back>Import</a><span> / </span><a style="position:absoulte;right:0;">Cancel</a></column-header>
+			<h><a>Edit</a> / <a id=a-back>Import</a><span> / </span><a>Cancel</a></h>
 
 			<form hidden>
 				<p><label for=input-seed>Seed</label><input id=input-seed type=text value=waugh>
@@ -48,12 +48,12 @@
 		</panel>
 	</column>
 
-	<column style=width:293px;>
-		<column-header><a>Edit</a><span> / Random</span><a style="position:absoulte;right:0;">Cancel</a></column-header>
+	<column>
+		<h><a>Edit</a><span> / Random</span><a>Cancel</a></h>
 	</column>
 
 	<column>
-		<column-header><span>Analyze</span><a style="position:absoulte;right:0;">Close</a></column-header>
+		<h><span>Analyze</span><a>Close</a></h>
 		<canvas id=spectrum width=256 height=256></canvas>
 
 		<div style=width:256px;>
@@ -61,13 +61,13 @@
 			<div id=hue-squash class=hue></div>
 			<div id=hue-sat class=hue></div>
 
-			<column-header>Basis image</div>
+			<h>Basis image</div>
 
 			<form>
 				<label for=radio-none><input id=radio-none type=radio name=distance value=0>None</label>
 			</form>
 
-			<column-header>Distance function</column-header>
+			<h>Distance function</h>
 
 			<form>
 				<label for=radio-none><input id=radio-none type=radio name=distance value=0>None</label>
@@ -85,26 +85,26 @@
 	</column>
 
 	<column>
-		<column-header><span>Swatch</span><a style="position:absoulte;right:0;">Close</a></column-header>
+		<h><span>Swatch</span><a>Close</a></h>
 
 		<div id=swatch-0 class=swatch></div>
 
-		<h2>Discrete</h2>
+		<h>Discrete</h>
 		<div id=primaries class=slider></div>
 
-		<h2>HSL (HhhLS)</h2>
+		<h>HSL (HhhLS)</h>
 		<div id=view-hsl></div>
 
-		<h2>HSL<sub>uv</sub></h2>
+		<h>HSL<sub>uv</sub></h>
 		<div id=view-hsluv></div>
 
-		<h2>RGB & CMY</h2>
+		<h>RGB & CMY</h>
 		<div id=view-rgb></div>
 
 
 		<!-- TODO -->
 
-		<h2>Legacy</h2>
+		<h>Legacy</h>
 
 		<div id=hue-direct class=hue style="margin-bottom:8px;"></div>
 		<div id=xy class=picker></div>
@@ -114,21 +114,21 @@
 
 <div id=offscreen hidden></div>
 
-<script src=/static/vend/hsluv-0.0.3.min.js></script>
-<script src=/static/vend/seedrandom.min.js></script>
-<script src=/static/vend/tinycolor.js></script>
+<script src=static/vend/hsluv-0.0.3.min.js></script>
+<script src=static/vend/seedrandom.min.js></script>
+<script src=static/vend/tinycolor.js></script>
 
 
-<script src=/static/script/5/utility.js></script>
+<script src=static/script/5/utility.js></script>
 <script>var app = {};</script>
-<script src=/static/script/5/wui/wui.js></script>
-<script src=/static/script/5/clay/clay.js></script>
-<script src=/static/script/5/ui.js></script>
-<script src=/static/script/5/main.js></script>
+<script src=static/script/5/wui/wui.js></script>
+<script src=static/script/5/clay/clay.js></script>
+<script src=static/script/5/ui.js></script>
+<script src=static/script/5/main.js></script>
 
 <!--  -->
 
-<script type=module src=/static/script/2/palette.js></script>
-<script type=module src=/static/script/2/utility.js></script>
-<script type=module src=/static/script/2/main.js></script>
-<script type=module src=/static/script/2/ui.js></script>
+<script type=module src=static/script/2/palette.js></script>
+<script type=module src=static/script/2/utility.js></script>
+<script type=module src=static/script/2/main.js></script>
+<script type=module src=static/script/2/ui.js></script>

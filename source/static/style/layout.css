@@ -1,11 +1,59 @@
-top {
-	display: flex;
-	padding: 0 16px;
+body {
+	display: grid;
+	grid-template-columns: 260px 1fr 260px;
+	grid-template-rows: 32px calc( 100vh - 32px );
+	grid-column-gap: 0px;
+	grid-row-gap: 0px;
+
+	overflow: hidden;
 }
 
-top > div.spacer {
-	flex-grow: 1;
+body > * {
+	min-height: 0;
 }
+
+top  { grid-area: 1 / 1 / 2 / 4; }
+/* menu { grid-area: 2 / 1 / 3 / 2; }
+main { grid-area: 2 / 2 / 3 / 3; }
+side { grid-area: 2 / 3 / 3 / 4; } */
+
+
+body.focus {
+	grid-template-columns: 48px 1fr 48px;
+	grid-template-rows: 1fr;
+}
+
+body.focus top {
+	display: none;
+}
+
+/*  */
+
+
+
+
+
+/*  */
+
+
+menu {
+	width: 48px;
+	left: 0;
+	border-right: 1px solid #666
+}
+
+menu {
+	width: 203px;
+	border-right: 1px solid #666;
+}
+
+menu {
+	width: 260px;
+}
+
+
+
+/*  */
 
 
 main {
@@ -13,22 +61,19 @@ main {
 	overflow: hidden;
 }
 
+
+
+
+
+
+
+
+
+
+
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-panel.panel-menu {
-	width: 48px;
-	left: 0;
-	border-right: 1px solid #666
-}
 
-panel.panel-menu {
-	width: 203px;
-	border-right: 1px solid #666;
-}
-
-panel.panel-menu {
-	width: 260px;
-}
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
@@ -37,26 +82,7 @@ panel.panel-canvas {
 	overflow: hidden;
 }
 
-main.layer-normal > panel.panel-canvas { width: calc( 100vw - 155px - 48px - 260px ); }
-main.layer-focus  > panel.panel-canvas { width: calc( 100vw - 260px - 48px         ); }
-main.layer-hidden > panel.panel-canvas { width: calc( 100vw - 155px - 48px -   0px ); }
-
-main.layer-full > panel.panel-canvas {
-	opacity: 0.0;
-	transition: opacity 0.1s linear, width 0.2s step-end;
-	/* NOTE width doesn't change actually */
-	transition: opacity 0.1s linear;
-}
-
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-main.layer-full > side {
-	left: calc( 48px + 155px );
-	border-left: 0;
-	overflow-y: scroll;
-}
-
-
 
 side > panel-body > panel {
 	transform: translateX( 0 );
@@ -118,12 +144,6 @@ main.layer-full > side > panel-body {
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-body.focus side {
-	left: calc( 100vw - 48px );
-}
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
 side {
 	width: calc( 100vw );
 	width: calc( 100vw - 155px - 48px );
@@ -168,7 +188,7 @@ panel-body > panel {
 
 }
 
-panel.panel-history {
+page#page-history {
 	display: flex;
 }
 
@@ -178,12 +198,12 @@ panel-body > panel {
 }
 
 
-main.layer-focus panel.panel-history > ul {
+main.layer-focus page#page-history > ul {
 	display: none;
 }
 
 
-panel.panel-history > ul {
+page#page-history > ul {
 	border-right: 1px solid #666;
 }
 
@@ -196,12 +216,12 @@ panel.panel-canvas {
 main.layer-full   > panel.panel-canvas,
 main.layer-normal > panel.panel-canvas {
 	width: calc( 100vw - 260px - 260px );
-    left: 260px;
+	left: 260px;
 
 }
 
 main.layer-full > side {
-    left: 260px;
+	left: 260px;
 	width: calc( 100vw - 260px );
 }
 
@@ -229,7 +249,7 @@ panel > panel-body > panel {
 	width: 100%;
 }
 
-panel.panel-menu > panel-body > panel {
+menu > panel-body > panel {
 	overflow: hidden;
 }
 
@@ -279,46 +299,43 @@ side > * > * {
 
 
 
-body {
-    overflow: hidden;
-}
 
 top {
-    height: 32px;
-    border-bottom: 1px solid currentColor;
-    display: flex;
+	height: 32px;
+	border-bottom: 1px solid currentColor;
+	display: flex;
 }
 
 menu, side, main {
-    border: 0 solid currentColor;
-    border-width: 0 1px;
+	border: 0 solid currentColor;
+	border-width: 0 1px;
 }
 
 main {
-    overflow: hidden;
-    min-width: 1024px;
+	overflow: hidden;
+	min-width: 1024px;
 }
 
 menu > page,
 side > page,
 column > page {
-    /* margin: 0 -8px; */
-    /* padding: 0 8px; */
+	/* margin: 0 -8px; */
+	/* padding: 0 8px; */
 }
 
 menu > page > ul#rom {
-    /* margin: 0 -8px; */
-    overflow-y:scroll;
+	/* margin: 0 -8px; */
+	overflow-y:scroll;
 
 }
 
 side {
-    min-width: 516px;
-    max-width: 516px;
+	min-width: 516px;
+	max-width: 516px;
 }
 
 side {
-    overflow: hidden;
+	overflow: hidden;
 }
 
 
@@ -331,31 +348,16 @@ h {
 
 
 
-body {
-    display: grid;
-}
 
-body {
-	width: 100%;
 
-    display: grid;
-    grid-template-columns: 260px 1fr 260px;
-    grid-template-rows: 32px 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-}
 
-top  { grid-area: 1 / 1 / 2 / 6; }
-menu { grid-area: 2 / 1 / 3 / 2; }
-main { grid-area: 2 / 2 / 3 / 3; }
-side { grid-area: 2 / 3 / 3 / 4; }
 
 side {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 32px 1fr;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 32px 1fr;
 }
 
 menu, side {
-    border-width: 0;
+	border-width: 0;
 }

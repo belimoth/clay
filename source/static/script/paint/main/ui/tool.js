@@ -49,17 +49,6 @@ export function tool_init() {
 		var el = get_tool_for_key( event.key );
 
 		if ( el ) {
-			el.closest( "ul" ).classList.add( "mute" );
-
-			if ( ! isMuted ) {
-				isMuted = true;
-
-				$( el.closest( "ul" ) )._.once( "mousemove", function( event ) {
-					isMuted = false;
-					event.target.closest( "ul" ).classList.remove( "mute" );
-				});
-			}
-
 			$$( "ul.tool-list > li.active" ).forEach( el => el.classList.remove( "active" ) );
 			el.closest( "li" ).classList.add( "active" );
 		}

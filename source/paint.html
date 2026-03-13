@@ -12,7 +12,7 @@
 	<img src=static/image/subhelion_app_1.png>
 	<t>Clay Paint</t>
 
-	<ul class=menu-list>
+	<ul>
 		<li>
 			<a>File</a>
 
@@ -40,6 +40,9 @@
 	</ul>
 
 	<traffic>
+		<a id=a-zoom-dec>-</a>
+		<input type=range min=0 max=6>
+		<a id=a-zoom-inc>+</a>
 		<a id=f9 >Zoom to actual size (F9)</a>
 		<a id=f10>Zoom to fit (F10)</a>
 		<a id=f11>Fullscreen (F11)</a>
@@ -47,31 +50,34 @@
 	</traffic>
 </top>
 
-<menu id=menu class=panel-menu>
-	<h>Layers</h>
+<menu id=menu>
+	<h><t>Layers</t><a>Edit</a></h>
 
 	<ul id=layer class=layer-list>
-		<!-- <li class=b><a><span class=icon-new></span>New layer</a> -->
 
-		<li class=active><a data-label=Home><canvas width=32 height=32 class=thumb></canvas>3. Canvas</a>
-		<li><a><canvas width=32 height=32 class=thumb></canvas>2. Canvas</a>
-		<li class=fill><a data-label=End><canvas width=32 height=32 class=thumb></canvas>1. Fill  </a>
+	</ul>
+
+	<ul class=button-list>
+		<li><a id=a-layer-insert        >Insert</a>
+		<li><a id=a-layer-dupe          >Dupe</a>
+		<li><a id=a-layer-merge disabled>Merge</a>
+		<li><a id=a-layer-delete        >Delete</a>
 	</ul>
 
 	<page id=page-tool>
 		<h data-label=QWER>Tools</h>
 
 		<ul class=tool-list>
-			<li class=active><a><b>Outline</b></a>
-			<li             ><a>Draw</a>
-			<li             ><a>Shape</a>
-			<li             ><a></span>Adjust</a>
+			<li class=active><a data-name=Outline></a>
+			<li             ><a data-name=Draw   ></a>
+			<li             ><a data-name=Shape  ></a>
+			<li             ><a data-name=Adjust ></a>
 		</ul>
 
 		<ul class=tool-list>
-			<li><a>Pick</span></a>
-			<li><a>Fill</a>
-			<li><a>Anchor</a>
+			<li><a data-name=Pick></span></a>
+			<li><a data-name=Fill></a>
+			<li><a data-name=Anchor></a>
 		</ul>
 
 		<ul class=tool-list style=display:none>
@@ -83,30 +89,45 @@
 			<li><a disabled>Eraser</a>
 		</ul>
 	</page>
+
+	<page id=page-history>
+		<h>History<a>Pick</a></h>
+
+		<panel-body>
+			<ul id=history class=history-list></ul>
+			<div id=scrubber class=scrubber-outer><div class=scrubber-inner></div></div>
+		</panel-body>
+
+		<f>
+			<div class=spacer></div>
+			<div id=clock class=clock>0:00</div>
+		</f>
+	</page>
 </menu>
 
 <main>
 	<h>
-		<div>Canvas — Untitled</div>
-		<div class=spacer></div>
+		<ol>
+			<li active><a>Untitled</a>
+			<li><a>Untitled 1</a>
+			<li><a>Untitled 2</a>
+			<li><a>Untitled 3</a>
+			<li><a>New</a>
+		</ol>
 
-		<a id=a-zoom-dec>-</a>
-		<input type=range min=0 max=6>
-		<a id=a-zoom-inc>+</a>
-
-		<!-- <a><div class=a-inner><span class=icon-expand></div></a> -->
+		<a>Close</a>
 	</h>
 
-	<panel-body>
+	<main-body>
 		<div id=canvas class=canvas>
 			<canvas id=canvasDisplay style="width:512px;height:512px;left:64px;top:64px;" width=1024 height=1024></canvas>
 			<div class=canvas-region><div></div></div>
 		</div>
-	</panel-body>
+	</main-body>
 
-	<panel-footer>
+	<f>
 		<div>x:0 y:0</div>
-	</panel-footer>
+	</f>
 </main>
 
 <side id=side>
@@ -120,19 +141,6 @@
 	<page id=page-swatch>
 		<h>Swatch</h>
 	</page>
-
-	<panel class=panel-history>
-		<h>History<a>Pick</a></h>
-		<panel-body>
-			<ul id=history class=history-list></ul>
-			<div id=scrubber class=scrubber-outer><div class=scrubber-inner></div></div>
-		</panel-body>
-
-		<panel-footer>
-			<div class=spacer></div>
-			<div id=clock class=clock>0:00</div>
-		</panel-footer>
-	</panel>
 </side>
 
 <div id=offscreen hidden>
@@ -144,9 +152,9 @@
 	<canvas id=canvas-erase ></canvas>
 </div>
 
-<template id=template-history-item>
-	<li class=new><a><div class=rgb></div></a></li>
-</template>
+<template id=template-layer-item><li><a data-label=Canvas><canvas width=32 height=32 class=thumb></canvas></a></template>
+<template id=template-history-item><li class=new><a><div class=rgb></div></a></li></template>
+
 
 <script src=/static/vend/bliss.min.js></script>
 <!-- <script src=/static/vend/perlin.js></script> -->

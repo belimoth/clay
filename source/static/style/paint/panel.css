@@ -20,33 +20,19 @@ h > div:first-child {
 	padding: 0 16px;
 }
 
-h > a:not( [disabled] ):not( .mute ):hover,
-h > a:not( [disabled] ):not( .mute ):active {
+h > a:not( [disabled] ):hover,
+h > a:not( [disabled] ):active {
 	background: #000;
 	color: #FFF;
 
 	opacity: 1.0;
 }
 
-h > a[disabled]:hover > div.a-inner {
-	/* background: #F2F2F2; */
-}
-
-h > a:not( [disabled] ):not( .mute ):active {
+h > a:not( [disabled] ):active {
 	transform: scale( 0.95 );
 }
 
-h > a.mute:not(.hover) {
-	background: #FFF;
-	color: #444;
-}
-
-h > a > div.a-inner > span {
-	font-size: 20px;
-}
-
-
 h > a {
 	padding: 0 8px;
-	line-height: 30px;
+	/* line-height: 30px; */
 }

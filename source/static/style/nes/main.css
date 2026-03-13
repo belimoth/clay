@@ -80,12 +80,7 @@ h {
     line-height: 32px;
 }
 
-top > t {
-    padding: 0 8px;
-    display: block;
-    /* flex-grow: 1; */
-    line-height: 32px;
-}
+
 
 button,
 a {
@@ -261,13 +256,7 @@ monitor {
     margin-top: 8px;
 }
 
-top > img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 32px;
-    border-bottom: 1px solid currentColor;
-}
+
 
 top {
     padding-left: 32px;
@@ -493,19 +482,11 @@ side > page > div {
     margin-left: -8px;
 }
 
-ul.menu-list > li > ul > li {
-    padding-left: 8px;
-}
 
-ul.menu-list > li > ul > li > a,
-ul.menu-list > li > ul > li > label {
-    margin-left: -8px;
-}
 
-ul.menu-list > li > ul {
-    border: 1px solid currentColor;
-    border-top-width: 0;
-}
+
+
+
 
 
 page > h > a {
@@ -795,4 +776,10 @@ side > page > canvas {
     margin-left: 2px;
     border: 0 !important;
     width: 256px !important;
+}
+
+
+
+div.canvas {
+    overflow: scroll;
 }

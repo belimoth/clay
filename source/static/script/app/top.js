@@ -1,9 +1,9 @@
 "use strict";
 
-$( "top" )._.delegate( "mousedown", "ul.menu-list > li > a:not([disabled])", function( event ) {
+$( "top" )._.delegate( "mousedown", "top > ul > li > a:not([disabled])", function( event ) {
 	document.body.classList.toggle( "app-overlay-show" );
 
-	$$( "ul.menu-list > li.active" ).forEach( el => el.classList.remove( "active" ) );
+	$$( "top > ul > li.active" ).forEach( el => el.classList.remove( "active" ) );
 
 	if ( document.body.classList.contains( "app-overlay-show" ) ) {
 		event.target.closest( "li" ).classList.add( "active" );
@@ -14,19 +14,19 @@ $( "top" )._.delegate( "mousedown", "ul.menu-list > li > a:not([disabled])", fun
 
 document.body.addEventListener( "mousedown", function( event ) {
 	if ( document.body.classList.contains( "app-overlay-show" ) ) {
-		$$( "ul.menu-list > li.active" ).forEach( el => el.classList.remove( "active" ) );
+		$$( "top > ul > li.active" ).forEach( el => el.classList.remove( "active" ) );
 		document.body.classList.remove( "app-overlay-show" )
 	}
 });
 
-$( "top" )._.delegate( "mouseover", "ul.menu-list > li > a:not([disabled])", function( event ) {
+$( "top" )._.delegate( "mouseover", "top > ul > li > a:not([disabled])", function( event ) {
 	if ( document.body.classList.contains( "app-overlay-show" ) ) {
-		$$( "ul.menu-list > li.active" ).forEach( el => el.classList.remove( "active" ) );
+		$$( "top > ul > li.active" ).forEach( el => el.classList.remove( "active" ) );
 		event.target.closest( "li" ).classList.add( "active" );
 	}
 });
 
-$$( "ul.menu-list > li > ul > li > a" ).forEach( function( el, i ) {
+$$( "top > ul > li > ul > li > a" ).forEach( function( el, i ) {
 	el.addEventListener( "mousedown", function( event ) {
 		event.stopPropagation();
 	});

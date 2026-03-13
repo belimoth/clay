@@ -1,5 +1,4 @@
 @import "../reset.css";
-@import "./icon_hack.css";
 
 @import "../layout.css";
 @import "./canvas.css";
@@ -22,8 +21,17 @@
 @import "./wip.css";
 
 
-top > t {
-	padding: 0 8px;
+
+
+main-body {
+	flex-grow: 1;
+	overflow: scroll;
+}
+
+
+
+main {
+	overflow: hidden;
 }
 
 
@@ -38,69 +46,13 @@ h {
 	line-height: 32px;
 }
 
-menu,
-side {
-	background: #FFF;
-}
-
-
-menu {
-	width: 260px;
-}
-
-body {
-    grid-template-columns: 260px 1fr 260px;
-    grid-template-rows: 32px 1fr;
-}
-
-main {
-	display: flex;
-	flex-direction: column;
-}
-
-main > panel-body {
-	flex-grow: 1;
-	overflow: scroll;
-}
-
 h {
 	padding: 0;
-}
-
-
-
-
-menu > page:not(:first-child) {
-	border-top: 1px solid currentColor;
-}
-
-menu > page {
-	display: block;
 }
 
 h {
 	display: block;
 	line-height: 32px;
-}
-
-
-side {
-	display: flex;
-	flex-direction: column;
-}
-
-li {
-	position: relative;
-}
-
-
-li > a[data-label]::after {
-	content: "(" attr( data-label ) ")";
-	position: absolute;
-	right: 0;
-	line-height: inherit;
-	padding-right: 8px;
-	top: 0;
 }
 
 h {
@@ -121,34 +73,281 @@ h[data-label]::after {
 
 
 
-
-
-
-
-body.focus {
-	grid-template-columns: 40px 1fr 40px;
-	grid-template-rows: 1fr;
+menu {
+	width: 260px;
 }
 
-body.focus top {
-	display: none;
+
+
+main {
+	display: flex;
+	flex-direction: column;
 }
+
+main > panel-body {
+	flex-grow: 1;
+	overflow: scroll;
+}
+
+
+
+
+
+menu > page:not(:first-child) {
+	border-top: 1px solid currentColor;
+}
+
+menu > page {
+	display: block;
+}
+
+
+
+
+side {
+	display: flex;
+	flex-direction: column;
+}
+
+li {
+	position: relative;
+}
+
+
+/* li > a[data-label]::after {
+	content: "(" attr( data-label ) ")";
+	position: absolute;
+	right: 0;
+	line-height: inherit;
+	padding-right: 8px;
+	top: 0;
+} */
+
+
+
+
+
+
+
+
 
 
 body.focus menu h {
 	display: none;
 }
 
-body.focus menu ul.tool-list {
+
+body {
+	-webkit-user-select: none; user-select: none;
+}
+
+main > h {
+	display: flex;
+	width: 100%;
+	max-width: 100%;
+}
+
+main > h > ol {
+	flex-grow: 1;
+}
+
+main > h > ol > li[active]::after {
+	content: "";
+	display: block;
+	width: 100%;
+	height: 4px;
+	background: #F6E;
+	position:absolute;
+	bottom: -1px;
+}
+
+
+
+
+
+main > h > ol {
+	display: flex;
+}
+
+main > h > ol > li > a {
+	display: block;
+	height: 100%;
+}
+
+
+main > h > ol > li:not([active]) > a:hover {
+	background: #FFE8FC
+}
+
+main > h > ol > li[active] > a,
+main > h > ol > li:not([active]) > a:active {
+	background: #FFD1FA;
+}
+
+
+main > h > ol > li:last-child > a:hover,
+main > h > ol > li:last-child > a:active {
+	background: #000;
+	color: #FFF;
+}
+
+main > h > ol > li:last-child > a:active {
+    transform: scale(0.95);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+main {
+	display: grid;
+	grid-template-rows: 32px 1fr 32px;
+}
+
+main-body {
+	min-height: 0;
+}
+
+
+
+
+main,
+body {
+	overflow: hidden;
+}
+
+main {
+    min-height: 0;
+}
+
+
+main-body {
+	flex-grow: 0;
+	min-height: 0;
+}
+
+
+
+
+
+
+
+menu {
+	height: calc( 100vh - 32px );
+	overflow: hidden;
+}
+
+menu > * {
+	min-height: 0;
+	flex-shrink: 0;
+
+}
+
+menu > page:last-child {
+	flex-shrink: 1;
+}
+
+
+menu {
 	display: flex;
 	flex-direction: column;
 }
 
-body.focus menu ul.tool-list > li > a[data-label]::before {
-	content: attr( data-label );
+
+main {
+	display: flex;
+}
+
+main-body {
+	flex-grow: 1;
+}
+
+
+menu > h,
+menu > page > h,
+side > page > h {
+	padding-left: 8px;
+}
+
+
+
+
+
+
+
+
+h {
+    display: flex;
+}
+
+h > t {
+    flex-grow: 1;
+}
+
+
+
+
+ul.button-list {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	line-height: 40px;
+	text-align: center;
+}
+
+
+
+
+
+
+ul.button-list > li > a:not([disabled]):hover,
+ul.button-list > li > a:not([disabled]):active {
+	background: #000;
+	color: #FFF;
+}
+
+ul.button-list > li > a:not([disabled]):active {
+	transform: scale( 0.95 );
+}
+
+
+a[disabled] {
+	color: #AAA;
+}
+
+
+
+
+
+
+
+
+
+top ol {
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+
+body.focus menu {
+	height: 100vh;
+}
+
+
+
+ul.layer-list > li {
 	display: block;
 }
 
-body {
-	-webkit-user-select: none; user-select: none;
+ul.layer-list > li > a[data-label]::after {
+	content: attr( data-label );
 }

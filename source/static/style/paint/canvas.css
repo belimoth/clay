@@ -2,9 +2,8 @@ div.canvas {
 	height: calc( 100% - 42px );
 	width: 100%;
 
-	background-image: url( static/image/bg-light.png );
+	/* background-image: url( static/image/bg-light.png ); */
 	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACAQMAAABIeJ9nAAAABlBMVEX////Z2dl4b8nnAAAADElEQVQI12NwYGgAAAFEAMHrWQMJAAAAAElFTkSuQmCC);
-	/* background: url( data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAGElEQVQYV2NkYGBgePfu3X9GECEkJMQIAES/B8xcEGU3AAAAAElFTkSuQmCC ); */
 }
 
 div.canvas {
@@ -19,7 +18,7 @@ div.canvas {
 
 div.canvas {
 	/* cursor: none; */
-	/* cursor: crosshair; */
+	cursor: crosshair;
 }
 
 div.canvas {
@@ -45,6 +44,27 @@ panel.panel-canvas {
 	padding-right: 1px;
 }
 
-panel.panel-canvas > panel-header {
-	/* font-weight: 700; */
+canvas {
+	image-rendering: pixelated;
+}
+
+panel.panel-canvas > panel-body {
+	overflow: scroll;
+	height: calc( 100% - 42px );
+}
+
+panel.panel-canvas {
+	padding-right: 0;
+}
+
+panel.panel-canvas > h {
+	margin-right: 0;
+}
+
+panel.panel-canvas > panel-body {
+	height: calc( 100% - 42px * 2 );
+}
+
+panel.panel-canvas > panel-body {
+    height: calc( 100% - 42px - 24px );
 }

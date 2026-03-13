@@ -1,39 +1,35 @@
-/* 0.1.3 */
+ul.tool-list {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	text-wrap: nowrap;
+	text-align: center;
+}
+
+ul.tool-list > li {
+	min-width: 0;
+}
 
 ul.tool-list > li > a {
 	display: block;
 	position: relative;
 	height: 40px;
 	line-height: 40px;
-	border-left: 4px solid transparent;
+	border-bottom: 4px solid transparent;
 }
 
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-/* 0.2.3 */
-
 ul.tool-list > li > a:hover {
-	background: #F2F2F2;
+	background: var( --color-bg-hover );
 }
 
 ul.tool-list > li.active > a {
-	border-left-color: #F6E;
+	border-bottom-color: #F6E;
     background: #F2F2F2;
     color: #F6E;
 }
 
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-/* 0.3.3 */
-
 ul.tool-list > li > a:not( [disabled] ):active {
 	background: #DDD;
 }
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-/* 0.2.3 */
-/* 0.3.3 */
 
 ul.tool-list > li.active > a,
 ul.tool-list > li > a:not( [disabled] ):active {
@@ -41,19 +37,9 @@ ul.tool-list > li > a:not( [disabled] ):active {
 	color: #000;
 }
 
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-/* 0.2.3 */
-
 ul.tool-list > li > a[disabled] {
 	color: #AAA;
 }
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-/* 0.4.3 */
-
-/* TODO move .active to <a> */
 
 ul.tool-list > li:not( .active )        > a:not( [disabled] ):active,
 ul.tool-list > li.active                  > a:not( [disabled] ) {
@@ -64,150 +50,35 @@ ul.tool-list > li:not( .active ) > a:not( [disabled] ):hover {
 	background: #FFE8FC;
 }
 
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-/* 0.4.5 */
-
-main.tools-focus panel.panel-menu ul.tool-list > li > a {
-	padding-left: 0;
-	font-size: 0;
-	width: 47px;
-	overflow: hidden;
-}
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-/* 0.5.3 */
-
 ul.tool-list > li:not( .active ) > a:not( [disabled] ):hover:active {
 	background: #FFD1FA;
 	color: #000;
 }
 
-ul.tool-list.mute > li:not( .active ) > a:hover:not( :active ) {
-	background: #FFF;
-}
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-/* 0.6.5 */
-
-/* TODO move .active to <a> */
-
-main.tools-focus panel.panel-menu ul.tool-list > li        > a:not( [disabled] ):active,
-main.tools-focus panel.panel-menu ul.tool-list > li.active > a:not( [disabled] ) {
-	transform: scale( 0.95 );
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-ul.tool-list > li.recent > a:before {
-	content: "";
-	display: block;
-	width: 6px;
-	height: 6px;
-	background: #07D;
-	border-radius: 50%;
-	position: absolute;
-	top: 2px;
-	left: 2px;
+body:not( .focus ) ul.tool-list > li > a[data-name]::before {
+	content: attr( data-name );
+	display: inline;
 }
 
 ul.tool-list > li > a[data-label]::after {
+	display: block;
 	content: attr( data-label );
-	width: 32px;
-	/* position: absolute; */
-	/* right: 16px; */
-	/* bottom: 2px; */
-	/* font-size: 8px; */
-	text-align: center;
-	/* font-weight: 500; */
-	/* opacity: 0.5; */
-	padding-left: 8px;
-
 	text-transform: uppercase;
 }
 
-ul.tool-list > li > a[data-label]::after {
+body:not( .focus ) ul.tool-list > li > a[data-label]::after {
 	display: none;
 }
 
-
-
-
-
-
-ul.tool-list > li {
-	border: 0 solid transparent;
-	border-width: 1px 0;
+body.focus menu ul.tool-list {
+	display: flex;
+	flex-direction: column;
 }
 
-ul.tool-list > li.first {
-	border-top-color: #444;
+body.focus menu {
+	width: 48px;
 }
 
-
-
-
-
-
-main.layer-full > div.menu > ul.tool-list {
-	opacity: 0.0;
-	transform: translateX( -24px );
-	transition: opacity 0.1s linear, transform 0.2s ease;
-}
-
-ul.tool-list {
-	border-bottom: 1px solid #666;
-	text-wrap: nowrap;
-	text-align: center;
-}
-
-
-
-
-
-
-
-main.tools-focus panel.panel-menu > panel-body {
-	width: 47px;
-	transition: width 0.2s step-end;
-}
-
-ul.tool-list:last-of-type {
-	border-bottom-color: transparent;
-}
-
-
-
-
-
-
-ul.tool-list {
-	padding: 1px 0;
-}
-
-
-
-
-
-
-
-ul.tool-list {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
-}
-
-ul.tool-list > li {
-	min-width: 0;
+body.focus ul.tool-list + ul {
+	border-top: 1px solid currentColor;
 }

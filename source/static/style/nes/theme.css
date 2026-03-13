@@ -42,9 +42,16 @@ ol > li[active] > a::after {
 
 }
 
-top > img {
-    border-color: #FFF;
-}
+
+
+
+
+
+
+
+
+
+
 
 panel {
     border-color: #FFF;
@@ -93,11 +100,6 @@ tr.nes-header {
 
 
 
-ul.menu-list > li > ul {
-	background: #000;
-	border-color: #FFF;
-}
-
 
 a {
     color: #FFF;
@@ -114,10 +116,9 @@ a:hover:active {
     transform: scale(0.95);
 }
 
-ul.menu-list > li.active > a {
-    background: #FFF;
-    color: #000;
-}
+
+
+
 
 
 
@@ -157,4 +158,64 @@ input.cpu-flag:checked {
     background: currentColor;
     color: #000;
     border-color: #FFF;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+top > t {
+    padding: 0 8px;
+    display: block;
+    /* flex-grow: 1; */
+    line-height: 32px;
+}
+
+top > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 32px;
+    border-bottom: 1px solid currentColor;
+}
+
+top > ul > li > ul > li {
+    padding-left: 8px;
+}
+
+top > ul > li > ul > li > a,
+top > ul > li > ul > li > label {
+    margin-left: -8px;
+}
+
+top > ul > li > ul {
+    border: 1px solid currentColor;
+    border-top-width: 0;
+}
+
+top > img {
+    border-color: #FFF;
+}
+
+top > ul > li > ul {
+	background: #000;
+	border-color: #FFF;
+}
+
+top > ul > li.active > a {
+    background: #FFF;
+    color: #000;
 }

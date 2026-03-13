@@ -1,141 +1,5 @@
-canvas {
-	image-rendering: pixelated;
-}
 
-
-div.canvas {
-	overflow: scroll;
-}
-
-div.canvas {
-	overflow: hidden;
-	height: 100%;
-}
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-div.view-label::before {
-	content: attr( data-label );
-}
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-div.label {
-	height: 40px;
-	line-height: 40px;
-	padding: 0 16px;
-}
-
-panel.panel-canvas > panel-body {
-	overflow: scroll;
-	height: calc( 100% - 42px );
-}
-
-main.layer-full > side > panel-body > h {
-	display: none;
-}
-
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-
-
-
-
-panel.panel-canvas > h {
-    margin-left: 2px;
-    padding-left: 14px;
-    margin-right: -1px;
-}
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-panel.panel-menu {
-	overflow: hidden;
-}
-
-panel.panel-menu > panel-body {
-	width: 239px;
-}
-
-main.tools-focus > panel.panel-menu {
-	width: 48px;
-}
-
-main.tools-focus > panel.panel-menu > panel-body > h > div:first-child,
-main.tools-focus > panel.panel-menu > panel-body > h > div:first-child + a {
-	display: none;
-}
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-main.tools-focus > panel.panel-canvas {
-	left: 48px;
-	width: calc( 100vw - 48px - 260px );
-}
-
-main.tools-focus.layer-focus > panel.panel-canvas {
-	left: 48px;
-	width: calc( 100vw - 48px - 48px );
-}
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-/* div.canvas {
-	border: 4px solid #FFF;
-}
-
-panel.panel-canvas > h {
-    margin-left: 4px;
-    padding-left: 12px;
-} */
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-panel.panel-canvas > h {
-    margin-left: 0;
-    padding-left: 16px;
-}
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-main.layer-full > side > panel-body > panel {
-	overflow: visible;
-}
-
-main.layer-full > side > panel-body > panel:not( .active ) {
-	display: none;
-}
-
-panel-body > panel {
-	flex-shrink: 1;
-}
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-main.layer-full > side {
-	overflow: visible;
-}
-
-main.layer-full > side > panel-body {
-	overflow-y: scroll;
-	overflow-x: hidden;
-}
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-h > a[disabled] {
-	color: #AAA;
-}
-
-h > a.mute[disabled] > div.a-inner {
+a[disabled] {
 	color: #AAA;
 }
 
@@ -154,168 +18,25 @@ div.box {
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-panel-footer {
+f {
 	height: 42px;
 	border-top: 1px solid #666;
+	height: 24px;
+	display: flex;
+	line-height: 24px;
 }
 
-panel.panel-canvas {
-	padding-right: 0;
+f > div {
+	padding: 0 8px;
 }
-
-panel.panel-canvas > h {
-	margin-right: 0;
-}
-
-panel.panel-canvas > panel-body {
-	height: calc( 100% - 42px * 2 );
-}
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-panel.panel-canvas h > a > div.a-inner {
-	/* padding-top: 9.5px; */
-	/* padding-left: 1px; */
-	padding-left: 0;
-	padding-top: 4px;
-}
-
-h > a > div.a-inner {
-	padding-top: 4px;
-}
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-body.window-full main {
-	top: -1px;
-	height: calc( 100vh + 1px );
-}
-
-panel.panel-canvas > h {
-	padding-left: 0;
-}
-
-h > a:not( :last-child ) {
-	margin-right: 2px;
-}
-
-panel.panel-canvas h > div:first-child {
-	flex-grow: 0;
-}
-
-div.spacer {
-	flex-grow: 1;
-}
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 div.box {
 	z-index: 10;
 }
 
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-main.layer-full panel.panel-menu {
-	/* opacity: 0.0; */
-}
-
-main.layer-full side {
-	display: none;
-}
-
-panel.panel-menu > panel-body > panel.panel-tools {
-	flex-grow: 0;
-	height: auto;
-}
-
-panel.panel-menu > panel-body > panel.panel-palette {
-	height: auto;
-}
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-body.app-overlay-show > main {
-	opacity: 0.5;
-}
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-
-/* body.app-overlay-show main > * {
-	opacity: 0.5;
-	transition: opacity 0.1s linear 0.0s;
-}
-
-body.app-overlay-show main {
-	opacity: 0.0;
-	transform: scale( 0.94 );
-	transition: transform 0.2s ease-in, opacity 0.2s step-end;
-} */
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
 body {
 	overflow: hidden;
 }
-
-/* app-menu {
-	position: absolute;
-	left: 0;
-	top: 36px;
-	width: 260px;
-	height: calc( 100vh - 36px );
-	background: #FFF;
-	border-top: 1px solid #666;
-	border-right: 1px solid #666;
-} */
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-body.app-overlay-show > top > ul.menu-list > li:first-child > a {
-	position: relative;
-	z-index: 2;
-}
-
-body.app-overlay-show > top > ul.menu-list > li:first-child > a > div.a-inner {
-	/* background: #000;
-	color: #FFF; */
-}
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-
-body.mute-active ul.layer-list > li.active::before,
-body.mute-active ul > li.active > a::before {
-	opacity: 0.0;
-}
-
-body.mute-active ul.tool-list > li.active > a {
-	border-left-color: transparent;
-}
-
-body.mute-active div.box {
-	opacity: 0.0;
-}
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-body.mute-active ul.tool-list > li.hover > a,
-body.mute-active ul.layer-list > li.hover > a {
-	background: #FFE8FC;
-	/* background: #FFD1FA; */
-}
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-panel-footer {
-	height: 24px;
-}
-
-panel.panel-canvas > panel-body {
-    height: calc( 100% - 42px - 24px );
-}
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 div.rgb {
 	width: 16px;
@@ -327,43 +48,27 @@ div.rgb {
 	box-shadow: inset 0 0 0 1px #FFF;
 }
 
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-panel-footer {
-	display: flex;
-	line-height: 24px;
-}
-
-panel-footer > div {
-	padding: 0 8px;
-}
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-panel.panel-history {
+page#page-history {
 	flex-direction: column;
 }
 
-panel.panel-history > panel-body {
+page#page-history > panel-body {
 	display: flex;
 	flex-direction: row;
 }
 
-panel-body > panel.panel-history {
+panel-body > page#page-history {
 	overflow: auto;
 }
 
-panel.panel-history > panel-body {
+page#page-history > panel-body {
 	overflow-x: hidden;
     overflow-y: scroll;
 }
 
-panel-footer {
-	flex-shrink: 0;
-}
 
-panel.panel-history {
-	padding-bottom: 1px;
+f {
+	flex-shrink: 0;
 }
 
 panel.panel-layer panel-body {
@@ -390,24 +95,12 @@ panel-body > panel.panel-layer > panel-body {
 }
 
 side div.box {
-    width: 216px;
+    width: 43px;
 }
 
 side > panel-body {
     margin-top: 0;
 }
-
-body.focus ul.layer-list > li:not( .selected ) {
-	/* display: none; */
-}
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-body.app-overlay-show main {
-	pointer-events: none;
-}
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 panel.panel-full {
 	position: absolute;
@@ -420,61 +113,6 @@ panel.panel-full {
 	pointer-events: none;
 }
 
-main.layer-full panel.panel-full {
-	opacity: 1.0;
-	pointer-events: all;
-}
-
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
 menu div.box {
 	display: none;
-}
-
-side ul.layer-list {
-	padding-left: 16px;
-	padding-right: 0;
-}
-
-ul.layer-list > li.active::before {
-	left: -16px;
-}
-
-
-
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-main > * {
-	background: transparent;
-}
-
-main.layer-full panel.panel-menu {
-	opacity: 0;
-}
-
-panel.panel-full {
-	transform: translateX( 24px );
-}
-
-panel.panel-full {
-	transform: translateX( 24px );
-}
-
-
-
-
-
-
-
-
-
-
-ul.layer-list > li {
-	position: relative;
 }
