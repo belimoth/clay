@@ -1,9 +1,9 @@
 "use strict";
 
 import "./reset.js"
-import "./color.js"
+import "./math.js"
 
-import "./main/ui.js"
+import "./main/ui/canvas.js"
 import "./main/tool.js"
 
 import "./main/ui/scrubber.js"
@@ -17,11 +17,107 @@ import "./app.js"
 import "./wip.js"
 import "./session.js"
 
-import { app, app_draw }     from "./app.js";
+import { app, app_canvas_resize }               from "./app.js";
+import { app_draw }          from "./main/draw.js";
 import { update_layer_mode } from "./main/ui/layout.js";
 import { update_tool_mode }  from "./main/ui/layout.js";
 import { tool_init }         from "./main/ui/tool.js";
 import { time_format }       from "./time.js"
+
+
+
+
+
+
+
+
+
+import { ui_list_layer }            from "./main/ui/layer.js";
+import { palette }                  from "./main/ui/palette.js";
+import { storage }                  from "./session.js";
+
+
+// TODO don't need type : "mousedown" this already exists in event
+
+app.ui.canvas.el.addEventListener( "mousedown", function( event ) {
+	app.mouse = {
+		x : ( event.clientX - app.ui.canvas.x ),
+		y : ( event.clientY - app.ui.canvas.y ),
+	};
+
+	app.tool.handle({ type : "mousedown", data : { shift : event.shiftKey } });
+	app.toRepaint = true;
+});
+
+document.addEventListener( "mouseup", function( event ) {
+	app.mouse = {
+		x : ( event.clientX - app.ui.canvas.x ),
+		y : ( event.clientY - app.ui.canvas.y ),
+	};
+
+	app.tool.handle({ type : "mouseup", data : { shift : event.shiftKey } });
+	app.toRepaint = true;
+});
+
+app.ui.canvas.el.addEventListener( "mouseout", function( event ) {
+	// if ( app.drawing ) {
+	// 	app.mouse = {
+	// 		x : ( event.clientX - app.ui.canvas.x ),
+	// 		y : ( event.clientY - app.ui.canvas.y ),
+	// 	};
+
+	// 	app.stroke.push( app.mouse );
+	// }
+
+	app.mouse = null;
+	app.toRepaint = true;
+});
+
+app.ui.canvas.el.addEventListener( "mousemove", function( event ) {
+	app.mouse = {
+		x : ( event.clientX - app.ui.canvas.x ),
+		y : ( event.clientY - app.ui.canvas.y ),
+	};
+
+	app.tool.handle({ type : "mousemove", data : { shift : event.shiftKey } });
+	app.toRepaint = true;
+});
+
+document.addEventListener( "keyup", function( event ) {
+	if ( app.drawing && event.key == "Shift" ) {
+		app.drawing = false;
+		app.toRepaint = true;
+	}
+});
+
+
+//
+
+app.storage = new storage();
+
+app.ui.palette   = new palette( $( "div.palette" ) );
+app.ui.layer     = new ui_list_layer();
+app.history_item = null;
+
+
+
+
+
+
+app_canvas_resize();
+app_draw();
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 const fps = 60;

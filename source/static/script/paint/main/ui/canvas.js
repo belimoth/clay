@@ -1,6 +1,6 @@
 "use strict";
 
-import { app } from "../app.js"
+import { app } from "../../app.js"
 
 export function canvas( el ) {
 	this.el = el;
@@ -48,9 +48,9 @@ export function screen_to_canvas( p ) {
 	};
 }
 
-
 document.getElementById( "a-zoom-inc" ).addEventListener( function ( event ) {
 	app.ui.canvas.m = app.ui.canvas.m + 1;
 	console.log( app.ui.canvas.m );
 	app.ui.canvas.resize();
+	app.toRepaint = true;
 });

@@ -16,7 +16,6 @@ window.onblur = function( event ) {
 
 };
 
-import "../app.js";
 import { default as nes } from "./nes.js";
 
 nes.init();
@@ -150,3 +149,24 @@ function tab_list( el ) {
 new tab_list( document.getElementById( "side-tab" ) );
 new tab_list( document.getElementById( "main-tab" ) );
 new tab_list( document.getElementById( "tray-tab" ) );
+
+document.getElementById( "a-rom-edit" ).addEventListener( "click", function( event ) {
+	document.getElementById( "page-rom-list" ).removeAttribute( "active" );
+	document.getElementById( "page-rom-info" ).removeAttribute( "active" );
+	document.getElementById( "page-rom-edit" ).setAttribute( "active", "" );
+	document.getElementById( "page-rom-edit-upload" ).removeAttribute( "active" );
+});
+
+document.getElementById( "a-rom-edit-back" ).addEventListener( "click", function( event ) {
+	document.getElementById( "page-rom-list" ).setAttribute( "active", "" );
+	document.getElementById( "page-rom-info" ).removeAttribute( "active" );
+	document.getElementById( "page-rom-edit" ).removeAttribute( "active" );
+	document.getElementById( "page-rom-edit-upload" ).removeAttribute( "active" );
+});
+
+document.getElementById( "a-rom-info-back" ).addEventListener( "click", function( event ) {
+	document.getElementById( "page-rom-list" ).setAttribute( "active", "" );
+	document.getElementById( "page-rom-info" ).removeAttribute( "active" );
+	document.getElementById( "page-rom-edit" ).removeAttribute( "active" );
+	document.getElementById( "page-rom-edit-upload" ).removeAttribute( "active" );
+});

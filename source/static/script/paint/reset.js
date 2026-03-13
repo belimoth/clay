@@ -1,17 +1,5 @@
 "use strict";
 
-document.addEventListener( "contextmenu", function( event ) {
-	event.preventDefault();
-});
-
-document.addEventListener( "wheel", function( event ) {
-	if ( event.ctrlKey ) {
-		event.preventDefault();
-	}
-}, { "passive" : false });
-
-document.addEventListener( "keydown", function( event ) {
-	if ( event.ctrlKey && "-=".includes( event.key ) ) {
-		event.preventDefault();
-	}
-});
+document.addEventListener( "contextmenu", event => { event.preventDefault(); });
+document.addEventListener( "wheel",       event => { if ( event.ctrlKey ) event.preventDefault(); }, { "passive" : false });
+document.addEventListener( "keydown",     event => { if ( event.ctrlKey && "-=".includes( event.key ) ) event.preventDefault(); });

@@ -1,7 +1,7 @@
 "use strict";
 
 import { app }        from "../../app.js";
-import { hex_to_rgb } from "../../color.js";
+import { hex_to_rgb } from "../../math.js";
 
 var palette_default = [
 	{ hex : "#000000", erase : false },
