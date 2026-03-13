@@ -54,3 +54,57 @@ document.getElementById( "a-zoom-inc" ).addEventListener( function ( event ) {
 	app.ui.canvas.resize();
 	app.toRepaint = true;
 });
+
+
+// TODO don't need type : "mousedown" this already exists in event
+
+app.ui.canvas.el.addEventListener( "mousedown", function( event ) {
+	app.mouse = {
+		x : ( event.clientX - app.ui.canvas.x ),
+		y : ( event.clientY - app.ui.canvas.y ),
+	};
+
+	app.tool.handle({ type : "mousedown", data : { shift : event.shiftKey } });
+	app.toRepaint = true;
+});
+
+document.addEventListener( "mouseup", function( event ) {
+	app.mouse = {
+		x : ( event.clientX - app.ui.canvas.x ),
+		y : ( event.clientY - app.ui.canvas.y ),
+	};
+
+	app.tool.handle({ type : "mouseup", data : { shift : event.shiftKey } });
+	app.toRepaint = true;
+});
+
+app.ui.canvas.el.addEventListener( "mouseout", function( event ) {
+	// if ( app.drawing ) {
+	// 	app.mouse = {
+	// 		x : ( event.clientX - app.ui.canvas.x ),
+	// 		y : ( event.clientY - app.ui.canvas.y ),
+	// 	};
+
+	// 	app.stroke.push( app.mouse );
+	// }
+
+	app.mouse = null;
+	app.toRepaint = true;
+});
+
+app.ui.canvas.el.addEventListener( "mousemove", function( event ) {
+	app.mouse = {
+		x : ( event.clientX - app.ui.canvas.x ),
+		y : ( event.clientY - app.ui.canvas.y ),
+	};
+
+	app.tool.handle({ type : "mousemove", data : { shift : event.shiftKey } });
+	app.toRepaint = true;
+});
+
+document.addEventListener( "keyup", function( event ) {
+	if ( app.drawing && event.key == "Shift" ) {
+		app.drawing = false;
+		app.toRepaint = true;
+	}
+});
