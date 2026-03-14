@@ -22,7 +22,8 @@ export let app = {
 		render  : null,
 		stroke  : null,
 		erase   : null,
-		layer  : [],
+		layer   : [],
+		preview : null,
 	},
 
 	layer_mode_index   : 1,

@@ -77,6 +77,9 @@ export function app_init() {
 		app.context.layer.push( canvas_get_context( canvasLayer ) );
 	});
 
+	var canvasPreview = document.getElementById( "preview" );
+	app.context.preview = canvas_get_context( canvasPreview );
+
 	app.waitingOn = 0
 
 	function load() {

@@ -23,6 +23,7 @@ export function ui_list_layer( el ) {
 		if ( this.itemActive ) { this.itemActive.el.classList.remove( "active" ); }
 		this.itemActive = item;
 		this.itemActive.el.classList.add( "active" );
+		app.toRepaint = true;
 	};
 
 	function item( el, i ) {

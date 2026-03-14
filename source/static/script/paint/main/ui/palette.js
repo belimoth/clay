@@ -45,10 +45,12 @@ export function ui_palette() {
 
 	this.set_select = function( select ) {
 		this.select = select;
-		var y = select[0].i * 17;
-		var h = select.length * 17 - 1;
+		var x = ( select[0].i % 8 ) * 32;
+		var y = Math.floor( ( select[0].i - x ) / 8 ) * 32;
+		var w = select.length * 32;
+		var h = 32;
 
-		box_el.style = "transform: translateY( " + y + "px ); height: " + h + "px;";
+		box_el.style = "transform: translateX( " + x + "px ) translateY( " + y + "px ); width:" + w + "px; height: " + h + "px;";
 	};
 
 	function swatch( el, i ) {

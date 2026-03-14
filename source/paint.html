@@ -61,21 +61,32 @@
 </top>
 
 <menu id=menu>
-	<h><t>Layers</t><a>Edit</a></h>
+	<h><ol><li active><a>File</a><li><a>History</a></ol></h>
 
-	<ul id=layer class=layer-list></ul>
+	<page id=page-file>
+		<p>
+			<label>Format</label><span>None</span>
+			<label>Size</label><span>64 x 64</span>
+		</p>
+	</page>
 
-	<ul class=button-list>
-		<li><a id=a-layer-insert        >Insert</a>
-		<li><a id=a-layer-dupe          >Dupe</a>
-		<li><a id=a-layer-merge disabled>Merge</a>
-		<li><a id=a-layer-delete        >Delete</a>
-	</ul>
+	<page>
+		<h><t>Layers</t><a>Edit</a></h>
+
+		<ul id=layer class=layer-list></ul>
+
+		<ul class=button-list>
+			<li><a id=a-layer-insert        >Insert</a>
+			<li><a id=a-layer-dupe          >Dupe</a>
+			<li><a id=a-layer-merge disabled>Merge</a>
+			<li><a id=a-layer-delete        >Delete</a>
+		</ul>
+	</page>
 
 	<page id=page-layer>
-		<h>Layer</h>
+		<h>Layer options</h>
 
-		<canvas id=canvas-preview></canvas>
+		<canvas id=preview width=256 height=256></canvas>
 
 		<p>
 			<label>Type</label><select>
@@ -87,25 +98,27 @@
 				<option>Trim</option>
 			</select>
 
-			<label>Opacity</label>
-			<input type=range>
+			<label>Blend</label><select>
+				<option>Normal</option>
+			</select>
+
+			<label>Opacity</label><span>100%</span><input type=range>
 		</p>
 	</page>
 
 	<page id=page-tool>
-		<h data-label=QWER>Tools</h>
+		<h><t>Tools (QWER)</t><a disabled>Edit</a></h>
 
 		<ul class=tool-list>
-			<li class=active><a data-name=Outline></a>
-			<li             ><a data-name=Draw   ></a>
-			<li             ><a data-name=Shape  ></a>
-			<li             ><a data-name=Adjust ></a>
+			<li class=active><a data-name=Select></a>
+			<li             ><a data-name=Move  ></a>
+			<li             ><a data-name=Draw  ></a>
+			<li             ><a data-name=Fill  ></a>
 		</ul>
 
 		<ul class=tool-list>
-			<li><a data-name=Pick></span></a>
-			<li><a data-name=Fill></a>
-			<li><a data-name=Anchor></a>
+			<li class=mod><a disabled data-name=Pick></span></a>
+			<li class=mod><a disabled data-name=Anchor></a>
 		</ul>
 
 		<ul class=tool-list style=display:none>
@@ -118,7 +131,16 @@
 		</ul>
 	</page>
 
-	<page id=page-history>
+	<page>
+		<h>Tool options</h>
+
+		<p>
+			<label>Brush shape</label><select><option>Circle</option><option selected>Square</option></select>
+			<label>Brush size</label><input type=range min=0 max=8>
+		</p>
+	</page>
+
+	<page id=page-history hidden>
 		<h>History<a>Pick</a></h>
 
 		<panel-body>
@@ -160,7 +182,7 @@
 
 <side id=side>
 	<page id=page-palette>
-		<h data-label=Wheel>Palette</h>
+		<h><t>Palette (Wheel)</t><a>Edit</a></h>
 		<div id=palette class=palette></div>
 		<div class=hue><div class=hue-inner></div></div>
 		<div class=picker></div>

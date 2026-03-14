@@ -9,7 +9,6 @@
 
 @import "./scrubber.css";
 @import "./panel.css";
-@import "./scrollbar.css";
 
 @import "./palette.css";
 @import "../top.css";
@@ -147,11 +146,11 @@ main > h {
 	max-width: 100%;
 }
 
-main > h > ol {
+h > ol {
 	flex-grow: 1;
 }
 
-main > h > ol > li[active]::after {
+h > ol > li[active]::after {
 	content: "";
 	display: block;
 	width: 100%;
@@ -165,33 +164,33 @@ main > h > ol > li[active]::after {
 
 
 
-main > h > ol {
+h > ol {
 	display: flex;
 }
 
-main > h > ol > li > a {
+h > ol > li > a {
 	display: block;
 	height: 100%;
 }
 
 
-main > h > ol > li:not([active]) > a:hover {
+h > ol > li:not([active]) > a:hover {
 	background: #FFE8FC
 }
 
-main > h > ol > li[active] > a,
-main > h > ol > li:not([active]) > a:active {
+h > ol > li[active] > a,
+h > ol > li:not([active]) > a:active {
 	background: #FFD1FA;
 }
 
 
-main > h > ol > li:last-child > a:hover,
-main > h > ol > li:last-child > a:active {
+h > ol > li:last-child > a:hover,
+h > ol > li:last-child > a:active {
 	background: #000;
 	color: #FFF;
 }
 
-main > h > ol > li:last-child > a:active {
+h > ol > li:last-child > a:active {
     transform: scale(0.95);
 }
 
@@ -354,6 +353,16 @@ ul.layer-list > li > a[data-label]::after {
 
 
 
+canvas#canvas-preview {
+	width: 256px;
+	height: 256px;
+	margin-left: 2px;
+}
+
+
+
+
+
 
 
 
@@ -369,21 +378,105 @@ side page + page {
 
 menu > page > p {
 	padding: 0 8px;
+	text-wrap: nowrap;
 }
 
 menu > page > p {
 	display: grid;
 	grid-template-columns: min-content auto;
 	line-height: 32px;
+	margin-bottom: 8px;
 }
 
 menu > page > p > label {
 	margin-right: 8px;
 }
 
+menu > page > p > span {
+	text-align: right;
+}
 
-canvas#canvas-preview {
-	width: 256px;
-	height: 256px;
+menu > page > p > input[type=range] {
+	grid-column: 1 / span 2;
+}
+
+
+
+
+
+
+
+
+/* canvas#preview {
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACAQMAAABIeJ9nAAAABlBMVEX////Z2dl4b8nnAAAADElEQVQI12NwYGgAAAFEAMHrWQMJAAAAAElFTkSuQmCC);
+    background-size: 8px;
+    image-rendering: pixelated;
+} */
+
+canvas#preview {
+	/* background: #F2F2F2; */
+}
+
+body.focus page#page-layer {
+	display: none;
+}
+
+ul#layer {
+	min-height: 320px;
+	max-height: 320px;
+	overflow-y: scroll;
+}
+
+body.focus ul#layer {
+	overflow: hidden;
+}
+
+ul#layer li {
+	height: 40px;
+	text-wrap: nowrap;
+}
+
+body.focus ul#layer li a {
+	padding-left: 8px;
+}
+
+
+
+body.focus ul#layer + ul.button-list {
+	display: none;
+}
+
+body.focus page#page-tool + page {
+	display: none;
+}
+
+
+body.focus page#page-history {
+	display: none;
+}
+
+
+page[hidden] {
+	display: none !important;
+}
+
+
+menu > h > ol {
+	margin-left: -8px;
+}
+
+
+canvas#preview {
 	margin-left: 2px;
+}
+
+body.focus page#page-file {
+	display: none;
+}
+
+
+div.palette {
+	min-height: 320px;
+	max-height: 320px;
+	overflow-y: scroll;
 }

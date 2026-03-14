@@ -283,6 +283,12 @@ export function app_draw() {
 		writer.addFrame( app.context.display.canvas );
 	}
 
+	app.context.preview.clearRect( 0, 0, w, h );
+	app.context.preview.setTransform( 1, 0, 0, 1, 0, 0 );
+	app.context.preview.scale( 256 / 64, 256 / 64 );
+	app.context.preview.drawImage( app.thumbs[ app.layer_active_index ].el, 0, 0 );
+
+
 	/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 	if ( false ) {
