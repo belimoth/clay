@@ -46,11 +46,14 @@ export function tool_init() {
 	var isMuted = false;
 
 	document.addEventListener( "keydown", function( event ) {
+		if ( event.repeat ) return;
+
 		var el = get_tool_for_key( event.key );
 
 		if ( el ) {
-			$$( "ul.tool-list > li.active" ).forEach( el => el.classList.remove( "active" ) );
-			el.closest( "li" ).classList.add( "active" );
+			// $$( "ul.tool-list > li" ).forEach( el => el.classList.remove( "active" ) );
+			// $$( "ul.tool-list > li" ).forEach( el => el.classList.remove( "hover" ) );
+			el.closest( "li" ).classList.add( "hover" );
 		}
 	});
 
@@ -58,7 +61,9 @@ export function tool_init() {
 		var el = get_tool_for_key( event.key );
 
 		if ( el ) {
-			el.closest( "li" ).classList.remove( "active" );
+			el.closest( "li" ).classList.remove( "hover" );
+			$$( "ul.tool-list > li" ).forEach( el => el.classList.remove( "active" ) );
+			el.closest( "li" ).classList.add( "active" );
 		}
 	});
 }

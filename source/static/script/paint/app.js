@@ -50,35 +50,24 @@ export function app_canvas_resize() {
 	app.toRepaint = true;
 }
 
-export function app_init() {
-	// app.file = new file( document.getElementById( "example" ) );
-	app.tool = tool_all.pen_outline;
-	app.ui.canvas = new ui_canvas( document.getElementById( "canvas" ) );
 
-	function canvas_make() {
-		var el = document.createElement( "canvas" );
-		document.getElementById( "offscreen" ).appendChild( el );
-		el.width  = app.file.width;
-		el.height = app.file.height;
-		return el
-	}
+function canvas_make() {
+	var el = document.createElement( "canvas" );
+	document.getElementById( "offscreen" ).appendChild( el );
+	el.width  = app.file.width;
+	el.height = app.file.height;
+	return el
+}
 
-	var canvasRender = canvas_make();
-	var canvasStroke = canvas_make();
-	var canvasErase  = canvas_make();
-
-	app.context.render = canvas_get_context( canvasRender );
-	app.context.stroke = canvas_get_context( canvasStroke );
-	app.context.erase  = canvas_get_context( canvasErase  );
+export function app_init_layer() {
+	app.context.layer = [];
 
 	app.file.layer.forEach( function( el, i ) {
-		var canvasLayer = canvas_make();
-		canvasLayer.id = "canvas-layer-" + i;
+		let id =  "canvas-layer-" + i;
+		var canvasLayer = document.getElementById( id ) || canvas_make();
+		canvasLayer.id = id;
 		app.context.layer.push( canvas_get_context( canvasLayer ) );
 	});
-
-	var canvasPreview = document.getElementById( "preview" );
-	app.context.preview = canvas_get_context( canvasPreview );
 
 	app.waitingOn = 0
 
@@ -94,7 +83,9 @@ export function app_init() {
 
 				f_layer.image.onload = function() {
 					app.waitingOn -= 1;
+					context.clearRect( 0, 0, 64, 64 );
 					context.drawImage( f_layer.image, 0, 0 );
+					app.toRepaint = true;
 				};
 
 				f_layer.image.src = f_layer.data;
@@ -103,8 +94,26 @@ export function app_init() {
 	}
 
 	load();
+}
 
 
+export function app_init() {
+	// app.file = new file( document.getElementById( "example" ) );
+	app.tool = tool_all.pen_outline;
+	app.ui.canvas = new ui_canvas( document.getElementById( "canvas" ) );
+
+	var canvasRender = canvas_make();
+	var canvasStroke = canvas_make();
+	var canvasErase  = canvas_make();
+
+	app.context.render = canvas_get_context( canvasRender );
+	app.context.stroke = canvas_get_context( canvasStroke );
+	app.context.erase  = canvas_get_context( canvasErase  );
+
+	var canvasPreview = document.getElementById( "preview" );
+	app.context.preview = canvas_get_context( canvasPreview );
+
+	app_init_layer();
 
 	// document.getElementById( "main" ).classList.add( "tools-focus", "layer-normal" );
 

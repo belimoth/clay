@@ -41,15 +41,16 @@ ul.tool-list > li > a[disabled] {
 	color: #AAA;
 }
 
-ul.tool-list > li:not( .active )        > a:not( [disabled] ):active,
-ul.tool-list > li.active                  > a:not( [disabled] ) {
-	transform: scale( 0.98 );
+ul.tool-list > li.hover          > a:not( [disabled] ),
+ul.tool-list > li:not( .active ) > a:not( [disabled] ):active {
+	transform: scale( 0.95 );
 }
 
 ul.tool-list > li:not( .active ) > a:not( [disabled] ):hover {
 	background: #FFE8FC;
 }
 
+ul.tool-list > li:not( .active ).hover > a:not( [disabled] ),
 ul.tool-list > li:not( .active ) > a:not( [disabled] ):hover:active {
 	background: #FFD1FA;
 	color: #000;

@@ -46,7 +46,6 @@ function hardLine( x0, y0, x1, y1, put ) {
 
 
 
-var firstRender = true;
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
@@ -59,8 +58,8 @@ export function app_draw() {
 	var h = app.file.height;
 	var s = app.ui.canvas.scale;
 
-	if ( firstRender ) {
-		firstRender = false;
+	if ( app.firstRender ) {
+		app.firstRender = false;
 
 		// context = app.context.layer[1]
 		// context.drawImage( app.file.el, 0, 0 );
@@ -224,7 +223,7 @@ export function app_draw() {
 
 	app.context.layer.forEach( function( el, i ) {
 		if ( app.layer_active_index == i ) {
-			context = app.thumbs[ i ].context;
+			context = app.thumbs[i].context;
 			context.setTransform( 1, 0, 0, 1, 0, 0 );
 			context.clearRect( 0, 0, w, h );
 
@@ -287,7 +286,6 @@ export function app_draw() {
 	app.context.preview.setTransform( 1, 0, 0, 1, 0, 0 );
 	app.context.preview.scale( 256 / 64, 256 / 64 );
 	app.context.preview.drawImage( app.thumbs[ app.layer_active_index ].el, 0, 0 );
-
 
 	/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 

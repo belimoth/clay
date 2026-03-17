@@ -65,7 +65,7 @@
 
 	<page id=page-file>
 		<p>
-			<label>Format</label><span>None</span>
+			<label>Format</label><span>Raster</span>
 			<label>Size</label><span>64 x 64</span>
 		</p>
 	</page>
@@ -89,13 +89,15 @@
 		<canvas id=preview width=256 height=256></canvas>
 
 		<p>
-			<label>Type</label><select>
-				<option>Canvas</option>
-				<option>Fill</option>
-				<option>Grid</option>
-				<option>List</option>
-				<option>Map</option>
-				<option>Trim</option>
+			<label disabled id=label-layer-type>Type</label><select disabled id=select-layer-type>
+				<option value=canvas>Canvas</option>
+				<option value=fill  >Fill</option>
+				<option value=grid  >Grid</option>
+				<option value=list  >List</option>
+				<option value=map   >Map</option>
+				<option value=trim  >Trim</option>
+				<option value=vector>Vector</option>
+				<option value=new hidden>New</option>
 			</select>
 
 			<label>Blend</label><select>

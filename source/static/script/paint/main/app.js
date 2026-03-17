@@ -8,6 +8,7 @@ export let app = {
 
 	toRepaint :  true,
 	toBake    : false,
+	firstRender : true,
 
 	file : null,
 	tool : null,

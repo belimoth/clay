@@ -480,3 +480,7 @@ div.palette {
 	max-height: 320px;
 	overflow-y: scroll;
 }
+
+label[disabled] {
+	color: #AAA;
+}
