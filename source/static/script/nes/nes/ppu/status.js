@@ -1,6 +1,6 @@
 "use strict";
 
-import { app } from "../main/app.js";
+import { app } from "../../main/app.js";
 
 export function ppu_status() {
     this.in_vblank       = 0;

@@ -1,6 +1,6 @@
 "use strict";
 
-import { app } from "./main/app.js";
+import { app } from "../main/app.js";
 
 var mirror_names = [ "horizontal", "vertical" ];
 var mapper_names = [ "NROM", "MMC1", "UxROM", "CNROM", "MMC", "MMC", "AxROM", "MMC2", "MMC4" ];

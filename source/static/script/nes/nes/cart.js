@@ -1,6 +1,6 @@
 "use strict";
 
-import { app } from "./main/app.js";
+import { app } from "../main/app.js";
 
 function mask_bits( value, mask ) {
     if ( mask == 0 ) { return; }

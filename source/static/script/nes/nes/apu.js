@@ -1,6 +1,6 @@
 "use strict";
 
-import { app } from "./main/app.js";
+import { app } from "../main/app.js";
 
 const INTERRUPT_NONE  = 0;
 const INTERRUPT_IRQ   = 1;

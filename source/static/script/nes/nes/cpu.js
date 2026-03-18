@@ -1,6 +1,6 @@
 "use strict";
 
-import { default as nes } from "./nes.js"
+import { default as nes } from "../nes.js"
 
 const INTERRUPT_NONE  = 0;
 const INTERRUPT_IRQ   = 1;

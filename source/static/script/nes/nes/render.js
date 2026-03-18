@@ -1,6 +1,6 @@
 "use strict";
 
-import { app } from "./main/app.js";
+import { app } from "../main/app.js";
 
 
 const SCALE = 4;

@@ -7,15 +7,15 @@ const INTERRUPT_RESET = 3;
 
 import { app } from "./main/app.js"
 
-import { cpu }             from "./cpu.js";
-import { ppu }             from "./ppu.js";
-import { apu }             from "./apu.js";
-import { default as cart } from "./cart.js";
-import { default as rom  } from "./rom.js";
-import { audio }           from "./audio.js";
+import { cpu }             from "./nes/cpu.js";
+import { ppu }             from "./nes/ppu.js";
+import { apu }             from "./nes/apu.js";
+import { default as cart } from "./nes/cart.js";
+import { default as rom  } from "./nes/rom.js";
+import { audio }           from "./nes/audio.js";
 
-import { update_pads           } from "./apu.js";
-import { render_crt            } from "./render.js";
+import { update_pads           } from "./nes/apu.js";
+import { render_crt            } from "./nes/render.js";
 import { hex, base64_to_buffer } from "./util.js";
 
 function nes_init() {
