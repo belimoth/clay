@@ -4,6 +4,7 @@ document.addEventListener( "contextmenu", event => { event.preventDefault(); });
 document.addEventListener( "wheel",       event => { if ( event.ctrlKey ) event.preventDefault(); }, { "passive" : false });
 document.addEventListener( "keydown",     event => { if ( event.ctrlKey && "-=".includes( event.key ) ) event.preventDefault(); });
 
+// import { app_main } from "../app/main.js"
 
 import { app } from "./main/app.js"
 
@@ -53,7 +54,6 @@ export function app_canvas_resize() {
 
 function canvas_make() {
 	var el = document.createElement( "canvas" );
-	document.getElementById( "offscreen" ).appendChild( el );
 	el.width  = app.file.width;
 	el.height = app.file.height;
 	return el
@@ -64,7 +64,7 @@ export function app_init_layer() {
 
 	app.file.layer.forEach( function( el, i ) {
 		let id =  "canvas-layer-" + i;
-		var canvasLayer = document.getElementById( id ) || canvas_make();
+		var canvasLayer = canvas_make();
 		canvasLayer.id = id;
 		app.context.layer.push( canvas_get_context( canvasLayer ) );
 	});
@@ -96,26 +96,19 @@ export function app_init_layer() {
 	load();
 }
 
-
 export function app_init() {
 	// app.file = new file( document.getElementById( "example" ) );
 	app.tool = tool_all.pen_outline;
 	app.ui.canvas = new ui_canvas( document.getElementById( "canvas" ) );
 
-	var canvasRender = canvas_make();
-	var canvasStroke = canvas_make();
-	var canvasErase  = canvas_make();
-
-	app.context.render = canvas_get_context( canvasRender );
-	app.context.stroke = canvas_get_context( canvasStroke );
-	app.context.erase  = canvas_get_context( canvasErase  );
+	app.context.render = canvas_get_context( canvas_make() );
+	app.context.stroke = canvas_get_context( canvas_make() );
+	app.context.erase  = canvas_get_context( canvas_make() );
 
 	var canvasPreview = document.getElementById( "preview" );
 	app.context.preview = canvas_get_context( canvasPreview );
 
 	app_init_layer();
-
-	// document.getElementById( "main" ).classList.add( "tools-focus", "layer-normal" );
 
 	function app_resize() {
 		// NOTE i think this is getting fired in addition to onFullscreen below, double check
