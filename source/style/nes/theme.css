@@ -33,11 +33,11 @@ option {
     color: #FFF;
 }
 
-ol, ol > li {
+tl, tl > li {
     border-color: #FFF;
 }
 
-ol > li[active] > a::after {
+tl > li[active] > a::after {
     background: #000;
 
 }

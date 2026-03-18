@@ -123,12 +123,12 @@
 </menu>
 
 <main>
-	<ol id=main-tab>
-		<li><a>Code</a>
-		<li active><a>Display</a>
-		<li><a>Learn</a>
-		<li><a>Close</a>
-	</ol>
+	<tl id=main-tab>
+		<li><a>Code</a></li>
+		<li active><a>Display</a></li>
+		<li><a>Learn</a></li>
+		<li><a>Close</a></li>
+	</tl>
 
 	<page id=page-main-code>
 		<div><table id=code></table></div>
@@ -444,12 +444,12 @@ document.getElementById( "a-stage-B" ).addEventListener( "click", function( even
 
 
 	<tray>
-		<ol id=tray-tab>
-			<li active><a id=fps>FPS</a>
-			<li><a>Timeline</a>
-			<li><a>Pad</a>
-			<li><a>Close</a>
-		</ol>
+		<tl id=tray-tab>
+			<li active><a id=fps>FPS</a></li>
+			<li><a>Timeline</a></li>
+			<li><a>Pad</a></li>
+			<li><a>Close</a></li>
+		</tl>
 
 		<page active><monitor id=monitor><canvas id=monitor-fps width=1024 height=256></canvas></monitor></page>
 		<page></page>
@@ -459,11 +459,11 @@ document.getElementById( "a-stage-B" ).addEventListener( "click", function( even
 </main>
 
 <side>
-	<ol id=side-tab>
-		<li active><a>GFX</a>
-		<li><a>SFX</a>
-		<li><a id=a-side-close>Close</a>
-	</ol>
+	<tl id=side-tab>
+		<li active><a>GFX</a></li>
+		<li><a>SFX</a></li>
+		<li><a id=a-side-close>Close</a></li>
+	</tl>
 
 	<page active>
 		<h>NTS</h>

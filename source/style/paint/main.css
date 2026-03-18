@@ -92,9 +92,6 @@ main > panel-body {
 
 
 
-menu > page:not(:first-child) {
-	border-top: 1px solid currentColor;
-}
 
 menu > page {
 	display: block;
@@ -144,11 +141,11 @@ main > h {
 	max-width: 100%;
 }
 
-h > ol {
+tl {
 	flex-grow: 1;
 }
 
-h > ol > li[active]::after {
+tl > li[active]::after {
 	content: "";
 	display: block;
 	width: 100%;
@@ -162,34 +159,46 @@ h > ol > li[active]::after {
 
 
 
-h > ol {
+tl {
 	display: flex;
 }
 
-h > ol > li > a {
+tl > li > a {
 	display: block;
 	height: 100%;
 }
 
 
-h > ol > li:not([active]) > a:hover {
+tl > li:not([active]) > a:hover {
 	background: #FFE8FC
 }
 
-h > ol > li[active] > a,
-h > ol > li:not([active]) > a:active {
+tl > li[active] > a,
+tl > li:not([active]) > a:active {
 	background: #FFD1FA;
 }
 
 
-h > ol > li:last-child > a:hover,
-h > ol > li:last-child > a:active {
+
+
+
+
+
+h > tl + a:hover,
+h > tl + a:active {
 	background: #000;
 	color: #FFF;
 }
 
-h > ol > li:last-child > a:active {
+h > tl + a:active {
     transform: scale(0.95);
+}
+
+
+
+
+h > tl {
+	flex-grow: 1;
 }
 
 
@@ -330,7 +339,7 @@ label[disabled] {
 
 
 
-top ol {
+top tl {
     display: flex;
     flex-direction: row;
 }
@@ -370,6 +379,7 @@ side page {
 	width: 260px;
 }
 
+menu h:not(:first-child),
 menu page + page,
 side page + page {
 	border-top: 1px solid currentColor;
@@ -439,12 +449,6 @@ page[hidden] {
 	display: none !important;
 }
 
-
-menu > h > ol {
-	margin-left: -8px;
-}
-
-
 canvas#preview {
 	margin-left: 2px;
 }
@@ -489,10 +493,6 @@ body.focus menu {
 	height: 100vh;
 }
 
-body.focus page#page-layer {
-	display: none;
-}
-
 body.focus ul#layer {
 	overflow: hidden;
 }
@@ -512,10 +512,48 @@ body.focus page#page-tool + page {
 }
 
 
-body.focus page#page-history {
+body.focus p#page-history {
 	display: none;
 }
 
-body.focus page#page-file {
+body.focus page#page-file > p:first-child {
+	display: none;
+}
+
+
+
+
+
+menu > page > p:first-child {
+	border-top: 1px solid currentColor;
+}
+
+tray {
+	height: 320px;
+	border-top: 1px solid currentColor;
+}
+
+
+tl {
+	flex-grow: 0;
+	height: 32px;
+	line-height: 32px;
+}
+
+tl ~ page:not([active]) {
+	display: none !important;
+}
+
+menu > page {
+	flex-grow: 1;
+}
+
+page#page-history > panel-body {
+	flex-grow: 1;
+}
+
+
+
+body.focus menu tl {
 	display: none;
 }

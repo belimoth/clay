@@ -66,16 +66,17 @@
 </top>
 
 <menu id=menu>
-	<h><ol><li active><a>File</a><li><a>History</a></ol></h>
+	<tl id=menu-tab>
+		<li active><a>File</a></li>
+		<li><a>History</a></li>
+	</tl>
 
-	<page id=page-file>
+	<page id=page-file active>
 		<p>
 			<label>Format</label><span>Raster</span>
 			<label>Size</label><span>64 x 64</span>
 		</p>
-	</page>
 
-	<page>
 		<h><t>Layers</t><a>Edit</a></h>
 
 		<ul id=layer class=layer-list></ul>
@@ -86,10 +87,8 @@
 			<li><a id=a-layer-merge disabled>Merge</a>
 			<li><a id=a-layer-delete        >Delete</a>
 		</ul>
-	</page>
 
-	<page id=page-layer>
-		<h>Layer options</h>
+		<h></h>
 
 		<canvas id=preview width=256 height=256></canvas>
 
@@ -111,9 +110,7 @@
 
 			<label>Opacity</label><span>100%</span><input type=range>
 		</p>
-	</page>
 
-	<page id=page-tool>
 		<h><t>Tools (QWER)</t><a disabled>Edit</a></h>
 
 		<ul class=tool-list>
@@ -136,20 +133,20 @@
 			<li><a disabled>Redo</a>
 			<li><a disabled>Eraser</a>
 		</ul>
-	</page>
 
-	<page>
-		<h>Tool options</h>
+		<h></h>
 
-		<p>
+		<p id=page-tool-select></p>
+		<p id=page-tool-move></p>
+
+		<p id=page-tool-draw>
 			<label>Brush shape</label><select><option>Circle</option><option selected>Square</option></select>
 			<label>Brush size</label><input type=range min=0 max=8>
 		</p>
+
 	</page>
 
-	<page id=page-history hidden>
-		<h>History<a>Pick</a></h>
-
+	<page id=page-history>
 		<panel-body>
 			<ul id=history class=history-list></ul>
 			<div id=scrubber class=scrubber-outer><div class=scrubber-inner></div></div>
@@ -164,13 +161,13 @@
 
 <main>
 	<h>
-		<ol>
-			<li active><a>Untitled</a>
-			<li><a>Untitled 1</a>
-			<li><a>Untitled 2</a>
-			<li><a>Untitled 3</a>
-			<li><a>New</a>
-		</ol>
+		<tl id=main-tab>
+			<li active><a>Untitled</a></li>
+			<li><a>Untitled 1</a></li>
+			<li><a>Untitled 2</a></li>
+			<li><a>Untitled 3</a></li>
+			<li><a>New</a></li>
+		</tl>
 
 		<a>Close</a>
 	</h>
@@ -185,7 +182,17 @@
 	<f>
 		<div>x:0 y:0</div>
 	</f>
+
+	<tray hidden>
+		<h>
+			<tl id=tray-tab>
+				<li active><a>Timeline</a></li>
+			</tl>
+		</h>
+	</tray>
 </main>
+
+
 
 <side id=side>
 	<page id=page-palette>

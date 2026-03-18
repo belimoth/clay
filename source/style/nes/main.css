@@ -178,7 +178,7 @@ canvas#nts + canvas#chr {
     margin-top: -1px;
 }
 
-ol {
+tl {
     display: flex;
     line-height: 32px;
     border-bottom: 1px solid currentColor;
@@ -186,22 +186,22 @@ ol {
 
 }
 
-ol > li {
+tl > li {
     border: 0 solid currentColor;
     border-right-width: 1px;
     margin-bottom: -1px;
     height: 32px;
 }
 
-ol > li:first {
+tl > li:first {
     border-left-width: 0;
 }
 
-ol > li[active] > a {
+tl > li[active] > a {
     position: relative;
 }
 
-ol > li[active] > a::after {
+tl > li[active] > a::after {
     content: "";
     display: block;
     width: 100%;
@@ -212,31 +212,31 @@ ol > li[active] > a::after {
 }
 
 
-ol > li > a {
+tl > li > a {
     display: block;
     height: 32px;
 }
 
-ol > li[active] > a:hover::after {
+tl > li[active] > a:hover::after {
     /* background: #FFE8FC; */
 }
 
-ol > li[active] > a:hover:active::after {
+tl > li[active] > a:hover:active::after {
 	/* background: #FFD1FA; */
 }
 
-ol > li:last-child {
+tl > li:last-child {
     flex-grow: 1;
     display: flex;
 }
 
-ol > li:last-child::before {
+tl > li:last-child::before {
     content: "";
     display: block;
     flex-grow: 1;
 }
 
-ol > li:last-child {
+tl > li:last-child {
     border-right-width: 0;
 }
 
@@ -790,4 +790,13 @@ menu {
 
 menu > page {
     flex-grow: 1;
+}
+
+
+
+
+html {
+    color-scheme: dark;
+    background: #2C2C2C;
+    /* color: #9F9F9F; */
 }

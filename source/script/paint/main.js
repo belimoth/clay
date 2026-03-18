@@ -1,5 +1,7 @@
 "use strict";
 
+import { tab_list } from "../app/tab-list.js"
+
 import { app } from "./main/app.js"
 
 import "./main/ui/canvas.js"
@@ -24,6 +26,10 @@ import { tool_init }         from "./main/ui/tool.js";
 import { ui_list_layer } from "./main/ui/layer.js";
 import { ui_palette }    from "./main/ui/palette.js";
 import { storage }       from "./app/session.js";
+
+new tab_list( document.getElementById( "menu-tab" ) );
+new tab_list( document.getElementById( "main-tab" ) );
+new tab_list( document.getElementById( "tray-tab" ) );
 
 app.ui.palette   = new ui_palette();
 app.ui.layer     = new ui_list_layer();

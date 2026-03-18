@@ -1,9 +1,10 @@
 "use strict";
 
-import "../app/top.js";
+import                   "../app/top.js";
+import { tab_list } from "../app/tab-list.js"
 
-import { app } from "./main/app.js";
-import "./main/drop.js";
+import { app }                from "./main/app.js";
+import                             "./main/drop.js";
 import { rom_init, rom_draw } from "./main/rom.js";
 
 if ( window.Worker ) {
@@ -91,61 +92,6 @@ document.getElementById( "a-rom-edit-upload" ).addEventListener( "click", async 
 //         }
 //     });
 // });
-
-function tab_list( el ) {
-	this.el = el;
-	this.tab = [];
-	this.page = [];
-	this.tab_active_i = 0;
-
-	let self = this;
-
-	function tab( el, i ) {
-		this.el  = el;
-		this.i   = i;
-
-		if ( el.hasAttribute( "active" ) ) {
-			self.tab_active_i = i;
-		}
-	}
-
-	Array.from( el.children ).forEach( function( el, i ) {
-		if ( i == self.el.children.length - 1 ) return;
-		self.tab.push( new tab( el, i ) );
-
-		el.addEventListener( "click", function( event ) {
-
-
-		});
-	});
-
-	function page( el, i ) {
-		this.el = el;
-	}
-
-	Array.from( el.parentNode.children ).forEach( function( el, i ) {
-		if ( el.tagName == "PAGE" ) {
-			self.page.push( new page( el, i ) );
-		}
-	});
-
-	el.addEventListener( "click", function( event ) {
-		if ( event.target.tagName == "A" ) {
-			let i = Array.prototype.indexOf.call( event.target.parentNode.parentNode.children, event.target.parentNode );
-
-			 if ( i < self.tab.length ) {
-				self.tab[ self.tab_active_i ].el.removeAttribute( "active" );
-				self.page[ self.tab_active_i ].el.removeAttribute( "active" );
-				self.tab_active_i = i;
-				self.tab[ self.tab_active_i ].el.setAttribute( "active", "" );
-				self.page[ self.tab_active_i ].el.setAttribute( "active", "" );
-
-			} else {
-
-			}
-		}
-	});
-}
 
 new tab_list( document.getElementById( "side-tab" ) );
 new tab_list( document.getElementById( "main-tab" ) );
