@@ -1,0 +1,7 @@
+body.focus top {
+	display: none;
+}
+
+body.focus menu {
+	width: 48px;
+}

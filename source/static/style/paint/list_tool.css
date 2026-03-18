@@ -76,9 +76,7 @@ body.focus menu ul.tool-list {
 	flex-direction: column;
 }
 
-body.focus menu {
-	width: 48px;
-}
+
 
 body.focus ul.tool-list + ul {
 	border-top: 1px solid currentColor;

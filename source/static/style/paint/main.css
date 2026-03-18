@@ -131,9 +131,7 @@ li {
 
 
 
-body.focus menu h {
-	display: none;
-}
+
 
 
 body {
@@ -340,9 +338,7 @@ top ol {
 
 
 
-body.focus menu {
-	height: 100vh;
-}
+
 
 
 
@@ -420,9 +416,7 @@ canvas#preview {
 	/* background: #F2F2F2; */
 }
 
-body.focus page#page-layer {
-	display: none;
-}
+
 
 ul#layer {
 	min-height: 320px;
@@ -430,13 +424,77 @@ ul#layer {
 	overflow-y: scroll;
 }
 
-body.focus ul#layer {
-	overflow: hidden;
-}
+
+
 
 ul#layer li {
 	height: 40px;
 	text-wrap: nowrap;
+}
+
+
+
+
+page[hidden] {
+	display: none !important;
+}
+
+
+menu > h > ol {
+	margin-left: -8px;
+}
+
+
+canvas#preview {
+	margin-left: 2px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+body.focus menu h {
+	display: none;
+}
+
+body.focus menu {
+	height: 100vh;
+}
+
+body.focus page#page-layer {
+	display: none;
+}
+
+body.focus ul#layer {
+	overflow: hidden;
 }
 
 body.focus ul#layer li a {
@@ -456,21 +514,6 @@ body.focus page#page-tool + page {
 
 body.focus page#page-history {
 	display: none;
-}
-
-
-page[hidden] {
-	display: none !important;
-}
-
-
-menu > h > ol {
-	margin-left: -8px;
-}
-
-
-canvas#preview {
-	margin-left: 2px;
 }
 
 body.focus page#page-file {
