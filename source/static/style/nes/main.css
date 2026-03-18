@@ -783,3 +783,11 @@ side > page > canvas {
 div.canvas {
     overflow: scroll;
 }
+
+menu {
+    display: flex;
+}
+
+menu > page {
+    flex-grow: 1;
+}

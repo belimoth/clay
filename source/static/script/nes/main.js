@@ -1,11 +1,10 @@
 "use strict";
 
-import { app } from "./main/app.js";
-
 import "../app/top.js";
-import "../app/drop.js";
 
-import { rom_init, rom_draw } from "../app/rom.js";
+import { app } from "./main/app.js";
+import "./main/drop.js";
+import { rom_init, rom_draw } from "./main/rom.js";
 
 if ( window.Worker ) {
 	var worker = new Worker( "worker.js" );

@@ -1,7 +1,7 @@
 "use strict";
 
-import { app } from "../nes/main/app.js";
-import { byte_to_asm } from "../nes/nes/6502.js";
+import { app } from "./app.js";
+import { byte_to_asm } from "../nes/6502.js";
 
 export async function code_draw() {
 	let cdl_data = null;

@@ -1,5 +1,7 @@
 "use strict";
 
+import { app } from "../../main/app.js";
+
 export function ppu_vram() {
     // this.vram = new Uint8Array( 0x4000 );
 
