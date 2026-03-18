@@ -1,30 +1,29 @@
-div.palette {
-	width: 260px;
-}
-
-div.palette {
-	border: 0;
-	padding: 2px;
-	position: relative;
-}
-
-div.palette {
+palette {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 	grid-auto-rows: 32px;
+	position: relative;
+	width: 260px;
+	height: 320px;
+	padding: 2px;
+	overflow-y: scroll;
 }
 
-div.swatch.active {
-	border: 2px solid #F6E;
-	box-shadow: inset 0 0 0 1px #FFF;
-}
-
-div.swatch {
+swatch {
 	position: relative;
 	overflow: hidden;
 }
 
-div.swatch.active::before {
+swatch.active {
+	border: 2px solid #F6E;
+	box-shadow: inset 0 0 0 1px #FFF;
+}
+
+swatch::before {
+	z-index: 100;
+}
+
+swatch.active::before {
 	content: "A";
 	/* content: "A B"; */
 	/* content: "A B C"; */
@@ -50,22 +49,7 @@ div.swatch.active::before {
 	overflow: hidden;
 }
 
-div.swatch::after {
-	position: absolute;
-	left: -4px;
-	top: -2px;
-	content: "";
-	display: block;
-	width: 47px;
-	height: 16px;
-}
-
-
-div.swatch::before {
-	z-index: 100;
-}
-
-div.swatch.active::before {
+swatch.active::before {
 	left: 0;
 	top: 0;
 	outline: 0;
@@ -75,7 +59,17 @@ div.swatch.active::before {
 	/* box-shadow: 1px 0 0 0 #FFF; */
 }
 
-div.swatch.active::after {
+swatch::after {
+	position: absolute;
+	left: -4px;
+	top: -2px;
+	content: "";
+	display: block;
+	width: 47px;
+	height: 16px;
+}
+
+swatch.active::after {
 	content: "";
 	display: block;
 	position: absolute;
@@ -86,9 +80,7 @@ div.swatch.active::after {
 	background: #FFF;
 }
 
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-div.swatch[data-color="erase"] {
+swatch[data-color="erase"] {
 	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACAQMAAABIeJ9nAAAABlBMVEX////Z2dl4b8nnAAAADElEQVQI12NwYGgAAAFEAMHrWQMJAAAAAElFTkSuQmCC);
 	background-size: 8px;
 	image-rendering: pixelated;

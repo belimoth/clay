@@ -106,8 +106,7 @@ export function ui_palette() {
 	}
 
 	palette_default.forEach( function( el, i ) {
-		var swatch_el = document.createElement( "div" );
-		swatch_el.classList.add( "swatch" );
+		var swatch_el = document.createElement( "swatch" );
 		palette.el.appendChild( swatch_el );
 
 		// TODO unnecessary

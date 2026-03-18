@@ -1,4 +1,4 @@
-div.swatch,
+swatch,
 div.picker,
 div.hue::after,
 canvas.hue {
@@ -55,7 +55,7 @@ div.hue > div.inner {
 	background-size: calc( 50% * 50 / 3 );
 }
 
-div.swatch {
+swatch {
 	width: 40px;
 	height: 40px;
 }
@@ -78,7 +78,7 @@ div.hue > div.inner {
 	pointer-events: none;
 }
 
-div.palette {
+palette {
 	display: flex;
 	flex-wrap : wrap;
 	/* background: #333; */
@@ -86,13 +86,13 @@ div.palette {
 	margin: 0 -7px;
 }
 
-div.palette > div.swatch {
+palette > swatch {
 	position: relative;
 	margin-right: 3px;
 	margin-bottom: 3px;
 }
 
-div.palette > div.swatch.active::after {
+palette > swatch.active::after {
 	content: "";
 
 	position: absolute;
@@ -139,7 +139,7 @@ canvas {
 
 
 
-div.palette {
+palette {
 	margin: 0;
 }
 
@@ -152,12 +152,12 @@ div.picker {
 	margin-top:-1px;
 }
 
-div.palette > div.swatch {
+palette > swatch {
 	margin-right: -1px;
 	margin-bottom: -1px;
 }
 
-div.palette > div.swatch.active::after {
+palette > swatch.active::after {
 	outline: none;
 }
 

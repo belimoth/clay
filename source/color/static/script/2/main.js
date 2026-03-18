@@ -192,8 +192,7 @@ function palette( el ) {
 	var palette = this;
 
 	function swatch( hex ) {
-		this.el = document.createElement( "div" );
-		this.el.classList.add( "swatch" );
+		this.el = document.createElement( "swatch" );
 
 		this.set = function( c ) {
 			this.c = c;

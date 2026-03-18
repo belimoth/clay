@@ -30,7 +30,6 @@ function make_canvas( width, height, options ) {
     return [ canvas, context ];
 }
 
-
 // var [ canvas_chr, context_chr ] = make_canvas( 1024, 256, { alpha : false } );
 var [ canvas_chr, context_chr ] = get_context_for_id( "chr" );
 var [ canvas_nta, context_nta ] = make_canvas(  256, 240 );

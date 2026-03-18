@@ -1,7 +1,6 @@
 wui.swatch = function( el, rgb = null ) {
 	if ( el == null ) {
-		el = document.createElement( "div" );
-		el.classList.add( "swatch");
+		el = document.createElement( "swatch" );
 		wui.view.appendChild( el );
 	}
 

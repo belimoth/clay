@@ -321,6 +321,9 @@ a[disabled] {
 	color: #AAA;
 }
 
+label[disabled] {
+	color: #AAA;
+}
 
 
 
@@ -472,15 +475,4 @@ canvas#preview {
 
 body.focus page#page-file {
 	display: none;
-}
-
-
-div.palette {
-	min-height: 320px;
-	max-height: 320px;
-	overflow-y: scroll;
-}
-
-label[disabled] {
-	color: #AAA;
 }
