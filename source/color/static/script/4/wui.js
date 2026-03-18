@@ -60,8 +60,6 @@ var picnic_el = document.createElement( "style" );
 picnic_el.innerHTML = "canvas { background-image: url(" + picnic + "); }";
 document.head.appendChild( picnic_el );
 
-var loading_el = document.getElementById( "loading" );
-
 wui.canvas = function( el = null, w = null, h = null, s = 2 ) {
 	if ( el == null ) {
 		el = document.createElement( "canvas" );
@@ -69,7 +67,7 @@ wui.canvas = function( el = null, w = null, h = null, s = 2 ) {
 		if ( w == null && el.width  ) { w = el.width;  }
 		if ( h == null && el.height ) { h = el.height; }
 	}
-	
+
 	this.el = el;
 
 	this.w = w;
@@ -86,7 +84,7 @@ wui.canvas = function( el = null, w = null, h = null, s = 2 ) {
 
 	el.style.width  = w / s + "px";
 	el.style.height = h / s + "px";
-	
+
 	// TODO put this into an injected <style></style>
 
 	// el.style.backgroundImage = "url(" + picnic + ")";

@@ -15,6 +15,11 @@ source/bot source/color source/data source/font source/model source/pfx source/s
 
 <link rel=manifest href=static/data.webmanifest>
 <link rel=stylesheet href=style//data/main.css>
+
+<style id=loading>body{opacity:0.0;}</style>
+<style>body{transition:opacity 0.2s linear;}</style>
+<script>window.onload = () => document.getElementById( "loading" ).remove();</script>
+
 <body>
 
 <top id=top-menu>

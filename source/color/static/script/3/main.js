@@ -60,8 +60,6 @@ var picnic_el = document.createElement( "style" );
 picnic_el.innerHTML = "canvas { background-image: url(" + picnic + "); }";
 document.head.appendChild( picnic_el );
 
-var loading_el = document.getElementById( "loading" );
-
 wui.canvas = function( el = null, w = null, h = null ) {
 	if ( el == null ) {
 		el = document.createElement( "canvas" );
@@ -443,10 +441,6 @@ document.querySelectorAll( "g > r > c" ).forEach( function( el, i ) {
 			// el.classList.add( "mute" );
 		}
 	});
-});
-
-requestAnimationFrame( function() {
-	loading_el.remove();
 });
 
 document.addEventListener( "keypress", function( event ) {

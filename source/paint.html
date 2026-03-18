@@ -15,6 +15,11 @@
 <link rel=manifest href=static/paint.webmanifest>
 <link rel=stylesheet href=static/vend/glyphicons/css/glyphicons.css>
 <link rel=stylesheet href=style//paint/main.css>
+
+<style id=loading>body{opacity:0.0;}</style>
+<style>body{transition:opacity 0.2s linear;}</style>
+<script>window.onload = () => document.getElementById( "loading" ).remove();</script>
+
 <body>
 
 <top id=top-menu>
