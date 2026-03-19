@@ -152,8 +152,11 @@ div.board-view {
 	position: relative;
 	flex-grow: 1;
 	margin-left: -1px;
-	border: 1px solid #444;
 	padding: 32px;
+}
+
+svg#board-view {
+	border: 1px solid var( --color-border );
 }
 
 @media (max-width: 767px) {
@@ -334,7 +337,7 @@ div.board-view {
 
 page#page-main-learn table {
 	margin: 0 8px;
-	border: 1px solid currentColor;
+	border: 1px solid var( --color-border );
 }
 
 page#page-main-learn table td {
@@ -362,6 +365,6 @@ table  td {
 }
 
 page#page-main-learn table tr td  {
-	border: 0 solid currentColor;
+	border: 0 solid var( --color-border );
 	border-width: 1px 0;
 }

@@ -2,6 +2,8 @@
 html {
     background: #000;
     color: #FFF;
+    /* --color-border: #FFF; */
+    --color-border: #9F9F9F;
 }
 
 
@@ -123,7 +125,7 @@ a:hover:active {
 
 
 input[type=checkbox] {
-    border: 1px solid currentcolor;
+    border: 1px solid var( --color-border );
 }
 
 input[type=checkbox]:checked {
@@ -155,7 +157,7 @@ input.cpu-flag::before {
 }
 
 input.cpu-flag:checked {
-    background: currentColor;
+    background: var( --color-border );
     color: #000;
     border-color: #FFF;
 }
@@ -189,7 +191,7 @@ top > img {
     top: 0;
     left: 0;
     height: 32px;
-    border-bottom: 1px solid currentColor;
+    border-bottom: 1px solid var( --color-border );
 }
 
 top > ul > li > ul > li {
@@ -202,7 +204,7 @@ top > ul > li > ul > li > label {
 }
 
 top > ul > li > ul {
-    border: 1px solid currentColor;
+    border: 1px solid var( --color-border );
     border-top-width: 0;
 }
 

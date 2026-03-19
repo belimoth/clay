@@ -79,5 +79,5 @@ body.focus menu ul.tool-list {
 
 
 body.focus ul.tool-list + ul {
-	border-top: 1px solid currentColor;
+	border-top: 1px solid var( --color-border );
 }

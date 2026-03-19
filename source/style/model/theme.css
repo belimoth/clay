@@ -1,0 +1,20 @@
+html {
+	background: #F6F6F6;
+	--color-border: #D3D3D3;
+}
+
+top img {
+	opacity: 0.2;
+}
+
+a {
+	color: #2169EB;
+}
+
+a:hover {
+	background: #E3E3E3;
+}
+
+a:active {
+	background: #D5D5D5;
+}

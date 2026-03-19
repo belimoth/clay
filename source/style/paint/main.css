@@ -1,6 +1,7 @@
 @import "../reset.css";
-
 @import "../layout.css";
+@import "../top.css";
+
 @import "./canvas.css";
 
 @import "./list_tool.css";
@@ -11,7 +12,7 @@
 @import "./panel.css";
 
 @import "./palette.css";
-@import "../top.css";
+
 
 @import "./theme.css";
 
@@ -382,7 +383,7 @@ side page {
 menu h:not(:first-child),
 menu page + page,
 side page + page {
-	border-top: 1px solid currentColor;
+	border-top: 1px solid var( --color-border );
 }
 
 menu > page > p {
@@ -525,12 +526,12 @@ body.focus page#page-file > p:first-child {
 
 
 menu > page > p:first-child {
-	border-top: 1px solid currentColor;
+	border-top: 1px solid var( --color-border );
 }
 
 tray {
 	height: 320px;
-	border-top: 1px solid currentColor;
+	border-top: 1px solid var( --color-border );
 }
 
 

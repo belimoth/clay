@@ -45,7 +45,7 @@ canvas.thumb {
 	margin-top: 4px;
 	float: left;
 	background: #FFF;
-	outline: 1px solid currentColor;
+	outline: 1px solid var( --color-border );
 	outline-offset: -1px;
 }
 
