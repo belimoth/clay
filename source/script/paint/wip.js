@@ -1,5 +1,7 @@
 "use strict";
 
+import { app } from "./main/app.js";
+
 // TODO similar for canvas
 
 document.getElementById( "menu" ).addEventListener( "wheel", function( event ) {
@@ -8,16 +10,16 @@ document.getElementById( "menu" ).addEventListener( "wheel", function( event ) {
 });
 
 document.getElementById( "a-export" ).addEventListener( "click", function( event ) {
-	document.getElementById( "download" ).href = window.app.context.render.canvas.toDataURL( "image/png" ).replace( "image/png", "application/octet-stream" );
+	document.getElementById( "download" ).href = app.context.render.canvas.toDataURL( "image/png" ).replace( "image/png", "application/octet-stream" );
 	document.getElementById( "download" ).click();
 });
 
 function replay() {
-	window.app.toRewind = true;
-	window.app.replay = true;
-	window.app.replay_t = 0;
-	window.app.replay_action_index = 0;
-	window.app.toRepaint = true;
+	app.toRewind = true;
+	app.replay = true;
+	app.replay_t = 0;
+	app.replay_action_index = 0;
+	app.toRepaint = true;
 }
 
 var writer = null;
