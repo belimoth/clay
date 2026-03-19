@@ -29,6 +29,8 @@ menu {
 main {
 	border-top: 1px solid #666;
 	overflow: hidden;
+	min-width: 0;
+	min-height: 0;
 }
 
 
@@ -272,7 +274,7 @@ main {
 
 main {
 	overflow: hidden;
-	min-width: 1024px;
+	/* min-width: 1024px; */
 }
 
 menu > page > ul#rom {
@@ -281,8 +283,8 @@ menu > page > ul#rom {
 }
 
 side {
-	min-width: 516px;
-	max-width: 516px;
+	/* min-width: 516px;
+	max-width: 516px; */
 }
 
 side {

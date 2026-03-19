@@ -72,3 +72,7 @@ traffic::before {
 top > t {
 	padding: 0 8px;
 }
+
+top a {
+	padding: 0 8px;
+}
