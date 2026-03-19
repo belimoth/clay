@@ -69,19 +69,6 @@ var canvasDisplay = document.getElementById( "canvasDisplay" );
 
 canvasDisplay.focus();
 
-function canvas_get_context( canvas, smooth = false ) {
-	var context = canvas.getContext( "2d" );
-
-	if ( !smooth ) {
-		context.mozImageSmoothingEnabled = false;
-		context.webkitImageSmoothingEnabled = false;
-		context.msImageSmoothingEnabled = false;
-		context.imageSmoothingEnabled = false;
-	}
-
-	return context;
-}
-
 var contextRender  = canvas_get_context( canvasRender, true );
 var contextDisplay = canvas_get_context( canvasDisplay );
 

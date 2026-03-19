@@ -1,5 +1,7 @@
 "use strict";
 
+import { canvas_get_context } from "../../../../script/app/canvas.js"
+
 var spectrum_el = document.getElementById( "spectrum" );
 spectrum_el.width  = 256;
 spectrum_el.height = 195;
@@ -8,7 +10,7 @@ spectrum_el.style.height = "195px";
 
 var image = document.getElementById( "image-test" );
 
-var context_spectrum = canvas_get_context( spectrum_el,true);
+var context_spectrum = canvas_get_context( spectrum_el, { read : true });
 context_spectrum.drawImage( image, 0, 0 )
 var imageData = context_spectrum.getImageData( 0, 0, 256, 195 );
 var data = imageData.data;
@@ -248,17 +250,6 @@ function palette( el ) {
 var app = {};
 
 app.palette = new palette( document.getElementById( "palette" ) );
-
-function canvas_get_context( canvas, read = false ) {
-	var context = canvas.getContext( "2d", { willReadFrequently: read } );
-
-	context.mozImageSmoothingEnabled    = false;
-	context.webkitImageSmoothingEnabled = false;
-	context.msImageSmoothingEnabled     = false;
-	context.imageSmoothingEnabled       = false;
-
-	return context;
-}
 
 var context = canvas_get_context( document.getElementById( "hue-quantize" ) );
 

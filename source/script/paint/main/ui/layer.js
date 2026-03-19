@@ -1,7 +1,9 @@
 "use strict";
 
-import { app } from "../../main/app.js"
-import { app_init_layer } from "../../app.js"
+import { canvas_get_context } from "../../../app/canvas.js"
+
+import { app }                from "../../main/app.js"
+import { app_init_layer }     from "../../app.js"
 
 export function ui_list_layer( el ) {
 	this.el = document.getElementById( "layer" );
@@ -67,17 +69,6 @@ export function ui_list_layer( el ) {
 			self.el.insertBefore( el, self.el.firstChild )
 			// self.el.append( el );
 		});
-
-		function canvas_get_context( canvas ) {
-			var context = canvas.getContext( "2d" );
-
-			context.webkitImageSmoothingEnabled = false;
-			context.mozImageSmoothingEnabled    = false;
-			context.msImageSmoothingEnabled     = false;
-			context.imageSmoothingEnabled       = false;
-
-			return context;
-		}
 
 		function thumb( el ){
 			this.el = el;

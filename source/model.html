@@ -17,7 +17,7 @@
 
 <style id=loading>body{opacity:0.0;}</style>
 <style>body{transition:opacity 0.2s linear;}</style>
-<script>window.onload = () => document.getElementById( "loading" ).remove();</script>
+<script>window.addEventListener( "load", () => document.getElementById( "loading" ).remove() );</script>
 
 <body>
 
@@ -46,7 +46,10 @@
 <menu id=menu>
 </menu>
 
-<main></main>
+<main>
+	<canvas id=display width=320 height=240></canvas>
+</main>
+
 <side id=side></side>
 
 <script type=module src=script/model/main.js></script>

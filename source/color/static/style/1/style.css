@@ -51,13 +51,14 @@ main > div {
 	margin-right: 0;
 }
 
-main > div > div {
+main > div > div,
+main > div > hue {
 	margin-bottom: 9px;
 }
 
 div.swatch,
 div.picker,
-div.hue::after,
+hue::after,
 canvas.hue {
 	box-shadow:
 	    inset 0 0 0 1px rgba(   0,   0,   0, 0.5  ),
@@ -73,12 +74,12 @@ div.thumb {
 }
 
 div.picker,
-div.hue {
+hue {
 	position: relative;
 	overflow: hidden;
 }
 
-div.hue::after {
+hue::after {
 	content: "";
 	position: absolute;
 	top: 0;
@@ -98,11 +99,11 @@ div.picker {
 	/* background-color: #F00; */
 }
 
-div.hue {
+hue {
 	height: 40px;
 }
 
-div.hue > div.inner {
+hue > div.inner {
 	position: relative;
 	height: 100%;
 
@@ -130,8 +131,8 @@ div.picker > div.thumb {
 	top: -8px;
 }
 
-div.hue::after,
-div.hue > div.inner {
+hue::after,
+hue > div.inner {
 	pointer-events: none;
 }
 
@@ -274,4 +275,9 @@ img {
 canvas {
 	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACAQMAAABIeJ9nAAAABlBMVEX////Z2dl4b8nnAAAADElEQVQI12NwYGgAAAFEAMHrWQMJAAAAAElFTkSuQmCC);
 	background-size: 8px;
+}
+
+main > div > hue,
+hue {
+	display: block !important;
 }

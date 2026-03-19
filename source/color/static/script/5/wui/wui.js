@@ -6,7 +6,7 @@ const modules = "picnic, canvas, swatch, slider, gradient, utility";
 
 modules.split( ", " ).forEach( function( el, i ) {
 	var script = document.createElement( "script" );
-	script.src = "script/5/wui/" + el + ".js";
+	script.src = "static/script/5/wui/" + el + ".js";
 	document.currentScript.parentNode.appendChild( script );
 });
 

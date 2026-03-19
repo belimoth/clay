@@ -3,7 +3,7 @@
 app.file = {};
 
 window.addEventListener( "load", function() {
-	document.getElementById( "loading" ).remove();
+	// document.getElementById( "loading" ).remove();
 
 	var upload = document.getElementById( "upload" );
 

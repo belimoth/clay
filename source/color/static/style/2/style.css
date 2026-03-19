@@ -11,17 +11,17 @@ div.row > div {
 
 
 
-div#hue-sat > div.inner {
+hue#hue-sat > div.inner {
     background: repeating-linear-gradient( 90deg, #F00 0, #838383 6% );
     background-size: calc( 50% * 50 / 3 );
 }
 
-div#hue-squash {
+hue#hue-squash {
 	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACAQMAAABIeJ9nAAAABlBMVEX////Z2dl4b8nnAAAADElEQVQI12NwYGgAAAFEAMHrWQMJAAAAAElFTkSuQmCC);
 	background-size: 8px;
 }
 
-div#hue-squash > div.inner {
+hue#hue-squash > div.inner {
 
     background: repeating-linear-gradient( 90deg, transparent 0, #838383 6% );
     background-size: calc( 50% * 50 / 3 );

@@ -1,8 +1,6 @@
 "use strict";
 
-document.addEventListener( "contextmenu", event => { event.preventDefault(); });
-document.addEventListener( "wheel",       event => { if ( event.ctrlKey ) event.preventDefault(); }, { "passive" : false });
-document.addEventListener( "keydown",     event => { if ( event.ctrlKey && "-=".includes( event.key ) ) event.preventDefault(); });
+import { canvas_get_context, canvas_make } from "../../../app/canvas.js"
 
 // import { app_main } from "../app/main.js"
 
@@ -17,21 +15,15 @@ import { ui_canvas }   from "./main/ui/canvas.js";
 import "../app/top.js"
 
 
+document.addEventListener( "contextmenu", event => { event.preventDefault(); });
+document.addEventListener( "wheel",       event => { if ( event.ctrlKey ) event.preventDefault(); }, { "passive" : false });
+document.addEventListener( "keydown",     event => { if ( event.ctrlKey && "-=".includes( event.key ) ) event.preventDefault(); });
+
 
 export function wait_frame( callback ) {
 	window.requestAnimationFrame( function( time ) { window.requestAnimationFrame( callback ); });
 }
 
-function canvas_get_context( canvas ) {
-	var context = canvas.getContext( "2d" );
-
-	context.webkitImageSmoothingEnabled = false;
-	context.mozImageSmoothingEnabled    = false;
-	context.msImageSmoothingEnabled     = false;
-	context.imageSmoothingEnabled       = false;
-
-	return context;
-}
 
 
 
@@ -52,12 +44,6 @@ export function app_canvas_resize() {
 }
 
 
-function canvas_make() {
-	var el = document.createElement( "canvas" );
-	el.width  = app.file.width;
-	el.height = app.file.height;
-	return el
-}
 
 export function app_init_layer() {
 	app.context.layer = [];
